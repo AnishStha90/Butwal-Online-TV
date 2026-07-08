@@ -1,0 +1,1769 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Radio  - Health Tips Category</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+
+:root {
+  --bt-accent:      #D4A017;
+  --bt-accent-on:   #1F1F1F;
+  --bt-sidebar-bg:  #eff6ff;
+  --bt-bg:          #FFFFFF;
+  --bt-text:        #1F1F1F;
+  --bt-muted:       rgba(31,31,31,0.55);
+  --bt-border:      rgba(163,25,25,0.18);
+  --bt-font-body:   "Noto Serif, Georgia, serif";
+  --bt-font-heading:"Noto Serif, Georgia, serif";
+  --bt-sidebar-w:   264px;
+  --bt-sidebar-w-collapsed: 76px;
+}
+
+#bt-header, #bt-header *, #bt-header *::before, #bt-header *::after {
+  box-sizing: border-box !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+#bt-header *:not(i):not([class*="fa-"]) {
+  font-family: var(--bt-font-body, sans-serif) !important;
+}
+#bt-header i[class*="fa-"] {
+  font-style: normal !important;
+  display: inline-block !important;
+  line-height: 1 !important;
+}
+#bt-header {
+  display: flex !important;
+  position: relative !important;
+  width: 100% !important;
+  min-height: 620px !important;
+  background: var(--bt-bg) !important;
+  color: var(--bt-text) !important;
+}
+
+/* ── overlay for mobile drawer ── */
+#bt-header .bt-sidebar-overlay {
+  display: none !important;
+  position: fixed !important;
+  inset: 0 !important;
+  background: rgba(0,0,0,.45) !important;
+  z-index: 999 !important;
+}
+#bt-header .bt-sidebar-overlay.active { display: block !important; }
+
+/* ── SIDEBAR: fixed to left edge, stays in place while page scrolls ── */
+#bt-header .bt-sidebar {
+  width: var(--bt-sidebar-w) !important;
+  flex-shrink: 0 !important;
+  background: var(--bt-sidebar-bg) !important;
+  border-right: 1px solid var(--bt-border) !important;
+  display: flex !important;
+  flex-direction: column !important;
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  bottom: 0 !important;
+  height: 100vh !important;
+  overflow-y: auto !important;
+  overflow-x: hidden !important;
+  transition: width .25s ease, transform .25s ease !important;
+  z-index: 1000 !important;
+}
+#bt-header .bt-sidebar.collapsed { width: var(--bt-sidebar-w-collapsed) !important; }
+
+/* ── MAIN AREA: pushed right by sidebar width so it isn't covered ── */
+#bt-header .bt-main {
+  margin-left: var(--bt-sidebar-w) !important;
+  flex: 1 1 auto !important;
+  display: flex !important;
+  flex-direction: column !important;
+  min-width: 0 !important;
+  transition: margin-left .25s ease !important;
+  width: 100% !important;
+}
+#bt-header .bt-sidebar.collapsed ~ .bt-main {
+  margin-left: var(--bt-sidebar-w-collapsed) !important;
+}
+
+#bt-header .bt-sidebar-header {
+  display: flex !important;
+  align-items: center !important;
+  height: 72px !important;
+  padding: 0 18px !important;
+  border-bottom: 1px solid var(--bt-border) !important;
+  flex-shrink: 0 !important;
+  gap: 10px !important;
+}
+#bt-header .bt-logo-link { display: flex !important; align-items: center !important; gap: 10px !important; text-decoration: none !important; overflow: hidden !important; min-width: 0 !important; }
+#bt-header .bt-logo { height: 42px !important; width: auto !important; display: block !important; border-radius: 6px !important; }
+#bt-header .bt-logo-text { font-weight: 800 !important; font-size: 1.05rem !important; color: var(--bt-text) !important; white-space: nowrap !important; line-height: 1.15 !important; }
+#bt-header .bt-logo-sub { font-size: .62rem !important; color: var(--bt-muted) !important; font-weight: 600 !important; letter-spacing: .04em !important; display: block !important; margin-top: 2px !important; }
+#bt-header .bt-sidebar.collapsed .bt-logo-text-wrap { display: none !important; }
+#bt-header .bt-logo-text-wrap { display: none !important; }
+
+/* ── Language toggle button (in sidebar header, controls whole page) ── */
+#bt-header .bt-lang-toggle {
+  margin-left: auto !important;
+  background: var(--bt-accent) !important;
+  color: var(--bt-accent-on) !important;
+  border: none !important;
+  border-radius: 20px !important;
+  padding: 6px 14px !important;
+  font-weight: 700 !important;
+  font-size: .78rem !important;
+  cursor: pointer !important;
+  flex-shrink: 0 !important;
+  white-space: nowrap !important;
+  transition: opacity .15s ease !important;
+}
+#bt-header .bt-lang-toggle:hover { opacity: .88 !important; }
+#bt-header .bt-sidebar.collapsed .bt-lang-toggle { display: none !important; }
+
+/* ── floating collapse toggle (chevron), vertically centered like mock ── */
+#bt-header .bt-collapse-btn {
+  position: fixed !important;
+  top: 50% !important;
+  left: var(--bt-sidebar-w) !important;
+  transform: translate(-50%, -50%) !important;
+  width: 30px !important; height: 30px !important; border-radius: 50% !important;
+  background: var(--bt-bg) !important; border: 1px solid var(--bt-border) !important;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15) !important; display: flex !important;
+  align-items: center !important; justify-content: center !important; cursor: pointer !important;
+  color: var(--bt-accent) !important; z-index: 1001 !important;
+  transition: left .25s ease, transform .25s ease !important;
+}
+#bt-header .bt-sidebar.collapsed ~ .bt-collapse-btn,
+#bt-header .bt-collapse-btn.collapsed-pos {
+  left: var(--bt-sidebar-w-collapsed) !important;
+}
+#bt-header .bt-collapse-btn.rotated i { transform: rotate(180deg) !important; }
+#bt-header .bt-collapse-btn i { transition: transform .25s ease !important; }
+
+#bt-header .bt-sidebar-nav { flex: 1 1 auto !important; overflow-y: auto !important; padding: 14px 12px !important; }
+#bt-header .bt-nav-list { list-style: none !important; display: flex !important; flex-direction: column !important; gap: 10px !important; }
+#bt-header .bt-nav-item a {
+  display: flex !important; align-items: center !important; gap: 14px !important;
+  padding: 12px 14px !important; border-radius: 14px !important;
+  background: var(--bt-bg) !important;
+  color: var(--bt-text) !important; text-decoration: none !important; font-size: .95rem !important;
+  font-weight: 700 !important; white-space: nowrap !important; overflow: hidden !important;
+  box-shadow: 0 1px 3px rgba(0,0,0,.05) !important;
+  transition: background .18s, color .18s, box-shadow .18s !important;
+}
+#bt-header .bt-nav-icon {
+  width: 34px !important; height: 34px !important; border-radius: 10px !important;
+  border: 1.5px solid var(--bt-border) !important; display: flex !important;
+  align-items: center !important; justify-content: center !important; flex-shrink: 0 !important;
+  color: var(--bt-muted) !important; font-size: .9rem !important;
+  transition: background .18s, color .18s, border-color .18s !important;
+}
+#bt-header .bt-nav-item a:hover { box-shadow: 0 4px 10px rgba(0,0,0,.08) !important; }
+#bt-header .bt-nav-item a:hover .bt-nav-icon { color: var(--bt-accent) !important; border-color: var(--bt-accent) !important; }
+#bt-header .bt-nav-item.active a { background: var(--bt-accent) !important; color: var(--bt-accent-on) !important; }
+#bt-header .bt-nav-item.active a .bt-nav-icon { border-color: var(--bt-accent-on) !important; color: var(--bt-accent-on) !important; }
+#bt-header .bt-sidebar.collapsed .bt-nav-item a span.bt-nav-label { display: none !important; }
+#bt-header .bt-sidebar.collapsed .bt-nav-item a { justify-content: center !important; padding: 12px !important; }
+#bt-header .bt-sidebar-footer {
+  padding: 16px !important; font-size: .74rem !important; color: var(--bt-muted) !important;
+  border-top: 1px solid var(--bt-border) !important; white-space: nowrap !important; overflow: hidden !important;
+  flex-shrink: 0 !important; text-align: center !important;
+}
+#bt-header .bt-sidebar.collapsed .bt-sidebar-footer { display: none !important; }
+#bt-header .lang-en { display: none !important; }
+#bt-header .lang-np { display: inline !important; }
+#bt-header .bt-hero {
+  position: relative !important; min-height: 480px !important; overflow: hidden !important;
+  display: flex !important; flex-direction: column !important; justify-content: flex-end !important; background: #111 !important;
+}
+#bt-header .bt-hero-bg { position: absolute !important; inset: 0 !important; background-size: cover !important; background-position: center !important; transform: scale(1.01) !important; }
+#bt-header .bt-hero-overlay { position: absolute !important; inset: 0 !important; background: linear-gradient(to top, rgba(0,0,0,.72) 0%, rgba(0,0,0,.15) 45%, rgba(0,0,0,.35) 100%) !important; }
+#bt-header .bt-hero-search { position: relative !important; z-index: 5 !important; padding: 24px 28px 0 !important; }
+#bt-header .bt-search-form {
+  max-width: 660px !important; background: var(--bt-bg) !important; border-radius: 999px !important;
+  display: flex !important; align-items: center !important; gap: 10px !important; padding: 12px 20px !important;
+  box-shadow: 0 6px 20px rgba(0,0,0,.18) !important;
+}
+#bt-header .bt-search-icon { color: var(--bt-muted) !important; }
+#bt-header .bt-search-input { border: none !important; outline: none !important; background: transparent !important; flex: 1 !important; font-size: .92rem !important; color: var(--bt-text) !important; }
+#bt-header .bt-hero-content { position: relative !important; z-index: 5 !important; padding: 0 28px 22px !important; max-width: 78% !important; }
+#bt-header .bt-hero-title { color: #fff !important; font-size: 1.9rem !important; font-weight: 800 !important; line-height: 1.35 !important; text-shadow: 0 2px 10px rgba(0,0,0,.4) !important; }
+#bt-header .bt-hero-watch-btn {
+  position: absolute !important; right: 24px !important; bottom: 22px !important; z-index: 6 !important;
+  display: flex !important; align-items: center !important; gap: 10px !important; background: var(--bt-bg) !important;
+  border: none !important; border-radius: 14px !important; padding: 10px 16px !important; cursor: pointer !important;
+  box-shadow: 0 6px 18px rgba(0,0,0,.25) !important;
+}
+#bt-header .bt-watch-play { width: 34px !important; height: 34px !important; border-radius: 50% !important; background: var(--bt-accent) !important; color: var(--bt-accent-on) !important; display: flex !important; align-items: center !important; justify-content: center !important; flex-shrink: 0 !important; }
+#bt-header .bt-watch-text { display: flex !important; flex-direction: column !important; text-align: left !important; }
+#bt-header .bt-watch-line1 { font-size: .82rem !important; font-weight: 800 !important; color: var(--bt-text) !important; }
+#bt-header .bt-watch-line2 { font-size: .68rem !important; color: var(--bt-muted) !important; }
+#bt-header .bt-category-bar { display: flex !important; flex-wrap: wrap !important; gap: 10px !important; padding: 18px 28px !important; background: var(--bt-bg) !important; }
+#bt-header .bt-cat-pill {
+  border: 1px solid var(--bt-accent) !important; background: transparent !important; color: var(--bt-accent) !important;
+  border-radius: 999px !important; padding: 8px 18px !important; font-size: .84rem !important; font-weight: 700 !important;
+  cursor: pointer !important; transition: background .18s, color .18s !important; white-space: nowrap !important;
+}
+#bt-header .bt-cat-pill:hover { background: rgba(37,99,235,.08) !important; }
+#bt-header .bt-cat-pill.active { background: var(--bt-accent) !important; color: var(--bt-accent-on) !important; }
+#bt-header .bt-sidebar-toggle-mobile {
+  display: none !important; position: fixed !important; top: 14px !important; left: 14px !important; z-index: 1002 !important;
+  width: 38px !important; height: 38px !important; border-radius: 50% !important; background: var(--bt-bg) !important;
+  border: 1px solid var(--bt-border) !important; align-items: center !important; justify-content: center !important; cursor: pointer !important;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15) !important;
+}
+
+/* ── Responsive breakpoints ── */
+@media (max-width: 1024px) {
+  :root { --bt-sidebar-w: 232px !important; }
+}
+
+@media (max-width: 900px) {
+  #bt-header { flex-direction: column !important; }
+  #bt-header .bt-sidebar {
+    width: 260px !important;
+    transform: translateX(-100%) !important;
+  }
+  #bt-header .bt-sidebar.collapsed { width: 260px !important; }
+  #bt-header .bt-sidebar.mobile-open { transform: translateX(0) !important; }
+  #bt-header .bt-main { margin-left: 0 !important; }
+  #bt-header .bt-sidebar.collapsed ~ .bt-main { margin-left: 0 !important; }
+  #bt-header .bt-collapse-btn { display: none !important; }
+  #bt-header .bt-sidebar-toggle-mobile { display: flex !important; }
+  #bt-header .bt-hero-content { max-width: 100% !important; }
+  #bt-header .bt-hero-title { font-size: 1.4rem !important; }
+  #bt-header .bt-hero-watch-btn { right: 14px !important; bottom: 14px !important; padding: 8px 12px !important; }
+  #bt-header .bt-watch-line2 { display: none !important; }
+  #bt-header .bt-hero { min-height: 340px !important; }
+  #bt-header .bt-hero-search { padding: 70px 16px 0 !important; }
+}
+
+@media (max-width: 480px) {
+  #bt-header .bt-category-bar { padding: 14px 16px !important; gap: 8px !important; }
+  #bt-header .bt-cat-pill { padding: 7px 13px !important; font-size: .78rem !important; }
+  #bt-header .bt-hero-title { font-size: 1.15rem !important; }
+  #bt-header .bt-hero { min-height: 300px !important; }
+}
+
+</style>
+<style>
+  /* Default: Body shows English */
+  .lang-np { display: none !important; }
+  .lang-en { display: inline; }
+  div.lang-en, p.lang-en, h2.lang-en, h3.lang-en { display: block !important; }
+  div.lang-np, p.lang-np, h2.lang-np, h3.lang-np { display: none !important; }
+
+  /* Default: Header shows Nepali (opposite of body initially) */
+  #bt-header .lang-np { display: inline !important; }
+  #bt-header .lang-en { display: none !important; }
+
+  /* When body.lang-active (Nepali mode): Body shows Nepali */
+  body.lang-active .lang-en { display: none !important; }
+  body.lang-active .lang-np { display: inline !important; }
+  body.lang-active div.lang-np,
+  body.lang-active p.lang-np,
+  body.lang-active section.lang-np,
+  body.lang-active h1.lang-np,
+  body.lang-active h2.lang-np,
+  body.lang-active h3.lang-np,
+  body.lang-active h4.lang-np,
+  body.lang-active .article-body.lang-np { display: block !important; }
+
+  /* When body.lang-active (Nepali mode): Header also shows Nepali (sync) */
+  body.lang-active #bt-header .lang-np { display: inline !important; }
+  body.lang-active #bt-header .lang-en { display: none !important; }
+
+  /* When body does NOT have lang-active (English mode): Header shows English (sync) */
+  body:not(.lang-active) #bt-header .lang-en { display: inline !important; }
+  body:not(.lang-active) #bt-header .lang-np { display: none !important; }
+
+  .category-feed { max-width: 1200px; margin: 0 auto; }
+
+  #news-grid.news-grid {
+    display: block !important;
+    width: 100% !important;
+    grid-template-columns: none !important;
+    gap: 0 !important;
+  }
+
+  #news-list {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 1.25rem;
+    align-items: start;
+  }
+  .grid-card {
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    color: inherit;
+    background: transparent;
+    transition: transform .2s ease;
+    min-width: 0;
+  }
+  .grid-card:hover {
+    transform: translateY(-3px);
+  }
+  .grid-card:hover .grid-thumb img {
+    transform: scale(1.03);
+  }
+  .grid-thumb {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    background: #000;
+    overflow: hidden;
+    border-radius: 10px;
+  }
+  .grid-thumb img {
+    position: absolute; inset: 0;
+    width: 100%; height: 100%; object-fit: cover;
+    transition: transform .3s ease;
+  }
+  .grid-play {
+    position: absolute; top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 44px; height: 44px; border-radius: 50%;
+    background: rgba(255,255,255,.9);
+    display: flex; align-items: center; justify-content: center;
+    color: var(--text, #222); font-size: .85rem;
+    box-shadow: 0 2px 8px rgba(0,0,0,.25);
+  }
+  .grid-body {
+    padding: .75rem 0 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 5.4rem;
+    gap: .5rem;
+  }
+  .grid-title {
+    font-family: var(--font-heading, serif);
+    font-weight: 700;
+    font-size: .95rem; line-height: 1.35;
+    margin: 0; color: var(--text);
+    display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;
+    overflow: hidden;
+    word-break: break-word;
+  }
+  .grid-time {
+    font-size: .78rem; color: var(--muted);
+    display: flex; align-items: center; gap: .35rem;
+    margin-top: auto;
+    flex-shrink: 0;
+  }
+  .grid-time i { font-size: .78rem; }
+
+  @media (max-width: 1100px) {
+    #news-list { grid-template-columns: repeat(3, 1fr); }
+  }
+  @media (max-width: 780px) {
+    #news-list { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 480px) {
+    #news-list { grid-template-columns: 1fr; }
+  }
+
+  .category-container {
+    padding: 0 1.5rem 1rem !important;
+    margin-top: 0 !important;
+  }
+  .category-header {
+    text-align: left !important;
+    margin: 0 0 1rem !important;
+    padding: .75rem 0 .75rem !important;
+    border-bottom: 1px solid var(--border, #e0e0e0);
+  }
+  .category-header h1 {
+    margin: 0 !important;
+    font-size: clamp(1.4rem, 3vw, 2rem) !important;
+  }
+  main.main-content {
+    padding-top: 0 !important;
+  }
+
+  #category-pagination {
+    display: flex; align-items: center; justify-content: center;
+    gap: .4rem; margin: 2rem 0 1rem; flex-wrap: wrap;
+  }
+  .pg-btn {
+    min-width: 34px; height: 34px; padding: 0 .5rem;
+    border-radius: 6px; border: 1px solid var(--border);
+    background: var(--surface); color: var(--text);
+    font-size: .85rem; cursor: pointer;
+  }
+  .pg-btn.active {
+    background: var(--accent); color: var(--accent-on); border-color: var(--accent);
+    font-weight: 700;
+  }
+  .pg-btn:disabled { opacity: .4; cursor: not-allowed; }
+  .pg-ellipsis { color: var(--muted); padding: 0 .25rem; }
+
+  #back-to-top {
+    position: fixed; bottom: 1.5rem; right: 1.5rem;
+    background: var(--accent); color: var(--accent-on);
+    border: none; border-radius: 50%;
+    width: 42px; height: 42px; cursor: pointer;
+    font-size: 1rem; display: none;
+    align-items: center; justify-content: center; z-index: 999;
+  }
+</style>
+<style>
+  :root {
+    --accent:       #D4A017;
+    --primary:      #A31919;
+    --primary-on:   #FFFFFF;
+    --accent-on:    #FFFFFF;
+    --bg:           #FFFFFF;
+    --surface:      #F8F8F8;
+    --text:         #1F1F1F;
+    --muted:        rgba(31,31,31,0.55);
+    --border:       rgba(163,25,25,0.18);
+    --font-body:    Arial, sans-serif;
+    --font-heading: Arial, sans-serif;
+  }
+
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font-body);
+  }
+
+  .category-container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 2rem 1.5rem;
+    min-height: 100vh;
+  }
+
+  .category-header {
+    text-align: center;
+    margin-bottom: 3rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .breadcrumb {
+    font-size: 0.85rem;
+    color: var(--muted);
+    margin-bottom: 1rem;
+  }
+
+  .breadcrumb a {
+    color: var(--accent);
+    text-decoration: none;
+  }
+
+  .breadcrumb a:hover {
+    text-decoration: underline;
+  }
+
+  h1 {
+    font-family: var(--font-heading);
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    color: var(--primary);
+    margin-bottom: 1rem;
+    line-height: 1.2;
+  }
+
+  .category-description {
+    font-size: 1rem;
+    color: var(--muted);
+    max-width: 700px;
+    margin: 0 auto 1rem;
+    line-height: 1.6;
+  }
+
+  .category-meta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: var(--surface);
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    color: var(--text);
+  }
+
+  .news-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 2rem;
+    margin-bottom: 3rem;
+  }
+
+  .article-card {
+    background: var(--surface);
+    border-radius: 12px;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid var(--border);
+  }
+
+  .article-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+  }
+
+  .card-image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    background: var(--border);
+  }
+
+  .card-image:empty {
+    background: linear-gradient(135deg, var(--border) 0%, var(--surface) 100%);
+  }
+
+  .card-content {
+    padding: 1.25rem;
+  }
+
+  .card-category {
+    display: inline-block;
+    background: var(--accent);
+    color: var(--accent-on);
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    padding: 0.2rem 0.6rem;
+    border-radius: 4px;
+    margin-bottom: 0.75rem;
+    letter-spacing: 0.05em;
+    font-weight: 600;
+    text-decoration: none;
+  }
+
+  .card-title {
+    font-family: var(--font-heading);
+    font-size: 1.2rem;
+    line-height: 1.4;
+    margin: 0 0 0.75rem;
+    color: var(--text);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .card-title:hover {
+    color: var(--accent);
+  }
+
+  .card-excerpt {
+    font-size: 0.88rem;
+    color: var(--muted);
+    line-height: 1.5;
+    margin-bottom: 1rem;
+  }
+
+  .card-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.78rem;
+    color: var(--muted);
+  }
+
+  .card-meta i {
+    margin-right: 0.2rem;
+  }
+
+  .read-more {
+    color: var(--accent);
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 600;
+    transition: opacity 0.2s;
+  }
+
+  .read-more:hover {
+    opacity: 0.8;
+  }
+
+  .load-more-container {
+    text-align: center;
+    margin-top: 2rem;
+  }
+
+  .load-more-btn {
+    background: var(--accent);
+    color: var(--accent-on);
+    border: none;
+    padding: 0.9rem 2rem;
+    border-radius: 50px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 600;
+    transition: transform 0.2s, opacity 0.2s;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .load-more-btn:hover {
+    opacity: 0.9;
+    transform: scale(1.02);
+  }
+
+  .load-more-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  #back-to-top {
+    position: fixed;
+    bottom: 1.5rem;
+    right: 1.5rem;
+    background: var(--accent);
+    color: var(--accent-on);
+    border: none;
+    border-radius: 50%;
+    width: 42px;
+    height: 42px;
+    cursor: pointer;
+    font-size: 1rem;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 999;
+    transition: opacity 0.2s;
+  }
+
+  .empty-state {
+    text-align: center;
+    padding: 4rem 2rem;
+    background: var(--surface);
+    border-radius: 12px;
+    color: var(--muted);
+  }
+
+  .empty-state i {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    opacity: 0.5;
+  }
+
+  @media (max-width: 768px) {
+    .category-container {
+      padding: 1rem;
+    }
+    .news-grid {
+      gap: 1rem;
+      grid-template-columns: 1fr;
+    }
+    .card-image {
+      height: 180px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    h1 {
+      font-size: 1.5rem;
+    }
+    .card-title {
+      font-size: 1rem;
+    }
+  }
+
+  .lang-np {
+    display: none;
+  }
+
+  .lang-en {
+    display: inline;
+  }
+
+  body.lang-active .lang-en {
+    display: none !important;
+  }
+
+  body.lang-active .lang-np {
+    display: inline !important;
+  }
+
+  body.lang-active p.lang-np, body.lang-active span.lang-np {
+    display: inline !important;
+  }
+</style>
+<style>
+
+:root {
+  --footer-accent:      #D4A017;
+  --footer-accent-on:   #1F1F1F;
+  --footer-bg:          #FFFFFF;
+  --footer-text:        #1F1F1F;
+  --footer-muted:       rgba(31,31,31,0.55);
+  --footer-border:      rgba(163,25,25,0.18);
+  --footer-font-body:   "Noto Serif, Georgia, serif";
+  --footer-font-heading:"'Mukta', sans-serif";
+}
+
+#site-footer, #site-footer *, #site-footer *::before, #site-footer *::after {
+  box-sizing: border-box !important;
+}
+#site-footer {
+  font-family: var(--footer-font-body, sans-serif) !important;
+  background: #e5e7eb !important;
+  border-radius: 24px 24px 0 0 !important;
+  padding: 32px 32px 20px !important;
+  margin-top: 40px !important;
+  margin-right: auto !important;
+  margin-bottom: 0 !important;
+  box-shadow: 0 -2px 20px rgba(0,0,0,0.04) !important;
+}
+.footer-top {
+  display: flex !important; flex-wrap: wrap !important; justify-content: space-between !important;
+  align-items: center !important; gap: 16px 20px !important; padding: 0 4px !important;
+}
+.footer-nav { display: flex !important; flex-wrap: wrap !important; align-items: center !important; gap: 4px 6px !important; }
+.footer-nav a {
+  font-size: 0.95rem !important; font-weight: 600 !important; color: var(--footer-text) !important;
+  text-decoration: none !important; padding: 4px 6px !important; transition: color 0.2s ease !important; letter-spacing: 0.02em !important;
+}
+.footer-nav a:hover { color: var(--footer-accent) !important; }
+.footer-nav .sep { color: #b0b0b8 !important; font-weight: 300 !important; font-size: 0.9rem !important; }
+.footer-social { display: flex !important; align-items: center !important; gap: 10px !important; }
+.social-label { font-size: 0.85rem !important; font-weight: 500 !important; color: var(--footer-text) !important; }
+.social-icons { display: flex !important; gap: 8px !important; }
+.social-icons a {
+  display: inline-flex !important; align-items: center !important; justify-content: center !important;
+  width: 36px !important; height: 36px !important; border-radius: 50% !important; border: 2px solid #3d3d4a !important;
+  color: #3d3d4a !important; font-size: 0.95rem !important; text-decoration: none !important; transition: all 0.25s ease !important; background: transparent !important;
+}
+.social-icons a:hover {
+  background: var(--footer-accent) !important; border-color: var(--footer-accent) !important; color: var(--footer-accent-on) !important;
+  transform: translateY(-2px) scale(1.04) !important; box-shadow: 0 4px 12px rgba(0,0,0,0.25) !important;
+}
+.footer-divider { height: 1px !important; background: rgba(0,0,0,0.08) !important; margin: 20px 0 18px !important; }
+.footer-middle { display: grid !important; grid-template-columns: 1fr 1fr 1fr !important; gap: 24px 20px !important; padding: 4px 0 4px !important; }
+.footer-col { display: flex !important; flex-direction: column !important; gap: 4px !important; }
+.footer-col p { font-size: 0.92rem !important; line-height: 1.6 !important; color: var(--footer-text) !important; margin: 0 !important; font-weight: 500 !important; }
+.footer-col a { color: var(--footer-accent) !important; text-decoration: none !important; font-weight: 600 !important; transition: color 0.2s ease !important; }
+.footer-col a:hover { text-decoration: underline !important; }
+.footer-col strong { font-weight: 700 !important; color: var(--footer-text) !important; }
+.footer-bottom { display: flex !important; flex-wrap: wrap !important; justify-content: space-between !important; align-items: center !important; gap: 10px 16px !important; padding-top: 4px !important; }
+.copyright { font-size: 0.85rem !important; font-weight: 500 !important; color: var(--footer-text) !important; }
+.developer { font-size: 0.82rem !important; font-weight: 500 !important; color: var(--footer-muted) !important; }
+.developer strong { font-weight: 700 !important; color: var(--footer-text) !important; }
+.dev-logo { height: 22px !important; width: auto !important; vertical-align: middle !important; margin-left: 4px !important; }
+
+/* Language toggle styles */
+body:not(.lang-active) .lang-np { display: none !important; }
+body:not(.lang-active) .lang-en { display: inline !important; }
+body.lang-active .lang-en { display: none !important; }
+body.lang-active .lang-np { display: inline !important; }
+
+/* Block level language styles */
+body:not(.lang-active) .lang-np-block { display: none !important; }
+body:not(.lang-active) .lang-en-block { display: block !important; }
+body.lang-active .lang-en-block { display: none !important; }
+body.lang-active .lang-np-block { display: block !important; }
+
+/* Fix for inline elements that need to display as inline */
+body:not(.lang-active) .lang-en-inline { display: inline !important; }
+body:not(.lang-active) .lang-np-inline { display: none !important; }
+body.lang-active .lang-en-inline { display: none !important; }
+body.lang-active .lang-np-inline { display: inline !important; }
+
+.wa-widget { position: fixed !important; bottom: 24px !important; right: 24px !important; z-index: 9999 !important; display: flex !important; align-items: center !important; gap: 10px !important; flex-direction: row !important; }
+.wa-fab {
+  width: 52px !important; height: 52px !important; border-radius: 50% !important; background: #25D366 !important; color: #fff !important;
+  display: flex !important; align-items: center !important; justify-content: center !important; font-size: 1.7rem !important; text-decoration: none !important;
+  box-shadow: 0 4px 16px rgba(37,211,102,.4), 0 2px 8px rgba(0,0,0,.2) !important;
+  transition: transform .22s cubic-bezier(.34,1.56,.64,1), box-shadow .22s !important;
+  animation: waIn .5s cubic-bezier(.34,1.56,.64,1) 1.2s both !important; position: relative !important;
+}
+.wa-fab:hover { transform: scale(1.12) rotate(-6deg) !important; }
+.wa-fab::after { content: '' !important; position: absolute !important; inset: 0 !important; border-radius: 50% !important; border: 3px solid #25D366 !important; animation: waRing 2s ease-out 2s infinite !important; }
+.wa-tooltip {
+  background: #fff !important; color: #111 !important; font-size: .78rem !important; font-weight: 600 !important; padding: 5px 12px !important;
+  border-radius: 14px !important; white-space: nowrap !important; box-shadow: 0 3px 12px rgba(0,0,0,.15) !important; opacity: 0 !important;
+  pointer-events: none !important; transform: translateX(-6px) !important; transition: opacity .2s, transform .2s !important;
+}
+.wa-widget:hover .wa-tooltip { opacity: 1 !important; transform: translateX(0) !important; }
+@keyframes waIn { from { opacity: 0; transform: scale(.4) translateY(20px); } to { opacity: 1; transform: scale(1) translateY(0); } }
+@keyframes waRing { 0% { transform: scale(1); opacity: .8; } 70%, 100% { transform: scale(1.5); opacity: 0; } }
+@media (max-width: 900px) {
+  .wa-widget { right: 24px !important; }
+}
+@media (max-width: 768px) {
+  #site-footer { padding: 24px 18px 16px !important; border-radius: 16px 16px 0 0 !important; }
+  .footer-top { flex-direction: column !important; align-items: center !important; gap: 12px !important; }
+  .footer-nav { justify-content: center !important; }
+  .footer-social { justify-content: center !important; }
+  .footer-middle { grid-template-columns: 1fr !important; gap: 12px !important; text-align: center !important; }
+  .footer-col { align-items: center !important; }
+  .footer-bottom { flex-direction: column !important; text-align: center !important; gap: 6px !important; }
+}
+@media (max-width: 480px) {
+  #site-footer { padding: 18px 12px 14px !important; border-radius: 12px 12px 0 0 !important; }
+  .footer-nav a { font-size: 0.85rem !important; padding: 2px 4px !important; }
+  .social-icons a { width: 32px !important; height: 32px !important; font-size: 0.82rem !important; }
+  .footer-col p { font-size: 0.85rem !important; }
+ .wa-widget { bottom: 24px !important; right: 14px; }
+  .wa-fab { width: 46px !important; height: 46px !important; font-size: 1.5rem !important; }
+}
+
+</style>
+  
+<style>
+  #bt-header { min-height: 0 !important; align-items: flex-start !important; }
+  #bt-header .bt-main { align-self: flex-start !important; }
+</style>
+
+
+  <style>
+    *,*::before,*::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0; padding: 0;
+      min-height: 100vh;
+      display: flex; flex-direction: column;
+      overflow-x: hidden;
+      background: var(--bg, #ffffff);
+      color: var(--text, #0f172a);
+      font-family: var(--font-body, 'Inter', sans-serif);
+    }
+    main.main-content {
+      flex: 1;
+      margin-left: var(--bt-sidebar-w, 264px);
+      width: calc(100% - var(--bt-sidebar-w, 264px));
+      box-sizing: border-box;
+      transition: margin-left .25s ease, width .25s ease;
+    }
+    footer#site-footer {
+      margin-left: var(--bt-sidebar-w, 264px);
+      width: calc(100% - var(--bt-sidebar-w, 264px));
+      max-width: calc(100% - var(--bt-sidebar-w, 264px));
+      box-sizing: border-box;
+      transition: margin-left .25s ease, width .25s ease;
+    }
+    body.sidebar-collapsed main.main-content,
+    body.sidebar-collapsed footer#site-footer {
+      margin-left: var(--bt-sidebar-w-collapsed, 76px);
+      width: calc(100% - var(--bt-sidebar-w-collapsed, 76px));
+      max-width: calc(100% - var(--bt-sidebar-w-collapsed, 76px));
+    }
+    @media (max-width: 900px) {
+      main.main-content, footer#site-footer {
+        margin-left: 0 !important;
+        width: 100% !important;
+        max-width: 100% !important;
+      }
+    }
+    img, video, iframe { max-width: 100%; height: auto; }
+
+    /* Language visibility - Header defaults to NEPALI */
+    #bt-header .lang-np { display: inline !important; }
+    #bt-header .lang-en { display: none !important; }
+    
+    /* When body.lang-active (Nepali mode): Header also shows NEPALI (sync) */
+    body.lang-active #bt-header .lang-np { display: inline !important; }
+    body.lang-active #bt-header .lang-en { display: none !important; }
+
+    /* When body does NOT have lang-active (English mode): Header shows ENGLISH (sync) */
+    body:not(.lang-active) #bt-header .lang-en { display: inline !important; }
+    body:not(.lang-active) #bt-header .lang-np { display: none !important; }
+
+    /* Body content defaults to ENGLISH */
+    .lang-np { display: none !important; }
+    .lang-en { display: inline; }
+    div.lang-en, p.lang-en, section.lang-en,
+    h1.lang-en, h2.lang-en, h3.lang-en, h4.lang-en,
+    .article-body.lang-en { display: block !important; }
+    div.lang-np, p.lang-np, section.lang-np,
+    h1.lang-np, h2.lang-np, h3.lang-np, h4.lang-np,
+    .article-body.lang-np { display: none !important; }
+
+    /* When body.lang-active (Nepali mode): Body shows NEPALI */
+    body.lang-active .lang-en { display: none !important; }
+    body.lang-active .lang-np { display: inline !important; }
+    body.lang-active div.lang-np,
+    body.lang-active p.lang-np,
+    body.lang-active section.lang-np,
+    body.lang-active h1.lang-np,
+    body.lang-active h2.lang-np,
+    body.lang-active h3.lang-np,
+    body.lang-active h4.lang-np,
+    body.lang-active .article-body.lang-np { display: block !important; }
+
+    .btt-btn {
+      position: fixed; bottom: 30px; right: 30px;
+      width: 45px; height: 45px; border-radius: 50%;
+      border: none; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      opacity: 0; visibility: hidden;
+      transition: opacity .3s, visibility .3s;
+      z-index: 9998;
+      background: var(--accent, #f59e0b);
+      color: var(--accent-on, #ffffff);
+      box-shadow: 0 2px 10px rgba(0,0,0,.3);
+    }
+    .btt-btn.show { opacity: 1; visibility: visible; }
+    .btt-btn:hover { opacity: 0.85; transform: scale(1.05); }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header id="bt-header">
+
+
+
+  <button class="bt-sidebar-toggle-mobile" id="bt-sidebar-toggle-mobile" aria-label="Toggle sidebar">
+    <i class="fa-solid fa-bars"></i>
+  </button>
+
+  <div class="bt-sidebar-overlay" id="bt-sidebar-overlay"></div>
+
+  <aside class="bt-sidebar" id="bt-sidebar">
+    <div class="bt-sidebar-header">
+      <a href="../index.html" class="bt-logo-link" aria-label="Butwal TV Home">
+        <img src="../images/logo.png" alt="Butwal TV" class="bt-logo" id="bt-logo" onerror="this.style.display='none'">
+        <span class="bt-logo-text-wrap">
+          <span class="bt-logo-text">Butwal TV</span>
+          <span class="bt-logo-sub">ONLINE TV</span>
+        </span>
+      </a>
+      <button type="button" class="bt-lang-toggle" id="bt-lang-toggle" aria-label="भाषा बदल्नुहोस्">EN</button>
+    </div>
+
+    <nav class="bt-sidebar-nav" aria-label="Primary navigation">
+      <ul class="bt-nav-list" id="bt-nav-list">
+        <li class="bt-nav-item active">
+          <a href="../index.html">
+            <span class="bt-nav-icon"><i class="fa-solid fa-house"></i></span>
+            <span class="bt-nav-label"><span class="lang-np">गृहपृष्ठ</span><span class="lang-en">Home</span></span>
+          </a>
+        </li>
+        <li class="bt-nav-item">
+          <a href="news.html">
+            <span class="bt-nav-icon"><i class="fa-regular fa-newspaper"></i></span>
+            <span class="bt-nav-label"><span class="lang-np">समाचार</span><span class="lang-en">News</span></span>
+          </a>
+        </li>
+        <li class="bt-nav-item">
+          <a href="politics.html">
+            <span class="bt-nav-icon"><i class="fa-solid fa-landmark"></i></span>
+            <span class="bt-nav-label"><span class="lang-np">राजनीति</span><span class="lang-en">Politics</span></span>
+          </a>
+        </li>
+        <li class="bt-nav-item">
+          <a href="business.html">
+            <span class="bt-nav-icon"><i class="fa-solid fa-chart-line"></i></span>
+            <span class="bt-nav-label"><span class="lang-np">अर्थ वाणिज्य</span><span class="lang-en">Business</span></span>
+          </a>
+        </li>
+        <li class="bt-nav-item">
+          <a href="butwal-today-news.html">
+            <span class="bt-nav-icon"><i class="fa-solid fa-tower-broadcast"></i></span>
+            <span class="bt-nav-label"><span class="lang-np">बुटवल टुडे समाचार</span><span class="lang-en">Butwal Today News</span></span>
+          </a>
+        </li>
+        <li class="bt-nav-item">
+          <a href="newspaper.html">
+            <span class="bt-nav-icon"><i class="fa-regular fa-file-lines"></i></span>
+            <span class="bt-nav-label"><span class="lang-np">पत्रपत्रिका</span><span class="lang-en">Newspaper</span></span>
+          </a>
+        </li>
+        <li class="bt-nav-item">
+          <a href="highlights.html">
+            <span class="bt-nav-icon"><i class="fa-regular fa-star"></i></span>
+            <span class="bt-nav-label"><span class="lang-np">हाइलाइट्स</span><span class="lang-en">Highlights</span></span>
+          </a>
+        </li>
+        <li class="bt-nav-item">
+          <a href="horoscope.html">
+            <span class="bt-nav-icon"><i class="fa-solid fa-wand-magic-sparkles"></i></span>
+            <span class="bt-nav-label"><span class="lang-np">राशीफल</span><span class="lang-en">Horoscope</span></span>
+          </a>
+        </li>
+        <li class="bt-nav-item">
+          <a href="butwal-khabar.html">
+            <span class="bt-nav-icon"><i class="fa-solid fa-bullhorn"></i></span>
+            <span class="bt-nav-label"><span class="lang-np">बुटवल खबर</span><span class="lang-en">Butwal Khabar</span></span>
+          </a>
+        </li>
+        <li class="bt-nav-item">
+          <a href="weekly-programs.html">
+            <span class="bt-nav-icon"><i class="fa-regular fa-calendar-days"></i></span>
+            <span class="bt-nav-label"><span class="lang-np">साप्ताहिक कार्यक्रम</span><span class="lang-en">Weekly Programs</span></span>
+          </a>
+        </li>
+        <li class="bt-nav-item">
+          <a href="nepal-update.html">
+            <span class="bt-nav-icon"><i class="fa-solid fa-arrows-rotate"></i></span>
+            <span class="bt-nav-label"><span class="lang-np">नेपाल अपडेट</span><span class="lang-en">Nepal Update</span></span>
+          </a>
+        </li>
+        <li class="bt-nav-item">
+          <a href="health-tip.html">
+            <span class="bt-nav-icon"><i class="fa-solid fa-briefcase-medical"></i></span>
+            <span class="bt-nav-label"><span class="lang-np">स्वास्थ्य टिप्स</span><span class="lang-en">Health Tips</span></span>
+          </a>
+        </li>
+        <li class="bt-nav-item">
+          <a href="others.html">
+            <span class="bt-nav-icon"><i class="fa-solid fa-grip"></i></span>
+            <span class="bt-nav-label"><span class="lang-np">अन्य</span><span class="lang-en">Others</span></span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+
+    <div class="bt-sidebar-footer">
+      <span>© <span id="bt-copyright-year"></span> Butwal TV</span>
+    </div>
+  </aside>
+
+  <button class="bt-collapse-btn" id="bt-collapse-btn" aria-label="Collapse sidebar">
+    <i class="fa-solid fa-chevron-left"></i>
+  </button>
+
+  <div class="bt-main">
+    <section class="bt-hero" id="bt-hero">
+      <div class="bt-hero-bg" id="bt-hero-bg" style="background-image:url('../images/hero-bg.jpg');"></div>
+      <div class="bt-hero-overlay"></div>
+
+     
+
+      <div class="bt-hero-content">
+        <h1 class="bt-hero-title" id="bt-hero-title">Butwal TV</h1>
+      </div>
+
+      <button class="bt-hero-watch-btn" id="bt-hero-watch-btn">
+        <span class="bt-watch-play"><i class="fa-solid fa-play"></i></span>
+        <span class="bt-watch-text">
+          <span class="bt-watch-line1">
+  <span class="lang-np">अहिले हेर्नुहोस्</span><span class="lang-en" style="display:none">Watch Now</span>
+</span>
+<span class="bt-watch-line2">
+  <span class="lang-np">भिडियो प्ले गर्नुहोस्</span><span class="lang-en" style="display:none">Play Video</span>
+</span>
+        </span>
+      </button>
+    </section>
+
+   
+  </div>
+
+
+</header>
+
+  <!-- CATEGORY PAGE CONTENT -->
+  <main class="main-content">
+    
+
+
+
+
+
+<div class="category-container">
+
+  <!-- Category Header Section -->
+  <div class="category-header">
+    
+    
+    <h1>
+      <span id="category-title-en" class="lang-en"></span>
+      <span id="category-title-np" class="lang-np"></span>
+    </h1>
+    
+    
+    
+    
+  </div>
+
+  <!-- News Grid Section -->
+  <div id="news-grid" class="news-grid">
+  <div class="category-feed">
+    <div id="news-list">
+      
+    <a href="javascript:void(0)" class="video-open-link grid-card" data-embed="https://www.youtube.com/embed/ZhcGzqkpOcA" data-title="Benefits of Eating Guava | HEALTH TIPS |#healthtips #healthylifestyle #guava #healthbenefits" data-title-np="अम्बा खानुका फाइदाहरू | स्वास्थ्य सुझावहरू |#स्वास्थ्य सुझावहरू #स्वस्थ जीवनशैली #अम्बा #स्वास्थ्य फाइदाहरू">
+      <div class="grid-thumb">
+        <img src="https://img.youtube.com/vi/ZhcGzqkpOcA/hqdefault.jpg" alt="Benefits of Eating Guava | HEALTH TIPS |#healthtips #healthylifestyle #guava #healthbenefits" loading="lazy">
+        <span class="grid-play"><i class="fas fa-play"></i></span>
+      </div>
+      <div class="grid-body">
+        <h3 class="grid-title lang-en">Benefits of Eating Guava | HEALTH TIPS |#healthtips #healthylifestyle #guava #healthbenefits</h3>
+        <h3 class="grid-title lang-np" style="display:none;">अम्बा खानुका फाइदाहरू | स्वास्थ्य सुझावहरू |#स्वास्थ्य सुझावहरू #स्वस्थ जीवनशैली #अम्बा #स्वास्थ्य फाइदाहरू</h3>
+        <span class="grid-time lang-en" data-date-ad="2026-07-06T13:49:00.976Z" data-rel="en"><i class="fa-regular fa-clock"></i> <span class="grid-time-text"></span></span>
+        <span class="grid-time lang-np" data-date-ad="2026-07-06T13:49:00.976Z" data-rel="np" style="display:none;"><i class="fa-regular fa-clock"></i> <span class="grid-time-text"></span></span>
+      </div>
+    </a>
+  
+    </div>
+    <div id="category-pagination"></div>
+  </div>
+</div>
+
+  <!-- Load More Section -->
+  <div class="load-more-container">
+    <button id="load-more-btn" class="load-more-btn">
+      <span class="lang-en"><i class="fas fa-chevron-down"></i> Load More</span>
+      <span class="lang-np"><i class="fas fa-chevron-down"></i> थप लोड गर्नुहोस्</span>
+    </button>
+  </div>
+
+  <!-- Back to Top Button -->
+  
+
+</div>
+
+
+<div id="video-modal-overlay" style="display:none;position:fixed;inset:0;z-index:100000;background:rgba(0,0,0,.9);align-items:center;justify-content:center;padding:20px;box-sizing:border-box;">
+  <div style="position:relative;max-width:900px;width:100%;">
+    <button id="video-modal-close" style="position:absolute;top:-44px;right:0;width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,.15);color:#fff;border:1px solid rgba(255,255,255,.4);font-size:16px;cursor:pointer;">&#x2715;</button>
+    <div style="position:relative;width:100%;padding-top:56.25%;background:#000;border-radius:8px;overflow:hidden;">
+      <iframe id="video-modal-frame" src="" style="position:absolute;inset:0;width:100%;height:100%;border:0;" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+    </div>
+  </div>
+</div>
+
+
+
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer id="site-footer">
+
+
+
+
+  <div class="footer-top">
+    <nav class="footer-nav">
+      <a href="news.html"><span class="lang-en-inline">News</span><span class="lang-np-inline">समाचार</span></a>
+      <span class="sep">|</span>
+      <a href="politics.html"><span class="lang-en-inline">Politics</span><span class="lang-np-inline">राजनीति</span></a>
+      <span class="sep">|</span>
+      <a href="others.html"><span class="lang-en-inline">Others</span><span class="lang-np-inline">अन्य</span></a>
+      <span class="sep">|</span>
+      <a href="../pages/about.html"><span class="lang-en-inline">Our Team</span><span class="lang-np-inline">हाम्रो टिम</span></a>
+       <span class="sep">|</span>
+      <a href="../pages/contact.html"><span class="lang-en-inline">Contact Us</span><span class="lang-np-inline">हाम्रो टिम</span></a>
+    </nav>
+    <div class="footer-social">
+      <span class="social-label"><span class="lang-en-inline">Follow on</span><span class="lang-np-inline">पछ्याउनुहोस्</span></span>
+      <div class="social-icons">
+          <a href="https://www.youtube.com/@butwaltodayTV" target="_blank" rel="noopener" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+          <a href="https://www.facebook.com/butwaltodaydaily" target="_blank" rel="noopener" aria-label="Facebook"><i class="fa-brands fa-facebook"></i></a>
+          <a href="https://www.instagram.com/dailybutwaltoday/" target="_blank" rel="noopener" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+          <a href="https://x.com/NewsButwalToday" target="_blank" rel="noopener" aria-label="Twitter/X"><i class="fa-brands fa-x-twitter"></i></a>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-divider"></div>
+
+  <div class="footer-middle">
+    <div class="footer-col">
+      
+      <p><span class="lang-en-inline">Address - <strong>Butwal-6, Tilottam Path, Rupandehi</strong></span><span class="lang-np-inline">ठेगाना - <strong>बुटवल–६, तिलोत्तमपथ, रुपन्देही</strong></span></p>
+    </div>
+    <div class="footer-col">
+      <p><span class="lang-en-inline">Phone - <strong>071-554640</strong></span><span class="lang-np-inline">फोन - <strong>०७१-५५४६४०</strong></span></p>
+      <p>Email - <a href="mailto:butwaltodaytv@gmail.com">butwaltodaytv@gmail.com</a></p>
+    </div>
+    <div class="footer-col">
+      
+    </div>
+  </div>
+
+  <div class="footer-divider"></div>
+
+  <div class="footer-bottom">
+    <span class="copyright">
+      <span class="lang-en-inline">© 2026 Butwal TV — All rights reserved.</span>
+      <span class="lang-np-inline">© २०२६ Butwal TV — सबै अधिकार सुरक्षित</span>
+    </span>
+    <span class="developer"></span>
+  </div>
+</footer>
+
+
+
+  <!-- WHATSAPP WIDGET -->
+  <div class="wa-widget">
+  <div class="wa-tooltip"><span class="lang-en-inline">Chat on WhatsApp</span><span class="lang-np-inline">WhatsApp मा सम्पर्क</span></div>
+  <a href="https://wa.me/9779749844080?text=Hello!%20I%20have%20a%20query%20about%20Butwal%20TV" target="_blank" rel="noopener noreferrer" class="wa-fab" aria-label="Chat on WhatsApp"><i class="fab fa-whatsapp"></i></a>
+</div>
+
+  <!-- Back-to-top -->
+  <button class="btt-btn" aria-label="Back to top">
+    <i class="fa-solid fa-arrow-up"></i>
+  </button>
+
+  <!-- All component scripts -->
+  <script>
+
+(function () {
+  function _init() {
+    var sidebar   = document.getElementById('bt-sidebar');
+    var collapse  = document.getElementById('bt-collapse-btn');
+    var mobileTog = document.getElementById('bt-sidebar-toggle-mobile');
+    var overlay   = document.getElementById('bt-sidebar-overlay');
+    var watchBtn  = document.getElementById('bt-hero-watch-btn');
+    var pills     = document.querySelectorAll('#bt-category-bar .bt-cat-pill');
+    var yearEl    = document.getElementById('bt-copyright-year');
+    var langBtn   = document.getElementById('bt-lang-toggle');
+    var mediaUrl  = '';
+
+    if (sidebar && sidebar.classList.contains('collapsed')) {
+      document.body.classList.add('sidebar-collapsed');
+    }
+    if (yearEl) yearEl.textContent = new Date().getFullYear();
+
+    function isMobile() { return window.innerWidth <= 900; }
+
+    // ── Desktop collapse toggle ──
+    if (collapse && sidebar) {
+      collapse.addEventListener('click', function () {
+        if (isMobile()) {
+          sidebar.classList.toggle('mobile-open');
+          if (overlay) overlay.classList.toggle('active', sidebar.classList.contains('mobile-open'));
+        } else {
+          sidebar.classList.toggle('collapsed');
+          collapse.classList.toggle('rotated', sidebar.classList.contains('collapsed'));
+          document.body.classList.toggle('sidebar-collapsed', sidebar.classList.contains('collapsed'));
+        }
+      });
+    }
+
+    // ── Mobile hamburger ──
+    if (mobileTog && sidebar) {
+      mobileTog.addEventListener('click', function () {
+        sidebar.classList.toggle('mobile-open');
+        if (overlay) overlay.classList.toggle('active', sidebar.classList.contains('mobile-open'));
+      });
+    }
+    if (overlay && sidebar) {
+      overlay.addEventListener('click', function () {
+        sidebar.classList.remove('mobile-open');
+        overlay.classList.remove('active');
+      });
+    }
+
+    window.addEventListener('resize', function () {
+      if (!isMobile()) {
+        sidebar.classList.remove('mobile-open');
+        if (overlay) overlay.classList.remove('active');
+      }
+    });
+
+    if (watchBtn) watchBtn.addEventListener('click', function () { window.dispatchEvent(new CustomEvent('btHeroWatchNow', { detail: { mediaUrl: mediaUrl } })); });
+
+    pills.forEach(function (p) {
+      p.addEventListener('click', function () {
+        pills.forEach(function (o) { o.classList.remove('active'); });
+        p.classList.add('active');
+        window.dispatchEvent(new CustomEvent('btCategoryChange', { detail: { category: p.getAttribute('data-cat') } }));
+      });
+    });
+
+    // ── Language toggle — controls the ENTIRE page ──────────────────────
+    var LANG_KEY = 'fm_lang';
+
+    function getCurrentLang() {
+      try { return localStorage.getItem(LANG_KEY) || 'np'; } catch (e) { return 'np'; }
+    }
+
+    function setLangBtnLabel(lang) {
+      if (langBtn) langBtn.textContent = (lang === 'np') ? 'EN' : 'NP';
+    }
+
+    function applyLangGlobal(lang) {
+      var isNp = (lang === 'np');
+      document.body.classList.toggle('lang-active', isNp);
+      setLangBtnLabel(lang);
+      try {
+        localStorage.setItem('fm_lang', lang);
+        localStorage.setItem('language', lang);
+        localStorage.setItem('siteLang', lang);
+      } catch (e) {}
+      window.dispatchEvent(new CustomEvent('langChange', { detail: { lang: lang } }));
+    }
+
+    if (langBtn) {
+      langBtn.addEventListener('click', function () {
+        applyLangGlobal(getCurrentLang() === 'np' ? 'en' : 'np');
+      });
+    }
+
+    // Sync label + body state on load
+    applyLangGlobal(getCurrentLang());
+  }
+
+  setTimeout(_init, 0);
+})();
+
+</script>
+<script>
+(function(){
+  var overlay=document.getElementById('video-modal-overlay');
+  var frame=document.getElementById('video-modal-frame');
+  var closeBtn=document.getElementById('video-modal-close');
+  if(!overlay||!frame)return;
+  function closeModal(){
+    overlay.style.display='none';
+    frame.src='';
+    document.body.style.overflow='';
+  }
+  if(closeBtn) closeBtn.addEventListener('click', closeModal);
+  overlay.addEventListener('click', function(e){ if(e.target===overlay) closeModal(); });
+  document.addEventListener('keydown', function(e){ if(e.key==='Escape') closeModal(); });
+})();
+</script>
+<script>
+(function() {
+  'use strict';
+
+  var CATEGORY_DATA = {
+    nameEn:       "Health Tips",
+    nameNp:       "स्वास्थ्य टिप्स",
+    totalCount:   1,
+    itemsPerPage: 20
+  };
+
+  var LATEST_VIDEO = {
+    embedUrl: "https://www.youtube.com/embed/ZhcGzqkpOcA",
+    title:    "Benefits of Eating Guava | HEALTH TIPS |#healthtips #healthylifestyle #guava #healthbenefits",
+    titleNp:  "अम्बा खानुका फाइदाहरू | स्वास्थ्य सुझावहरू |#स्वास्थ्य सुझावहरू #स्वस्थ जीवनशैली #अम्बा #स्वास्थ्य फाइदाहरू"
+  };
+
+  var currentPage = 1;
+
+  function init() {
+    var titleEn = document.getElementById('category-title-en');
+    var titleNp = document.getElementById('category-title-np');
+
+    if (titleEn) titleEn.textContent = CATEGORY_DATA.nameEn;
+    if (titleNp) titleNp.textContent = CATEGORY_DATA.nameNp;
+
+    var loadBtn = document.getElementById('load-more-btn');
+    if (loadBtn) loadBtn.style.display = 'none';
+
+    initBackToTop();
+    initPagination();
+    updateRelativeTimes();
+    wireHeaderHeroToLatest();
+
+    // Read stored language or default to 'np'
+    var storedLang = 'np';
+    try { 
+      storedLang = localStorage.getItem('fm_lang') || 'np';
+    } catch(e) { storedLang = 'np'; }
+    
+    // Apply language - header and body are in sync
+    applyLang(storedLang);
+  }
+
+  function playInModal() {
+    if (!LATEST_VIDEO.embedUrl) return;
+    var overlay = document.getElementById('video-modal-overlay');
+    var frame   = document.getElementById('video-modal-frame');
+    if (!overlay || !frame) return;
+    var sep = LATEST_VIDEO.embedUrl.indexOf('?') > -1 ? '&' : '?';
+    frame.src = LATEST_VIDEO.embedUrl + sep + 'autoplay=1';
+    overlay.style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+  }
+
+  function wireHeaderHeroToLatest() {
+    if (!LATEST_VIDEO.embedUrl) return;
+    var watchBtn  = document.getElementById('bt-hero-watch-btn');
+    var heroTitle = document.getElementById('bt-hero-title');
+    var heroBg    = document.getElementById('bt-hero-bg');
+    var hero      = document.getElementById('bt-hero');
+
+    // Update hero title with bilingual content
+    if (heroTitle) {
+      var titleEn = LATEST_VIDEO.title || 'Shittal Pati';
+      var titleNp = LATEST_VIDEO.titleNp || LATEST_VIDEO.title || 'Shittal Pati';
+      var isNp = document.body.classList.contains('lang-active');
+      heroTitle.innerHTML = 
+        '<span class="lang-en" style="display:' + (isNp ? 'none' : 'inline') + '">' + titleEn + '</span>' +
+        '<span class="lang-np" style="display:' + (isNp ? 'inline' : 'none') + '">' + titleNp + '</span>';
+    }
+
+    if (watchBtn) {
+      // Remove existing listeners to avoid duplicates
+      var newWatchBtn = watchBtn.cloneNode(true);
+      watchBtn.parentNode.replaceChild(newWatchBtn, watchBtn);
+      newWatchBtn.addEventListener('click', function(e) {
+        e.stopImmediatePropagation();
+        e.preventDefault();
+        playInModal();
+      });
+    }
+
+    // Autoplay video in hero
+    if (hero && heroBg) {
+      var sep = LATEST_VIDEO.embedUrl.indexOf('?') > -1 ? '&' : '?';
+      var autoplaySrc = LATEST_VIDEO.embedUrl + sep +
+        'autoplay=1&mute=1&controls=0&loop=1&playsinline=1&modestbranding=1&rel=0';
+
+      var heroVideoWrap = document.createElement('div');
+      heroVideoWrap.style.cssText = 'position:absolute;inset:0;z-index:1;pointer-events:none;overflow:hidden;';
+      heroVideoWrap.innerHTML =
+        '<iframe src="' + autoplaySrc + '" ' +
+        'style="position:absolute;top:50%;left:50%;width:100%;height:100%;' +
+        'min-width:177.77vh;min-height:56.25vw;transform:translate(-50%,-50%);border:0;" ' +
+        'allow="autoplay; encrypted-media" allowfullscreen></iframe>';
+
+      heroBg.insertAdjacentElement('afterend', heroVideoWrap);
+    }
+  }
+
+  function initBackToTop() {
+    var btn = document.getElementById('back-to-top');
+    if (!btn) return;
+    window.addEventListener('scroll', function() {
+      btn.style.display = window.scrollY > 300 ? 'flex' : 'none';
+    });
+    btn.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  }
+
+  function initPagination() {
+    var list = document.getElementById('news-list');
+    if (!list) return;
+    var rows = Array.prototype.slice.call(list.querySelectorAll('.grid-card'));
+    var totalPages = Math.max(1, Math.ceil(rows.length / CATEGORY_DATA.itemsPerPage));
+    var pager = document.getElementById('category-pagination');
+
+    function renderPage(page) {
+      currentPage = Math.min(Math.max(1, page), totalPages);
+      rows.forEach(function(row, idx) {
+        var pageOf = Math.floor(idx / CATEGORY_DATA.itemsPerPage) + 1;
+        row.style.display = (pageOf === currentPage) ? 'flex' : 'none';
+      });
+      renderPager();
+      window.scrollTo({ top: list.offsetTop - 80, behavior: 'smooth' });
+    }
+
+    function renderPager() {
+      if (!pager) return;
+      if (totalPages <= 1) { pager.innerHTML = ''; return; }
+
+      var html = '';
+      html += '<button class="pg-btn pg-prev" ' + (currentPage === 1 ? 'disabled' : '') + '>&laquo;</button>';
+
+      var start = Math.max(1, currentPage - 2);
+      var end   = Math.min(totalPages, start + 4);
+      start = Math.max(1, end - 4);
+
+      if (start > 1) {
+        html += '<button class="pg-btn pg-num" data-page="1">1</button>';
+        if (start > 2) html += '<span class="pg-ellipsis">...</span>';
+      }
+      for (var p = start; p <= end; p++) {
+        html += '<button class="pg-btn pg-num' + (p === currentPage ? ' active' : '') + '" data-page="' + p + '">' + p + '</button>';
+      }
+      if (end < totalPages) {
+        if (end < totalPages - 1) html += '<span class="pg-ellipsis">...</span>';
+        html += '<button class="pg-btn pg-num" data-page="' + totalPages + '">' + totalPages + '</button>';
+      }
+      html += '<button class="pg-btn pg-next" ' + (currentPage === totalPages ? 'disabled' : '') + '>&raquo;</button>';
+
+      pager.innerHTML = html;
+
+      pager.querySelectorAll('.pg-num').forEach(function(btn) {
+        btn.addEventListener('click', function() { renderPage(parseInt(btn.getAttribute('data-page'), 10)); });
+      });
+      var prevBtn = pager.querySelector('.pg-prev');
+      var nextBtn = pager.querySelector('.pg-next');
+      if (prevBtn) prevBtn.addEventListener('click', function() { renderPage(currentPage - 1); });
+      if (nextBtn) nextBtn.addEventListener('click', function() { renderPage(currentPage + 1); });
+    }
+
+    renderPage(1);
+  }
+
+  function relTime(dateStr, isNp) {
+    if (!dateStr) return '';
+    var then = new Date(dateStr).getTime();
+    if (isNaN(then)) return '';
+    var now = Date.now();
+    var diffSec = Math.floor((now - then) / 1000);
+    
+    if (diffSec < 0) diffSec = 0;
+
+    var NP_DIGITS = ['०','१','२','३','४','५','६','७','८','९'];
+    function toNp(n) {
+      return String(n).split('').map(function(d) {
+        var i = parseInt(d, 10);
+        return isNaN(i) ? d : NP_DIGITS[i];
+      }).join('');
+    }
+
+    if (diffSec < 60) return isNp ? 'भर्खरै' : 'Just now';
+
+    var units = [
+      { limit: 60,       enS: 'second', enP: 'seconds', npS: 'सेकेन्ड' },
+      { limit: 3600,     enS: 'minute', enP: 'minutes', npS: 'मिनेट' },
+      { limit: 86400,    enS: 'hour',   enP: 'hours',   npS: 'घण्टा' },
+      { limit: 604800,   enS: 'day',    enP: 'days',    npS: 'दिन' },
+      { limit: 2629800,  enS: 'week',   enP: 'weeks',   npS: 'हप्ता' },
+      { limit: 31557600, enS: 'month',  enP: 'months',  npS: 'महिना' }
+    ];
+
+    var unitIdx = units.length - 1;
+    for (var i = 0; i < units.length; i++) {
+      if (diffSec < units[i].limit) {
+        unitIdx = i;
+        break;
+      }
+    }
+    
+    var unit = units[unitIdx];
+    var value = Math.floor(diffSec / (unitIdx === 0 ? 1 : units[unitIdx - 1].limit));
+    value = Math.max(1, value);
+    
+    return isNp 
+      ? (toNp(value) + ' ' + unit.npS + ' अगाडि')
+      : (value + ' ' + (value === 1 ? unit.enS : unit.enP) + ' ago');
+  }
+
+  function updateRelativeTimes() {
+    document.querySelectorAll('[data-rel]').forEach(function(el) {
+      var dateStr = el.getAttribute('data-date-ad');
+      var isNp = el.getAttribute('data-rel') === 'np';
+      var textEl = el.querySelector('.grid-time-text');
+      var text = relTime(dateStr, isNp);
+      if (textEl) {
+        textEl.textContent = text;
+      }
+    });
+  }
+  
+  setInterval(updateRelativeTimes, 30000);
+
+  function applyLang(lang) {
+    var isNp = (lang === 'np');
+    
+    // Update body class
+    document.body.classList.toggle('lang-active', isNp);
+    
+    // Update header if it exists
+    var header = document.getElementById('bt-header');
+    if (header) {
+      header.classList.toggle('lang-active', isNp);
+    }
+    
+    // Update language toggle button text
+    var langBtn = document.getElementById('bt-lang-toggle');
+    if (langBtn) {
+      langBtn.textContent = isNp ? 'EN' : 'NP';
+    }
+    
+    // Update all language elements
+    document.querySelectorAll('.lang-en, .lang-np').forEach(function(el) {
+      var isNpEl = el.classList.contains('lang-np');
+      var show = isNp ? isNpEl : !isNpEl;
+      if (!show) { 
+        el.style.display = 'none'; 
+        return; 
+      }
+      var tag = (el.tagName || '').toLowerCase();
+      var inlineTags = ['span','a','i','b','strong','em','label','button','small'];
+      el.style.display = inlineTags.indexOf(tag) !== -1 ? 'inline' : 'block';
+    });
+    
+    // Update hero title
+    var heroTitle = document.getElementById('bt-hero-title');
+    if (heroTitle && LATEST_VIDEO) {
+      var titleEn = LATEST_VIDEO.title || 'Shittal Pati';
+      var titleNp = LATEST_VIDEO.titleNp || LATEST_VIDEO.title || 'Shittal Pati';
+      heroTitle.innerHTML = 
+        '<span class="lang-en" style="display:' + (isNp ? 'none' : 'inline') + '">' + titleEn + '</span>' +
+        '<span class="lang-np" style="display:' + (isNp ? 'inline' : 'none') + '">' + titleNp + '</span>';
+    }
+    
+    // Update relative times
+    updateRelativeTimes();
+    
+    // Store preference
+    try {
+      localStorage.setItem('fm_lang', lang);
+    } catch(e) {}
+  }
+
+  // Listen for language changes
+  window.addEventListener('langChange', function(e) {
+    if (e && e.detail && e.detail.lang) {
+      applyLang(e.detail.lang);
+    }
+  });
+
+  // Watch for header toggle clicks
+  document.addEventListener('click', function(e) {
+    var toggleBtn = e.target.closest('#bt-lang-toggle');
+    if (toggleBtn) {
+      setTimeout(function() {
+        var isNp = document.body.classList.contains('lang-active');
+        var lang = isNp ? 'np' : 'en';
+        applyLang(lang);
+      }, 50);
+    }
+  });
+
+  // Video modal click handler
+  document.addEventListener('click', function(e) {
+    var link = e.target.closest('.video-open-link');
+    if (!link) return;
+    e.preventDefault();
+    var embedUrl = link.getAttribute('data-embed');
+    if (!embedUrl) return;
+    var overlay = document.getElementById('video-modal-overlay');
+    var frame   = document.getElementById('video-modal-frame');
+    if (!overlay || !frame) return;
+    var sep = embedUrl.indexOf('?') > -1 ? '&' : '?';
+    frame.src = embedUrl + sep + 'autoplay=1';
+    overlay.style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+  });
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+})();
+</script>
+
+  <!-- LANGUAGE SYNC -->
+  
+<script>
+(function() {
+  'use strict';
+  
+  // Get stored language or default to 'np'
+  function getStoredLang() {
+    try {
+      var lang = localStorage.getItem('fm_lang') || 'np';
+      return lang;
+    } catch(e) { return 'np'; }
+  }
+  
+  // Apply language - header and body are in sync
+  function applyLanguage(lang) {
+    var isNp = (lang === 'np');
+    
+    // Update body
+    document.body.classList.toggle('lang-active', isNp);
+    
+    // Update header
+    var header = document.getElementById('bt-header');
+    if (header) {
+      header.classList.toggle('lang-active', isNp);
+    }
+    
+    // Update hero title
+    var heroTitle = document.getElementById('bt-hero-title');
+    if (heroTitle) {
+      var enEl = heroTitle.querySelector('.lang-en');
+      var npEl = heroTitle.querySelector('.lang-np');
+      if (enEl) enEl.style.display = isNp ? 'none' : 'inline';
+      if (npEl) npEl.style.display = isNp ? 'inline' : 'none';
+    }
+    
+    // Update language toggle button text
+    var langBtn = document.getElementById('bt-lang-toggle');
+    if (langBtn) {
+      langBtn.textContent = isNp ? 'EN' : 'NP';
+    }
+    
+    // Update all language elements
+    document.querySelectorAll('.lang-en, .lang-np').forEach(function(el) {
+      var isNpEl = el.classList.contains('lang-np');
+      var show = isNp ? isNpEl : !isNpEl;
+      if (!show) { 
+        el.style.display = 'none'; 
+        return; 
+      }
+      var tag = (el.tagName || '').toLowerCase();
+      var inlineTags = ['span','a','i','b','strong','em','label','button','small'];
+      el.style.display = inlineTags.indexOf(tag) !== -1 ? 'inline' : 'block';
+    });
+    
+    // Dispatch event for other scripts
+    window.dispatchEvent(new CustomEvent('langChange', {
+      detail: { lang: lang }
+    }));
+  }
+  
+  // Initialize language
+  function initLanguage() {
+    var storedLang = getStoredLang();
+    applyLanguage(storedLang);
+  }
+  
+  // Run on load
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', function() {
+      setTimeout(initLanguage, 50);
+    });
+  } else {
+    setTimeout(initLanguage, 50);
+  }
+  
+  // Listen for language changes
+  window.addEventListener('langChange', function(e) {
+    if (e.detail && e.detail.lang) {
+      applyLanguage(e.detail.lang);
+    }
+  });
+  
+  // Watch for header toggle clicks
+  document.addEventListener('click', function(e) {
+    var toggleBtn = e.target.closest('#bt-lang-toggle');
+    if (toggleBtn) {
+      setTimeout(function() {
+        var isNp = document.body.classList.contains('lang-active');
+        var lang = isNp ? 'np' : 'en';
+        applyLanguage(lang);
+      }, 50);
+    }
+  });
+  
+})();
+</script>
+
+
+  <!-- Back-to-top controller -->
+  <script>
+  (function() {
+    var btn = document.querySelector('.btt-btn');
+    if (!btn) return;
+
+    function updateButton() {
+      btn.classList.toggle('show', window.pageYOffset > 300);
+    }
+
+    window.addEventListener('scroll', updateButton);
+    updateButton();
+
+    btn.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  })();
+  </script>
+
+</body>
+</html>

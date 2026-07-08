@@ -1,0 +1,1395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Contact | Radio Station </title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  
+  <style>
+
+:root {
+  --bt-accent:      #D4A017;
+  --bt-accent-on:   #1F1F1F;
+  --bt-sidebar-bg:  #eff6ff;
+  --bt-bg:          #FFFFFF;
+  --bt-text:        #1F1F1F;
+  --bt-muted:       rgba(31,31,31,0.55);
+  --bt-border:      rgba(163,25,25,0.18);
+  --bt-font-body:   "Noto Serif, Georgia, serif";
+  --bt-font-heading:"Noto Serif, Georgia, serif";
+  --bt-sidebar-w:   264px;
+  --bt-sidebar-w-collapsed: 76px;
+}
+
+#bt-header, #bt-header *, #bt-header *::before, #bt-header *::after {
+  box-sizing: border-box !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+#bt-header *:not(i):not([class*="fa-"]) {
+  font-family: var(--bt-font-body, sans-serif) !important;
+}
+#bt-header i[class*="fa-"] {
+  font-style: normal !important;
+  display: inline-block !important;
+  line-height: 1 !important;
+}
+#bt-header {
+  display: flex !important;
+  position: relative !important;
+  width: 100% !important;
+  min-height: 620px !important;
+  background: var(--bt-bg) !important;
+  color: var(--bt-text) !important;
+}
+
+/* ── overlay for mobile drawer ── */
+#bt-header .bt-sidebar-overlay {
+  display: none !important;
+  position: fixed !important;
+  inset: 0 !important;
+  background: rgba(0,0,0,.45) !important;
+  z-index: 999 !important;
+}
+#bt-header .bt-sidebar-overlay.active { display: block !important; }
+
+/* ── SIDEBAR: fixed to left edge, stays in place while page scrolls ── */
+#bt-header .bt-sidebar {
+  width: var(--bt-sidebar-w) !important;
+  flex-shrink: 0 !important;
+  background: var(--bt-sidebar-bg) !important;
+  border-right: 1px solid var(--bt-border) !important;
+  display: flex !important;
+  flex-direction: column !important;
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  bottom: 0 !important;
+  height: 100vh !important;
+  overflow-y: auto !important;
+  overflow-x: hidden !important;
+  transition: width .25s ease, transform .25s ease !important;
+  z-index: 1000 !important;
+}
+#bt-header .bt-sidebar.collapsed { width: var(--bt-sidebar-w-collapsed) !important; }
+
+/* ── MAIN AREA: pushed right by sidebar width so it isn't covered ── */
+#bt-header .bt-main {
+  margin-left: var(--bt-sidebar-w) !important;
+  flex: 1 1 auto !important;
+  display: flex !important;
+  flex-direction: column !important;
+  min-width: 0 !important;
+  transition: margin-left .25s ease !important;
+  width: 100% !important;
+}
+#bt-header .bt-sidebar.collapsed ~ .bt-main {
+  margin-left: var(--bt-sidebar-w-collapsed) !important;
+}
+
+#bt-header .bt-sidebar-header {
+  display: flex !important;
+  align-items: center !important;
+  height: 72px !important;
+  padding: 0 18px !important;
+  border-bottom: 1px solid var(--bt-border) !important;
+  flex-shrink: 0 !important;
+  gap: 10px !important;
+}
+#bt-header .bt-logo-link { display: flex !important; align-items: center !important; gap: 10px !important; text-decoration: none !important; overflow: hidden !important; min-width: 0 !important; }
+#bt-header .bt-logo { height: 42px !important; width: auto !important; display: block !important; border-radius: 6px !important; }
+#bt-header .bt-logo-text { font-weight: 800 !important; font-size: 1.05rem !important; color: var(--bt-text) !important; white-space: nowrap !important; line-height: 1.15 !important; }
+#bt-header .bt-logo-sub { font-size: .62rem !important; color: var(--bt-muted) !important; font-weight: 600 !important; letter-spacing: .04em !important; display: block !important; margin-top: 2px !important; }
+#bt-header .bt-sidebar.collapsed .bt-logo-text-wrap { display: none !important; }
+#bt-header .bt-logo-text-wrap { display: none !important; }
+
+/* ── Language toggle button (in sidebar header, controls whole page) ── */
+#bt-header .bt-lang-toggle {
+  margin-left: auto !important;
+  background: var(--bt-accent) !important;
+  color: var(--bt-accent-on) !important;
+  border: none !important;
+  border-radius: 20px !important;
+  padding: 6px 14px !important;
+  font-weight: 700 !important;
+  font-size: .78rem !important;
+  cursor: pointer !important;
+  flex-shrink: 0 !important;
+  white-space: nowrap !important;
+  transition: opacity .15s ease !important;
+}
+#bt-header .bt-lang-toggle:hover { opacity: .88 !important; }
+#bt-header .bt-sidebar.collapsed .bt-lang-toggle { display: none !important; }
+
+/* ── floating collapse toggle (chevron), vertically centered like mock ── */
+#bt-header .bt-collapse-btn {
+  position: fixed !important;
+  top: 50% !important;
+  left: var(--bt-sidebar-w) !important;
+  transform: translate(-50%, -50%) !important;
+  width: 30px !important; height: 30px !important; border-radius: 50% !important;
+  background: var(--bt-bg) !important; border: 1px solid var(--bt-border) !important;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15) !important; display: flex !important;
+  align-items: center !important; justify-content: center !important; cursor: pointer !important;
+  color: var(--bt-accent) !important; z-index: 1001 !important;
+  transition: left .25s ease, transform .25s ease !important;
+}
+#bt-header .bt-sidebar.collapsed ~ .bt-collapse-btn,
+#bt-header .bt-collapse-btn.collapsed-pos {
+  left: var(--bt-sidebar-w-collapsed) !important;
+}
+#bt-header .bt-collapse-btn.rotated i { transform: rotate(180deg) !important; }
+#bt-header .bt-collapse-btn i { transition: transform .25s ease !important; }
+
+#bt-header .bt-sidebar-nav { flex: 1 1 auto !important; overflow-y: auto !important; padding: 14px 12px !important; }
+#bt-header .bt-nav-list { list-style: none !important; display: flex !important; flex-direction: column !important; gap: 10px !important; }
+#bt-header .bt-nav-item a {
+  display: flex !important; align-items: center !important; gap: 14px !important;
+  padding: 12px 14px !important; border-radius: 14px !important;
+  background: var(--bt-bg) !important;
+  color: var(--bt-text) !important; text-decoration: none !important; font-size: .95rem !important;
+  font-weight: 700 !important; white-space: nowrap !important; overflow: hidden !important;
+  box-shadow: 0 1px 3px rgba(0,0,0,.05) !important;
+  transition: background .18s, color .18s, box-shadow .18s !important;
+}
+#bt-header .bt-nav-icon {
+  width: 34px !important; height: 34px !important; border-radius: 10px !important;
+  border: 1.5px solid var(--bt-border) !important; display: flex !important;
+  align-items: center !important; justify-content: center !important; flex-shrink: 0 !important;
+  color: var(--bt-muted) !important; font-size: .9rem !important;
+  transition: background .18s, color .18s, border-color .18s !important;
+}
+#bt-header .bt-nav-item a:hover { box-shadow: 0 4px 10px rgba(0,0,0,.08) !important; }
+#bt-header .bt-nav-item a:hover .bt-nav-icon { color: var(--bt-accent) !important; border-color: var(--bt-accent) !important; }
+#bt-header .bt-nav-item.active a { background: var(--bt-accent) !important; color: var(--bt-accent-on) !important; }
+#bt-header .bt-nav-item.active a .bt-nav-icon { border-color: var(--bt-accent-on) !important; color: var(--bt-accent-on) !important; }
+#bt-header .bt-sidebar.collapsed .bt-nav-item a span.bt-nav-label { display: none !important; }
+#bt-header .bt-sidebar.collapsed .bt-nav-item a { justify-content: center !important; padding: 12px !important; }
+#bt-header .bt-sidebar-footer {
+  padding: 16px !important; font-size: .74rem !important; color: var(--bt-muted) !important;
+  border-top: 1px solid var(--bt-border) !important; white-space: nowrap !important; overflow: hidden !important;
+  flex-shrink: 0 !important; text-align: center !important;
+}
+#bt-header .bt-sidebar.collapsed .bt-sidebar-footer { display: none !important; }
+#bt-header .lang-en { display: none !important; }
+#bt-header .lang-np { display: inline !important; }
+#bt-header .bt-hero {
+  position: relative !important; min-height: 480px !important; overflow: hidden !important;
+  display: flex !important; flex-direction: column !important; justify-content: flex-end !important; background: #111 !important;
+}
+#bt-header .bt-hero-bg { position: absolute !important; inset: 0 !important; background-size: cover !important; background-position: center !important; transform: scale(1.01) !important; }
+#bt-header .bt-hero-overlay { position: absolute !important; inset: 0 !important; background: linear-gradient(to top, rgba(0,0,0,.72) 0%, rgba(0,0,0,.15) 45%, rgba(0,0,0,.35) 100%) !important; }
+#bt-header .bt-hero-search { position: relative !important; z-index: 5 !important; padding: 24px 28px 0 !important; }
+#bt-header .bt-search-form {
+  max-width: 660px !important; background: var(--bt-bg) !important; border-radius: 999px !important;
+  display: flex !important; align-items: center !important; gap: 10px !important; padding: 12px 20px !important;
+  box-shadow: 0 6px 20px rgba(0,0,0,.18) !important;
+}
+#bt-header .bt-search-icon { color: var(--bt-muted) !important; }
+#bt-header .bt-search-input { border: none !important; outline: none !important; background: transparent !important; flex: 1 !important; font-size: .92rem !important; color: var(--bt-text) !important; }
+#bt-header .bt-hero-content { position: relative !important; z-index: 5 !important; padding: 0 28px 22px !important; max-width: 78% !important; }
+#bt-header .bt-hero-title { color: #fff !important; font-size: 1.9rem !important; font-weight: 800 !important; line-height: 1.35 !important; text-shadow: 0 2px 10px rgba(0,0,0,.4) !important; }
+#bt-header .bt-hero-watch-btn {
+  position: absolute !important; right: 24px !important; bottom: 22px !important; z-index: 6 !important;
+  display: flex !important; align-items: center !important; gap: 10px !important; background: var(--bt-bg) !important;
+  border: none !important; border-radius: 14px !important; padding: 10px 16px !important; cursor: pointer !important;
+  box-shadow: 0 6px 18px rgba(0,0,0,.25) !important;
+}
+#bt-header .bt-watch-play { width: 34px !important; height: 34px !important; border-radius: 50% !important; background: var(--bt-accent) !important; color: var(--bt-accent-on) !important; display: flex !important; align-items: center !important; justify-content: center !important; flex-shrink: 0 !important; }
+#bt-header .bt-watch-text { display: flex !important; flex-direction: column !important; text-align: left !important; }
+#bt-header .bt-watch-line1 { font-size: .82rem !important; font-weight: 800 !important; color: var(--bt-text) !important; }
+#bt-header .bt-watch-line2 { font-size: .68rem !important; color: var(--bt-muted) !important; }
+#bt-header .bt-category-bar { display: flex !important; flex-wrap: wrap !important; gap: 10px !important; padding: 18px 28px !important; background: var(--bt-bg) !important; }
+#bt-header .bt-cat-pill {
+  border: 1px solid var(--bt-accent) !important; background: transparent !important; color: var(--bt-accent) !important;
+  border-radius: 999px !important; padding: 8px 18px !important; font-size: .84rem !important; font-weight: 700 !important;
+  cursor: pointer !important; transition: background .18s, color .18s !important; white-space: nowrap !important;
+}
+#bt-header .bt-cat-pill:hover { background: rgba(37,99,235,.08) !important; }
+#bt-header .bt-cat-pill.active { background: var(--bt-accent) !important; color: var(--bt-accent-on) !important; }
+#bt-header .bt-sidebar-toggle-mobile {
+  display: none !important; position: fixed !important; top: 14px !important; left: 14px !important; z-index: 1002 !important;
+  width: 38px !important; height: 38px !important; border-radius: 50% !important; background: var(--bt-bg) !important;
+  border: 1px solid var(--bt-border) !important; align-items: center !important; justify-content: center !important; cursor: pointer !important;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15) !important;
+}
+
+/* ── Responsive breakpoints ── */
+@media (max-width: 1024px) {
+  :root { --bt-sidebar-w: 232px !important; }
+}
+
+@media (max-width: 900px) {
+  #bt-header { flex-direction: column !important; }
+  #bt-header .bt-sidebar {
+    width: 260px !important;
+    transform: translateX(-100%) !important;
+  }
+  #bt-header .bt-sidebar.collapsed { width: 260px !important; }
+  #bt-header .bt-sidebar.mobile-open { transform: translateX(0) !important; }
+  #bt-header .bt-main { margin-left: 0 !important; }
+  #bt-header .bt-sidebar.collapsed ~ .bt-main { margin-left: 0 !important; }
+  #bt-header .bt-collapse-btn { display: none !important; }
+  #bt-header .bt-sidebar-toggle-mobile { display: flex !important; }
+  #bt-header .bt-hero-content { max-width: 100% !important; }
+  #bt-header .bt-hero-title { font-size: 1.4rem !important; }
+  #bt-header .bt-hero-watch-btn { right: 14px !important; bottom: 14px !important; padding: 8px 12px !important; }
+  #bt-header .bt-watch-line2 { display: none !important; }
+  #bt-header .bt-hero { min-height: 340px !important; }
+  #bt-header .bt-hero-search { padding: 70px 16px 0 !important; }
+}
+
+@media (max-width: 480px) {
+  #bt-header .bt-category-bar { padding: 14px 16px !important; gap: 8px !important; }
+  #bt-header .bt-cat-pill { padding: 7px 13px !important; font-size: .78rem !important; }
+  #bt-header .bt-hero-title { font-size: 1.15rem !important; }
+  #bt-header .bt-hero { min-height: 300px !important; }
+}
+
+</style>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;500;600;700&display=swap');
+
+  :root {
+    --accent:       #D4A017;
+    --primary:      #A31919;
+    --primary-on:   #FFFFFF;
+    --accent-on:    #1F1F1F;
+    --bg:           #FFFFFF;
+    --surface:      #F8F8F8;
+    --text:         #1F1F1F;
+    --muted:        rgba(31,31,31,0.55);
+    --border:       rgba(163,25,25,0.18);
+    --font-body:    ;
+    --font-heading: ;
+    --radius:       12px;
+    --shadow:       0 8px 32px rgba(0,0,0,0.3);
+  }
+
+  *, *::before, *::after { box-sizing: border-box }
+  html { scroll-behavior: smooth }
+  body { background: var(--bg); color: var(--text); font-family: var(--font-body); font-size: 1.05rem; line-height: 1.7; margin: 0; padding: 0 }
+
+  .contact-container { max-width: 1200px; margin: 0 auto }
+
+  .contact-hero { background: var(--primary); color: var(--primary-on); padding: 4.5rem 2rem 3.5rem; text-align: center; position: relative; overflow: hidden }
+  .contact-hero::before { content: ''; position: absolute; inset: 0; background: repeating-linear-gradient(45deg, transparent, transparent 40px, rgba(0,0,0,0.04) 40px, rgba(0,0,0,0.04) 41px); pointer-events: none }
+  .contact-hero h1 { font-family: var(--font-heading); font-size: clamp(2.2rem,5vw,3.5rem); font-weight: 600; letter-spacing: 0.02em; margin: 0 0 0.5rem; position: relative }
+  .contact-hero p  { font-size: 1.15rem; opacity: 0.85; margin: 0; font-style: italic; position: relative }
+
+  .contact-content { padding: 3rem 2rem; display: grid; grid-template-columns: 1fr 1fr; gap: 2.5rem; align-items: stretch }
+  .contact-info { order: 1; display: flex; flex-direction: column; text-align: center; align-items: center; }
+  .info-cards-grid { display: grid; grid-template-columns: 1fr; gap: 1.25rem; flex: 1; width: 100%; }
+  .contact-form-wrapper { order: 2; display: flex; flex-direction: column }
+  .contact-form { flex-shrink: 0 }
+  .map-section { margin-top: 2rem; flex: 1; display: flex; flex-direction: column; min-height: 0 }
+  .contact-map-container { flex: 1; min-height: 240px }
+
+  .info-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.5rem; transition: transform .22s ease, box-shadow .22s ease, border-color .22s ease; position: relative; overflow: hidden; text-align: center; }
+  .info-card::after { content: ''; position: absolute; bottom: 0; left: 0; width: 100%; height: 2px; background: var(--primary); transform: scaleX(0); transform-origin: left; transition: transform .3s ease }
+  .info-card:hover { transform: translateY(-4px); box-shadow: var(--shadow); border-color: rgba(192,160,48,0.55) }
+  .info-card:hover::after { transform: scaleX(1) }
+  .info-card i    { font-size: 1.75rem; color: var(--primary); margin-bottom: 0.75rem; display: block; text-align: center; }
+  .info-card h3   { font-family: var(--font-heading); font-size: 1.15rem; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase; margin: 0 0 0.75rem; color: var(--primary) }
+  .info-card p    { margin: 0.35rem 0; line-height: 1.65; font-size: 1rem }
+  .info-card small { color: var(--muted); font-size: 0.85rem; font-style: italic }
+
+  .social-section { margin-top: 1.75rem; padding-top: 1.5rem; border-top: 1px solid var(--border); text-align: center; width: 100%; }
+  .social-section h3 { font-family: var(--font-heading); font-size: 1.05rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; margin: 0 0 1rem; color: var(--primary) }
+  .social-links { display: flex; gap: 0.75rem; flex-wrap: wrap; justify-content: center; }
+  .social-link { display: inline-flex; align-items: center; justify-content: center; width: 44px; height: 44px; border-radius: 50%; background: var(--surface); border: 1px solid var(--border); color: var(--text); font-size: 1.2rem; text-decoration: none; transition: transform .2s ease, background .2s ease, border-color .2s ease, color .2s ease }
+  .social-link:hover { transform: scale(1.12) }
+  .social-link[data-social="youtube"]:hover { background:#FF0000;color:#fff;border-color:#FF0000 }
+  .social-link[data-social="facebook"]:hover { background:#1877F2;color:#fff;border-color:#1877F2 }
+  .social-link[data-social="instagram"]:hover { background:#E4405F;color:#fff;border-color:#E4405F }
+  .social-link[data-social="twitter"]:hover { background:#000;color:#fff;border-color:#000 }
+
+  .stream-link { display: inline-flex; align-items: center; gap: .5rem; margin-top: 1.25rem; padding: .7rem 1.5rem; background: var(--primary); color: var(--primary-on); border-radius: 8px; text-decoration: none; font-weight: 600; font-size: .95rem; letter-spacing: .03em; transition: opacity .2s ease, transform .2s ease; align-self: center; }
+  .stream-link:hover { opacity: .85; transform: translateX(3px) }
+
+  .contact-form { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 2rem 2.25rem }
+  .form-group   { margin-bottom: 1.3rem }
+  .form-group label { display: block; margin-bottom: .45rem; font-weight: 600; font-size: .9rem; letter-spacing: .03em; text-transform: uppercase }
+  .required { color: var(--primary) }
+  .optional { color: var(--muted); font-weight: 400; text-transform: none; letter-spacing: 0 }
+  .form-group input,
+  .form-group textarea { width: 100%; padding: .7rem 1rem; border: 1px solid var(--border); border-radius: 6px; background: var(--bg); color: var(--text); font-family: var(--font-body); font-size: 1rem; line-height: 1.5; transition: border-color .2s ease, box-shadow .2s ease; -webkit-appearance: none }
+  .form-group textarea { resize: vertical; min-height: 120px }
+  .form-group input::placeholder,
+  .form-group textarea::placeholder { color: var(--muted) }
+  .form-group input:focus,
+  .form-group textarea:focus { outline: none; border-color: var(--primary); box-shadow: 0 0 0 3px rgba(192,160,48,0.18) }
+
+  .form-honey { position: absolute; left: -9999px; top: -9999px; width: 1px; height: 1px; overflow: hidden; opacity: 0; pointer-events: none }
+
+  .submit-btn { display: inline-flex; align-items: center; gap: .5rem; padding: .75rem 2.25rem; background: var(--primary); color: var(--primary-on); border: none; border-radius: 6px; font-family: var(--font-body); font-size: 1rem; font-weight: 700; letter-spacing: .04em; cursor: pointer; transition: opacity .2s ease, transform .15s ease }
+  .submit-btn:hover:not(:disabled) { opacity: .88; transform: translateY(-1px) }
+  .submit-btn:active:not(:disabled) { transform: translateY(0) }
+  .submit-btn:disabled { opacity: .45; cursor: not-allowed }
+
+  .form-status { margin-top: 1rem; padding: .8rem 1rem; border-radius: 6px; text-align: center; font-size: .95rem; line-height: 1.5; display: none }
+  .form-status.error   { background: rgba(220,60,60,0.18); border: 1px solid rgba(220,60,60,0.4); color: var(--text) }
+  .form-status.success { background: rgba(60,160,60,0.18); border: 1px solid rgba(60,160,60,0.4); color: var(--text) }
+
+  .map-section h3 { font-family: var(--font-heading); font-size: 1.05rem; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; margin: 0 0 1rem; color: var(--primary) }
+  .contact-map-container { width: 100%; border-radius: var(--radius); overflow: hidden; border: 1px solid var(--border); background: var(--surface) }
+  .contact-map-container iframe { width: 100%; height: 100%; border: 0; display: block }
+  .map-placeholder { width: 100%; height: 100%; min-height: 200px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: .5rem; color: var(--muted); font-style: italic }
+  .map-placeholder i { font-size: 2.5rem; color: var(--border) }
+
+  .contact-anim { opacity: 0; transform: translateY(24px); transition: opacity .5s ease, transform .5s ease }
+  .contact-anim.visible { opacity: 1; transform: translateY(0) }
+  .contact-anim:nth-child(2) { transition-delay: .08s }
+  .contact-anim:nth-child(3) { transition-delay: .16s }
+  .contact-anim:nth-child(4) { transition-delay: .24s }
+
+  .lang-np { display: none }
+  .lang-en { display: inline }
+
+  @media (max-width: 1024px) {
+    .contact-content { grid-template-columns: 1fr; align-items: start; padding: 2rem 1.25rem }
+    .contact-info         { order: 1; display: block; text-align: center; }
+    .contact-form-wrapper { order: 2; display: block }
+    .info-cards-grid { flex: none }
+    .map-section { flex: none; display: block }
+    .contact-map-container { height: 320px }
+    .contact-hero { padding: 3rem 1.5rem 2.5rem }
+  }
+  @media (max-width: 640px) {
+    .contact-hero h1 { font-size: 1.9rem }
+    .contact-form { padding: 1.5rem }
+    .info-card { padding: 1.2rem }
+    .contact-map-container { height: 260px }
+    .social-link { width: 40px; height: 40px; font-size: 1.05rem }
+    .submit-btn { width: 100%; justify-content: center }
+  }
+</style>
+<style>
+  .contact-container,
+  .info-card,
+  .contact-form,
+  .map-section,
+  .contact-anim {
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+    transition: none !important;
+  }
+  #contact-form {
+    display: block !important;
+    visibility: visible !important;
+  }
+  .contact-content {
+    display: grid !important;
+  }
+</style>
+<style>
+
+:root {
+  --footer-accent:      #D4A017;
+  --footer-accent-on:   #1F1F1F;
+  --footer-bg:          #FFFFFF;
+  --footer-text:        #1F1F1F;
+  --footer-muted:       rgba(31,31,31,0.55);
+  --footer-border:      rgba(163,25,25,0.18);
+  --footer-font-body:   "Noto Serif, Georgia, serif";
+  --footer-font-heading:"'Mukta', sans-serif";
+}
+
+#site-footer, #site-footer *, #site-footer *::before, #site-footer *::after {
+  box-sizing: border-box !important;
+}
+#site-footer {
+  font-family: var(--footer-font-body, sans-serif) !important;
+  background: #e5e7eb !important;
+  border-radius: 24px 24px 0 0 !important;
+  padding: 32px 32px 20px !important;
+  margin-top: 40px !important;
+  margin-right: auto !important;
+  margin-bottom: 0 !important;
+  box-shadow: 0 -2px 20px rgba(0,0,0,0.04) !important;
+}
+.footer-top {
+  display: flex !important; flex-wrap: wrap !important; justify-content: space-between !important;
+  align-items: center !important; gap: 16px 20px !important; padding: 0 4px !important;
+}
+.footer-nav { display: flex !important; flex-wrap: wrap !important; align-items: center !important; gap: 4px 6px !important; }
+.footer-nav a {
+  font-size: 0.95rem !important; font-weight: 600 !important; color: var(--footer-text) !important;
+  text-decoration: none !important; padding: 4px 6px !important; transition: color 0.2s ease !important; letter-spacing: 0.02em !important;
+}
+.footer-nav a:hover { color: var(--footer-accent) !important; }
+.footer-nav .sep { color: #b0b0b8 !important; font-weight: 300 !important; font-size: 0.9rem !important; }
+.footer-social { display: flex !important; align-items: center !important; gap: 10px !important; }
+.social-label { font-size: 0.85rem !important; font-weight: 500 !important; color: var(--footer-text) !important; }
+.social-icons { display: flex !important; gap: 8px !important; }
+.social-icons a {
+  display: inline-flex !important; align-items: center !important; justify-content: center !important;
+  width: 36px !important; height: 36px !important; border-radius: 50% !important; border: 2px solid #3d3d4a !important;
+  color: #3d3d4a !important; font-size: 0.95rem !important; text-decoration: none !important; transition: all 0.25s ease !important; background: transparent !important;
+}
+.social-icons a:hover {
+  background: var(--footer-accent) !important; border-color: var(--footer-accent) !important; color: var(--footer-accent-on) !important;
+  transform: translateY(-2px) scale(1.04) !important; box-shadow: 0 4px 12px rgba(0,0,0,0.25) !important;
+}
+.footer-divider { height: 1px !important; background: rgba(0,0,0,0.08) !important; margin: 20px 0 18px !important; }
+.footer-middle { display: grid !important; grid-template-columns: 1fr 1fr 1fr !important; gap: 24px 20px !important; padding: 4px 0 4px !important; }
+.footer-col { display: flex !important; flex-direction: column !important; gap: 4px !important; }
+.footer-col p { font-size: 0.92rem !important; line-height: 1.6 !important; color: var(--footer-text) !important; margin: 0 !important; font-weight: 500 !important; }
+.footer-col a { color: var(--footer-accent) !important; text-decoration: none !important; font-weight: 600 !important; transition: color 0.2s ease !important; }
+.footer-col a:hover { text-decoration: underline !important; }
+.footer-col strong { font-weight: 700 !important; color: var(--footer-text) !important; }
+.footer-bottom { display: flex !important; flex-wrap: wrap !important; justify-content: space-between !important; align-items: center !important; gap: 10px 16px !important; padding-top: 4px !important; }
+.copyright { font-size: 0.85rem !important; font-weight: 500 !important; color: var(--footer-text) !important; }
+.developer { font-size: 0.82rem !important; font-weight: 500 !important; color: var(--footer-muted) !important; }
+.developer strong { font-weight: 700 !important; color: var(--footer-text) !important; }
+.dev-logo { height: 22px !important; width: auto !important; vertical-align: middle !important; margin-left: 4px !important; }
+
+/* Language toggle styles */
+body:not(.lang-active) .lang-np { display: none !important; }
+body:not(.lang-active) .lang-en { display: inline !important; }
+body.lang-active .lang-en { display: none !important; }
+body.lang-active .lang-np { display: inline !important; }
+
+/* Block level language styles */
+body:not(.lang-active) .lang-np-block { display: none !important; }
+body:not(.lang-active) .lang-en-block { display: block !important; }
+body.lang-active .lang-en-block { display: none !important; }
+body.lang-active .lang-np-block { display: block !important; }
+
+/* Fix for inline elements that need to display as inline */
+body:not(.lang-active) .lang-en-inline { display: inline !important; }
+body:not(.lang-active) .lang-np-inline { display: none !important; }
+body.lang-active .lang-en-inline { display: none !important; }
+body.lang-active .lang-np-inline { display: inline !important; }
+
+.wa-widget { position: fixed !important; bottom: 24px !important; right: 24px !important; z-index: 9999 !important; display: flex !important; align-items: center !important; gap: 10px !important; flex-direction: row !important; }
+.wa-fab {
+  width: 52px !important; height: 52px !important; border-radius: 50% !important; background: #25D366 !important; color: #fff !important;
+  display: flex !important; align-items: center !important; justify-content: center !important; font-size: 1.7rem !important; text-decoration: none !important;
+  box-shadow: 0 4px 16px rgba(37,211,102,.4), 0 2px 8px rgba(0,0,0,.2) !important;
+  transition: transform .22s cubic-bezier(.34,1.56,.64,1), box-shadow .22s !important;
+  animation: waIn .5s cubic-bezier(.34,1.56,.64,1) 1.2s both !important; position: relative !important;
+}
+.wa-fab:hover { transform: scale(1.12) rotate(-6deg) !important; }
+.wa-fab::after { content: '' !important; position: absolute !important; inset: 0 !important; border-radius: 50% !important; border: 3px solid #25D366 !important; animation: waRing 2s ease-out 2s infinite !important; }
+.wa-tooltip {
+  background: #fff !important; color: #111 !important; font-size: .78rem !important; font-weight: 600 !important; padding: 5px 12px !important;
+  border-radius: 14px !important; white-space: nowrap !important; box-shadow: 0 3px 12px rgba(0,0,0,.15) !important; opacity: 0 !important;
+  pointer-events: none !important; transform: translateX(-6px) !important; transition: opacity .2s, transform .2s !important;
+}
+.wa-widget:hover .wa-tooltip { opacity: 1 !important; transform: translateX(0) !important; }
+@keyframes waIn { from { opacity: 0; transform: scale(.4) translateY(20px); } to { opacity: 1; transform: scale(1) translateY(0); } }
+@keyframes waRing { 0% { transform: scale(1); opacity: .8; } 70%, 100% { transform: scale(1.5); opacity: 0; } }
+@media (max-width: 900px) {
+  .wa-widget { right: 24px !important; }
+}
+@media (max-width: 768px) {
+  #site-footer { padding: 24px 18px 16px !important; border-radius: 16px 16px 0 0 !important; }
+  .footer-top { flex-direction: column !important; align-items: center !important; gap: 12px !important; }
+  .footer-nav { justify-content: center !important; }
+  .footer-social { justify-content: center !important; }
+  .footer-middle { grid-template-columns: 1fr !important; gap: 12px !important; text-align: center !important; }
+  .footer-col { align-items: center !important; }
+  .footer-bottom { flex-direction: column !important; text-align: center !important; gap: 6px !important; }
+}
+@media (max-width: 480px) {
+  #site-footer { padding: 18px 12px 14px !important; border-radius: 12px 12px 0 0 !important; }
+  .footer-nav a { font-size: 0.85rem !important; padding: 2px 4px !important; }
+  .social-icons a { width: 32px !important; height: 32px !important; font-size: 0.82rem !important; }
+  .footer-col p { font-size: 0.85rem !important; }
+ .wa-widget { bottom: 24px !important; right: 14px; }
+  .wa-fab { width: 46px !important; height: 46px !important; font-size: 1.5rem !important; }
+}
+
+</style>
+  <style>
+    *,*::before,*::after{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{overflow-x:hidden;margin:0;padding:0;min-height:100vh;display:flex;flex-direction:column;
+         background:#FFFFFF;color:#1F1F1F;font-family:'Cormorant Garamond',serif}
+    main{flex:1} img,video{max-width:100%;height:auto}
+    main iframe { max-width:100% }
+    header,.site-header{max-height:80px!important;overflow:visible!important}
+    header img{max-height:48px!important;width:auto!important}
+    @media(max-width:768px){header,.site-header{max-height:60px!important}}
+  </style>
+  <style id="contact-guaranteed">
+  .contact-container { max-width: 1200px; margin: 0 auto }
+  .contact-hero { background: var(--primary); color: var(--primary-on); padding: 4.5rem 2rem 3.5rem; text-align: center; position: relative; overflow: hidden; }
+  .contact-hero::before { content: ''; position: absolute; inset: 0; background: repeating-linear-gradient(45deg, transparent, transparent 40px, rgba(0,0,0,0.04) 40px, rgba(0,0,0,0.04) 41px); pointer-events: none; }
+  .contact-hero h1 { font-family: var(--font-heading); font-size: clamp(2.2rem, 5vw, 3.5rem); font-weight: 600; letter-spacing: 0.02em; margin: 0 0 0.5rem; position: relative; }
+  .contact-hero p { font-size: 1.15rem; opacity: 0.85; margin: 0; font-style: italic; position: relative }
+  .contact-content { padding: 3rem 2rem; display: grid !important; grid-template-columns: 1fr 1fr; gap: 2.5rem; align-items: stretch; }
+  .contact-info { order: 1; display: flex !important; flex-direction: column; }
+  .info-cards-grid { display: grid !important; grid-template-columns: 1fr; gap: 1.25rem; flex: 1; }
+  .contact-form-wrapper { order: 2; display: flex !important; flex-direction: column; }
+  .contact-form { flex-shrink: 0 }
+  .map-section { margin-top: 2rem; flex: 1; display: flex !important; flex-direction: column; min-height: 0; }
+  .map-section h3 { font-family: var(--font-heading); font-size: 1.05rem; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; margin: 0 0 1rem; color: var(--primary); }
+  .contact-map-container { width: 100%; flex: 1; min-height: 240px; border-radius: 12px; overflow: hidden; border: 1px solid var(--border); background: var(--surface); }
+  .contact-map-container iframe { width: 100%; height: 100%; border: 0; display: block }
+  .map-placeholder { width: 100%; height: 100%; min-height: 200px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: .5rem; color: var(--muted); font-style: italic; }
+  .map-placeholder i { font-size: 2.5rem; color: var(--border) }
+  .info-card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 1.5rem; transition: transform .22s ease, box-shadow .22s ease, border-color .22s ease; position: relative; overflow: hidden; }
+  .info-card::after { content: ''; position: absolute; bottom: 0; left: 0; width: 100%; height: 2px; background: var(--primary); transform: scaleX(0); transform-origin: left; transition: transform .3s ease; }
+  .info-card:hover { transform: translateY(-4px); box-shadow: 0 8px 32px rgba(0,0,0,.3); border-color: rgba(192,160,48,0.55) }
+  .info-card:hover::after { transform: scaleX(1) }
+  .info-card i { font-size: 1.75rem; color: var(--primary); margin-bottom: 0.75rem; display: block }
+  .info-card h3 { font-family: var(--font-heading); font-size: 1.15rem; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase; margin: 0 0 0.75rem; color: var(--primary) }
+  .info-card p { margin: 0.35rem 0; line-height: 1.65; font-size: 1rem }
+  .info-card small { color: var(--muted); font-size: 0.85rem; font-style: italic }
+  .social-section { margin-top: 1.75rem; padding-top: 1.5rem; border-top: 1px solid var(--border) }
+  .social-section h3 { font-family: var(--font-heading); font-size: 1.05rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; margin: 0 0 1rem; color: var(--primary) }
+  .social-links { display: flex; gap: 0.75rem; flex-wrap: wrap }
+  .social-link { display: inline-flex; align-items: center; justify-content: center; width: 44px; height: 44px; border-radius: 50%; background: var(--surface); border: 1px solid var(--border); color: var(--text); font-size: 1.2rem; text-decoration: none; transition: transform .2s ease, background .2s ease, border-color .2s ease, color .2s ease; }
+  .social-link:hover { transform: scale(1.12) }
+  .social-link[data-social="facebook"]:hover  { background: #1877F2; color:#fff; border-color:#1877F2 }
+  .social-link[data-social="twitter"]:hover   { background: #000;    color:#fff; border-color:#000 }
+  .social-link[data-social="youtube"]:hover   { background: #FF0000; color:#fff; border-color:#FF0000 }
+  .social-link[data-social="instagram"]:hover { background: #E4405F; color:#fff; border-color:#E4405F }
+  .stream-link { display: inline-flex; align-items: center; gap: .5rem; margin-top: 1.25rem; padding: .7rem 1.5rem; background: var(--primary); color: var(--primary-on); border-radius: 8px; text-decoration: none; font-weight: 600; font-size: .95rem; letter-spacing: .03em; transition: opacity .2s ease, transform .2s ease; }
+  .stream-link:hover { opacity: .85; transform: translateX(3px) }
+  .contact-form { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 2rem 2.25rem; }
+  .form-group { margin-bottom: 1.3rem }
+  .form-group label { display: block; margin-bottom: .45rem; font-weight: 600; font-size: .9rem; letter-spacing: .03em; text-transform: uppercase }
+  .required { color: var(--primary) }
+  .optional { color: var(--muted); font-weight: 400; text-transform: none; letter-spacing: 0 }
+  .form-group input, .form-group textarea { width: 100%; padding: .7rem 1rem; border: 1px solid var(--border); border-radius: 6px; background: var(--bg); color: var(--text); font-family: var(--font-body); font-size: 1rem; line-height: 1.5; transition: border-color .2s ease, box-shadow .2s ease; -webkit-appearance: none; box-sizing: border-box; }
+  .form-group textarea { resize: vertical; min-height: 120px }
+  .form-group input::placeholder, .form-group textarea::placeholder { color: var(--muted) }
+  .form-group input:focus, .form-group textarea:focus { outline: none; border-color: var(--primary); box-shadow: 0 0 0 3px rgba(192,160,48,0.18) }
+  .form-honey { position: absolute; left: -9999px; top: -9999px; width: 1px; height: 1px; overflow: hidden; opacity: 0; pointer-events: none }
+  .submit-btn { display: inline-flex; align-items: center; gap: .5rem; padding: .75rem 2.25rem; background: var(--primary); color: var(--primary-on); border: none; border-radius: 6px; font-family: var(--font-body); font-size: 1rem; font-weight: 700; letter-spacing: .04em; cursor: pointer; transition: opacity .2s ease, transform .15s ease; }
+  .submit-btn:hover:not(:disabled) { opacity: .88; transform: translateY(-1px) }
+  .submit-btn:active:not(:disabled) { transform: translateY(0) }
+  .submit-btn:disabled { opacity: .45; cursor: not-allowed }
+  .form-status { margin-top: 1rem; padding: .8rem 1rem; border-radius: 6px; text-align: center; font-size: .95rem; line-height: 1.5; display: none }
+  .form-status.error { background: rgba(220,60,60,0.18); border: 1px solid rgba(220,60,60,0.4); color: var(--text) }
+  .form-status.success { background: rgba(60,160,60,0.18); border: 1px solid rgba(60,160,60,0.4); color: var(--text) }
+  .contact-anim { opacity: 1 !important; transform: translateY(0) !important; transition: none !important; }
+
+  /* ── FIX-G: push main/footer clear of the fixed sidebar ── */
+  /* FIX-L: base footer CSS ships margin-right: auto, which made the
+     footer shrink-wrap to its content width and pin left instead of
+     stretching to the viewport edge -- that's the empty gap on the
+     right. Force margin-right:0 + width:auto so it spans the full
+     remaining width beside the sidebar, same as .bt-main does. */
+  body > main.contact-page-main,
+  body > footer#site-footer {
+    margin-left: var(--bt-sidebar-w, 264px) !important;
+    margin-right: 0 !important;
+    width: auto !important;
+    transition: margin-left .25s ease !important;
+    box-sizing: border-box !important;
+  }
+  body.bt-sidebar-collapsed > main.contact-page-main,
+  body.bt-sidebar-collapsed > footer#site-footer {
+    margin-left: var(--bt-sidebar-w-collapsed, 76px) !important;
+  }
+  @media (max-width: 900px) {
+    body > main.contact-page-main,
+    body > footer#site-footer {
+      margin-left: 0 !important;
+      margin-right: 0 !important;
+    }
+  }
+
+  @media (max-width: 1024px) {
+    .contact-content { grid-template-columns: 1fr !important; align-items: start; padding: 2rem 1.25rem }
+    .contact-info { display: block !important }
+    .contact-form-wrapper { display: block !important }
+    .info-cards-grid { flex: none }
+    .map-section { flex: none !important; display: block !important }
+    .contact-map-container { height: 320px; flex: none }
+    .contact-hero { padding: 3rem 1.5rem 2.5rem }
+  }
+  @media (max-width: 640px) {
+    .contact-hero h1 { font-size: 1.9rem }
+    .contact-form { padding: 1.5rem }
+    .info-card { padding: 1.2rem }
+    .contact-map-container { height: 260px }
+    .social-link { width: 40px; height: 40px; font-size: 1.05rem }
+    .submit-btn { width: 100%; justify-content: center }
+  }
+
+  /* ═══════════════════════════════════════════════════════════════
+     FIX-I: CLASS-BASED LANGUAGE SYSTEM — identical mechanism to the
+     index page. Driven ENTIRELY by body.lang-active.
+     ═══════════════════════════════════════════════════════════════ */
+  .lang-en { display: inline !important; }
+  .lang-np { display: none !important; }
+  div.lang-en, p.lang-en, section.lang-en,
+  h1.lang-en, h2.lang-en, h3.lang-en, h4.lang-en,
+  small.lang-en, li.lang-en { display: block !important; }
+  div.lang-np, p.lang-np, section.lang-np,
+  h1.lang-np, h2.lang-np, h3.lang-np, h4.lang-np,
+  small.lang-np, li.lang-np { display: none !important; }
+
+  body.lang-active .lang-en { display: none !important; }
+  body.lang-active .lang-np { display: inline !important; }
+  body.lang-active div.lang-np, body.lang-active p.lang-np,
+  body.lang-active section.lang-np, body.lang-active h1.lang-np,
+  body.lang-active h2.lang-np, body.lang-active h3.lang-np,
+  body.lang-active h4.lang-np, body.lang-active small.lang-np,
+  body.lang-active li.lang-np { display: block !important; }
+  body.lang-active div.lang-en, body.lang-active p.lang-en,
+  body.lang-active section.lang-en, body.lang-active h1.lang-en,
+  body.lang-active h2.lang-en, body.lang-active h3.lang-en,
+  body.lang-active h4.lang-en, body.lang-active small.lang-en,
+  body.lang-active li.lang-en { display: none !important; }
+
+  body.lang-active #bt-header .lang-np,
+  body.lang-active #bt-header span.lang-np,
+  body.lang-active #bt-header div.lang-np { display: inline !important; }
+  body.lang-active #bt-header .lang-en,
+  body.lang-active #bt-header span.lang-en,
+  body.lang-active #bt-header div.lang-en { display: none !important; }
+  #bt-header .lang-np,
+  #bt-header span.lang-np,
+  #bt-header div.lang-np { display: none !important; }
+  #bt-header .lang-en,
+  #bt-header span.lang-en,
+  #bt-header div.lang-en { display: inline !important; }
+
+  /* ═══════════════════════════════════════════════════════════════
+     FIX-K: FOOTER SIZE CONSISTENCY (EN vs NP) + NO DEAD-SPACE GAP
+     - 3rd .footer-col is always empty → dropped grid from 3 to 2
+       columns so nothing is left hanging on the right.
+     - .footer-col p now reserves height for 2 lines (not 1), because
+       the English address wraps to 2 lines while Nepali fits on 1 —
+       previously that made the footer taller only in English. Now
+       both languages render at the same (English/taller) height, so
+       toggling the language no longer resizes or shifts the footer.
+     ═══════════════════════════════════════════════════════════════ */
+  .footer-nav { min-height: 1.6em; }
+  .footer-nav a { display: inline-block; line-height: 1.6em; }
+  .footer-middle { grid-template-columns: 1fr 1fr !important; }
+  .footer-middle .footer-col p { min-height: 3.2em; line-height: 1.6em; }
+  .footer-bottom .copyright { display: inline-block; min-height: 1.4em; line-height: 1.4em; }
+</style>
+</head>
+<body>
+  <header id="bt-header">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+
+  <button class="bt-sidebar-toggle-mobile" id="bt-sidebar-toggle-mobile" aria-label="Toggle sidebar">
+    <i class="fa-solid fa-bars"></i>
+  </button>
+
+  <div class="bt-sidebar-overlay" id="bt-sidebar-overlay"></div>
+
+  <aside class="bt-sidebar" id="bt-sidebar">
+    <div class="bt-sidebar-header">
+      <a href="../index.html" class="bt-logo-link" aria-label="Butwal TV Home">
+        <img src="../images/logo.png" alt="Butwal TV" class="bt-logo" id="bt-logo" onerror="this.style.display='none'">
+        <span class="bt-logo-text-wrap">
+          <span class="bt-logo-text">Butwal TV</span>
+          <span class="bt-logo-sub">ONLINE TV</span>
+        </span>
+      </a>
+      <button type="button" class="bt-lang-toggle" id="bt-lang-toggle" aria-label="भाषा बदल्नुहोस्">EN</button>
+    </div>
+
+    <nav class="bt-sidebar-nav" aria-label="Primary navigation">
+      <ul class="bt-nav-list" id="bt-nav-list">
+        <li class="bt-nav-item active">
+          <a href="../index.html">
+            <span class="bt-nav-icon"><i class="fa-solid fa-house"></i></span>
+            <span class="bt-nav-label"><span class="lang-np">गृहपृष्ठ</span><span class="lang-en">Home</span></span>
+          </a>
+        </li>
+        <li class="bt-nav-item">
+          <a href="../category/news.html">
+            <span class="bt-nav-icon"><i class="fa-regular fa-newspaper"></i></span>
+            <span class="bt-nav-label"><span class="lang-np">समाचार</span><span class="lang-en">News</span></span>
+          </a>
+        </li>
+        <li class="bt-nav-item">
+          <a href="../category/politics.html">
+            <span class="bt-nav-icon"><i class="fa-solid fa-landmark"></i></span>
+            <span class="bt-nav-label"><span class="lang-np">राजनीति</span><span class="lang-en">Politics</span></span>
+          </a>
+        </li>
+        <li class="bt-nav-item">
+          <a href="../category/business.html">
+            <span class="bt-nav-icon"><i class="fa-solid fa-chart-line"></i></span>
+            <span class="bt-nav-label"><span class="lang-np">अर्थ वाणिज्य</span><span class="lang-en">Business</span></span>
+          </a>
+        </li>
+        <li class="bt-nav-item">
+          <a href="../category/butwal-today-news.html">
+            <span class="bt-nav-icon"><i class="fa-solid fa-tower-broadcast"></i></span>
+            <span class="bt-nav-label"><span class="lang-np">बुटवल टुडे समाचार</span><span class="lang-en">Butwal Today News</span></span>
+          </a>
+        </li>
+        <li class="bt-nav-item">
+          <a href="../category/newspaper.html">
+            <span class="bt-nav-icon"><i class="fa-regular fa-file-lines"></i></span>
+            <span class="bt-nav-label"><span class="lang-np">पत्रपत्रिका</span><span class="lang-en">Newspaper</span></span>
+          </a>
+        </li>
+        <li class="bt-nav-item">
+          <a href="../category/highlights.html">
+            <span class="bt-nav-icon"><i class="fa-regular fa-star"></i></span>
+            <span class="bt-nav-label"><span class="lang-np">हाइलाइट्स</span><span class="lang-en">Highlights</span></span>
+          </a>
+        </li>
+        <li class="bt-nav-item">
+          <a href="../category/horoscope.html">
+            <span class="bt-nav-icon"><i class="fa-solid fa-wand-magic-sparkles"></i></span>
+            <span class="bt-nav-label"><span class="lang-np">राशीफल</span><span class="lang-en">Horoscope</span></span>
+          </a>
+        </li>
+        <li class="bt-nav-item">
+          <a href="../category/butwal-khabar.html">
+            <span class="bt-nav-icon"><i class="fa-solid fa-bullhorn"></i></span>
+            <span class="bt-nav-label"><span class="lang-np">बुटवल खबर</span><span class="lang-en">Butwal Khabar</span></span>
+          </a>
+        </li>
+        <li class="bt-nav-item">
+          <a href="../category/weekly-programs.html">
+            <span class="bt-nav-icon"><i class="fa-regular fa-calendar-days"></i></span>
+            <span class="bt-nav-label"><span class="lang-np">साप्ताहिक कार्यक्रम</span><span class="lang-en">Weekly Programs</span></span>
+          </a>
+        </li>
+        <li class="bt-nav-item">
+          <a href="../category/nepal-update.html">
+            <span class="bt-nav-icon"><i class="fa-solid fa-arrows-rotate"></i></span>
+            <span class="bt-nav-label"><span class="lang-np">नेपाल अपडेट</span><span class="lang-en">Nepal Update</span></span>
+          </a>
+        </li>
+        <li class="bt-nav-item">
+          <a href="../category/health-tip.html">
+            <span class="bt-nav-icon"><i class="fa-solid fa-briefcase-medical"></i></span>
+            <span class="bt-nav-label"><span class="lang-np">स्वास्थ्य टिप्स</span><span class="lang-en">Health Tips</span></span>
+          </a>
+        </li>
+        <li class="bt-nav-item">
+          <a href="../category/others.html">
+            <span class="bt-nav-icon"><i class="fa-solid fa-grip"></i></span>
+            <span class="bt-nav-label"><span class="lang-np">अन्य</span><span class="lang-en">Others</span></span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+
+    <div class="bt-sidebar-footer">
+      <span>© <span id="bt-copyright-year"></span> Butwal TV</span>
+    </div>
+  </aside>
+
+  <button class="bt-collapse-btn" id="bt-collapse-btn" aria-label="Collapse sidebar">
+    <i class="fa-solid fa-chevron-left"></i>
+  </button>
+
+  <div class="bt-main">
+    <section class="bt-hero" id="bt-hero">
+      <div class="bt-hero-bg" id="bt-hero-bg" style="background-image:url('../images/hero-bg.jpg');"></div>
+      <div class="bt-hero-overlay"></div>
+
+     
+
+      <div class="bt-hero-content">
+        <h1 class="bt-hero-title" id="bt-hero-title">Butwal TV</h1>
+      </div>
+
+      <button class="bt-hero-watch-btn" id="bt-hero-watch-btn">
+        <span class="bt-watch-play"><i class="fa-solid fa-play"></i></span>
+        <span class="bt-watch-text">
+          <span class="bt-watch-line1">
+  <span class="lang-np">अहिले हेर्नुहोस्</span><span class="lang-en" style="display:none">Watch Now</span>
+</span>
+<span class="bt-watch-line2">
+  <span class="lang-np">भिडियो प्ले गर्नुहोस्</span><span class="lang-en" style="display:none">Play Video</span>
+</span>
+        </span>
+      </button>
+    </section>
+
+   <nav class="bt-category-bar" id="bt-category-bar" aria-label="Category filter">
+      <button type="button" class="bt-cat-pill active" data-cat="all"><span class="lang-np">सबै</span><span class="lang-en">All</span></button>
+      <button type="button" class="bt-cat-pill" data-cat="international"><span class="lang-np">अन्तर्राष्ट्रिय</span><span class="lang-en">International</span></button>
+      <button type="button" class="bt-cat-pill" data-cat="sports"><span class="lang-np">खेलकुद</span><span class="lang-en">Sports</span></button>
+      <button type="button" class="bt-cat-pill" data-cat="tourism"><span class="lang-np">पर्यटन</span><span class="lang-en">Tourism</span></button>
+      <button type="button" class="bt-cat-pill" data-cat="entertainment"><span class="lang-np">मनोरन्जन</span><span class="lang-en">Entertainment</span></button>
+      <button type="button" class="bt-cat-pill" data-cat="education"><span class="lang-np">शिक्षा</span><span class="lang-en">Education</span></button>
+      <button type="button" class="bt-cat-pill" data-cat="culture"><span class="lang-np">सस्कृत</span><span class="lang-en">Culture</span></button>
+      <button type="button" class="bt-cat-pill" data-cat="health"><span class="lang-np">स्वास्थ्य</span><span class="lang-en">Health</span></button>
+    </nav>
+  </div>
+
+
+</header>
+  <main class="contact-page-main">
+
+
+
+
+
+
+<div class="contact-container">
+
+  <div class="contact-hero">
+    <h1>
+      <span class="lang-en">Contact Us</span>
+      <span class="lang-np">सम्पर्क गर्नुहोस्</span>
+    </h1>
+    <p>
+      <span class="lang-en">Get in touch with our team</span>
+      <span class="lang-np">हाम्रो टोलीसँग सम्पर्क गर्नुहोस्</span>
+    </p>
+  </div>
+
+  <div class="contact-content">
+
+    <div class="contact-info">
+      <div class="info-cards-grid">
+
+        <div class="info-card contact-anim">
+          <i class="fas fa-clock"></i>
+          <h3 class="lang-en">Hours of Operation</h3>
+          <h3 class="lang-np">सञ्चालन समय</h3>
+          <p><span class="lang-en">Monday – Friday:</span><span class="lang-np">सोमबार – शुक्रबार:</span>&nbsp;9:00 AM – 6:00 PM</p>
+          <p><span class="lang-en">Saturday:</span><span class="lang-np">शनिबार:</span>&nbsp;10:00 AM – 2:00 PM</p>
+          <p><span class="lang-en">Sunday: Closed</span><span class="lang-np">आइतबार: बन्द</span></p>
+        </div>
+
+        <div class="info-card contact-anim">
+          <i class="fas fa-phone"></i>
+          <h3 class="lang-en">Phone</h3>
+          <h3 class="lang-np">फोन</h3>
+          <p>
+            <span id="contact-phone-en" class="lang-en">—</span>
+            <span id="contact-phone-np" class="lang-np">—</span>
+          </p>
+          <small class="lang-en">Available during business hours</small>
+          <small class="lang-np">व्यापारिक समयमा उपलब्ध</small>
+        </div>
+
+        <div class="info-card contact-anim">
+          <i class="fas fa-envelope"></i>
+          <h3 class="lang-en">Email</h3>
+          <h3 class="lang-np">इमेल</h3>
+          <p><span id="contact-email">—</span></p>
+          <small class="lang-en">We'll respond within 24 hours</small>
+          <small class="lang-np">हामी २४ घण्टा भित्र जवाफ दिनेछौं</small>
+        </div>
+
+        <div class="info-card contact-anim">
+          <i class="fas fa-location-dot"></i>
+          <h3 class="lang-en">Address</h3>
+          <h3 class="lang-np">ठेगाना</h3>
+          <p>
+            <span id="contact-addr-en" class="lang-en">—</span>
+            <span id="contact-addr-np" class="lang-np">—</span>
+          </p>
+        </div>
+
+      </div>
+
+      <div class="social-section">
+        <h3 class="lang-en">Follow Us</h3>
+        <h3 class="lang-np">हामीलाई पछ्याउनुहोस्</h3>
+        <div class="social-links">
+          <a id="sl-youtube" class="social-link" data-social="youtube" href="https://www.youtube.com/@butwaltodayTV" target="_blank" rel="noopener" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+          <a id="sl-facebook" class="social-link" data-social="facebook" href="https://www.facebook.com/butwaltodaydaily" target="_blank" rel="noopener" aria-label="Facebook"><i class="fa-brands fa-facebook"></i></a>
+          <a id="sl-instagram" class="social-link" data-social="instagram" href="https://www.instagram.com/dailybutwaltoday/" target="_blank" rel="noopener" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+          <a id="sl-twitter" class="social-link" data-social="twitter" href="https://x.com/NewsButwalToday" target="_blank" rel="noopener" aria-label="Twitter / X"><i class="fa-brands fa-x-twitter"></i></a>
+        </div>
+      </div>
+    </div>
+
+    <div class="contact-form-wrapper">
+
+      <form id="contact-form" class="contact-form contact-anim"
+            action="https://formsubmit.co/butwaltodaytv@gmail.com"
+            method="POST"
+            novalidate>
+
+        <div class="form-honey" aria-hidden="true">
+          <input type="text" name="_honey" tabindex="-1" autocomplete="off" value="">
+        </div>
+
+        <div class="form-group">
+          <label for="form-name">
+            <span class="lang-en">Full Name</span><span class="lang-np">पुरा नाम</span>
+            <span class="required"> *</span>
+          </label>
+          <input type="text" id="form-name" name="name" autocomplete="name" required placeholder="John Doe">
+        </div>
+
+        <div class="form-group">
+          <label for="form-email">
+            <span class="lang-en">Email Address</span><span class="lang-np">इमेल ठेगाना</span>
+            <span class="required"> *</span>
+          </label>
+          <input type="email" id="form-email" name="email" autocomplete="email" required placeholder="you@example.com">
+        </div>
+
+        <div class="form-group">
+          <label for="form-phone">
+            <span class="lang-en">Phone Number</span><span class="lang-np">फोन नम्बर</span>
+            <span class="optional">(<span class="lang-en">Optional</span><span class="lang-np">वैकल्पिक</span>)</span>
+          </label>
+          <input type="tel" id="form-phone" name="phone" autocomplete="tel" placeholder="+977 98XXXXXXXX">
+        </div>
+
+        <div class="form-group">
+          <label for="form-subject">
+            <span class="lang-en">Subject</span><span class="lang-np">विषय</span>
+            <span class="required"> *</span>
+          </label>
+          <input type="text" id="form-subject" name="subject" required>
+        </div>
+
+        <div class="form-group">
+          <label for="form-message">
+            <span class="lang-en">Message</span><span class="lang-np">सन्देश</span>
+            <span class="required"> *</span>
+          </label>
+          <textarea id="form-message" name="message" rows="5" required></textarea>
+        </div>
+
+        <button type="submit" id="form-submit" class="submit-btn">
+          <span class="lang-en">Send Message</span>
+          <span class="lang-np">सन्देश पठाउनुहोस्</span>
+          <i class="fas fa-paper-plane"></i>
+        </button>
+
+        <div id="form-status" class="form-status" role="alert"></div>
+      </form>
+
+      <div class="map-section contact-anim">
+        <h3 class="lang-en">Find Us</h3>
+        <h3 class="lang-np">हामीलाई भेट्नुहोस्</h3>
+        <div id="contact-map" class="contact-map-container">
+          <div class="map-placeholder">
+            <i class="fas fa-map-pin"></i>
+            <span class="lang-en">Map loading…</span>
+            <span class="lang-np">नक्सा लोड हुँदैछ…</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+
+<!-- DATA-DEBUG: phone=071-554640 email=butwaltodaytv@gmail.com addr=Butwal-6, Tilottam Path, Rupandehi -->
+</main>
+  <footer id="site-footer">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+
+
+  <div class="footer-top">
+    <nav class="footer-nav">
+      <a href="../category/news.html"><span class="lang-en-inline">News</span><span class="lang-np-inline">समाचार</span></a>
+      <span class="sep">|</span>
+      <a href="../category/politics.html"><span class="lang-en-inline">Politics</span><span class="lang-np-inline">राजनीति</span></a>
+      <span class="sep">|</span>
+      <a href="../category/others.html"><span class="lang-en-inline">Others</span><span class="lang-np-inline">अन्य</span></a>
+      <span class="sep">|</span>
+      <a href="about.html"><span class="lang-en-inline">Our Team</span><span class="lang-np-inline">हाम्रो टिम</span></a>
+       <span class="sep">|</span>
+      <a href="contact.html"><span class="lang-en-inline">Contact Us</span><span class="lang-np-inline">हाम्रो टिम</span></a>
+    </nav>
+    <div class="footer-social">
+      <span class="social-label"><span class="lang-en-inline">Follow on</span><span class="lang-np-inline">पछ्याउनुहोस्</span></span>
+      <div class="social-icons">
+          <a href="https://www.youtube.com/@butwaltodayTV" target="_blank" rel="noopener" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+          <a href="https://www.facebook.com/butwaltodaydaily" target="_blank" rel="noopener" aria-label="Facebook"><i class="fa-brands fa-facebook"></i></a>
+          <a href="https://www.instagram.com/dailybutwaltoday/" target="_blank" rel="noopener" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+          <a href="https://x.com/NewsButwalToday" target="_blank" rel="noopener" aria-label="Twitter/X"><i class="fa-brands fa-x-twitter"></i></a>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-divider"></div>
+
+  <div class="footer-middle">
+    <div class="footer-col">
+      
+      <p><span class="lang-en-inline">Address - <strong>Butwal-6, Tilottam Path, Rupandehi</strong></span><span class="lang-np-inline">ठेगाना - <strong>बुटवल–६, तिलोत्तमपथ, रुपन्देही</strong></span></p>
+    </div>
+    <div class="footer-col">
+      <p><span class="lang-en-inline">Phone - <strong>071-554640</strong></span><span class="lang-np-inline">फोन - <strong>०७१-५५४६४०</strong></span></p>
+      <p>Email - <a href="mailto:butwaltodaytv@gmail.com">butwaltodaytv@gmail.com</a></p>
+    </div>
+    
+  </div>
+
+  <div class="footer-divider"></div>
+
+  <div class="footer-bottom">
+    <span class="copyright">
+      <span class="lang-en-inline">© 2026 Butwal TV — All rights reserved.</span>
+      <span class="lang-np-inline">© २०२६ Butwal TV — सबै अधिकार सुरक्षित</span>
+    </span>
+    <span class="developer"></span>
+  </div>
+</footer>
+
+<div class="wa-widget">
+  <div class="wa-tooltip"><span class="lang-en-inline">Chat on WhatsApp</span><span class="lang-np-inline">WhatsApp मा सम्पर्क</span></div>
+  <a href="https://wa.me/9779749844080?text=Hello!%20I%20have%20a%20query%20about%20Butwal%20TV" target="_blank" rel="noopener noreferrer" class="wa-fab" aria-label="Chat on WhatsApp"><i class="fab fa-whatsapp"></i></a>
+</div>
+  <script>
+(function () {
+  function initOffset() {
+    var sidebar = document.getElementById('bt-sidebar');
+    if (!sidebar) return;
+    function sync() {
+      document.body.classList.toggle('bt-sidebar-collapsed', sidebar.classList.contains('collapsed'));
+    }
+    sync();
+    new MutationObserver(sync).observe(sidebar, { attributes: true, attributeFilter: ['class'] });
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initOffset);
+  } else {
+    initOffset();
+  }
+})();
+</script>
+  <script>
+
+(function () {
+  function _init() {
+    var sidebar   = document.getElementById('bt-sidebar');
+    var collapse  = document.getElementById('bt-collapse-btn');
+    var mobileTog = document.getElementById('bt-sidebar-toggle-mobile');
+    var overlay   = document.getElementById('bt-sidebar-overlay');
+    var watchBtn  = document.getElementById('bt-hero-watch-btn');
+    var pills     = document.querySelectorAll('#bt-category-bar .bt-cat-pill');
+    var yearEl    = document.getElementById('bt-copyright-year');
+    var langBtn   = document.getElementById('bt-lang-toggle');
+    var mediaUrl  = '';
+
+    if (sidebar && sidebar.classList.contains('collapsed')) {
+      document.body.classList.add('sidebar-collapsed');
+    }
+    if (yearEl) yearEl.textContent = new Date().getFullYear();
+
+    function isMobile() { return window.innerWidth <= 900; }
+
+    // ── Desktop collapse toggle ──
+    if (collapse && sidebar) {
+      collapse.addEventListener('click', function () {
+        if (isMobile()) {
+          sidebar.classList.toggle('mobile-open');
+          if (overlay) overlay.classList.toggle('active', sidebar.classList.contains('mobile-open'));
+        } else {
+          sidebar.classList.toggle('collapsed');
+          collapse.classList.toggle('rotated', sidebar.classList.contains('collapsed'));
+          document.body.classList.toggle('sidebar-collapsed', sidebar.classList.contains('collapsed'));
+        }
+      });
+    }
+
+    // ── Mobile hamburger ──
+    if (mobileTog && sidebar) {
+      mobileTog.addEventListener('click', function () {
+        sidebar.classList.toggle('mobile-open');
+        if (overlay) overlay.classList.toggle('active', sidebar.classList.contains('mobile-open'));
+      });
+    }
+    if (overlay && sidebar) {
+      overlay.addEventListener('click', function () {
+        sidebar.classList.remove('mobile-open');
+        overlay.classList.remove('active');
+      });
+    }
+
+    window.addEventListener('resize', function () {
+      if (!isMobile()) {
+        sidebar.classList.remove('mobile-open');
+        if (overlay) overlay.classList.remove('active');
+      }
+    });
+
+    if (watchBtn) watchBtn.addEventListener('click', function () { window.dispatchEvent(new CustomEvent('btHeroWatchNow', { detail: { mediaUrl: mediaUrl } })); });
+
+    pills.forEach(function (p) {
+      p.addEventListener('click', function () {
+        pills.forEach(function (o) { o.classList.remove('active'); });
+        p.classList.add('active');
+        window.dispatchEvent(new CustomEvent('btCategoryChange', { detail: { category: p.getAttribute('data-cat') } }));
+      });
+    });
+
+    // ── Language toggle — controls the ENTIRE page ──────────────────────
+    var LANG_KEY = 'fm_lang';
+
+    function getCurrentLang() {
+      try { return localStorage.getItem(LANG_KEY) || 'np'; } catch (e) { return 'np'; }
+    }
+
+    function setLangBtnLabel(lang) {
+      if (langBtn) langBtn.textContent = (lang === 'np') ? 'EN' : 'NP';
+    }
+
+    function applyLangGlobal(lang) {
+      var isNp = (lang === 'np');
+      document.body.classList.toggle('lang-active', isNp);
+      setLangBtnLabel(lang);
+      try {
+        localStorage.setItem('fm_lang', lang);
+        localStorage.setItem('language', lang);
+        localStorage.setItem('siteLang', lang);
+      } catch (e) {}
+      window.dispatchEvent(new CustomEvent('langChange', { detail: { lang: lang } }));
+    }
+
+    if (langBtn) {
+      langBtn.addEventListener('click', function () {
+        applyLangGlobal(getCurrentLang() === 'np' ? 'en' : 'np');
+      });
+    }
+
+    // Sync label + body state on load
+    applyLangGlobal(getCurrentLang());
+  }
+
+  setTimeout(_init, 0);
+})();
+
+</script>
+
+<script>
+(function () {
+
+  // ── 1. Fix CSS visibility immediately ──────────────────────
+  function ensureCSSApplied() {
+    var container = document.querySelector('.contact-container');
+    if (container) {
+      container.style.opacity   = '1';
+      container.style.transform = 'translateY(0)';
+    }
+    document.querySelectorAll('.info-card, .contact-form, .map-section, .contact-anim').forEach(function(el) {
+      el.style.opacity   = '1';
+      el.style.transform = 'translateY(0)';
+    });
+  }
+
+  // ── 2. Resolved data (with fallback, injected server-side) ──
+  var data = {
+    phoneEn:     "071-554640",
+    phoneNp:     "०७१-५५४६४०",
+    email:       "butwaltodaytv@gmail.com",
+    addrEn:      "Butwal-6, Tilottam Path, Rupandehi",
+    addrNp:      "बुटवल–६, तिलोत्तमपथ, रुपन्देही",
+    mapUrl:      "<iframe src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d113060.50999793902!2d83.35013397404991!3d27.682038573138854!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3996864275d9755f%3A0x2b1e92d89d4bb3ae!2sButwal!5e0!3m2!1sen!2snp!4v1783506507849!5m2!1sen!2snp\" width=\"600\" height=\"450\" style=\"border:0;\" allowfullscreen=\"\" loading=\"lazy\" referrerpolicy=\"strict-origin-when-cross-origin\"></iframe>",
+    streamUrl:   "",
+    socialLinks: {
+      facebook:  "https://www.facebook.com/butwaltodaydaily",
+      twitter:   "https://x.com/NewsButwalToday",
+      youtube:   "https://www.youtube.com/@butwaltodayTV",
+      instagram: "https://www.instagram.com/dailybutwaltoday/"
+    }
+  };
+
+  // ── 3. Console-log data for browser debugging ───────────────
+  console.log('[contact-inject] data:', JSON.stringify(data));
+
+  // ── 4. Populate all contact fields ─────────────────────────
+  function populateAll() {
+
+    // Phone — handle single-id and dual-id variants
+    var phoneSingle = document.getElementById('contact-phone');
+    var phoneEnEl   = document.getElementById('contact-phone-en');
+    var phoneNpEl   = document.getElementById('contact-phone-np');
+    var phoneVal    = data.phoneEn || data.phoneNp;
+
+    // Always set — use empty string if no value (shows nothing, not "—")
+    if (phoneSingle) phoneSingle.textContent = phoneVal || phoneSingle.textContent;
+    if (phoneEnEl)   phoneEnEl.textContent   = data.phoneEn || phoneEnEl.textContent;
+    if (phoneNpEl)   phoneNpEl.textContent   = data.phoneNp || phoneNpEl.textContent;
+
+    // Email
+    var emailEl = document.getElementById('contact-email');
+    if (emailEl) emailEl.textContent = data.email || emailEl.textContent;
+
+    // Address
+    var addrEnEl = document.getElementById('contact-addr-en');
+    var addrNpEl = document.getElementById('contact-addr-np');
+    if (addrEnEl) addrEnEl.textContent = data.addrEn || addrEnEl.textContent;
+    if (addrNpEl) addrNpEl.textContent = data.addrNp || addrNpEl.textContent;
+
+    // Map — accepts raw iframe HTML or a plain URL
+    var mapEl = document.getElementById('contact-map');
+    if (mapEl && data.mapUrl) {
+      var raw = data.mapUrl.trim();
+      if (raw.toLowerCase().startsWith('<iframe')) {
+        mapEl.innerHTML = raw;
+        var iframe = mapEl.querySelector('iframe');
+        if (iframe) {
+          iframe.style.width   = '100%';
+          iframe.style.height  = '100%';
+          iframe.style.border  = '0';
+          iframe.style.display = 'block';
+          iframe.removeAttribute('width');
+          iframe.removeAttribute('height');
+        }
+      } else if (raw.startsWith('http')) {
+        mapEl.innerHTML =
+          '<iframe src="' + raw + '" width="100%" height="100%" frameborder="0"'
+          + ' allowfullscreen loading="lazy"'
+          + ' referrerpolicy="no-referrer-when-downgrade"></iframe>';
+      }
+    }
+
+    // Stream link
+    var streamEl = document.getElementById('stream-link');
+    if (streamEl && data.streamUrl) {
+      streamEl.href          = data.streamUrl;
+      streamEl.style.display = 'inline-flex';
+    }
+
+    // Social links
+    ['facebook', 'twitter', 'youtube', 'instagram'].forEach(function(key) {
+      var url = data.socialLinks[key];
+      var el  = document.getElementById('sl-' + key);
+      if (el && url && url !== '#') el.href = url;
+    });
+  }
+
+  // ── 5. Fetch-based form handler ─────────────────────────────
+  function attachFormHandler() {
+    var oldForm = document.getElementById('contact-form');
+    if (!oldForm) return;
+
+    var form = oldForm.cloneNode(true);
+    oldForm.parentNode.replaceChild(form, oldForm);
+
+    form.removeAttribute('action');
+    form.setAttribute('data-action', 'https://formspree.io/f/mvzygdvj');
+
+    ['input[name="_next"]', 'input[name="_captcha"]'].forEach(function(sel) {
+      var el = form.querySelector(sel);
+      if (el) el.parentNode.removeChild(el);
+    });
+
+    var submitBtn = form.querySelector('#form-submit');
+    var statusDiv = form.querySelector('#form-status');
+    if (!submitBtn || !statusDiv) return;
+
+    var origHTML = submitBtn.innerHTML;
+
+    function getLang() {
+      try { return localStorage.getItem('fm_lang') || 'en'; } catch(e) { return 'en'; }
+    }
+    function applyLang(l) {
+      if (typeof window.setContactLang === 'function') window.setContactLang(l);
+    }
+    function showStatus(msgHtml, type) {
+      statusDiv.innerHTML     = msgHtml;
+      statusDiv.className     = 'form-status ' + (type || '');
+      statusDiv.style.display = 'block';
+      applyLang(getLang());
+      if (type === 'error') {
+        setTimeout(function() { statusDiv.style.display = 'none'; }, 6000);
+      }
+    }
+
+    var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    function isValidEmail(v) { return emailRegex.test(v); }
+    function val(id) {
+      var el = form.querySelector('#' + id);
+      return el ? el.value.trim() : '';
+    }
+
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+      e.stopImmediatePropagation();
+
+      var l       = getLang();
+      var name    = val('form-name');
+      var email   = val('form-email');
+      var subject = val('form-subject');
+      var message = val('form-message');
+
+      if (!name || !email || !subject || !message) {
+        showStatus(
+          '<span class="lang-en">Please fill in all required fields.</span>'
+          + '<span class="lang-np">कृपया सबै आवश्यक फिल्डहरू भर्नुहोस्।</span>',
+          'error'
+        );
+        applyLang(l); return;
+      }
+      if (!isValidEmail(email)) {
+        showStatus(
+          '<span class="lang-en">Please enter a valid email address.</span>'
+          + '<span class="lang-np">कृपया मान्य इमेल ठेगाना प्रविष्ट गर्नुहोस्।</span>',
+          'error'
+        );
+        applyLang(l); return;
+      }
+
+      var honey = form.querySelector('input[name="_honey"]');
+      if (honey && honey.value) return;
+
+      submitBtn.innerHTML =
+        '<span class="lang-en">Sending...</span>'
+        + '<span class="lang-np">पठाउँदै...</span>'
+        + '<i class="fas fa-spinner fa-spin"></i>';
+      submitBtn.disabled = true;
+      applyLang(l);
+
+      fetch(form.getAttribute('data-action'), {
+        method: 'POST',
+        body:   new FormData(form),
+        mode:   'no-cors'
+      })
+      .then(function() {
+        form.reset();
+        showStatus(
+          '<strong>'
+            + '<span class="lang-en">Message sent successfully!</span>'
+            + '<span class="lang-np">सन्देश सफलतापूर्वक पठाइयो!</span>'
+          + '</strong><br>'
+          + '<span class="lang-en">Thank you for reaching out. We\'ll get back to you within 24 hours.</span>'
+          + '<span class="lang-np">हामीलाई सम्पर्क गर्नुभएकोमा धन्यवाद। हामी २४ घण्टा भित्र तपाईंलाई जवाफ दिनेछौं।</span>',
+          'success'
+        );
+      })
+      .catch(function() {
+        showStatus(
+          '<span class="lang-en">Something went wrong. Please try again or email us directly.</span>'
+          + '<span class="lang-np">केही गडबडी भयो। कृपया पुनः प्रयास गर्नुहोस् वा हामीलाई सिधै इमेल गर्नुहोस्।</span>',
+          'error'
+        );
+      })
+      .finally(function() {
+        submitBtn.innerHTML = origHTML;
+        submitBtn.disabled  = false;
+        applyLang(l);
+      });
+    });
+  }
+
+  // ── 6. Run ─────────────────────────────────────────────────
+  function run() {
+    ensureCSSApplied();
+    window.populateContactData = function() {};
+    populateAll();
+    var lang = 'en';
+    try { lang = localStorage.getItem('fm_lang') || 'en'; } catch(e) {}
+    if (typeof window.setContactLang === 'function') window.setContactLang(lang);
+    attachFormHandler();
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', run);
+  } else {
+    run();
+  }
+
+})();
+</script>
+</body>
+</html>

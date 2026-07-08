@@ -1,0 +1,1292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>About Us | Butwal TV </title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  
+  <style>
+
+:root {
+  --bt-accent:      #D4A017;
+  --bt-accent-on:   #1F1F1F;
+  --bt-sidebar-bg:  #eff6ff;
+  --bt-bg:          #FFFFFF;
+  --bt-text:        #1F1F1F;
+  --bt-muted:       rgba(31,31,31,0.55);
+  --bt-border:      rgba(163,25,25,0.18);
+  --bt-font-body:   "Noto Serif, Georgia, serif";
+  --bt-font-heading:"Noto Serif, Georgia, serif";
+  --bt-sidebar-w:   264px;
+  --bt-sidebar-w-collapsed: 76px;
+}
+
+#bt-header, #bt-header *, #bt-header *::before, #bt-header *::after {
+  box-sizing: border-box !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+#bt-header *:not(i):not([class*="fa-"]) {
+  font-family: var(--bt-font-body, sans-serif) !important;
+}
+#bt-header i[class*="fa-"] {
+  font-style: normal !important;
+  display: inline-block !important;
+  line-height: 1 !important;
+}
+#bt-header {
+  display: flex !important;
+  position: relative !important;
+  width: 100% !important;
+  min-height: 620px !important;
+  background: var(--bt-bg) !important;
+  color: var(--bt-text) !important;
+}
+
+/* ── overlay for mobile drawer ── */
+#bt-header .bt-sidebar-overlay {
+  display: none !important;
+  position: fixed !important;
+  inset: 0 !important;
+  background: rgba(0,0,0,.45) !important;
+  z-index: 999 !important;
+}
+#bt-header .bt-sidebar-overlay.active { display: block !important; }
+
+/* ── SIDEBAR: fixed to left edge, stays in place while page scrolls ── */
+#bt-header .bt-sidebar {
+  width: var(--bt-sidebar-w) !important;
+  flex-shrink: 0 !important;
+  background: var(--bt-sidebar-bg) !important;
+  border-right: 1px solid var(--bt-border) !important;
+  display: flex !important;
+  flex-direction: column !important;
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  bottom: 0 !important;
+  height: 100vh !important;
+  overflow-y: auto !important;
+  overflow-x: hidden !important;
+  transition: width .25s ease, transform .25s ease !important;
+  z-index: 1000 !important;
+}
+#bt-header .bt-sidebar.collapsed { width: var(--bt-sidebar-w-collapsed) !important; }
+
+/* ── MAIN AREA: pushed right by sidebar width so it isn't covered ── */
+#bt-header .bt-main {
+  margin-left: var(--bt-sidebar-w) !important;
+  flex: 1 1 auto !important;
+  display: flex !important;
+  flex-direction: column !important;
+  min-width: 0 !important;
+  transition: margin-left .25s ease !important;
+  width: 100% !important;
+}
+#bt-header .bt-sidebar.collapsed ~ .bt-main {
+  margin-left: var(--bt-sidebar-w-collapsed) !important;
+}
+
+#bt-header .bt-sidebar-header {
+  display: flex !important;
+  align-items: center !important;
+  height: 72px !important;
+  padding: 0 18px !important;
+  border-bottom: 1px solid var(--bt-border) !important;
+  flex-shrink: 0 !important;
+  gap: 10px !important;
+}
+#bt-header .bt-logo-link { display: flex !important; align-items: center !important; gap: 10px !important; text-decoration: none !important; overflow: hidden !important; min-width: 0 !important; }
+#bt-header .bt-logo { height: 42px !important; width: auto !important; display: block !important; border-radius: 6px !important; }
+#bt-header .bt-logo-text { font-weight: 800 !important; font-size: 1.05rem !important; color: var(--bt-text) !important; white-space: nowrap !important; line-height: 1.15 !important; }
+#bt-header .bt-logo-sub { font-size: .62rem !important; color: var(--bt-muted) !important; font-weight: 600 !important; letter-spacing: .04em !important; display: block !important; margin-top: 2px !important; }
+#bt-header .bt-sidebar.collapsed .bt-logo-text-wrap { display: none !important; }
+#bt-header .bt-logo-text-wrap { display: none !important; }
+
+/* ── Language toggle button (in sidebar header, controls whole page) ── */
+#bt-header .bt-lang-toggle {
+  margin-left: auto !important;
+  background: var(--bt-accent) !important;
+  color: var(--bt-accent-on) !important;
+  border: none !important;
+  border-radius: 20px !important;
+  padding: 6px 14px !important;
+  font-weight: 700 !important;
+  font-size: .78rem !important;
+  cursor: pointer !important;
+  flex-shrink: 0 !important;
+  white-space: nowrap !important;
+  transition: opacity .15s ease !important;
+}
+#bt-header .bt-lang-toggle:hover { opacity: .88 !important; }
+#bt-header .bt-sidebar.collapsed .bt-lang-toggle { display: none !important; }
+
+/* ── floating collapse toggle (chevron), vertically centered like mock ── */
+#bt-header .bt-collapse-btn {
+  position: fixed !important;
+  top: 50% !important;
+  left: var(--bt-sidebar-w) !important;
+  transform: translate(-50%, -50%) !important;
+  width: 30px !important; height: 30px !important; border-radius: 50% !important;
+  background: var(--bt-bg) !important; border: 1px solid var(--bt-border) !important;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15) !important; display: flex !important;
+  align-items: center !important; justify-content: center !important; cursor: pointer !important;
+  color: var(--bt-accent) !important; z-index: 1001 !important;
+  transition: left .25s ease, transform .25s ease !important;
+}
+#bt-header .bt-sidebar.collapsed ~ .bt-collapse-btn,
+#bt-header .bt-collapse-btn.collapsed-pos {
+  left: var(--bt-sidebar-w-collapsed) !important;
+}
+#bt-header .bt-collapse-btn.rotated i { transform: rotate(180deg) !important; }
+#bt-header .bt-collapse-btn i { transition: transform .25s ease !important; }
+
+#bt-header .bt-sidebar-nav { flex: 1 1 auto !important; overflow-y: auto !important; padding: 14px 12px !important; }
+#bt-header .bt-nav-list { list-style: none !important; display: flex !important; flex-direction: column !important; gap: 10px !important; }
+#bt-header .bt-nav-item a {
+  display: flex !important; align-items: center !important; gap: 14px !important;
+  padding: 12px 14px !important; border-radius: 14px !important;
+  background: var(--bt-bg) !important;
+  color: var(--bt-text) !important; text-decoration: none !important; font-size: .95rem !important;
+  font-weight: 700 !important; white-space: nowrap !important; overflow: hidden !important;
+  box-shadow: 0 1px 3px rgba(0,0,0,.05) !important;
+  transition: background .18s, color .18s, box-shadow .18s !important;
+}
+#bt-header .bt-nav-icon {
+  width: 34px !important; height: 34px !important; border-radius: 10px !important;
+  border: 1.5px solid var(--bt-border) !important; display: flex !important;
+  align-items: center !important; justify-content: center !important; flex-shrink: 0 !important;
+  color: var(--bt-muted) !important; font-size: .9rem !important;
+  transition: background .18s, color .18s, border-color .18s !important;
+}
+#bt-header .bt-nav-item a:hover { box-shadow: 0 4px 10px rgba(0,0,0,.08) !important; }
+#bt-header .bt-nav-item a:hover .bt-nav-icon { color: var(--bt-accent) !important; border-color: var(--bt-accent) !important; }
+#bt-header .bt-nav-item.active a { background: var(--bt-accent) !important; color: var(--bt-accent-on) !important; }
+#bt-header .bt-nav-item.active a .bt-nav-icon { border-color: var(--bt-accent-on) !important; color: var(--bt-accent-on) !important; }
+#bt-header .bt-sidebar.collapsed .bt-nav-item a span.bt-nav-label { display: none !important; }
+#bt-header .bt-sidebar.collapsed .bt-nav-item a { justify-content: center !important; padding: 12px !important; }
+#bt-header .bt-sidebar-footer {
+  padding: 16px !important; font-size: .74rem !important; color: var(--bt-muted) !important;
+  border-top: 1px solid var(--bt-border) !important; white-space: nowrap !important; overflow: hidden !important;
+  flex-shrink: 0 !important; text-align: center !important;
+}
+#bt-header .bt-sidebar.collapsed .bt-sidebar-footer { display: none !important; }
+#bt-header .lang-en { display: none !important; }
+#bt-header .lang-np { display: inline !important; }
+#bt-header .bt-hero {
+  position: relative !important; min-height: 480px !important; overflow: hidden !important;
+  display: flex !important; flex-direction: column !important; justify-content: flex-end !important; background: #111 !important;
+}
+#bt-header .bt-hero-bg { position: absolute !important; inset: 0 !important; background-size: cover !important; background-position: center !important; transform: scale(1.01) !important; }
+#bt-header .bt-hero-overlay { position: absolute !important; inset: 0 !important; background: linear-gradient(to top, rgba(0,0,0,.72) 0%, rgba(0,0,0,.15) 45%, rgba(0,0,0,.35) 100%) !important; }
+#bt-header .bt-hero-search { position: relative !important; z-index: 5 !important; padding: 24px 28px 0 !important; }
+#bt-header .bt-search-form {
+  max-width: 660px !important; background: var(--bt-bg) !important; border-radius: 999px !important;
+  display: flex !important; align-items: center !important; gap: 10px !important; padding: 12px 20px !important;
+  box-shadow: 0 6px 20px rgba(0,0,0,.18) !important;
+}
+#bt-header .bt-search-icon { color: var(--bt-muted) !important; }
+#bt-header .bt-search-input { border: none !important; outline: none !important; background: transparent !important; flex: 1 !important; font-size: .92rem !important; color: var(--bt-text) !important; }
+#bt-header .bt-hero-content { position: relative !important; z-index: 5 !important; padding: 0 28px 22px !important; max-width: 78% !important; }
+#bt-header .bt-hero-title { color: #fff !important; font-size: 1.9rem !important; font-weight: 800 !important; line-height: 1.35 !important; text-shadow: 0 2px 10px rgba(0,0,0,.4) !important; }
+#bt-header .bt-hero-watch-btn {
+  position: absolute !important; right: 24px !important; bottom: 22px !important; z-index: 6 !important;
+  display: flex !important; align-items: center !important; gap: 10px !important; background: var(--bt-bg) !important;
+  border: none !important; border-radius: 14px !important; padding: 10px 16px !important; cursor: pointer !important;
+  box-shadow: 0 6px 18px rgba(0,0,0,.25) !important;
+}
+#bt-header .bt-watch-play { width: 34px !important; height: 34px !important; border-radius: 50% !important; background: var(--bt-accent) !important; color: var(--bt-accent-on) !important; display: flex !important; align-items: center !important; justify-content: center !important; flex-shrink: 0 !important; }
+#bt-header .bt-watch-text { display: flex !important; flex-direction: column !important; text-align: left !important; }
+#bt-header .bt-watch-line1 { font-size: .82rem !important; font-weight: 800 !important; color: var(--bt-text) !important; }
+#bt-header .bt-watch-line2 { font-size: .68rem !important; color: var(--bt-muted) !important; }
+#bt-header .bt-category-bar { display: flex !important; flex-wrap: wrap !important; gap: 10px !important; padding: 18px 28px !important; background: var(--bt-bg) !important; }
+#bt-header .bt-cat-pill {
+  border: 1px solid var(--bt-accent) !important; background: transparent !important; color: var(--bt-accent) !important;
+  border-radius: 999px !important; padding: 8px 18px !important; font-size: .84rem !important; font-weight: 700 !important;
+  cursor: pointer !important; transition: background .18s, color .18s !important; white-space: nowrap !important;
+}
+#bt-header .bt-cat-pill:hover { background: rgba(37,99,235,.08) !important; }
+#bt-header .bt-cat-pill.active { background: var(--bt-accent) !important; color: var(--bt-accent-on) !important; }
+#bt-header .bt-sidebar-toggle-mobile {
+  display: none !important; position: fixed !important; top: 14px !important; left: 14px !important; z-index: 1002 !important;
+  width: 38px !important; height: 38px !important; border-radius: 50% !important; background: var(--bt-bg) !important;
+  border: 1px solid var(--bt-border) !important; align-items: center !important; justify-content: center !important; cursor: pointer !important;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15) !important;
+}
+
+/* ── Responsive breakpoints ── */
+@media (max-width: 1024px) {
+  :root { --bt-sidebar-w: 232px !important; }
+}
+
+@media (max-width: 900px) {
+  #bt-header { flex-direction: column !important; }
+  #bt-header .bt-sidebar {
+    width: 260px !important;
+    transform: translateX(-100%) !important;
+  }
+  #bt-header .bt-sidebar.collapsed { width: 260px !important; }
+  #bt-header .bt-sidebar.mobile-open { transform: translateX(0) !important; }
+  #bt-header .bt-main { margin-left: 0 !important; }
+  #bt-header .bt-sidebar.collapsed ~ .bt-main { margin-left: 0 !important; }
+  #bt-header .bt-collapse-btn { display: none !important; }
+  #bt-header .bt-sidebar-toggle-mobile { display: flex !important; }
+  #bt-header .bt-hero-content { max-width: 100% !important; }
+  #bt-header .bt-hero-title { font-size: 1.4rem !important; }
+  #bt-header .bt-hero-watch-btn { right: 14px !important; bottom: 14px !important; padding: 8px 12px !important; }
+  #bt-header .bt-watch-line2 { display: none !important; }
+  #bt-header .bt-hero { min-height: 340px !important; }
+  #bt-header .bt-hero-search { padding: 70px 16px 0 !important; }
+}
+
+@media (max-width: 480px) {
+  #bt-header .bt-category-bar { padding: 14px 16px !important; gap: 8px !important; }
+  #bt-header .bt-cat-pill { padding: 7px 13px !important; font-size: .78rem !important; }
+  #bt-header .bt-hero-title { font-size: 1.15rem !important; }
+  #bt-header .bt-hero { min-height: 300px !important; }
+}
+
+</style>
+  <style>
+
+:root {
+  --footer-accent:      #D4A017;
+  --footer-accent-on:   #1F1F1F;
+  --footer-bg:          #FFFFFF;
+  --footer-text:        #1F1F1F;
+  --footer-muted:       rgba(31,31,31,0.55);
+  --footer-border:      rgba(163,25,25,0.18);
+  --footer-font-body:   "Noto Serif, Georgia, serif";
+  --footer-font-heading:"'Mukta', sans-serif";
+}
+
+#site-footer, #site-footer *, #site-footer *::before, #site-footer *::after {
+  box-sizing: border-box !important;
+}
+#site-footer {
+  font-family: var(--footer-font-body, sans-serif) !important;
+  background: #e5e7eb !important;
+  border-radius: 24px 24px 0 0 !important;
+  padding: 32px 32px 20px !important;
+  margin-top: 40px !important;
+  margin-right: auto !important;
+  margin-bottom: 0 !important;
+  box-shadow: 0 -2px 20px rgba(0,0,0,0.04) !important;
+}
+.footer-top {
+  display: flex !important; flex-wrap: wrap !important; justify-content: space-between !important;
+  align-items: center !important; gap: 16px 20px !important; padding: 0 4px !important;
+}
+.footer-nav { display: flex !important; flex-wrap: wrap !important; align-items: center !important; gap: 4px 6px !important; }
+.footer-nav a {
+  font-size: 0.95rem !important; font-weight: 600 !important; color: var(--footer-text) !important;
+  text-decoration: none !important; padding: 4px 6px !important; transition: color 0.2s ease !important; letter-spacing: 0.02em !important;
+}
+.footer-nav a:hover { color: var(--footer-accent) !important; }
+.footer-nav .sep { color: #b0b0b8 !important; font-weight: 300 !important; font-size: 0.9rem !important; }
+.footer-social { display: flex !important; align-items: center !important; gap: 10px !important; }
+.social-label { font-size: 0.85rem !important; font-weight: 500 !important; color: var(--footer-text) !important; }
+.social-icons { display: flex !important; gap: 8px !important; }
+.social-icons a {
+  display: inline-flex !important; align-items: center !important; justify-content: center !important;
+  width: 36px !important; height: 36px !important; border-radius: 50% !important; border: 2px solid #3d3d4a !important;
+  color: #3d3d4a !important; font-size: 0.95rem !important; text-decoration: none !important; transition: all 0.25s ease !important; background: transparent !important;
+}
+.social-icons a:hover {
+  background: var(--footer-accent) !important; border-color: var(--footer-accent) !important; color: var(--footer-accent-on) !important;
+  transform: translateY(-2px) scale(1.04) !important; box-shadow: 0 4px 12px rgba(0,0,0,0.25) !important;
+}
+.footer-divider { height: 1px !important; background: rgba(0,0,0,0.08) !important; margin: 20px 0 18px !important; }
+.footer-middle { display: grid !important; grid-template-columns: 1fr 1fr 1fr !important; gap: 24px 20px !important; padding: 4px 0 4px !important; }
+.footer-col { display: flex !important; flex-direction: column !important; gap: 4px !important; }
+.footer-col p { font-size: 0.92rem !important; line-height: 1.6 !important; color: var(--footer-text) !important; margin: 0 !important; font-weight: 500 !important; }
+.footer-col a { color: var(--footer-accent) !important; text-decoration: none !important; font-weight: 600 !important; transition: color 0.2s ease !important; }
+.footer-col a:hover { text-decoration: underline !important; }
+.footer-col strong { font-weight: 700 !important; color: var(--footer-text) !important; }
+.footer-bottom { display: flex !important; flex-wrap: wrap !important; justify-content: space-between !important; align-items: center !important; gap: 10px 16px !important; padding-top: 4px !important; }
+.copyright { font-size: 0.85rem !important; font-weight: 500 !important; color: var(--footer-text) !important; }
+.developer { font-size: 0.82rem !important; font-weight: 500 !important; color: var(--footer-muted) !important; }
+.developer strong { font-weight: 700 !important; color: var(--footer-text) !important; }
+.dev-logo { height: 22px !important; width: auto !important; vertical-align: middle !important; margin-left: 4px !important; }
+
+/* Language toggle styles */
+body:not(.lang-active) .lang-np { display: none !important; }
+body:not(.lang-active) .lang-en { display: inline !important; }
+body.lang-active .lang-en { display: none !important; }
+body.lang-active .lang-np { display: inline !important; }
+
+/* Block level language styles */
+body:not(.lang-active) .lang-np-block { display: none !important; }
+body:not(.lang-active) .lang-en-block { display: block !important; }
+body.lang-active .lang-en-block { display: none !important; }
+body.lang-active .lang-np-block { display: block !important; }
+
+/* Fix for inline elements that need to display as inline */
+body:not(.lang-active) .lang-en-inline { display: inline !important; }
+body:not(.lang-active) .lang-np-inline { display: none !important; }
+body.lang-active .lang-en-inline { display: none !important; }
+body.lang-active .lang-np-inline { display: inline !important; }
+
+.wa-widget { position: fixed !important; bottom: 24px !important; right: 24px !important; z-index: 9999 !important; display: flex !important; align-items: center !important; gap: 10px !important; flex-direction: row !important; }
+.wa-fab {
+  width: 52px !important; height: 52px !important; border-radius: 50% !important; background: #25D366 !important; color: #fff !important;
+  display: flex !important; align-items: center !important; justify-content: center !important; font-size: 1.7rem !important; text-decoration: none !important;
+  box-shadow: 0 4px 16px rgba(37,211,102,.4), 0 2px 8px rgba(0,0,0,.2) !important;
+  transition: transform .22s cubic-bezier(.34,1.56,.64,1), box-shadow .22s !important;
+  animation: waIn .5s cubic-bezier(.34,1.56,.64,1) 1.2s both !important; position: relative !important;
+}
+.wa-fab:hover { transform: scale(1.12) rotate(-6deg) !important; }
+.wa-fab::after { content: '' !important; position: absolute !important; inset: 0 !important; border-radius: 50% !important; border: 3px solid #25D366 !important; animation: waRing 2s ease-out 2s infinite !important; }
+.wa-tooltip {
+  background: #fff !important; color: #111 !important; font-size: .78rem !important; font-weight: 600 !important; padding: 5px 12px !important;
+  border-radius: 14px !important; white-space: nowrap !important; box-shadow: 0 3px 12px rgba(0,0,0,.15) !important; opacity: 0 !important;
+  pointer-events: none !important; transform: translateX(-6px) !important; transition: opacity .2s, transform .2s !important;
+}
+.wa-widget:hover .wa-tooltip { opacity: 1 !important; transform: translateX(0) !important; }
+@keyframes waIn { from { opacity: 0; transform: scale(.4) translateY(20px); } to { opacity: 1; transform: scale(1) translateY(0); } }
+@keyframes waRing { 0% { transform: scale(1); opacity: .8; } 70%, 100% { transform: scale(1.5); opacity: 0; } }
+@media (max-width: 900px) {
+  .wa-widget { right: 24px !important; }
+}
+@media (max-width: 768px) {
+  #site-footer { padding: 24px 18px 16px !important; border-radius: 16px 16px 0 0 !important; }
+  .footer-top { flex-direction: column !important; align-items: center !important; gap: 12px !important; }
+  .footer-nav { justify-content: center !important; }
+  .footer-social { justify-content: center !important; }
+  .footer-middle { grid-template-columns: 1fr !important; gap: 12px !important; text-align: center !important; }
+  .footer-col { align-items: center !important; }
+  .footer-bottom { flex-direction: column !important; text-align: center !important; gap: 6px !important; }
+}
+@media (max-width: 480px) {
+  #site-footer { padding: 18px 12px 14px !important; border-radius: 12px 12px 0 0 !important; }
+  .footer-nav a { font-size: 0.85rem !important; padding: 2px 4px !important; }
+  .social-icons a { width: 32px !important; height: 32px !important; font-size: 0.82rem !important; }
+  .footer-col p { font-size: 0.85rem !important; }
+ .wa-widget { bottom: 24px !important; right: 14px; }
+  .wa-fab { width: 46px !important; height: 46px !important; font-size: 1.5rem !important; }
+}
+
+</style>
+  <style>
+    *, *::before, *::after { box-sizing: border-box }
+    html { scroll-behavior: smooth }
+    body {
+      overflow-x: hidden; margin: 0; padding: 0;
+      min-height: 100vh; display: flex; flex-direction: column;
+      background: #1C1C1C;
+      color: #F0EBE0;
+      font-family: serif;
+    }
+    main { flex: 1 }
+    img, video { max-width: 100%; height: auto }
+    header, .site-header, #site-header {
+      max-height: none !important;
+      overflow: visible !important;
+    }
+    header img { max-height: 48px !important; width: auto !important }
+    @media (max-width: 768px) { header, .site-header { max-height: 60px !important } }
+    .lang-np { display: none }
+    .lang-en { display: inline }
+    div.lang-en, p.lang-en, section.lang-en,
+    h1.lang-en, h2.lang-en, h3.lang-en, h4.lang-en { display: block }
+    div.lang-np, p.lang-np, section.lang-np,
+    h1.lang-np, h2.lang-np, h3.lang-np, h4.lang-np { display: none }
+  </style>
+  <style id="about-guaranteed">
+  .about-page { background: var(--bg) !important; color: var(--text) !important; overflow-x: hidden }
+  .about-hero {
+    background: var(--primary) !important;
+    color: var(--primary-on) !important;
+    padding: 5rem 2rem 4rem !important;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    box-sizing: border-box;
+  }
+  .about-hero h1 {
+    font-family: var(--font-heading);
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-weight: 700;
+    margin: 0 0 1rem;
+  }
+  .about-hero p {
+    font-size: clamp(1rem, 2vw, 1.2rem);
+    opacity: 0.85;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  .story-section { padding: 4rem 2rem !important; box-sizing: border-box; }
+  .story-layout { display: flex !important; gap: 3rem; align-items: center; max-width: 1280px; margin: 0 auto; }
+  .story-image { flex: 1; border-radius: 12px; overflow: hidden; }
+  .story-image img { width: 100% !important; height: auto !important; display: block; }
+  .story-content { flex: 1; }
+  .split-wrapper {
+    display: flex !important;
+    align-items: flex-start;
+    width: 100%;
+    max-width: 1280px;
+    margin: 0 auto;
+    gap: 2rem;
+    padding: 0 2rem;
+    box-sizing: border-box;
+  }
+  .split-main { flex: 0 0 60% !important; min-width: 0; }
+  .split-sidebar {
+    flex: 0 0 40% !important;
+    min-width: 0;
+    position: sticky;
+    top: 2rem;
+    align-self: flex-start;
+    max-height: none !important;
+    overflow: visible !important;
+    overflow-y: visible !important;
+  }
+  .news-sidebar { max-height: none !important; overflow: visible !important; }
+  ul.news-feed-list:not([data-filled]) { display: none !important; }
+  a.news-sidebar-more:empty { display: none !important; }
+  nav[class*="mobile"], nav[class*="bottom"], nav[class*="tab-bar"],
+  div[class*="mobile-nav"], div[class*="bottom-nav"], div[class*="mobile-bar"],
+  div[class*="tab-bar"], div[class*="bottom-bar"],
+  div[id*="mobile-nav"], div[id*="bottom-nav"] {
+    display: none !important;
+  }
+  .about-cta,
+  .cta-section { background: var(--accent) !important; color: var(--accent-on) !important; padding: 4rem 2rem; text-align: center; box-sizing: border-box; }
+  .cta-section__inner { max-width: 700px; margin: 0 auto; text-align: center; }
+  .fade-in { opacity: 0; transform: translateY(28px); transition: opacity .55s ease, transform .55s ease }
+  .fade-in.visible { opacity: 1; transform: translateY(0) }
+  .lang-np { display: none }
+  .lang-en { display: inline }
+  @media (max-width: 768px) {
+    .split-wrapper { flex-direction: column !important; padding: 0 1rem; }
+    .split-main,
+    .split-sidebar { flex: 1 1 100% !important; width: 100% !important; }
+    .split-sidebar { position: static !important; max-height: none !important; overflow: visible !important; }
+    .story-layout { flex-direction: column !important; }
+    .about-hero { padding: 3rem 1.25rem 2.5rem !important; }
+    .story-section { padding: 2rem 1rem !important; }
+    .news-sidebar { border-left: none !important; border-top: 2px solid var(--border); margin-top: 1rem; }
+  }
+  @media (max-width: 480px) {
+    .about-hero, .cta-section { padding: 2rem 1rem !important; }
+  }
+
+  /* ── Push main/footer clear of the fixed sidebar (same fix as contact page) ── */
+  body > main.about-page-main,
+  body > footer#site-footer {
+    margin-left: var(--bt-sidebar-w, 264px) !important;
+    margin-right: 0 !important;
+    width: auto !important;
+    transition: margin-left .25s ease !important;
+    box-sizing: border-box !important;
+  }
+  body.bt-sidebar-collapsed > main.about-page-main,
+  body.bt-sidebar-collapsed > footer#site-footer {
+    margin-left: var(--bt-sidebar-w-collapsed, 76px) !important;
+  }
+  @media (max-width: 900px) {
+    body > main.about-page-main,
+    body > footer#site-footer {
+      margin-left: 0 !important;
+      margin-right: 0 !important;
+    }
+  }
+</style>
+</head>
+<body>
+  <header id="bt-header">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+
+  <button class="bt-sidebar-toggle-mobile" id="bt-sidebar-toggle-mobile" aria-label="Toggle sidebar">
+    <i class="fa-solid fa-bars"></i>
+  </button>
+
+  <div class="bt-sidebar-overlay" id="bt-sidebar-overlay"></div>
+
+  <aside class="bt-sidebar" id="bt-sidebar">
+    <div class="bt-sidebar-header">
+      <a href="../index.html" class="bt-logo-link" aria-label="Butwal TV Home">
+        <img src="../images/logo.png" alt="Butwal TV" class="bt-logo" id="bt-logo" onerror="this.style.display='none'">
+        <span class="bt-logo-text-wrap">
+          <span class="bt-logo-text">Butwal TV</span>
+          <span class="bt-logo-sub">ONLINE TV</span>
+        </span>
+      </a>
+      <button type="button" class="bt-lang-toggle" id="bt-lang-toggle" aria-label="भाषा बदल्नुहोस्">EN</button>
+    </div>
+
+    <nav class="bt-sidebar-nav" aria-label="Primary navigation">
+      <ul class="bt-nav-list" id="bt-nav-list">
+        <li class="bt-nav-item active">
+          <a href="../index.html">
+            <span class="bt-nav-icon"><i class="fa-solid fa-house"></i></span>
+            <span class="bt-nav-label"><span class="lang-np">गृहपृष्ठ</span><span class="lang-en">Home</span></span>
+          </a>
+        </li>
+        <li class="bt-nav-item">
+          <a href="../category/news.html">
+            <span class="bt-nav-icon"><i class="fa-regular fa-newspaper"></i></span>
+            <span class="bt-nav-label"><span class="lang-np">समाचार</span><span class="lang-en">News</span></span>
+          </a>
+        </li>
+        <li class="bt-nav-item">
+          <a href="../category/politics.html">
+            <span class="bt-nav-icon"><i class="fa-solid fa-landmark"></i></span>
+            <span class="bt-nav-label"><span class="lang-np">राजनीति</span><span class="lang-en">Politics</span></span>
+          </a>
+        </li>
+        <li class="bt-nav-item">
+          <a href="../category/business.html">
+            <span class="bt-nav-icon"><i class="fa-solid fa-chart-line"></i></span>
+            <span class="bt-nav-label"><span class="lang-np">अर्थ वाणिज्य</span><span class="lang-en">Business</span></span>
+          </a>
+        </li>
+        <li class="bt-nav-item">
+          <a href="../category/butwal-today-news.html">
+            <span class="bt-nav-icon"><i class="fa-solid fa-tower-broadcast"></i></span>
+            <span class="bt-nav-label"><span class="lang-np">बुटवल टुडे समाचार</span><span class="lang-en">Butwal Today News</span></span>
+          </a>
+        </li>
+        <li class="bt-nav-item">
+          <a href="../category/newspaper.html">
+            <span class="bt-nav-icon"><i class="fa-regular fa-file-lines"></i></span>
+            <span class="bt-nav-label"><span class="lang-np">पत्रपत्रिका</span><span class="lang-en">Newspaper</span></span>
+          </a>
+        </li>
+        <li class="bt-nav-item">
+          <a href="../category/highlights.html">
+            <span class="bt-nav-icon"><i class="fa-regular fa-star"></i></span>
+            <span class="bt-nav-label"><span class="lang-np">हाइलाइट्स</span><span class="lang-en">Highlights</span></span>
+          </a>
+        </li>
+        <li class="bt-nav-item">
+          <a href="../category/horoscope.html">
+            <span class="bt-nav-icon"><i class="fa-solid fa-wand-magic-sparkles"></i></span>
+            <span class="bt-nav-label"><span class="lang-np">राशीफल</span><span class="lang-en">Horoscope</span></span>
+          </a>
+        </li>
+        <li class="bt-nav-item">
+          <a href="../category/butwal-khabar.html">
+            <span class="bt-nav-icon"><i class="fa-solid fa-bullhorn"></i></span>
+            <span class="bt-nav-label"><span class="lang-np">बुटवल खबर</span><span class="lang-en">Butwal Khabar</span></span>
+          </a>
+        </li>
+        <li class="bt-nav-item">
+          <a href="../category/weekly-programs.html">
+            <span class="bt-nav-icon"><i class="fa-regular fa-calendar-days"></i></span>
+            <span class="bt-nav-label"><span class="lang-np">साप्ताहिक कार्यक्रम</span><span class="lang-en">Weekly Programs</span></span>
+          </a>
+        </li>
+        <li class="bt-nav-item">
+          <a href="../category/nepal-update.html">
+            <span class="bt-nav-icon"><i class="fa-solid fa-arrows-rotate"></i></span>
+            <span class="bt-nav-label"><span class="lang-np">नेपाल अपडेट</span><span class="lang-en">Nepal Update</span></span>
+          </a>
+        </li>
+        <li class="bt-nav-item">
+          <a href="../category/health-tip.html">
+            <span class="bt-nav-icon"><i class="fa-solid fa-briefcase-medical"></i></span>
+            <span class="bt-nav-label"><span class="lang-np">स्वास्थ्य टिप्स</span><span class="lang-en">Health Tips</span></span>
+          </a>
+        </li>
+        <li class="bt-nav-item">
+          <a href="../category/others.html">
+            <span class="bt-nav-icon"><i class="fa-solid fa-grip"></i></span>
+            <span class="bt-nav-label"><span class="lang-np">अन्य</span><span class="lang-en">Others</span></span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+
+    <div class="bt-sidebar-footer">
+      <span>© <span id="bt-copyright-year"></span> Butwal TV</span>
+    </div>
+  </aside>
+
+  <button class="bt-collapse-btn" id="bt-collapse-btn" aria-label="Collapse sidebar">
+    <i class="fa-solid fa-chevron-left"></i>
+  </button>
+
+  <div class="bt-main">
+    <section class="bt-hero" id="bt-hero">
+      <div class="bt-hero-bg" id="bt-hero-bg" style="background-image:url('../images/hero-bg.jpg');"></div>
+      <div class="bt-hero-overlay"></div>
+
+     
+
+      <div class="bt-hero-content">
+        <h1 class="bt-hero-title" id="bt-hero-title">Butwal TV</h1>
+      </div>
+
+      <button class="bt-hero-watch-btn" id="bt-hero-watch-btn">
+        <span class="bt-watch-play"><i class="fa-solid fa-play"></i></span>
+        <span class="bt-watch-text">
+          <span class="bt-watch-line1">
+  <span class="lang-np">अहिले हेर्नुहोस्</span><span class="lang-en" style="display:none">Watch Now</span>
+</span>
+<span class="bt-watch-line2">
+  <span class="lang-np">भिडियो प्ले गर्नुहोस्</span><span class="lang-en" style="display:none">Play Video</span>
+</span>
+        </span>
+      </button>
+    </section>
+
+   <nav class="bt-category-bar" id="bt-category-bar" aria-label="Category filter">
+      <button type="button" class="bt-cat-pill active" data-cat="all"><span class="lang-np">सबै</span><span class="lang-en">All</span></button>
+      <button type="button" class="bt-cat-pill" data-cat="international"><span class="lang-np">अन्तर्राष्ट्रिय</span><span class="lang-en">International</span></button>
+      <button type="button" class="bt-cat-pill" data-cat="sports"><span class="lang-np">खेलकुद</span><span class="lang-en">Sports</span></button>
+      <button type="button" class="bt-cat-pill" data-cat="tourism"><span class="lang-np">पर्यटन</span><span class="lang-en">Tourism</span></button>
+      <button type="button" class="bt-cat-pill" data-cat="entertainment"><span class="lang-np">मनोरन्जन</span><span class="lang-en">Entertainment</span></button>
+      <button type="button" class="bt-cat-pill" data-cat="education"><span class="lang-np">शिक्षा</span><span class="lang-en">Education</span></button>
+      <button type="button" class="bt-cat-pill" data-cat="culture"><span class="lang-np">सस्कृत</span><span class="lang-en">Culture</span></button>
+      <button type="button" class="bt-cat-pill" data-cat="health"><span class="lang-np">स्वास्थ्य</span><span class="lang-en">Health</span></button>
+    </nav>
+  </div>
+
+
+</header>
+  <main class="about-page-main">
+    <div  class="about-page">
+  <style>
+    
+  </style>
+  <section class="about-hero">
+    <div class="about-hero__inner" data-slot="hero">
+<div class="fade-in">
+  <h1 style="font-family:var(--font-heading);font-size:clamp(2rem,5vw,3.5rem);
+      font-weight:700;margin:0 0 1rem;">
+    <span class="lang-en">Butwal TV</span>
+    <span class="lang-np">Butwal TV</span>
+  </h1>
+  <p style="font-size:clamp(1rem,2vw,1.2rem);opacity:.85;max-width:600px;margin:0 auto;">
+    <span class="lang-en">Reliable News. Regional Roots. National Perspective.</span>
+    <span class="lang-np">विश्वसनीय समाचार। क्षेत्रीय जरा। राष्ट्रिय परिप्रेक्ष्य।</span>
+  </p>
+</div></div>
+  </section>
+  <section class="story-section">
+    <div class="story-layout">
+      <div class="story-image" data-slot="story-image">
+        <img src="../images/about.jpg" alt="" id="aboutStoryImage">
+      </div>
+      <div class="story-content" data-slot="story-content">
+<div class="fade-in">
+  <h2 style="font-family:var(--font-heading);font-size:clamp(1.5rem,3vw,2.2rem);
+      font-weight:700;color:var(--primary);margin:0 0 1.5rem;">
+    <span class="lang-en">About Us</span>
+    <span class="lang-np">हाम्रो बारेमा</span>
+  </h2>
+  <div class="lang-en">
+    <p style="line-height:1.75;margin-bottom:1rem;">Butwal Today Online TV is the official digital video and online television platform operated by Butwal Publication Pvt. Ltd., based in Butwal-6, Rupandehi, Nepal. It delivers news bulletins, interviews, reports, highlights, and feature stories focusing on Lumbini Province while also covering national and international affairs. The organization also operates the Butwal Today National Daily newspaper and its digital news portal.</p>
+    <p style="margin-bottom:.6rem;">
+      <strong>📅 Established:</strong>
+      <span class="date-display" data-date-ad="2017-12-10" data-mode="en">2017-12-10</span>
+    </p>
+    <p style="margin-bottom:.6rem;">
+      <strong>📍 Address:</strong> Butwal-6, Tilottam Path, Rupandehi
+    </p>
+    <p style="margin-bottom:.6rem;">
+      <strong>📞 Phone:</strong> 071-554640
+    </p>
+    <p style="margin-bottom:.6rem;">
+      <strong>✉️ Email:</strong> butwaltodaytv@gmail.com
+    </p>
+  </div>
+  <div class="lang-np">
+    <p style="line-height:1.75;margin-bottom:1rem;">बुटवल टुडे अनलाइन टिभी बुटवल पब्लिकेशन प्रा. लि. द्वारा सञ्चालित आधिकारिक डिजिटल भिडियो तथा अनलाइन टेलिभिजन प्लेटफर्म हो, जुन बुटवल-६, रुपन्देही, नेपालमा आधारित छ। यसले लुम्बिनी प्रदेशमा केन्द्रित रही राष्ट्रिय तथा अन्तर्राष्ट्रिय विषयहरूका साथै समाचार बुलेटिन, अन्तर्वार्ता, प्रतिवेदन, मुख्य समाचार तथा विशेष कथाहरू प्रदान गर्दछ। यस संस्थाले बुटवल टुडे राष्ट्रिय दैनिक पत्रिका तथा यसको डिजिटल समाचार पोर्टल पनि सञ्चालन गर्दछ।</p>
+    <p style="margin-bottom:.6rem;">
+      <strong>📅 स्थापना:</strong>
+      <span class="date-display" data-date-ad="2017-12-10" data-mode="np">2017-12-10</span>
+    </p>
+    <p style="margin-bottom:.6rem;">
+      <strong>📍 ठेगाना:</strong> बुटवल–६, तिलोत्तमपथ, रुपन्देही
+    </p>
+    <p style="margin-bottom:.6rem;">
+      <strong>📞 फोन:</strong> ०७१-५५४६४०
+    </p>
+    <p style="margin-bottom:.6rem;">
+      <strong>✉️ इमेल:</strong> butwaltodaytv@gmail.com
+    </p>
+  </div>
+</div></div>
+    </div>
+  </section>
+  <div class="split-wrapper">
+    <div class="split-main">
+      <section class="stats-section about-section" data-slot="stats">
+<div style="display:flex;flex-direction:column;gap:0;">
+  
+<div style="margin-bottom:2rem;padding:1.5rem;background:var(--bg);
+    border-radius:12px;border:1px solid var(--border);">
+  <h3 style="font-family:var(--font-heading);font-size:1.3rem;font-weight:700;
+      color:var(--primary);margin:0 0 1.5rem;text-align:center;">
+    <span class="lang-en">Quick Stats</span>
+    <span class="lang-np">तथ्यांक</span>
+  </h3>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:1rem;">
+    <div style="text-align:center;padding:1rem;background:var(--surface);border-radius:8px;">
+      <div style="font-size:1.8rem;">📅</div>
+      <div style="font-size:1.1rem;font-weight:700;color:var(--primary);margin:.4rem 0;">
+        <span class="lang-en">
+          <span class="date-display" data-date-ad="2017-12-10" data-mode="en">2017-12-10</span>
+        </span>
+        <span class="lang-np">
+          <span class="date-display" data-date-ad="2017-12-10" data-mode="np">2017-12-10</span>
+        </span>
+      </div>
+      <div class="lang-en" style="font-size:.75rem;color:var(--muted);">Established</div>
+      <div class="lang-np" style="font-size:.75rem;color:var(--muted);">स्थापना</div>
+    </div>
+    <div style="text-align:center;padding:1rem;background:var(--surface);border-radius:8px;">
+      <div style="font-size:1.8rem;">📻</div>
+      <div style="font-size:1.2rem;font-weight:700;color:var(--primary);margin:.4rem 0;">24/7</div>
+      <div class="lang-en" style="font-size:.75rem;color:var(--muted);">Live Broadcast</div>
+      <div class="lang-np" style="font-size:.75rem;color:var(--muted);">प्रत्यक्ष प्रसारण</div>
+    </div>
+  </div>
+</div>
+  
+<div style="margin-bottom:2rem;padding:1.5rem;background:var(--bg);
+    border-radius:12px;border:1px solid var(--border);">
+  <h3 style="font-family:var(--font-heading);font-size:1.3rem;font-weight:700;
+      color:var(--primary);margin:0 0 1rem;text-align:center;">
+    <span class="lang-en">Our Mission</span>
+    <span class="lang-np">हाम्रो मिसन</span>
+  </h3>
+  <p style="line-height:1.7;font-size:.95rem;margin:0;" class="lang-en">
+    To deliver accurate, timely, and impartial news and information, educate and inform the public, promote social awareness, and connect communities through responsible journalism and digital media.
+  </p>
+  <p style="line-height:1.7;font-size:.95rem;margin:0;" class="lang-np">
+    टु डेलिभर एक्युरेट, टाइम्ली, एन्ड इम्पार्सियल न्युज एन्ड इन्फर्मेसन, एजुकेट एन्ड इन्फर्म द पब्लिक, प्रमोट सोसल अवेयरनेस, एन्ड कनेक्ट कम्युनिटिज थ्रु रेस्पोन्सिबल जर्नालिज्म एन्ड डिजिटल मिडिया।
+  </p>
+</div>
+  
+<div style="margin-bottom:2rem;padding:1.5rem;background:var(--bg);
+    border-radius:12px;border:1px solid var(--border);">
+  <h3 style="font-family:var(--font-heading);font-size:1.3rem;font-weight:700;
+      color:var(--primary);margin:0 0 1rem;text-align:center;">
+    <span class="lang-en">Our Vision</span>
+    <span class="lang-np">हाम्रो दृष्टिकोण</span>
+  </h3>
+  <p style="line-height:1.7;font-size:.95rem;margin:0;" class="lang-en">
+    To become a trusted and influential digital news platform that empowers citizens with reliable information while contributing to Nepal&#39;s social development, unity, and democratic values through quality journalism.
+  </p>
+  <p style="line-height:1.7;font-size:.95rem;margin:0;" class="lang-np">
+    टु बन्न एउटा भरपर्दो र प्रभावशाली डिजिटल न्युज प्लेटफर्म जसले नागरिकहरूलाई विश्वसनीय सूचनाको साथ सशक्त बनाउँदै नेपालको सामाजिक विकास, एकता र लोकतान्त्रिक मूल्यहरूमा गुणस्तरीय पत्रकारितामार्फत योगदान पुर्‍याउन।
+  </p>
+</div>
+  
+<div style="margin-bottom:3rem;padding:1.5rem;background:var(--bg);
+    border-radius:12px;border:1px solid var(--border);">
+  <h3 style="font-family:var(--font-heading);font-size:1.3rem;font-weight:700;
+      color:var(--primary);margin:0 0 1rem;text-align:center;">
+    <span class="lang-en">Connect With Us</span>
+    <span class="lang-np">हामीसँग जोडिनुहोस्</span>
+  </h3>
+  <div style="display:flex;flex-wrap:wrap;gap:.75rem;
+      align-items:center;justify-content:center;">
+    
+  </div>
+</div>
+</div></section>
+    </div>
+    
+          
+          
+        </aside>
+      </template>
+    </div>
+  </div>
+  <section class="cta-section">
+    <div class="cta-section__inner" data-slot="cta">
+<div class="fade-in">
+  <h2 style="font-family:var(--font-heading);font-size:clamp(1.5rem,3vw,2.2rem);
+      font-weight:700;margin:0 0 1rem;">
+    <span class="lang-en">Stay Updated</span>
+    <span class="lang-np">सूचित रहनुहोस्</span>
+  </h2>
+  <p class="lang-en" style="opacity:.85;margin-bottom:1.5rem;">
+    Subscribe to our newsletter for the latest updates and programs.
+  </p>
+  <p class="lang-np" style="opacity:.85;margin-bottom:1.5rem;">
+    नवीनतम अपडेट र कार्यक्रमहरूको लागि हाम्रो न्यूजलेटरमा सदस्यता लिनुहोस्।
+  </p>
+  <form id="newsletterForm">
+    <input type="email" name="email" class="newsletter-input"
+      placeholder="your@email.com">
+    <button type="submit" class="newsletter-btn">
+      <span class="lang-en">Subscribe</span>
+      <span class="lang-np">सदस्यता लिनुहोस्</span>
+    </button>
+  </form>
+</div></button>
+      </form>
+    </div>
+  </section>
+  
+</div>
+  </main>
+  <footer id="site-footer">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+
+
+  <div class="footer-top">
+    <nav class="footer-nav">
+      <a href="../category/news.html"><span class="lang-en-inline">News</span><span class="lang-np-inline">समाचार</span></a>
+      <span class="sep">|</span>
+      <a href="../category/politics.html"><span class="lang-en-inline">Politics</span><span class="lang-np-inline">राजनीति</span></a>
+      <span class="sep">|</span>
+      <a href="../category/others.html"><span class="lang-en-inline">Others</span><span class="lang-np-inline">अन्य</span></a>
+      <span class="sep">|</span>
+      <a href="about.html"><span class="lang-en-inline">Our Team</span><span class="lang-np-inline">हाम्रो टिम</span></a>
+       <span class="sep">|</span>
+      <a href="contact.html"><span class="lang-en-inline">Contact Us</span><span class="lang-np-inline">हाम्रो टिम</span></a>
+    </nav>
+    <div class="footer-social">
+      <span class="social-label"><span class="lang-en-inline">Follow on</span><span class="lang-np-inline">पछ्याउनुहोस्</span></span>
+      <div class="social-icons">
+          <a href="https://www.youtube.com/@butwaltodayTV" target="_blank" rel="noopener" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+          <a href="https://www.facebook.com/butwaltodaydaily" target="_blank" rel="noopener" aria-label="Facebook"><i class="fa-brands fa-facebook"></i></a>
+          <a href="https://www.instagram.com/dailybutwaltoday/" target="_blank" rel="noopener" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+          <a href="https://x.com/NewsButwalToday" target="_blank" rel="noopener" aria-label="Twitter/X"><i class="fa-brands fa-x-twitter"></i></a>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-divider"></div>
+
+  <div class="footer-middle">
+    <div class="footer-col">
+      
+      <p><span class="lang-en-inline">Address - <strong>Butwal-6, Tilottam Path, Rupandehi</strong></span><span class="lang-np-inline">ठेगाना - <strong>बुटवल–६, तिलोत्तमपथ, रुपन्देही</strong></span></p>
+    </div>
+    <div class="footer-col">
+      <p><span class="lang-en-inline">Phone - <strong>071-554640</strong></span><span class="lang-np-inline">फोन - <strong>०७१-५५४६४०</strong></span></p>
+      <p>Email - <a href="mailto:butwaltodaytv@gmail.com">butwaltodaytv@gmail.com</a></p>
+    </div>
+    <div class="footer-col">
+      
+    </div>
+  </div>
+
+  <div class="footer-divider"></div>
+
+  <div class="footer-bottom">
+    <span class="copyright">
+      <span class="lang-en-inline">© 2026 Butwal TV — All rights reserved.</span>
+      <span class="lang-np-inline">© २०२६ Butwal TV — सबै अधिकार सुरक्षित</span>
+    </span>
+    <span class="developer"></span>
+  </div>
+</footer>
+<div class="wa-widget">
+  <div class="wa-tooltip"><span class="lang-en-inline">Chat on WhatsApp</span><span class="lang-np-inline">WhatsApp मा सम्पर्क</span></div>
+  <a href="https://wa.me/9779749844080?text=Hello!%20I%20have%20a%20query%20about%20Butwal%20TV" target="_blank" rel="noopener noreferrer" class="wa-fab" aria-label="Chat on WhatsApp"><i class="fab fa-whatsapp"></i></a>
+</div>
+  <script>
+(function () {
+  function initOffset() {
+    var sidebar = document.getElementById('bt-sidebar');
+    if (!sidebar) return;
+    function sync() {
+      document.body.classList.toggle('bt-sidebar-collapsed', sidebar.classList.contains('collapsed'));
+    }
+    sync();
+    new MutationObserver(sync).observe(sidebar, { attributes: true, attributeFilter: ['class'] });
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initOffset);
+  } else {
+    initOffset();
+  }
+})();
+</script>
+  <script>
+
+(function () {
+  function _init() {
+    var sidebar   = document.getElementById('bt-sidebar');
+    var collapse  = document.getElementById('bt-collapse-btn');
+    var mobileTog = document.getElementById('bt-sidebar-toggle-mobile');
+    var overlay   = document.getElementById('bt-sidebar-overlay');
+    var watchBtn  = document.getElementById('bt-hero-watch-btn');
+    var pills     = document.querySelectorAll('#bt-category-bar .bt-cat-pill');
+    var yearEl    = document.getElementById('bt-copyright-year');
+    var langBtn   = document.getElementById('bt-lang-toggle');
+    var mediaUrl  = '';
+
+    if (sidebar && sidebar.classList.contains('collapsed')) {
+      document.body.classList.add('sidebar-collapsed');
+    }
+    if (yearEl) yearEl.textContent = new Date().getFullYear();
+
+    function isMobile() { return window.innerWidth <= 900; }
+
+    // ── Desktop collapse toggle ──
+    if (collapse && sidebar) {
+      collapse.addEventListener('click', function () {
+        if (isMobile()) {
+          sidebar.classList.toggle('mobile-open');
+          if (overlay) overlay.classList.toggle('active', sidebar.classList.contains('mobile-open'));
+        } else {
+          sidebar.classList.toggle('collapsed');
+          collapse.classList.toggle('rotated', sidebar.classList.contains('collapsed'));
+          document.body.classList.toggle('sidebar-collapsed', sidebar.classList.contains('collapsed'));
+        }
+      });
+    }
+
+    // ── Mobile hamburger ──
+    if (mobileTog && sidebar) {
+      mobileTog.addEventListener('click', function () {
+        sidebar.classList.toggle('mobile-open');
+        if (overlay) overlay.classList.toggle('active', sidebar.classList.contains('mobile-open'));
+      });
+    }
+    if (overlay && sidebar) {
+      overlay.addEventListener('click', function () {
+        sidebar.classList.remove('mobile-open');
+        overlay.classList.remove('active');
+      });
+    }
+
+    window.addEventListener('resize', function () {
+      if (!isMobile()) {
+        sidebar.classList.remove('mobile-open');
+        if (overlay) overlay.classList.remove('active');
+      }
+    });
+
+    if (watchBtn) watchBtn.addEventListener('click', function () { window.dispatchEvent(new CustomEvent('btHeroWatchNow', { detail: { mediaUrl: mediaUrl } })); });
+
+    pills.forEach(function (p) {
+      p.addEventListener('click', function () {
+        pills.forEach(function (o) { o.classList.remove('active'); });
+        p.classList.add('active');
+        window.dispatchEvent(new CustomEvent('btCategoryChange', { detail: { category: p.getAttribute('data-cat') } }));
+      });
+    });
+
+    // ── Language toggle — controls the ENTIRE page ──────────────────────
+    var LANG_KEY = 'fm_lang';
+
+    function getCurrentLang() {
+      try { return localStorage.getItem(LANG_KEY) || 'np'; } catch (e) { return 'np'; }
+    }
+
+    function setLangBtnLabel(lang) {
+      if (langBtn) langBtn.textContent = (lang === 'np') ? 'EN' : 'NP';
+    }
+
+    function applyLangGlobal(lang) {
+      var isNp = (lang === 'np');
+      document.body.classList.toggle('lang-active', isNp);
+      setLangBtnLabel(lang);
+      try {
+        localStorage.setItem('fm_lang', lang);
+        localStorage.setItem('language', lang);
+        localStorage.setItem('siteLang', lang);
+      } catch (e) {}
+      window.dispatchEvent(new CustomEvent('langChange', { detail: { lang: lang } }));
+    }
+
+    if (langBtn) {
+      langBtn.addEventListener('click', function () {
+        applyLangGlobal(getCurrentLang() === 'np' ? 'en' : 'np');
+      });
+    }
+
+    // Sync label + body state on load
+    applyLangGlobal(getCurrentLang());
+  }
+
+  setTimeout(_init, 0);
+})();
+
+</script>
+  <script>
+(function () {
+  'use strict';
+  var STORAGE_KEY = 'fm_lang';
+  var INLINE_TAGS = new Set(['SPAN','A','I','B','STRONG','SMALL','EM','BUTTON','LABEL','TIME']);
+
+  function getCurrentLang() {
+    try { return localStorage.getItem(STORAGE_KEY) || 'en'; } catch(e) { return 'en'; }
+  }
+
+  function applyLang(lang) {
+    lang = (lang === 'np') ? 'np' : 'en';
+    var isNp = lang === 'np';
+    document.querySelectorAll('.lang-en').forEach(function(el) {
+      el.style.display = isNp ? 'none' : (INLINE_TAGS.has(el.tagName) ? 'inline' : 'block');
+    });
+    document.querySelectorAll('.lang-np').forEach(function(el) {
+      el.style.display = isNp ? (INLINE_TAGS.has(el.tagName) ? 'inline' : 'block') : 'none';
+    });
+    var btn = document.querySelector('.lang-toggle');
+    if (btn) btn.textContent = isNp ? 'EN' : 'NP';
+  }
+
+  function broadcast(lang) {
+    try { localStorage.setItem(STORAGE_KEY, lang); } catch(e) {}
+    applyLang(lang);
+    window.dispatchEvent(new CustomEvent('langChange', { detail: { lang: lang } }));
+  }
+
+  function attachToggle() {
+    var btn = document.querySelector('.lang-toggle');
+    if (!btn || btn._langBound) return;
+    btn._langBound = true;
+    btn.addEventListener('click', function() {
+      broadcast(getCurrentLang() === 'en' ? 'np' : 'en');
+    });
+  }
+
+  function initFadeIn() {
+    var els = document.querySelectorAll('.about-page .fade-in, .about-page-main .fade-in');
+    if (!els.length) return;
+    if ('IntersectionObserver' in window) {
+      var io = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            io.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.08, rootMargin: '0px 0px -20px 0px' });
+      els.forEach(function(el) { io.observe(el); });
+    } else {
+      els.forEach(function(el) { el.classList.add('visible'); });
+    }
+  }
+
+  function initWaTooltip() {
+    var tip = document.getElementById('waTooltip');
+    if (!tip || sessionStorage.getItem('waTip')) return;
+    setTimeout(function() {
+      tip.style.opacity = '1';
+      tip.style.transform = 'translateX(0)';
+      setTimeout(function() {
+        tip.style.opacity = '';
+        tip.style.transform = '';
+        sessionStorage.setItem('waTip', '1');
+      }, 3000);
+    }, 2500);
+  }
+
+  window.addEventListener('langChange', function(e) {
+    if (e && e.detail && e.detail.lang) applyLang(e.detail.lang);
+  });
+
+  function init() {
+    attachToggle();
+    initFadeIn();
+    initWaTooltip();
+    applyLang(getCurrentLang());
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    setTimeout(init, 0);
+  }
+})();
+</script>
+  <script>
+(function(){
+'use strict';
+
+var BS_MONTHS = ['बैशाख','जेठ','असार','साउन','भदौ','असोज','कार्तिक','मंसिर','पुष','माघ','फागुन','चैत'];
+var NP_NUMS   = ['०','१','२','३','४','५','६','७','८','९'];
+var EN_MONTHS = ['January','February','March','April','May','June',
+                 'July','August','September','October','November','December'];
+
+var BS = {
+  2000:[365,30,32,31,32,31,30,30,30,29,30,29,31],
+  2001:[365,31,31,32,31,31,31,30,29,30,29,30,30],
+  2002:[365,31,31,32,32,31,30,30,29,30,29,30,30],
+  2003:[366,31,32,31,32,31,30,30,30,29,29,30,31],
+  2004:[366,30,32,31,32,31,30,30,30,29,30,29,31],
+  2005:[365,31,31,32,31,31,31,30,29,30,29,30,30],
+  2006:[365,31,31,32,32,31,30,30,29,30,29,30,30],
+  2007:[366,31,32,31,32,31,30,30,30,29,29,30,31],
+  2008:[365,31,31,32,31,31,31,30,29,30,29,30,30],
+  2009:[365,31,31,32,31,31,31,30,29,30,29,30,30],
+  2010:[365,31,31,32,32,31,30,30,29,30,29,30,30],
+  2011:[366,31,32,31,32,31,30,30,30,29,29,30,31],
+  2012:[365,31,31,32,31,31,31,30,29,30,29,30,30],
+  2013:[365,31,31,32,31,31,31,30,29,30,29,30,30],
+  2014:[365,31,31,32,32,31,30,30,29,30,29,30,30],
+  2015:[366,31,32,31,32,31,30,30,30,29,29,30,31],
+  2016:[366,31,31,32,31,31,31,30,29,30,29,30,31],
+  2017:[365,31,31,32,31,31,31,30,29,30,29,30,30],
+  2018:[365,31,31,32,32,31,30,30,29,30,29,30,30],
+  2019:[366,31,32,31,32,31,30,30,30,29,29,30,31],
+  2020:[366,31,31,32,31,31,30,30,29,30,29,30,31],
+  2021:[365,31,31,32,31,31,31,30,29,30,29,30,30],
+  2022:[365,31,31,32,32,31,30,30,29,30,29,30,30],
+  2023:[366,31,32,31,32,31,30,30,30,29,29,30,31],
+  2024:[366,31,31,32,31,31,30,30,29,30,29,30,31],
+  2025:[365,31,31,32,31,31,31,30,29,30,29,30,30],
+  2026:[365,31,31,32,32,31,30,30,29,30,29,30,30],
+  2027:[366,31,32,31,32,31,30,30,30,29,29,30,31],
+  2028:[366,31,32,31,32,31,30,30,30,29,30,29,31],
+  2029:[365,31,31,32,31,31,31,30,29,30,29,30,30],
+  2030:[365,31,31,32,31,31,31,30,29,30,29,30,30],
+  2031:[365,31,31,32,32,31,30,30,29,30,29,30,30],
+  2032:[366,31,32,31,32,31,30,30,30,29,29,30,31],
+  2033:[366,31,31,32,31,31,30,30,29,30,29,30,31],
+  2034:[365,31,31,32,31,31,31,30,29,30,29,30,30],
+  2035:[365,31,31,32,32,31,30,30,29,30,29,30,30],
+  2036:[366,31,32,31,32,31,30,30,30,29,29,30,31],
+  2037:[366,31,32,31,32,31,30,30,30,29,30,29,31],
+  2038:[365,31,31,32,31,31,31,30,29,30,29,30,30],
+  2039:[365,31,31,32,31,31,31,30,29,30,29,30,30],
+  2040:[365,31,31,32,32,31,30,30,29,30,29,30,30],
+  2041:[366,31,32,31,32,31,30,30,30,29,29,30,31],
+  2042:[366,31,31,32,31,31,30,30,29,30,29,30,31],
+  2043:[365,31,31,32,31,31,31,30,29,30,29,30,30],
+  2044:[365,31,31,32,31,31,31,30,29,30,29,30,30],
+  2045:[366,31,32,31,32,31,30,30,30,29,29,30,31],
+  2046:[366,31,32,31,32,31,30,30,30,29,30,29,31],
+  2047:[365,31,31,32,31,31,31,30,29,30,29,30,30],
+  2048:[365,31,31,32,32,31,30,30,29,30,29,30,30],
+  2049:[366,31,32,31,32,31,30,30,30,29,29,30,31],
+  2050:[366,31,32,31,32,31,30,30,30,29,30,29,31],
+  2051:[365,31,31,32,31,31,31,30,29,30,29,30,30],
+  2052:[365,31,31,32,32,31,30,30,29,30,29,30,30],
+  2053:[366,31,32,31,32,31,30,30,30,29,29,30,31],
+  2054:[366,31,32,31,32,31,30,30,30,29,30,29,31],
+  2055:[365,31,31,32,31,31,31,30,29,30,29,30,30],
+  2056:[366,31,31,32,31,31,31,30,29,30,29,30,31],
+  2057:[366,31,31,32,32,31,30,30,29,30,29,30,31],
+  2058:[365,30,32,31,32,31,30,30,30,29,29,30,30],
+  2059:[366,31,32,31,32,31,30,30,30,29,30,29,31],
+  2060:[365,31,31,32,31,31,31,30,29,30,29,30,30],
+  2061:[365,31,31,32,31,31,31,30,29,30,29,30,30],
+  2062:[365,31,31,32,32,31,30,30,29,30,29,30,30],
+  2063:[366,31,32,31,32,31,30,30,30,29,29,30,31],
+  2064:[366,31,31,32,31,31,30,30,29,30,29,30,31],
+  2065:[365,31,31,32,31,31,31,30,29,30,29,30,30],
+  2066:[365,31,31,32,31,31,31,30,29,30,29,30,30],
+  2067:[366,31,32,31,32,31,30,30,30,29,29,30,31],
+  2068:[366,31,32,31,32,31,30,30,30,29,30,29,31],
+  2069:[365,31,31,32,31,31,31,30,29,30,29,30,30],
+  2070:[365,31,31,32,32,31,30,30,29,30,29,30,30],
+  2071:[366,31,32,31,32,31,30,30,30,29,29,30,31],
+  2072:[366,31,32,31,32,31,30,30,30,29,30,29,31],
+  2073:[365,31,31,32,31,31,31,30,29,30,29,30,30],
+  2074:[365,31,31,32,32,31,30,30,29,30,29,30,30],
+  2075:[366,31,32,31,32,31,30,30,30,29,29,30,31],
+  2076:[365,31,32,31,32,31,30,30,30,29,30,29,31],
+  2077:[365,31,31,32,31,31,31,30,29,30,29,30,30],
+  2078:[365,31,31,32,31,31,31,30,29,30,29,30,30],
+  2079:[366,31,32,31,32,31,30,30,30,29,29,30,31],
+  2080:[365,31,32,31,32,31,30,30,30,29,30,29,31],
+  2081:[365,31,31,32,31,31,31,30,29,30,29,30,30],
+  2082:[365,31,31,32,32,31,30,30,29,30,29,30,30],
+  2083:[365,31,31,32,31,31,31,30,29,30,29,30,30],
+  2084:[366,31,32,31,32,31,30,30,30,29,30,29,31],
+  2085:[365,31,31,32,31,31,31,30,29,30,29,30,30],
+  2086:[365,31,31,32,32,31,30,30,29,30,29,30,30],
+  2087:[366,31,32,31,32,31,30,30,30,29,29,30,31],
+  2088:[366,31,32,31,32,31,30,30,30,29,30,29,31],
+  2089:[365,31,31,32,31,31,31,30,29,30,29,30,30],
+  2090:[365,31,31,32,32,31,30,30,29,30,29,30,30]
+};
+
+var EPOCH = Date.UTC(1943,2,31);
+
+function toNp(n) {
+  return String(n).split('').map(function(d) {
+    var i = parseInt(d, 10);
+    return isNaN(i) ? d : NP_NUMS[i];
+  }).join('');
+}
+
+// Handles both ISO "2026-06-16" and English "June 16, 2026"
+function parseDate(s) {
+  if (!s) return null;
+  var d = new Date(s);
+  if (!isNaN(d.getTime())) return d;
+  var m = s.match(/([A-Za-z]+)\s+(\d{1,2}),?\s+(\d{4})/);
+  if (m) return new Date(m[1] + ' ' + m[2] + ' ' + m[3]);
+  return null;
+}
+
+function adToBs(s) {
+  if (!s) return '';
+  var d = parseDate(s);
+  if (!d || isNaN(d.getTime())) return s;
+  var days = Math.floor(
+    (Date.UTC(d.getUTCFullYear(), d.getUTCMonth(), d.getUTCDate()) - EPOCH) / 86400000
+  );
+  if (days < 0) return s;
+  var y = 2000;
+  while (true) {
+    var yr = BS[y];
+    if (!yr || days < yr[0]) break;
+    days -= yr[0];
+    y++;
+  }
+  var yr2 = BS[y];
+  if (!yr2) return s;
+  var mo = 1, dy = 1;
+  for (var m2 = 1; m2 <= 12; m2++) {
+    if (days < yr2[m2]) { mo = m2; dy = days + 1; break; }
+    days -= yr2[m2];
+  }
+  return toNp(y) + ' ' + BS_MONTHS[mo - 1] + ' ' + toNp(dy);
+}
+
+function adToEn(s) {
+  if (!s) return s;
+  var d = parseDate(s);
+  if (!d || isNaN(d.getTime())) return s;
+  return EN_MONTHS[d.getUTCMonth()] + ' ' + d.getUTCDate() + ', ' + d.getUTCFullYear();
+}
+
+// data-mode="en"  → always AD English formatted
+// data-mode="np"  → always BS Nepali
+// no data-mode    → sidebar dates, follow active language
+function updateDates(isNp) {
+  document.querySelectorAll('.date-display[data-date-ad]').forEach(function(el) {
+    var adStr = el.getAttribute('data-date-ad');
+    var mode  = el.getAttribute('data-mode');
+    if (mode === 'np') {
+      el.textContent = adToBs(adStr);
+    } else if (mode === 'en') {
+      el.textContent = adToEn(adStr);
+    } else {
+      el.textContent = isNp ? adToBs(adStr) : adToEn(adStr);
+    }
+  });
+}
+
+window.addEventListener('langChange', function(e) {
+  if (e.detail && e.detail.lang) updateDates(e.detail.lang === 'np');
+});
+
+function init() {
+  var storedLang = 'en';
+  try {
+    storedLang = localStorage.getItem('fm_lang') ||
+                 localStorage.getItem('siteLang') || 'en';
+  } catch(e) {}
+  updateDates(storedLang === 'np');
+}
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', init);
+} else {
+  init();
+}
+
+})();
+</script>
+  
+</body>
+</html>
