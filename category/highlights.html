@@ -418,7 +418,7 @@
     --accent:       #D4A017;
     --primary:      #A31919;
     --primary-on:   #FFFFFF;
-    --accent-on:    #FFFFFF;
+    --accent-on:    #1F1F1F;
     --bg:           #FFFFFF;
     --surface:      #F8F8F8;
     --text:         #1F1F1F;
@@ -901,16 +901,6 @@ body.lang-active .lang-np-inline { display: inline !important; }
     body.lang-active h4.lang-np,
     body.lang-active .article-body.lang-np { display: block !important; }
 
-    /* Sidebar active-link highlight (matches the gold "Home" pill style) */
-    #bt-header a.active,
-    .sidebar a.active,
-    nav a.active {
-      background: var(--accent, #f0b429);
-      color: var(--accent-on, #1a1a1a);
-      border-radius: 10px;
-      font-weight: 700;
-    }
-
     .btt-btn {
       position: fixed; bottom: 30px; right: 30px;
       width: 45px; height: 45px; border-radius: 50%;
@@ -954,7 +944,7 @@ body.lang-active .lang-np-inline { display: inline !important; }
 
     <nav class="bt-sidebar-nav" aria-label="Primary navigation">
       <ul class="bt-nav-list" id="bt-nav-list">
-        <li class="bt-nav-item active">
+        <li class="bt-nav-item">
           <a href="../index.html">
             <span class="bt-nav-icon"><i class="fa-solid fa-house"></i></span>
             <span class="bt-nav-label"><span class="lang-np">गृहपृष्ठ</span><span class="lang-en">Home</span></span>
@@ -1790,11 +1780,8 @@ body.lang-active .lang-np-inline { display: inline !important; }
 (function() {
   'use strict';
 
-  var ACTIVE_CLASS = 'active';
-
   function normalize(path) {
     if (!path) return 'index.html';
-    // Strip query/hash, get filename only
     path = path.split('?')[0].split('#')[0];
     var file = path.split('/').pop();
     return file || 'index.html';
@@ -1803,22 +1790,39 @@ body.lang-active .lang-np-inline { display: inline !important; }
   function setActiveNav() {
     var currentFile = normalize(window.location.pathname);
 
-    // Grab every nav link inside the header / sidebar
-    var links = document.querySelectorAll(
-      '#bt-header a[href], .sidebar a[href], nav a[href], header a[href]'
-    );
+    // Primary target: <li class="bt-nav-item"> wrapper (Butwal Today header structure)
+    var navItems = document.querySelectorAll('#bt-header .bt-nav-item');
 
-    links.forEach(function(a) {
+    navItems.forEach(function(item) {
+      item.classList.remove('active', 'selected', 'current', 'is-active');
+
+      var a = item.querySelector('a[href]');
+      if (!a) return;
+
       var href = a.getAttribute('href') || '';
       if (!href || href === '#' || href.indexOf('javascript:') === 0) return;
 
       var linkFile = normalize(href);
 
-      // Remove any stale active-style classes first
-      a.classList.remove(ACTIVE_CLASS, 'selected', 'current', 'is-active');
-
       if (linkFile === currentFile) {
-        a.classList.add(ACTIVE_CLASS);
+        item.classList.add('active');
+      }
+    });
+
+    // Fallback: handle any nav links NOT wrapped in .bt-nav-item
+    var plainLinks = document.querySelectorAll(
+      '#bt-header a[href], .sidebar a[href], nav a[href]'
+    );
+    plainLinks.forEach(function(a) {
+      if (a.closest('.bt-nav-item')) return; // already handled above
+
+      var href = a.getAttribute('href') || '';
+      if (!href || href === '#' || href.indexOf('javascript:') === 0) return;
+
+      a.classList.remove('active', 'selected', 'current', 'is-active');
+
+      if (normalize(href) === currentFile) {
+        a.classList.add('active');
       }
     });
   }
@@ -1829,7 +1833,6 @@ body.lang-active .lang-np-inline { display: inline !important; }
     setActiveNav();
   }
 
-  // Re-run if content is swapped via SPA-like navigation (optional safety net)
   window.addEventListener('popstate', setActiveNav);
 })();
 </script>
