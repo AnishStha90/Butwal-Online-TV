@@ -418,7 +418,7 @@
     --accent:       #D4A017;
     --primary:      #A31919;
     --primary-on:   #FFFFFF;
-    --accent-on:    #1F1F1F;
+    --accent-on:    #FFFFFF;
     --bg:           #FFFFFF;
     --surface:      #F8F8F8;
     --text:         #1F1F1F;
@@ -900,6 +900,16 @@ body.lang-active .lang-np-inline { display: inline !important; }
     body.lang-active h3.lang-np,
     body.lang-active h4.lang-np,
     body.lang-active .article-body.lang-np { display: block !important; }
+
+    /* Sidebar active-link highlight (matches the gold "Home" pill style) */
+    #bt-header a.active,
+    .sidebar a.active,
+    nav a.active {
+      background: var(--accent, #f0b429);
+      color: var(--accent-on, #1a1a1a);
+      border-radius: 10px;
+      font-weight: 700;
+    }
 
     .btt-btn {
       position: fixed; bottom: 30px; right: 30px;
@@ -1742,6 +1752,57 @@ body.lang-active .lang-np-inline { display: inline !important; }
     }
   });
   
+})();
+</script>
+
+
+  <!-- ACTIVE NAV (fixes sidebar always showing "Home" as selected) -->
+  
+<script>
+(function() {
+  'use strict';
+
+  var ACTIVE_CLASS = 'active';
+
+  function normalize(path) {
+    if (!path) return 'index.html';
+    // Strip query/hash, get filename only
+    path = path.split('?')[0].split('#')[0];
+    var file = path.split('/').pop();
+    return file || 'index.html';
+  }
+
+  function setActiveNav() {
+    var currentFile = normalize(window.location.pathname);
+
+    // Grab every nav link inside the header / sidebar
+    var links = document.querySelectorAll(
+      '#bt-header a[href], .sidebar a[href], nav a[href], header a[href]'
+    );
+
+    links.forEach(function(a) {
+      var href = a.getAttribute('href') || '';
+      if (!href || href === '#' || href.indexOf('javascript:') === 0) return;
+
+      var linkFile = normalize(href);
+
+      // Remove any stale active-style classes first
+      a.classList.remove(ACTIVE_CLASS, 'selected', 'current', 'is-active');
+
+      if (linkFile === currentFile) {
+        a.classList.add(ACTIVE_CLASS);
+      }
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', setActiveNav);
+  } else {
+    setActiveNav();
+  }
+
+  // Re-run if content is swapped via SPA-like navigation (optional safety net)
+  window.addEventListener('popstate', setActiveNav);
 })();
 </script>
 
