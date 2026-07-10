@@ -569,12 +569,6 @@ body.lang-active .lang-np-inline { display: inline !important; }
   .form-status.success { background: rgba(60,160,60,0.18); border: 1px solid rgba(60,160,60,0.4); color: var(--text) }
   .contact-anim { opacity: 1 !important; transform: translateY(0) !important; transition: none !important; }
 
-  /* ── FIX-G: push main/footer clear of the fixed sidebar ── */
-  /* FIX-L: base footer CSS ships margin-right: auto, which made the
-     footer shrink-wrap to its content width and pin left instead of
-     stretching to the viewport edge -- that's the empty gap on the
-     right. Force margin-right:0 + width:auto so it spans the full
-     remaining width beside the sidebar, same as .bt-main does. */
   body > main.contact-page-main,
   body > footer#site-footer {
     margin-left: var(--bt-sidebar-w, 264px) !important;
@@ -595,6 +589,11 @@ body.lang-active .lang-np-inline { display: inline !important; }
     }
   }
 
+  /* ── FIX-Q: this page has no video hero, so collapse the forced
+     height reserved for it on the homepage ── */
+  #bt-header { min-height: auto !important; }
+  #bt-header .bt-main { min-height: auto !important; }
+
   @media (max-width: 1024px) {
     .contact-content { grid-template-columns: 1fr !important; align-items: start; padding: 2rem 1.25rem }
     .contact-info { display: block !important }
@@ -613,10 +612,6 @@ body.lang-active .lang-np-inline { display: inline !important; }
     .submit-btn { width: 100%; justify-content: center }
   }
 
-  /* ═══════════════════════════════════════════════════════════════
-     FIX-I: CLASS-BASED LANGUAGE SYSTEM — identical mechanism to the
-     index page. Driven ENTIRELY by body.lang-active.
-     ═══════════════════════════════════════════════════════════════ */
   .lang-en { display: inline !important; }
   .lang-np { display: none !important; }
   div.lang-en, p.lang-en, section.lang-en,
@@ -652,16 +647,6 @@ body.lang-active .lang-np-inline { display: inline !important; }
   #bt-header span.lang-en,
   #bt-header div.lang-en { display: inline !important; }
 
-  /* ═══════════════════════════════════════════════════════════════
-     FIX-K: FOOTER SIZE CONSISTENCY (EN vs NP) + NO DEAD-SPACE GAP
-     - 3rd .footer-col is always empty → dropped grid from 3 to 2
-       columns so nothing is left hanging on the right.
-     - .footer-col p now reserves height for 2 lines (not 1), because
-       the English address wraps to 2 lines while Nepali fits on 1 —
-       previously that made the footer taller only in English. Now
-       both languages render at the same (English/taller) height, so
-       toggling the language no longer resizes or shifts the footer.
-     ═══════════════════════════════════════════════════════════════ */
   .footer-nav { min-height: 1.6em; }
   .footer-nav a { display: inline-block; line-height: 1.6em; }
   .footer-middle { grid-template-columns: 1fr 1fr !important; }
@@ -761,7 +746,7 @@ body.lang-active .lang-np-inline { display: inline !important; }
           </a>
         </li>
         <li class="bt-nav-item">
-          <a href="../category/health-tip.html">
+          <a href="../category/health-tips.html">
             <span class="bt-nav-icon"><i class="fa-solid fa-briefcase-medical"></i></span>
             <span class="bt-nav-label"><span class="lang-np">स्वास्थ्य टिप्स</span><span class="lang-en">Health Tips</span></span>
           </a>
@@ -785,39 +770,9 @@ body.lang-active .lang-np-inline { display: inline !important; }
   </button>
 
   <div class="bt-main">
-    <section class="bt-hero" id="bt-hero">
-      <div class="bt-hero-bg" id="bt-hero-bg" style="background-image:url('../images/hero-bg.jpg');"></div>
-      <div class="bt-hero-overlay"></div>
+    
 
-     
-
-      <div class="bt-hero-content">
-        <h1 class="bt-hero-title" id="bt-hero-title">Butwal TV</h1>
-      </div>
-
-      <button class="bt-hero-watch-btn" id="bt-hero-watch-btn">
-        <span class="bt-watch-play"><i class="fa-solid fa-play"></i></span>
-        <span class="bt-watch-text">
-          <span class="bt-watch-line1">
-  <span class="lang-np">अहिले हेर्नुहोस्</span><span class="lang-en" style="display:none">Watch Now</span>
-</span>
-<span class="bt-watch-line2">
-  <span class="lang-np">भिडियो प्ले गर्नुहोस्</span><span class="lang-en" style="display:none">Play Video</span>
-</span>
-        </span>
-      </button>
-    </section>
-
-   <nav class="bt-category-bar" id="bt-category-bar" aria-label="Category filter">
-      <button type="button" class="bt-cat-pill active" data-cat="all"><span class="lang-np">सबै</span><span class="lang-en">All</span></button>
-      <button type="button" class="bt-cat-pill" data-cat="international"><span class="lang-np">अन्तर्राष्ट्रिय</span><span class="lang-en">International</span></button>
-      <button type="button" class="bt-cat-pill" data-cat="sports"><span class="lang-np">खेलकुद</span><span class="lang-en">Sports</span></button>
-      <button type="button" class="bt-cat-pill" data-cat="tourism"><span class="lang-np">पर्यटन</span><span class="lang-en">Tourism</span></button>
-      <button type="button" class="bt-cat-pill" data-cat="entertainment"><span class="lang-np">मनोरन्जन</span><span class="lang-en">Entertainment</span></button>
-      <button type="button" class="bt-cat-pill" data-cat="education"><span class="lang-np">शिक्षा</span><span class="lang-en">Education</span></button>
-      <button type="button" class="bt-cat-pill" data-cat="culture"><span class="lang-np">सस्कृत</span><span class="lang-en">Culture</span></button>
-      <button type="button" class="bt-cat-pill" data-cat="health"><span class="lang-np">स्वास्थ्य</span><span class="lang-en">Health</span></button>
-    </nav>
+   
   </div>
 
 

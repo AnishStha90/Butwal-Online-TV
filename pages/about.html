@@ -442,6 +442,15 @@ body.lang-active .lang-np-inline { display: inline !important; }
     overflow: visible !important;
     overflow-y: visible !important;
   }
+  /* ── News content was removed upstream — .split-sidebar no longer
+     exists in the DOM in most cases (stripped by cleanMainHtml), but
+     keep this as a safety net for any edge case where an empty
+     sidebar div still slips through. ── */
+  .split-sidebar:empty { display: none !important; }
+  .split-wrapper:has(.split-sidebar:empty) .split-main,
+  .split-wrapper:not(:has(.split-sidebar)) .split-main {
+    flex: 1 1 100% !important;
+  }
   .news-sidebar { max-height: none !important; overflow: visible !important; }
   ul.news-feed-list:not([data-filled]) { display: none !important; }
   a.news-sidebar-more:empty { display: none !important; }
@@ -472,7 +481,7 @@ body.lang-active .lang-np-inline { display: inline !important; }
     .about-hero, .cta-section { padding: 2rem 1rem !important; }
   }
 
-  /* ── Push main/footer clear of the fixed sidebar (same fix as contact page) ── */
+  /* ── Push main/footer clear of the fixed sidebar ── */
   body > main.about-page-main,
   body > footer#site-footer {
     margin-left: var(--bt-sidebar-w, 264px) !important;
@@ -492,6 +501,11 @@ body.lang-active .lang-np-inline { display: inline !important; }
       margin-right: 0 !important;
     }
   }
+
+  /* ── This page has no video hero, so collapse the forced height
+     reserved for it on the homepage ── */
+  #bt-header { min-height: auto !important; }
+  #bt-header .bt-main { min-height: auto !important; }
 </style>
 </head>
 <body>
@@ -586,7 +600,7 @@ body.lang-active .lang-np-inline { display: inline !important; }
           </a>
         </li>
         <li class="bt-nav-item">
-          <a href="../category/health-tip.html">
+          <a href="../category/health-tips.html">
             <span class="bt-nav-icon"><i class="fa-solid fa-briefcase-medical"></i></span>
             <span class="bt-nav-label"><span class="lang-np">स्वास्थ्य टिप्स</span><span class="lang-en">Health Tips</span></span>
           </a>
@@ -610,39 +624,9 @@ body.lang-active .lang-np-inline { display: inline !important; }
   </button>
 
   <div class="bt-main">
-    <section class="bt-hero" id="bt-hero">
-      <div class="bt-hero-bg" id="bt-hero-bg" style="background-image:url('../images/hero-bg.jpg');"></div>
-      <div class="bt-hero-overlay"></div>
+    
 
-     
-
-      <div class="bt-hero-content">
-        <h1 class="bt-hero-title" id="bt-hero-title">Butwal TV</h1>
-      </div>
-
-      <button class="bt-hero-watch-btn" id="bt-hero-watch-btn">
-        <span class="bt-watch-play"><i class="fa-solid fa-play"></i></span>
-        <span class="bt-watch-text">
-          <span class="bt-watch-line1">
-  <span class="lang-np">अहिले हेर्नुहोस्</span><span class="lang-en" style="display:none">Watch Now</span>
-</span>
-<span class="bt-watch-line2">
-  <span class="lang-np">भिडियो प्ले गर्नुहोस्</span><span class="lang-en" style="display:none">Play Video</span>
-</span>
-        </span>
-      </button>
-    </section>
-
-   <nav class="bt-category-bar" id="bt-category-bar" aria-label="Category filter">
-      <button type="button" class="bt-cat-pill active" data-cat="all"><span class="lang-np">सबै</span><span class="lang-en">All</span></button>
-      <button type="button" class="bt-cat-pill" data-cat="international"><span class="lang-np">अन्तर्राष्ट्रिय</span><span class="lang-en">International</span></button>
-      <button type="button" class="bt-cat-pill" data-cat="sports"><span class="lang-np">खेलकुद</span><span class="lang-en">Sports</span></button>
-      <button type="button" class="bt-cat-pill" data-cat="tourism"><span class="lang-np">पर्यटन</span><span class="lang-en">Tourism</span></button>
-      <button type="button" class="bt-cat-pill" data-cat="entertainment"><span class="lang-np">मनोरन्जन</span><span class="lang-en">Entertainment</span></button>
-      <button type="button" class="bt-cat-pill" data-cat="education"><span class="lang-np">शिक्षा</span><span class="lang-en">Education</span></button>
-      <button type="button" class="bt-cat-pill" data-cat="culture"><span class="lang-np">सस्कृत</span><span class="lang-en">Culture</span></button>
-      <button type="button" class="bt-cat-pill" data-cat="health"><span class="lang-np">स्वास्थ्य</span><span class="lang-en">Health</span></button>
-    </nav>
+   
   </div>
 
 
@@ -792,12 +776,8 @@ body.lang-active .lang-np-inline { display: inline !important; }
 </div>
 </div></section>
     </div>
-    
-          
-          
-        </aside>
-      </template>
-    </div>
+
+        </div>
   </div>
   <section class="cta-section">
     <div class="cta-section__inner" data-slot="cta">
@@ -819,11 +799,7 @@ body.lang-active .lang-np-inline { display: inline !important; }
     <button type="submit" class="newsletter-btn">
       <span class="lang-en">Subscribe</span>
       <span class="lang-np">सदस्यता लिनुहोस्</span>
-    </button>
-  </form>
-</div></button>
-      </form>
-    </div>
+    </div></div></div>
   </section>
   
 </div>
@@ -1215,7 +1191,6 @@ function toNp(n) {
   }).join('');
 }
 
-// Handles both ISO "2026-06-16" and English "June 16, 2026"
 function parseDate(s) {
   if (!s) return null;
   var d = new Date(s);
@@ -1257,9 +1232,6 @@ function adToEn(s) {
   return EN_MONTHS[d.getUTCMonth()] + ' ' + d.getUTCDate() + ', ' + d.getUTCFullYear();
 }
 
-// data-mode="en"  → always AD English formatted
-// data-mode="np"  → always BS Nepali
-// no data-mode    → sidebar dates, follow active language
 function updateDates(isNp) {
   document.querySelectorAll('.date-display[data-date-ad]').forEach(function(el) {
     var adStr = el.getAttribute('data-date-ad');
