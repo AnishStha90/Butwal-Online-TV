@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <title>Contact | Radio Station </title>
+  <title>Our Team | Radio Station </title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   
   <style>
@@ -271,117 +271,42 @@
   html { scroll-behavior: smooth }
   body { background: var(--bg); color: var(--text); font-family: var(--font-body); font-size: 1.05rem; line-height: 1.7; margin: 0; padding: 0 }
 
-  .contact-container { max-width: 1200px; margin: 0 auto }
+  .team-container { max-width: 1200px; margin: 0 auto }
 
-  .contact-hero { background: var(--primary); color: var(--primary-on); padding: 4.5rem 2rem 3.5rem; text-align: center; position: relative; overflow: hidden }
-  .contact-hero::before { content: ''; position: absolute; inset: 0; background: repeating-linear-gradient(45deg, transparent, transparent 40px, rgba(0,0,0,0.04) 40px, rgba(0,0,0,0.04) 41px); pointer-events: none }
-  .contact-hero h1 { font-family: var(--font-heading); font-size: clamp(2.2rem,5vw,3.5rem); font-weight: 600; letter-spacing: 0.02em; margin: 0 0 0.5rem; position: relative }
-  .contact-hero p  { font-size: 1.15rem; opacity: 0.85; margin: 0; font-style: italic; position: relative }
+  .team-hero { background: var(--primary); color: var(--primary-on); padding: 4.5rem 2rem 3.5rem; text-align: center; position: relative; overflow: hidden }
+  .team-hero::before { content: ''; position: absolute; inset: 0; background: repeating-linear-gradient(45deg, transparent, transparent 40px, rgba(0,0,0,0.04) 40px, rgba(0,0,0,0.04) 41px); pointer-events: none }
+  .team-hero h1 { font-family: var(--font-heading); font-size: clamp(2.2rem,5vw,3.5rem); font-weight: 600; letter-spacing: 0.02em; margin: 0 0 0.5rem; position: relative }
+  .team-hero p  { font-size: 1.15rem; opacity: 0.85; margin: 0; font-style: italic; position: relative }
 
-  .contact-content { padding: 3rem 2rem; display: grid; grid-template-columns: 1fr 1fr; gap: 2.5rem; align-items: stretch }
-  .contact-info { order: 1; display: flex; flex-direction: column; text-align: center; align-items: center; }
-  .info-cards-grid { display: grid; grid-template-columns: 1fr; gap: 1.25rem; flex: 1; width: 100%; }
-  .contact-form-wrapper { order: 2; display: flex; flex-direction: column }
-  .contact-form { flex-shrink: 0 }
-  .map-section { margin-top: 2rem; flex: 1; display: flex; flex-direction: column; min-height: 0 }
-  .contact-map-container { flex: 1; min-height: 240px }
+  .team-grid-section { padding: 3rem 2rem }
+  .team-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 2rem }
 
-  .info-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.5rem; transition: transform .22s ease, box-shadow .22s ease, border-color .22s ease; position: relative; overflow: hidden; text-align: center; }
-  .info-card::after { content: ''; position: absolute; bottom: 0; left: 0; width: 100%; height: 2px; background: var(--primary); transform: scaleX(0); transform-origin: left; transition: transform .3s ease }
-  .info-card:hover { transform: translateY(-4px); box-shadow: var(--shadow); border-color: rgba(192,160,48,0.55) }
-  .info-card:hover::after { transform: scaleX(1) }
-  .info-card i    { font-size: 1.75rem; color: var(--primary); margin-bottom: 0.75rem; display: block; text-align: center; }
-  .info-card h3   { font-family: var(--font-heading); font-size: 1.15rem; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase; margin: 0 0 0.75rem; color: var(--primary) }
-  .info-card p    { margin: 0.35rem 0; line-height: 1.65; font-size: 1rem }
-  .info-card small { color: var(--muted); font-size: 0.85rem; font-style: italic }
+  .team-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.5rem 1.25rem 1.75rem; text-align: center; transition: transform .22s ease, box-shadow .22s ease, border-color .22s ease; position: relative; overflow: hidden }
+  .team-card::after { content: ''; position: absolute; bottom: 0; left: 0; width: 100%; height: 2px; background: var(--primary); transform: scaleX(0); transform-origin: left; transition: transform .3s ease }
+  .team-card:hover { transform: translateY(-4px); box-shadow: var(--shadow); border-color: rgba(192,160,48,0.55) }
+  .team-card:hover::after { transform: scaleX(1) }
 
-  .social-section { margin-top: 1.75rem; padding-top: 1.5rem; border-top: 1px solid var(--border); text-align: center; width: 100%; }
-  .social-section h3 { font-family: var(--font-heading); font-size: 1.05rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; margin: 0 0 1rem; color: var(--primary) }
-  .social-links { display: flex; gap: 0.75rem; flex-wrap: wrap; justify-content: center; }
-  .social-link { display: inline-flex; align-items: center; justify-content: center; width: 44px; height: 44px; border-radius: 50%; background: var(--surface); border: 1px solid var(--border); color: var(--text); font-size: 1.2rem; text-decoration: none; transition: transform .2s ease, background .2s ease, border-color .2s ease, color .2s ease }
-  .social-link:hover { transform: scale(1.12) }
-  .social-link[data-social="youtube"]:hover { background:#FF0000;color:#fff;border-color:#FF0000 }
-  .social-link[data-social="facebook"]:hover { background:#1877F2;color:#fff;border-color:#1877F2 }
-  .social-link[data-social="instagram"]:hover { background:#E4405F;color:#fff;border-color:#E4405F }
-  .social-link[data-social="twitter"]:hover { background:#000;color:#fff;border-color:#000 }
+  .team-photo { width: 140px; height: 140px; border-radius: 50%; overflow: hidden; margin: 0 auto 1.1rem; border: 3px solid var(--primary); background: var(--bg) }
+  .team-photo img { width: 100%; height: 100%; object-fit: cover; display: block }
 
-  .stream-link { display: inline-flex; align-items: center; gap: .5rem; margin-top: 1.25rem; padding: .7rem 1.5rem; background: var(--primary); color: var(--primary-on); border-radius: 8px; text-decoration: none; font-weight: 600; font-size: .95rem; letter-spacing: .03em; transition: opacity .2s ease, transform .2s ease; align-self: center; }
-  .stream-link:hover { opacity: .85; transform: translateX(3px) }
+  .team-card h3 { font-family: var(--font-heading); font-size: 1.1rem; font-weight: 600; margin: 0 0 0.4rem; color: var(--primary) }
+  .team-position { margin: 0; color: var(--muted); font-size: 0.92rem; font-style: italic }
 
-  .contact-form { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 2rem 2.25rem }
-  .form-group   { margin-bottom: 1.3rem }
-  .form-group label { display: block; margin-bottom: .45rem; font-weight: 600; font-size: .9rem; letter-spacing: .03em; text-transform: uppercase }
-  .required { color: var(--primary) }
-  .optional { color: var(--muted); font-weight: 400; text-transform: none; letter-spacing: 0 }
-  .form-group input,
-  .form-group textarea { width: 100%; padding: .7rem 1rem; border: 1px solid var(--border); border-radius: 6px; background: var(--bg); color: var(--text); font-family: var(--font-body); font-size: 1rem; line-height: 1.5; transition: border-color .2s ease, box-shadow .2s ease; -webkit-appearance: none }
-  .form-group textarea { resize: vertical; min-height: 120px }
-  .form-group input::placeholder,
-  .form-group textarea::placeholder { color: var(--muted) }
-  .form-group input:focus,
-  .form-group textarea:focus { outline: none; border-color: var(--primary); box-shadow: 0 0 0 3px rgba(192,160,48,0.18) }
-
-  .form-honey { position: absolute; left: -9999px; top: -9999px; width: 1px; height: 1px; overflow: hidden; opacity: 0; pointer-events: none }
-
-  .submit-btn { display: inline-flex; align-items: center; gap: .5rem; padding: .75rem 2.25rem; background: var(--primary); color: var(--primary-on); border: none; border-radius: 6px; font-family: var(--font-body); font-size: 1rem; font-weight: 700; letter-spacing: .04em; cursor: pointer; transition: opacity .2s ease, transform .15s ease }
-  .submit-btn:hover:not(:disabled) { opacity: .88; transform: translateY(-1px) }
-  .submit-btn:active:not(:disabled) { transform: translateY(0) }
-  .submit-btn:disabled { opacity: .45; cursor: not-allowed }
-
-  .form-status { margin-top: 1rem; padding: .8rem 1rem; border-radius: 6px; text-align: center; font-size: .95rem; line-height: 1.5; display: none }
-  .form-status.error   { background: rgba(220,60,60,0.18); border: 1px solid rgba(220,60,60,0.4); color: var(--text) }
-  .form-status.success { background: rgba(60,160,60,0.18); border: 1px solid rgba(60,160,60,0.4); color: var(--text) }
-
-  .map-section h3 { font-family: var(--font-heading); font-size: 1.05rem; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; margin: 0 0 1rem; color: var(--primary) }
-  .contact-map-container { width: 100%; border-radius: var(--radius); overflow: hidden; border: 1px solid var(--border); background: var(--surface) }
-  .contact-map-container iframe { width: 100%; height: 100%; border: 0; display: block }
-  .map-placeholder { width: 100%; height: 100%; min-height: 200px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: .5rem; color: var(--muted); font-style: italic }
-  .map-placeholder i { font-size: 2.5rem; color: var(--border) }
-
-  .contact-anim { opacity: 0; transform: translateY(24px); transition: opacity .5s ease, transform .5s ease }
-  .contact-anim.visible { opacity: 1; transform: translateY(0) }
-  .contact-anim:nth-child(2) { transition-delay: .08s }
-  .contact-anim:nth-child(3) { transition-delay: .16s }
-  .contact-anim:nth-child(4) { transition-delay: .24s }
+  .team-anim { opacity: 0; transform: translateY(24px); transition: opacity .5s ease, transform .5s ease }
+  .team-anim.visible { opacity: 1; transform: translateY(0) }
 
   .lang-np { display: none }
   .lang-en { display: inline }
 
-  @media (max-width: 1024px) {
-    .contact-content { grid-template-columns: 1fr; align-items: start; padding: 2rem 1.25rem }
-    .contact-info         { order: 1; display: block; text-align: center; }
-    .contact-form-wrapper { order: 2; display: block }
-    .info-cards-grid { flex: none }
-    .map-section { flex: none; display: block }
-    .contact-map-container { height: 320px }
-    .contact-hero { padding: 3rem 1.5rem 2.5rem }
-  }
-  @media (max-width: 640px) {
-    .contact-hero h1 { font-size: 1.9rem }
-    .contact-form { padding: 1.5rem }
-    .info-card { padding: 1.2rem }
-    .contact-map-container { height: 260px }
-    .social-link { width: 40px; height: 40px; font-size: 1.05rem }
-    .submit-btn { width: 100%; justify-content: center }
-  }
+  @media (max-width: 1024px) { .team-grid-section { padding: 2rem 1.25rem } .team-hero { padding: 3rem 1.5rem 2.5rem } }
+  @media (max-width: 640px)  { .team-hero h1 { font-size: 1.9rem } .team-grid { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 1.25rem } .team-photo { width: 110px; height: 110px } }
 </style>
 <style>
-  .contact-container,
-  .info-card,
-  .contact-form,
-  .map-section,
-  .contact-anim {
+  .team-container, .team-card, .team-anim {
     opacity: 1 !important;
     transform: translateY(0) !important;
-    transition: none !important;
   }
-  #contact-form {
-    display: block !important;
-    visibility: visible !important;
-  }
-  .contact-content {
-    display: grid !important;
-  }
+  .team-grid { display: grid !important; }
 </style>
 <style>
 
@@ -515,66 +440,25 @@ body.lang-active .lang-np-inline { display: inline !important; }
     @media(max-width:768px){header,.site-header{max-height:60px!important}}
   </style>
   <style id="contact-guaranteed">
-  .contact-container { max-width: 1200px; margin: 0 auto }
-  .contact-hero { background: var(--primary); color: var(--primary-on); padding: 4.5rem 2rem 3.5rem; text-align: center; position: relative; overflow: hidden; }
-  .contact-hero::before { content: ''; position: absolute; inset: 0; background: repeating-linear-gradient(45deg, transparent, transparent 40px, rgba(0,0,0,0.04) 40px, rgba(0,0,0,0.04) 41px); pointer-events: none; }
-  .contact-hero h1 { font-family: var(--font-heading); font-size: clamp(2.2rem, 5vw, 3.5rem); font-weight: 600; letter-spacing: 0.02em; margin: 0 0 0.5rem; position: relative; }
-  .contact-hero p { font-size: 1.15rem; opacity: 0.85; margin: 0; font-style: italic; position: relative }
-  .contact-content { padding: 3rem 2rem; display: grid !important; grid-template-columns: 1fr 1fr; gap: 2.5rem; align-items: stretch; }
-  .contact-info { order: 1; display: flex !important; flex-direction: column; }
-  .info-cards-grid { display: grid !important; grid-template-columns: 1fr; gap: 1.25rem; flex: 1; }
-  .contact-form-wrapper { order: 2; display: flex !important; flex-direction: column; }
-  .contact-form { flex-shrink: 0 }
-  .map-section { margin-top: 2rem; flex: 1; display: flex !important; flex-direction: column; min-height: 0; }
-  .map-section h3 { font-family: var(--font-heading); font-size: 1.05rem; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; margin: 0 0 1rem; color: var(--primary); }
-  .contact-map-container { width: 100%; flex: 1; min-height: 240px; border-radius: 12px; overflow: hidden; border: 1px solid var(--border); background: var(--surface); }
-  .contact-map-container iframe { width: 100%; height: 100%; border: 0; display: block }
-  .map-placeholder { width: 100%; height: 100%; min-height: 200px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: .5rem; color: var(--muted); font-style: italic; }
-  .map-placeholder i { font-size: 2.5rem; color: var(--border) }
-  .info-card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 1.5rem; transition: transform .22s ease, box-shadow .22s ease, border-color .22s ease; position: relative; overflow: hidden; }
-  .info-card::after { content: ''; position: absolute; bottom: 0; left: 0; width: 100%; height: 2px; background: var(--primary); transform: scaleX(0); transform-origin: left; transition: transform .3s ease; }
-  .info-card:hover { transform: translateY(-4px); box-shadow: 0 8px 32px rgba(0,0,0,.3); border-color: rgba(192,160,48,0.55) }
-  .info-card:hover::after { transform: scaleX(1) }
-  .info-card i { font-size: 1.75rem; color: var(--primary); margin-bottom: 0.75rem; display: block }
-  .info-card h3 { font-family: var(--font-heading); font-size: 1.15rem; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase; margin: 0 0 0.75rem; color: var(--primary) }
-  .info-card p { margin: 0.35rem 0; line-height: 1.65; font-size: 1rem }
-  .info-card small { color: var(--muted); font-size: 0.85rem; font-style: italic }
-  .social-section { margin-top: 1.75rem; padding-top: 1.5rem; border-top: 1px solid var(--border) }
-  .social-section h3 { font-family: var(--font-heading); font-size: 1.05rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; margin: 0 0 1rem; color: var(--primary) }
-  .social-links { display: flex; gap: 0.75rem; flex-wrap: wrap }
-  .social-link { display: inline-flex; align-items: center; justify-content: center; width: 44px; height: 44px; border-radius: 50%; background: var(--surface); border: 1px solid var(--border); color: var(--text); font-size: 1.2rem; text-decoration: none; transition: transform .2s ease, background .2s ease, border-color .2s ease, color .2s ease; }
-  .social-link:hover { transform: scale(1.12) }
-  .social-link[data-social="facebook"]:hover  { background: #1877F2; color:#fff; border-color:#1877F2 }
-  .social-link[data-social="twitter"]:hover   { background: #000;    color:#fff; border-color:#000 }
-  .social-link[data-social="youtube"]:hover   { background: #FF0000; color:#fff; border-color:#FF0000 }
-  .social-link[data-social="instagram"]:hover { background: #E4405F; color:#fff; border-color:#E4405F }
-  .stream-link { display: inline-flex; align-items: center; gap: .5rem; margin-top: 1.25rem; padding: .7rem 1.5rem; background: var(--primary); color: var(--primary-on); border-radius: 8px; text-decoration: none; font-weight: 600; font-size: .95rem; letter-spacing: .03em; transition: opacity .2s ease, transform .2s ease; }
-  .stream-link:hover { opacity: .85; transform: translateX(3px) }
-  .contact-form { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 2rem 2.25rem; }
-  .form-group { margin-bottom: 1.3rem }
-  .form-group label { display: block; margin-bottom: .45rem; font-weight: 600; font-size: .9rem; letter-spacing: .03em; text-transform: uppercase }
-  .required { color: var(--primary) }
-  .optional { color: var(--muted); font-weight: 400; text-transform: none; letter-spacing: 0 }
-  .form-group input, .form-group textarea { width: 100%; padding: .7rem 1rem; border: 1px solid var(--border); border-radius: 6px; background: var(--bg); color: var(--text); font-family: var(--font-body); font-size: 1rem; line-height: 1.5; transition: border-color .2s ease, box-shadow .2s ease; -webkit-appearance: none; box-sizing: border-box; }
-  .form-group textarea { resize: vertical; min-height: 120px }
-  .form-group input::placeholder, .form-group textarea::placeholder { color: var(--muted) }
-  .form-group input:focus, .form-group textarea:focus { outline: none; border-color: var(--primary); box-shadow: 0 0 0 3px rgba(192,160,48,0.18) }
-  .form-honey { position: absolute; left: -9999px; top: -9999px; width: 1px; height: 1px; overflow: hidden; opacity: 0; pointer-events: none }
-  .submit-btn { display: inline-flex; align-items: center; gap: .5rem; padding: .75rem 2.25rem; background: var(--primary); color: var(--primary-on); border: none; border-radius: 6px; font-family: var(--font-body); font-size: 1rem; font-weight: 700; letter-spacing: .04em; cursor: pointer; transition: opacity .2s ease, transform .15s ease; }
-  .submit-btn:hover:not(:disabled) { opacity: .88; transform: translateY(-1px) }
-  .submit-btn:active:not(:disabled) { transform: translateY(0) }
-  .submit-btn:disabled { opacity: .45; cursor: not-allowed }
-  .form-status { margin-top: 1rem; padding: .8rem 1rem; border-radius: 6px; text-align: center; font-size: .95rem; line-height: 1.5; display: none }
-  .form-status.error { background: rgba(220,60,60,0.18); border: 1px solid rgba(220,60,60,0.4); color: var(--text) }
-  .form-status.success { background: rgba(60,160,60,0.18); border: 1px solid rgba(60,160,60,0.4); color: var(--text) }
-  .contact-anim { opacity: 1 !important; transform: translateY(0) !important; transition: none !important; }
+  .team-container { max-width: 1200px; margin: 0 auto }
+  .team-hero { background: var(--primary); color: var(--primary-on); padding: 4.5rem 2rem 3.5rem; text-align: center; position: relative; overflow: hidden }
+  .team-hero::before { content: ''; position: absolute; inset: 0; background: repeating-linear-gradient(45deg, transparent, transparent 40px, rgba(0,0,0,0.04) 40px, rgba(0,0,0,0.04) 41px); pointer-events: none }
+  .team-hero h1 { font-family: var(--font-heading); font-size: clamp(2.2rem,5vw,3.5rem); font-weight: 600; letter-spacing: 0.02em; margin: 0 0 0.5rem; position: relative }
+  .team-hero p  { font-size: 1.15rem; opacity: 0.85; margin: 0; font-style: italic; position: relative }
+  .team-grid-section { padding: 3rem 2rem }
+  .team-grid { display: grid !important; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 2rem }
+  .team-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.25rem 1.25rem 1.75rem; text-align: center; transition: transform .22s ease, box-shadow .22s ease, border-color .22s ease; position: relative; overflow: hidden; display: flex; flex-direction: column }
+  .team-card::after { content: ''; position: absolute; bottom: 0; left: 0; width: 100%; height: 2px; background: var(--primary); transform: scaleX(0); transform-origin: left; transition: transform .3s ease }
+  .team-card:hover { transform: translateY(-4px); box-shadow: var(--shadow); border-color: rgba(192,160,48,0.55) }
+  .team-card:hover::after { transform: scaleX(1) }
+  .team-photo { width: 100%; aspect-ratio: 4 / 3; border-radius: var(--radius); overflow: hidden; margin: 0 0 1.1rem; border: 2px solid var(--primary); background: var(--bg); flex-shrink: 0 }
+  .team-photo img { width: 100%; height: 100%; object-fit: cover; display: block }
+  .team-card h3 { font-family: var(--font-heading); font-size: 1.1rem; font-weight: 600; margin: 0 0 0.3rem; color: var(--primary); display: block; line-height: 1.3 }
+  .team-position { margin: 0; color: var(--muted); font-size: 0.92rem; font-style: italic; display: block; line-height: 1.3 }
+  .team-anim { opacity: 1 !important; transform: translateY(0) !important; transition: none !important; }
+  @media (max-width: 1024px) { .team-grid-section { padding: 2rem 1.25rem } .team-hero { padding: 3rem 1.5rem 2.5rem } }
+  @media (max-width: 640px)  { .team-hero h1 { font-size: 1.9rem } .team-grid { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 1.25rem } .team-photo { aspect-ratio: 1 / 1 } }
 
-  /* ── FIX-G: push main/footer clear of the fixed sidebar ── */
-  /* FIX-L: base footer CSS ships margin-right: auto, which made the
-     footer shrink-wrap to its content width and pin left instead of
-     stretching to the viewport edge -- that's the empty gap on the
-     right. Force margin-right:0 + width:auto so it spans the full
-     remaining width beside the sidebar, same as .bt-main does. */
   body > main.contact-page-main,
   body > footer#site-footer {
     margin-left: var(--bt-sidebar-w, 264px) !important;
@@ -595,28 +479,9 @@ body.lang-active .lang-np-inline { display: inline !important; }
     }
   }
 
-  @media (max-width: 1024px) {
-    .contact-content { grid-template-columns: 1fr !important; align-items: start; padding: 2rem 1.25rem }
-    .contact-info { display: block !important }
-    .contact-form-wrapper { display: block !important }
-    .info-cards-grid { flex: none }
-    .map-section { flex: none !important; display: block !important }
-    .contact-map-container { height: 320px; flex: none }
-    .contact-hero { padding: 3rem 1.5rem 2.5rem }
-  }
-  @media (max-width: 640px) {
-    .contact-hero h1 { font-size: 1.9rem }
-    .contact-form { padding: 1.5rem }
-    .info-card { padding: 1.2rem }
-    .contact-map-container { height: 260px }
-    .social-link { width: 40px; height: 40px; font-size: 1.05rem }
-    .submit-btn { width: 100%; justify-content: center }
-  }
+  #bt-header { min-height: auto !important; }
+  #bt-header .bt-main { min-height: auto !important; }
 
-  /* ═══════════════════════════════════════════════════════════════
-     FIX-I: CLASS-BASED LANGUAGE SYSTEM — identical mechanism to the
-     index page. Driven ENTIRELY by body.lang-active.
-     ═══════════════════════════════════════════════════════════════ */
   .lang-en { display: inline !important; }
   .lang-np { display: none !important; }
   div.lang-en, p.lang-en, section.lang-en,
@@ -652,16 +517,6 @@ body.lang-active .lang-np-inline { display: inline !important; }
   #bt-header span.lang-en,
   #bt-header div.lang-en { display: inline !important; }
 
-  /* ═══════════════════════════════════════════════════════════════
-     FIX-K: FOOTER SIZE CONSISTENCY (EN vs NP) + NO DEAD-SPACE GAP
-     - 3rd .footer-col is always empty → dropped grid from 3 to 2
-       columns so nothing is left hanging on the right.
-     - .footer-col p now reserves height for 2 lines (not 1), because
-       the English address wraps to 2 lines while Nepali fits on 1 —
-       previously that made the footer taller only in English. Now
-       both languages render at the same (English/taller) height, so
-       toggling the language no longer resizes or shifts the footer.
-     ═══════════════════════════════════════════════════════════════ */
   .footer-nav { min-height: 1.6em; }
   .footer-nav a { display: inline-block; line-height: 1.6em; }
   .footer-middle { grid-template-columns: 1fr 1fr !important; }
@@ -785,39 +640,9 @@ body.lang-active .lang-np-inline { display: inline !important; }
   </button>
 
   <div class="bt-main">
-    <section class="bt-hero" id="bt-hero">
-      <div class="bt-hero-bg" id="bt-hero-bg" style="background-image:url('../images/hero-bg.jpg');"></div>
-      <div class="bt-hero-overlay"></div>
+    
 
-     
-
-      <div class="bt-hero-content">
-        <h1 class="bt-hero-title" id="bt-hero-title">Butwal TV</h1>
-      </div>
-
-      <button class="bt-hero-watch-btn" id="bt-hero-watch-btn">
-        <span class="bt-watch-play"><i class="fa-solid fa-play"></i></span>
-        <span class="bt-watch-text">
-          <span class="bt-watch-line1">
-  <span class="lang-np">अहिले हेर्नुहोस्</span><span class="lang-en" style="display:none">Watch Now</span>
-</span>
-<span class="bt-watch-line2">
-  <span class="lang-np">भिडियो प्ले गर्नुहोस्</span><span class="lang-en" style="display:none">Play Video</span>
-</span>
-        </span>
-      </button>
-    </section>
-
-   <nav class="bt-category-bar" id="bt-category-bar" aria-label="Category filter">
-      <button type="button" class="bt-cat-pill active" data-cat="all"><span class="lang-np">सबै</span><span class="lang-en">All</span></button>
-      <button type="button" class="bt-cat-pill" data-cat="international"><span class="lang-np">अन्तर्राष्ट्रिय</span><span class="lang-en">International</span></button>
-      <button type="button" class="bt-cat-pill" data-cat="sports"><span class="lang-np">खेलकुद</span><span class="lang-en">Sports</span></button>
-      <button type="button" class="bt-cat-pill" data-cat="tourism"><span class="lang-np">पर्यटन</span><span class="lang-en">Tourism</span></button>
-      <button type="button" class="bt-cat-pill" data-cat="entertainment"><span class="lang-np">मनोरन्जन</span><span class="lang-en">Entertainment</span></button>
-      <button type="button" class="bt-cat-pill" data-cat="education"><span class="lang-np">शिक्षा</span><span class="lang-en">Education</span></button>
-      <button type="button" class="bt-cat-pill" data-cat="culture"><span class="lang-np">सस्कृत</span><span class="lang-en">Culture</span></button>
-      <button type="button" class="bt-cat-pill" data-cat="health"><span class="lang-np">स्वास्थ्य</span><span class="lang-en">Health</span></button>
-    </nav>
+   
   </div>
 
 
@@ -829,157 +654,69 @@ body.lang-active .lang-np-inline { display: inline !important; }
 
 
 
-<div class="contact-container">
+<div class="team-container">
 
-  <div class="contact-hero">
+  <div class="team-hero">
     <h1>
-      <span class="lang-en">Contact Us</span>
-      <span class="lang-np">सम्पर्क गर्नुहोस्</span>
+      <span class="lang-en">Our Team</span>
+      <span class="lang-np">हाम्रो टिम</span>
     </h1>
     <p>
-      <span class="lang-en">Get in touch with our team</span>
-      <span class="lang-np">हाम्रो टोलीसँग सम्पर्क गर्नुहोस्</span>
+      <span class="lang-en">Meet the people behind our work</span>
+      <span class="lang-np">हाम्रो कामको पछाडिका मानिसहरू</span>
     </p>
   </div>
 
-  <div class="contact-content">
+  <div class="team-grid-section">
+    <div class="team-grid">
 
-    <div class="contact-info">
-      <div class="info-cards-grid">
-
-        <div class="info-card contact-anim">
-          <i class="fas fa-clock"></i>
-          <h3 class="lang-en">Hours of Operation</h3>
-          <h3 class="lang-np">सञ्चालन समय</h3>
-          <p><span class="lang-en">Monday – Friday:</span><span class="lang-np">सोमबार – शुक्रबार:</span>&nbsp;9:00 AM – 6:00 PM</p>
-          <p><span class="lang-en">Saturday:</span><span class="lang-np">शनिबार:</span>&nbsp;10:00 AM – 2:00 PM</p>
-          <p><span class="lang-en">Sunday: Closed</span><span class="lang-np">आइतबार: बन्द</span></p>
-        </div>
-
-        <div class="info-card contact-anim">
-          <i class="fas fa-phone"></i>
-          <h3 class="lang-en">Phone</h3>
-          <h3 class="lang-np">फोन</h3>
-          <p>
-            <span id="contact-phone-en" class="lang-en">—</span>
-            <span id="contact-phone-np" class="lang-np">—</span>
-          </p>
-          <small class="lang-en">Available during business hours</small>
-          <small class="lang-np">व्यापारिक समयमा उपलब्ध</small>
-        </div>
-
-        <div class="info-card contact-anim">
-          <i class="fas fa-envelope"></i>
-          <h3 class="lang-en">Email</h3>
-          <h3 class="lang-np">इमेल</h3>
-          <p><span id="contact-email">—</span></p>
-          <small class="lang-en">We'll respond within 24 hours</small>
-          <small class="lang-np">हामी २४ घण्टा भित्र जवाफ दिनेछौं</small>
-        </div>
-
-        <div class="info-card contact-anim">
-          <i class="fas fa-location-dot"></i>
-          <h3 class="lang-en">Address</h3>
-          <h3 class="lang-np">ठेगाना</h3>
-          <p>
-            <span id="contact-addr-en" class="lang-en">—</span>
-            <span id="contact-addr-np" class="lang-np">—</span>
-          </p>
-        </div>
-
-      </div>
-
-      <div class="social-section">
-        <h3 class="lang-en">Follow Us</h3>
-        <h3 class="lang-np">हामीलाई पछ्याउनुहोस्</h3>
-        <div class="social-links">
-          <a id="sl-youtube" class="social-link" data-social="youtube" href="https://www.youtube.com/@butwaltodayTV" target="_blank" rel="noopener" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
-          <a id="sl-facebook" class="social-link" data-social="facebook" href="https://www.facebook.com/butwaltodaydaily" target="_blank" rel="noopener" aria-label="Facebook"><i class="fa-brands fa-facebook"></i></a>
-          <a id="sl-instagram" class="social-link" data-social="instagram" href="https://www.instagram.com/dailybutwaltoday/" target="_blank" rel="noopener" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
-          <a id="sl-twitter" class="social-link" data-social="twitter" href="https://x.com/NewsButwalToday" target="_blank" rel="noopener" aria-label="Twitter / X"><i class="fa-brands fa-x-twitter"></i></a>
-        </div>
-      </div>
-    </div>
-
-    <div class="contact-form-wrapper">
-
-      <form id="contact-form" class="contact-form contact-anim"
-            action="https://formsubmit.co/butwaltodaytv@gmail.com"
-            method="POST"
-            novalidate>
-
-        <div class="form-honey" aria-hidden="true">
-          <input type="text" name="_honey" tabindex="-1" autocomplete="off" value="">
-        </div>
-
-        <div class="form-group">
-          <label for="form-name">
-            <span class="lang-en">Full Name</span><span class="lang-np">पुरा नाम</span>
-            <span class="required"> *</span>
-          </label>
-          <input type="text" id="form-name" name="name" autocomplete="name" required placeholder="John Doe">
-        </div>
-
-        <div class="form-group">
-          <label for="form-email">
-            <span class="lang-en">Email Address</span><span class="lang-np">इमेल ठेगाना</span>
-            <span class="required"> *</span>
-          </label>
-          <input type="email" id="form-email" name="email" autocomplete="email" required placeholder="you@example.com">
-        </div>
-
-        <div class="form-group">
-          <label for="form-phone">
-            <span class="lang-en">Phone Number</span><span class="lang-np">फोन नम्बर</span>
-            <span class="optional">(<span class="lang-en">Optional</span><span class="lang-np">वैकल्पिक</span>)</span>
-          </label>
-          <input type="tel" id="form-phone" name="phone" autocomplete="tel" placeholder="+977 98XXXXXXXX">
-        </div>
-
-        <div class="form-group">
-          <label for="form-subject">
-            <span class="lang-en">Subject</span><span class="lang-np">विषय</span>
-            <span class="required"> *</span>
-          </label>
-          <input type="text" id="form-subject" name="subject" required>
-        </div>
-
-        <div class="form-group">
-          <label for="form-message">
-            <span class="lang-en">Message</span><span class="lang-np">सन्देश</span>
-            <span class="required"> *</span>
-          </label>
-          <textarea id="form-message" name="message" rows="5" required></textarea>
-        </div>
-
-        <button type="submit" id="form-submit" class="submit-btn">
-          <span class="lang-en">Send Message</span>
-          <span class="lang-np">सन्देश पठाउनुहोस्</span>
-          <i class="fas fa-paper-plane"></i>
-        </button>
-
-        <div id="form-status" class="form-status" role="alert"></div>
-      </form>
-
-      <div class="map-section contact-anim">
-        <h3 class="lang-en">Find Us</h3>
-        <h3 class="lang-np">हामीलाई भेट्नुहोस्</h3>
-        <div id="contact-map" class="contact-map-container">
-          <div class="map-placeholder">
-            <i class="fas fa-map-pin"></i>
-            <span class="lang-en">Map loading…</span>
-            <span class="lang-np">नक्सा लोड हुँदैछ…</span>
+        <div class="team-card team-anim" data-member-id="21">
+          <div class="team-photo">
+            <img id="team-img-0" src="" alt="Hari Prasad Paudel" loading="lazy">
           </div>
+          <h3 id="team-name-en-0" class="lang-en">Hari Prasad Paudel</h3>
+          <h3 id="team-name-np-0" class="lang-np">⁠हरि प्रसाद पौडेल</h3>
+          <p id="team-pos-en-0" class="team-position lang-en">Chairman</p>
+          <p id="team-pos-np-0" class="team-position lang-np">अध्यक्ष</p>
         </div>
-      </div>
 
+        <div class="team-card team-anim" data-member-id="22">
+          <div class="team-photo">
+            <img id="team-img-1" src="" alt="Navaraj Kunwar" loading="lazy">
+          </div>
+          <h3 id="team-name-en-1" class="lang-en">Navaraj Kunwar</h3>
+          <h3 id="team-name-np-1" class="lang-np">नवराज कुँवर</h3>
+          <p id="team-pos-en-1" class="team-position lang-en">Managing Director</p>
+          <p id="team-pos-np-1" class="team-position lang-np">प्रबन्ध सञ्चालक</p>
+        </div>
+
+        <div class="team-card team-anim" data-member-id="23">
+          <div class="team-photo">
+            <img id="team-img-2" src="" alt="Amrita Anmol" loading="lazy">
+          </div>
+          <h3 id="team-name-en-2" class="lang-en">Amrita Anmol</h3>
+          <h3 id="team-name-np-2" class="lang-np">अमृता अनमोल</h3>
+          <p id="team-pos-en-2" class="team-position lang-en">Editor</p>
+          <p id="team-pos-np-2" class="team-position lang-np">सम्पादक</p>
+        </div>
+
+        <div class="team-card team-anim" data-member-id="24">
+          <div class="team-photo">
+            <img id="team-img-3" src="" alt="Pavitra Chaudhary" loading="lazy">
+          </div>
+          <h3 id="team-name-en-3" class="lang-en">Pavitra Chaudhary</h3>
+          <h3 id="team-name-np-3" class="lang-np">पवित्रा चौधरी</h3>
+          <p id="team-pos-en-3" class="team-position lang-en">Program Coordinator</p>
+          <p id="team-pos-np-3" class="team-position lang-np">कार्यक्रम संयोजक</p>
+        </div>
     </div>
   </div>
+
 </div>
 
 
 
-<!-- DATA-DEBUG: phone=071-554640 email=butwaltodaytv@gmail.com addr=Butwal-6, Tilottam Path, Rupandehi -->
+<!-- DATA-DEBUG: team members injected = 4 -->
 </main>
   <footer id="site-footer">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
@@ -1167,228 +904,112 @@ body.lang-active .lang-np-inline { display: inline !important; }
 })();
 
 </script>
-
+<script>
+(function () {
+  'use strict';
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) { entry.target.classList.add('visible'); io.unobserve(entry.target); }
+      });
+    }, { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
+    document.querySelectorAll('.team-anim').forEach(function (el) { io.observe(el); });
+  } else {
+    document.querySelectorAll('.team-anim').forEach(function (el) { el.classList.add('visible'); });
+  }
+})();
+</script>
 <script>
 (function () {
 
-  // ── 1. Fix CSS visibility immediately ──────────────────────
-  function ensureCSSApplied() {
-    var container = document.querySelector('.contact-container');
-    if (container) {
-      container.style.opacity   = '1';
-      container.style.transform = 'translateY(0)';
+  var members = [
+    {
+      index: 0,
+      image:      "hari_prasad_paudel.jpg",
+      nameEn:     "Hari Prasad Paudel",
+      nameNp:     "⁠हरि प्रसाद पौडेल",
+      positionEn: "Chairman",
+      positionNp: "अध्यक्ष"
+    },
+    {
+      index: 1,
+      image:      "navaraj_kunwar.png",
+      nameEn:     "Navaraj Kunwar",
+      nameNp:     "नवराज कुँवर",
+      positionEn: "Managing Director",
+      positionNp: "प्रबन्ध सञ्चालक"
+    },
+    {
+      index: 2,
+      image:      "amrita_anmol.jpg",
+      nameEn:     "Amrita Anmol",
+      nameNp:     "अमृता अनमोल",
+      positionEn: "Editor",
+      positionNp: "सम्पादक"
+    },
+    {
+      index: 3,
+      image:      "pavitra_chaudhary.jpg",
+      nameEn:     "Pavitra Chaudhary",
+      nameNp:     "पवित्रा चौधरी",
+      positionEn: "Program Coordinator",
+      positionNp: "कार्यक्रम संयोजक"
     }
-    document.querySelectorAll('.info-card, .contact-form, .map-section, .contact-anim').forEach(function(el) {
+  ];
+
+  function resolveImgSrc(name) {
+    if (!name) return '';
+    // already an absolute/relative path? leave it alone
+    if (/^(https?:)?\/\//.test(name) || name.startsWith('../') || name.startsWith('/')) {
+      return name;
+    }
+    return '../images/' + name;
+  }
+
+  function ensureCSSApplied() {
+    document.querySelectorAll('.team-card, .team-anim').forEach(function(el) {
       el.style.opacity   = '1';
       el.style.transform = 'translateY(0)';
     });
   }
 
-  // ── 2. Resolved data (with fallback, injected server-side) ──
-  var data = {
-    phoneEn:     "071-554640",
-    phoneNp:     "०७१-५५४६४०",
-    email:       "butwaltodaytv@gmail.com",
-    addrEn:      "Butwal-6, Tilottam Path, Rupandehi",
-    addrNp:      "बुटवल–६, तिलोत्तमपथ, रुपन्देही",
-    mapUrl:      "<iframe src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d113060.50999793902!2d83.35013397404991!3d27.682038573138854!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3996864275d9755f%3A0x2b1e92d89d4bb3ae!2sButwal!5e0!3m2!1sen!2snp!4v1783506507849!5m2!1sen!2snp\" width=\"600\" height=\"450\" style=\"border:0;\" allowfullscreen=\"\" loading=\"lazy\" referrerpolicy=\"strict-origin-when-cross-origin\"></iframe>",
-    streamUrl:   "",
-    socialLinks: {
-      facebook:  "https://www.facebook.com/butwaltodaydaily",
-      twitter:   "https://x.com/NewsButwalToday",
-      youtube:   "https://www.youtube.com/@butwaltodayTV",
-      instagram: "https://www.instagram.com/dailybutwaltoday/"
-    }
-  };
+  function hidePhotoBox(img) {
+    // No usable image: collapse the photo box instead of showing
+    // a broken image icon / overlapping alt text.
+    var box = img.closest('.team-photo');
+    if (box) box.style.display = 'none';
+  }
 
-  // ── 3. Console-log data for browser debugging ───────────────
-  console.log('[contact-inject] data:', JSON.stringify(data));
-
-  // ── 4. Populate all contact fields ─────────────────────────
   function populateAll() {
-
-    // Phone — handle single-id and dual-id variants
-    var phoneSingle = document.getElementById('contact-phone');
-    var phoneEnEl   = document.getElementById('contact-phone-en');
-    var phoneNpEl   = document.getElementById('contact-phone-np');
-    var phoneVal    = data.phoneEn || data.phoneNp;
-
-    // Always set — use empty string if no value (shows nothing, not "—")
-    if (phoneSingle) phoneSingle.textContent = phoneVal || phoneSingle.textContent;
-    if (phoneEnEl)   phoneEnEl.textContent   = data.phoneEn || phoneEnEl.textContent;
-    if (phoneNpEl)   phoneNpEl.textContent   = data.phoneNp || phoneNpEl.textContent;
-
-    // Email
-    var emailEl = document.getElementById('contact-email');
-    if (emailEl) emailEl.textContent = data.email || emailEl.textContent;
-
-    // Address
-    var addrEnEl = document.getElementById('contact-addr-en');
-    var addrNpEl = document.getElementById('contact-addr-np');
-    if (addrEnEl) addrEnEl.textContent = data.addrEn || addrEnEl.textContent;
-    if (addrNpEl) addrNpEl.textContent = data.addrNp || addrNpEl.textContent;
-
-    // Map — accepts raw iframe HTML or a plain URL
-    var mapEl = document.getElementById('contact-map');
-    if (mapEl && data.mapUrl) {
-      var raw = data.mapUrl.trim();
-      if (raw.toLowerCase().startsWith('<iframe')) {
-        mapEl.innerHTML = raw;
-        var iframe = mapEl.querySelector('iframe');
-        if (iframe) {
-          iframe.style.width   = '100%';
-          iframe.style.height  = '100%';
-          iframe.style.border  = '0';
-          iframe.style.display = 'block';
-          iframe.removeAttribute('width');
-          iframe.removeAttribute('height');
+    members.forEach(function (m) {
+      var img = document.getElementById('team-img-' + m.index);
+      if (img) {
+        var src = resolveImgSrc(m.image);
+        if (src) {
+          img.onerror = function () {
+            img.onerror = null;
+            img.src = '../images/placeholder-avatar.png';
+            img.onerror = function () { img.onerror = null; hidePhotoBox(img); };
+          };
+          img.src = src;
+        } else {
+          hidePhotoBox(img);
         }
-      } else if (raw.startsWith('http')) {
-        mapEl.innerHTML =
-          '<iframe src="' + raw + '" width="100%" height="100%" frameborder="0"'
-          + ' allowfullscreen loading="lazy"'
-          + ' referrerpolicy="no-referrer-when-downgrade"></iframe>';
       }
-    }
-
-    // Stream link
-    var streamEl = document.getElementById('stream-link');
-    if (streamEl && data.streamUrl) {
-      streamEl.href          = data.streamUrl;
-      streamEl.style.display = 'inline-flex';
-    }
-
-    // Social links
-    ['facebook', 'twitter', 'youtube', 'instagram'].forEach(function(key) {
-      var url = data.socialLinks[key];
-      var el  = document.getElementById('sl-' + key);
-      if (el && url && url !== '#') el.href = url;
+      var nEn = document.getElementById('team-name-en-' + m.index);
+      var nNp = document.getElementById('team-name-np-' + m.index);
+      var pEn = document.getElementById('team-pos-en-' + m.index);
+      var pNp = document.getElementById('team-pos-np-' + m.index);
+      if (nEn && m.nameEn) nEn.textContent = m.nameEn;
+      if (nNp && m.nameNp) nNp.textContent = m.nameNp;
+      if (pEn && m.positionEn) pEn.textContent = m.positionEn;
+      if (pNp && m.positionNp) pNp.textContent = m.positionNp;
     });
   }
 
-  // ── 5. Fetch-based form handler ─────────────────────────────
-  function attachFormHandler() {
-    var oldForm = document.getElementById('contact-form');
-    if (!oldForm) return;
-
-    var form = oldForm.cloneNode(true);
-    oldForm.parentNode.replaceChild(form, oldForm);
-
-    form.removeAttribute('action');
-    form.setAttribute('data-action', 'https://formspree.io/f/mvzygdvj');
-
-    ['input[name="_next"]', 'input[name="_captcha"]'].forEach(function(sel) {
-      var el = form.querySelector(sel);
-      if (el) el.parentNode.removeChild(el);
-    });
-
-    var submitBtn = form.querySelector('#form-submit');
-    var statusDiv = form.querySelector('#form-status');
-    if (!submitBtn || !statusDiv) return;
-
-    var origHTML = submitBtn.innerHTML;
-
-    function getLang() {
-      try { return localStorage.getItem('fm_lang') || 'en'; } catch(e) { return 'en'; }
-    }
-    function applyLang(l) {
-      if (typeof window.setContactLang === 'function') window.setContactLang(l);
-    }
-    function showStatus(msgHtml, type) {
-      statusDiv.innerHTML     = msgHtml;
-      statusDiv.className     = 'form-status ' + (type || '');
-      statusDiv.style.display = 'block';
-      applyLang(getLang());
-      if (type === 'error') {
-        setTimeout(function() { statusDiv.style.display = 'none'; }, 6000);
-      }
-    }
-
-    var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    function isValidEmail(v) { return emailRegex.test(v); }
-    function val(id) {
-      var el = form.querySelector('#' + id);
-      return el ? el.value.trim() : '';
-    }
-
-    form.addEventListener('submit', function(e) {
-      e.preventDefault();
-      e.stopImmediatePropagation();
-
-      var l       = getLang();
-      var name    = val('form-name');
-      var email   = val('form-email');
-      var subject = val('form-subject');
-      var message = val('form-message');
-
-      if (!name || !email || !subject || !message) {
-        showStatus(
-          '<span class="lang-en">Please fill in all required fields.</span>'
-          + '<span class="lang-np">कृपया सबै आवश्यक फिल्डहरू भर्नुहोस्।</span>',
-          'error'
-        );
-        applyLang(l); return;
-      }
-      if (!isValidEmail(email)) {
-        showStatus(
-          '<span class="lang-en">Please enter a valid email address.</span>'
-          + '<span class="lang-np">कृपया मान्य इमेल ठेगाना प्रविष्ट गर्नुहोस्।</span>',
-          'error'
-        );
-        applyLang(l); return;
-      }
-
-      var honey = form.querySelector('input[name="_honey"]');
-      if (honey && honey.value) return;
-
-      submitBtn.innerHTML =
-        '<span class="lang-en">Sending...</span>'
-        + '<span class="lang-np">पठाउँदै...</span>'
-        + '<i class="fas fa-spinner fa-spin"></i>';
-      submitBtn.disabled = true;
-      applyLang(l);
-
-      fetch(form.getAttribute('data-action'), {
-        method: 'POST',
-        body:   new FormData(form),
-        mode:   'no-cors'
-      })
-      .then(function() {
-        form.reset();
-        showStatus(
-          '<strong>'
-            + '<span class="lang-en">Message sent successfully!</span>'
-            + '<span class="lang-np">सन्देश सफलतापूर्वक पठाइयो!</span>'
-          + '</strong><br>'
-          + '<span class="lang-en">Thank you for reaching out. We\'ll get back to you within 24 hours.</span>'
-          + '<span class="lang-np">हामीलाई सम्पर्क गर्नुभएकोमा धन्यवाद। हामी २४ घण्टा भित्र तपाईंलाई जवाफ दिनेछौं।</span>',
-          'success'
-        );
-      })
-      .catch(function() {
-        showStatus(
-          '<span class="lang-en">Something went wrong. Please try again or email us directly.</span>'
-          + '<span class="lang-np">केही गडबडी भयो। कृपया पुनः प्रयास गर्नुहोस् वा हामीलाई सिधै इमेल गर्नुहोस्।</span>',
-          'error'
-        );
-      })
-      .finally(function() {
-        submitBtn.innerHTML = origHTML;
-        submitBtn.disabled  = false;
-        applyLang(l);
-      });
-    });
-  }
-
-  // ── 6. Run ─────────────────────────────────────────────────
   function run() {
     ensureCSSApplied();
-    window.populateContactData = function() {};
     populateAll();
-    var lang = 'en';
-    try { lang = localStorage.getItem('fm_lang') || 'en'; } catch(e) {}
-    if (typeof window.setContactLang === 'function') window.setContactLang(lang);
-    attachFormHandler();
   }
 
   if (document.readyState === 'loading') {
