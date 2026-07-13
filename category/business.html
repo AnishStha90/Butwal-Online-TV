@@ -283,7 +283,7 @@
   body:not(.lang-active) #bt-header .lang-en { display: inline !important; }
   body:not(.lang-active) #bt-header .lang-np { display: none !important; }
 
-  .category-feed { max-width: 1200px; margin: 0 auto; }
+  .category-feed { width: 100%; max-width: none; margin: 0; box-sizing: border-box; }
 
   #news-grid.news-grid {
     display: block !important;
@@ -915,6 +915,23 @@ body.lang-active .lang-np-inline { display: inline !important; }
     }
     .btt-btn.show { opacity: 1; visibility: visible; }
     .btt-btn:hover { opacity: 0.85; transform: scale(1.05); }
+
+    /* ── Guaranteed full-width category feed — .category-feed sometimes ships
+       with a hardcoded max-width:1200px + margin:0 auto from Feed Category's
+       BASE_CSS, which leaves blank space on both sides whenever the effective
+       viewport (e.g. at <100% browser zoom) exceeds 1200px. Pin it to fill
+       .main-content the same way the header/hero already do. ── */
+    .category-feed {
+      max-width: none !important;
+      width: 100% !important;
+      margin: 0 !important;
+      box-sizing: border-box !important;
+    }
+    .category-container {
+      max-width: none !important;
+      width: 100% !important;
+      box-sizing: border-box !important;
+    }
   </style>
 </head>
 <body>
