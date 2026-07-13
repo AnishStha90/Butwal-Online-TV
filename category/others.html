@@ -298,19 +298,19 @@
     gap: 1.25rem;
     align-items: start;
   }
+
+  /* ── grid-card is now a DIV wrapping two separate links (thumbnail + title) ── */
   .grid-card {
     display: flex;
     flex-direction: column;
-    text-decoration: none;
-    color: inherit;
-    background: transparent;
-    transition: transform .2s ease;
     min-width: 0;
+    background: transparent;
   }
-  .grid-card:hover {
-    transform: translateY(-3px);
+  .grid-thumb-link {
+    display: block;
+    text-decoration: none;
   }
-  .grid-card:hover .grid-thumb img {
+  .grid-thumb-link:hover .grid-thumb img {
     transform: scale(1.03);
   }
   .grid-thumb {
@@ -341,6 +341,14 @@
     flex-direction: column;
     min-height: 5.4rem;
     gap: .5rem;
+  }
+  .grid-title-link {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+  }
+  .grid-title-link:hover .grid-title {
+    color: var(--accent);
   }
   .grid-title {
     font-family: var(--font-heading, serif);
@@ -1110,102 +1118,130 @@ body.lang-active .lang-np-inline { display: inline !important; }
   <div class="category-feed">
     <div id="news-list">
       
-    <a href="javascript:void(0)" class="video-open-link grid-card" data-embed="https://www.youtube.com/embed/Cb4KlL1LJlE" data-title="FIFA World Cup: Semi-finals to feature clash of former champions #fifaworldcup2026" data-title-np="फिफा विश्वकप : सेमिफाइनलमा पूर्व विजेता टोलीकै भिडन्त हुने #fifaworldcup2026">
-      <div class="grid-thumb">
-        <img src="https://img.youtube.com/vi/Cb4KlL1LJlE/hqdefault.jpg" alt="FIFA World Cup: Semi-finals to feature clash of former champions #fifaworldcup2026" loading="lazy">
-        <span class="grid-play"><i class="fas fa-play"></i></span>
-      </div>
+    <div class="grid-card" data-cat="Sport">
+      <a href="javascript:void(0)" class="video-open-link grid-thumb-link" data-embed="https://www.youtube.com/embed/Cb4KlL1LJlE" data-title="FIFA World Cup: Semi-finals to feature clash of former champions #fifaworldcup2026" data-title-np="फिफा विश्वकप : सेमिफाइनलमा पूर्व विजेता टोलीकै भिडन्त हुने #fifaworldcup2026">
+        <div class="grid-thumb">
+          <img src="https://img.youtube.com/vi/Cb4KlL1LJlE/hqdefault.jpg" alt="FIFA World Cup: Semi-finals to feature clash of former champions #fifaworldcup2026" loading="lazy">
+          <span class="grid-play"><i class="fas fa-play"></i></span>
+        </div>
+      </a>
       <div class="grid-body">
-        <h3 class="grid-title lang-en">FIFA World Cup: Semi-finals to feature clash of former champions #fifaworldcup2026</h3>
-        <h3 class="grid-title lang-np" style="display:none;">फिफा विश्वकप : सेमिफाइनलमा पूर्व विजेता टोलीकै भिडन्त हुने #fifaworldcup2026</h3>
+        <a href="../pages/video.html?id=51" class="grid-title-link">
+          <h3 class="grid-title lang-en">FIFA World Cup: Semi-finals to feature clash of former champions #fifaworldcup2026</h3>
+          <h3 class="grid-title lang-np" style="display:none;">फिफा विश्वकप : सेमिफाइनलमा पूर्व विजेता टोलीकै भिडन्त हुने #fifaworldcup2026</h3>
+        </a>
         <span class="grid-time lang-en" data-date-ad="2026-07-12T19:15:28.698Z" data-rel="en"><i class="fa-regular fa-clock"></i> <span class="grid-time-text"></span></span>
         <span class="grid-time lang-np" data-date-ad="2026-07-12T19:15:28.698Z" data-rel="np" style="display:none;"><i class="fa-regular fa-clock"></i> <span class="grid-time-text"></span></span>
       </div>
-    </a>
+    </div>
   
 
-    <a href="javascript:void(0)" class="video-open-link grid-card" data-embed="https://www.youtube.com/embed/K09NrWJEfLg" data-title="Triage system introduced at Butwal&#39;s Lumbini Provincial Hospital #butwaltodaytv #lumbini_nepal #hospital" data-title-np="बुटवलको लुम्बिनी प्रादेशिक अस्पतालमा ‘ट्रयाज प्रणाली’ सुरु #butwaltodaytv #lumbini_nepal #hospital">
-      <div class="grid-thumb">
-        <img src="https://img.youtube.com/vi/K09NrWJEfLg/hqdefault.jpg" alt="Triage system introduced at Butwal&#39;s Lumbini Provincial Hospital #butwaltodaytv #lumbini_nepal #hospital" loading="lazy">
-        <span class="grid-play"><i class="fas fa-play"></i></span>
-      </div>
+    <div class="grid-card" data-cat="health">
+      <a href="javascript:void(0)" class="video-open-link grid-thumb-link" data-embed="https://www.youtube.com/embed/K09NrWJEfLg" data-title="Triage system introduced at Butwal&#39;s Lumbini Provincial Hospital #butwaltodaytv #lumbini_nepal #hospital" data-title-np="बुटवलको लुम्बिनी प्रादेशिक अस्पतालमा ‘ट्रयाज प्रणाली’ सुरु #butwaltodaytv #lumbini_nepal #hospital">
+        <div class="grid-thumb">
+          <img src="https://img.youtube.com/vi/K09NrWJEfLg/hqdefault.jpg" alt="Triage system introduced at Butwal&#39;s Lumbini Provincial Hospital #butwaltodaytv #lumbini_nepal #hospital" loading="lazy">
+          <span class="grid-play"><i class="fas fa-play"></i></span>
+        </div>
+      </a>
       <div class="grid-body">
-        <h3 class="grid-title lang-en">Triage system introduced at Butwal&#39;s Lumbini Provincial Hospital #butwaltodaytv #lumbini_nepal #hospital</h3>
-        <h3 class="grid-title lang-np" style="display:none;">बुटवलको लुम्बिनी प्रादेशिक अस्पतालमा ‘ट्रयाज प्रणाली’ सुरु #butwaltodaytv #lumbini_nepal #hospital</h3>
+        <a href="../pages/video.html?id=22" class="grid-title-link">
+          <h3 class="grid-title lang-en">Triage system introduced at Butwal&#39;s Lumbini Provincial Hospital #butwaltodaytv #lumbini_nepal #hospital</h3>
+          <h3 class="grid-title lang-np" style="display:none;">बुटवलको लुम्बिनी प्रादेशिक अस्पतालमा ‘ट्रयाज प्रणाली’ सुरु #butwaltodaytv #lumbini_nepal #hospital</h3>
+        </a>
         <span class="grid-time lang-en" data-date-ad="2026-07-06T12:50:27.437Z" data-rel="en"><i class="fa-regular fa-clock"></i> <span class="grid-time-text"></span></span>
         <span class="grid-time lang-np" data-date-ad="2026-07-06T12:50:27.437Z" data-rel="np" style="display:none;"><i class="fa-regular fa-clock"></i> <span class="grid-time-text"></span></span>
       </div>
-    </a>
+    </div>
   
 
-    <a href="javascript:void(0)" class="video-open-link grid-card" data-embed="https://www.youtube.com/embed/rE3WjESe7uU" data-title="Why Jitgadhi Festival in Butwal? #butwaltoday #report #news #update #newpost" data-title-np="बुटवलमा जीतगढी उत्सव किन ? #butwaltoday #report #news #update #newpost">
-      <div class="grid-thumb">
-        <img src="https://img.youtube.com/vi/rE3WjESe7uU/hqdefault.jpg" alt="Why Jitgadhi Festival in Butwal? #butwaltoday #report #news #update #newpost" loading="lazy">
-        <span class="grid-play"><i class="fas fa-play"></i></span>
-      </div>
+    <div class="grid-card" data-cat="culture">
+      <a href="javascript:void(0)" class="video-open-link grid-thumb-link" data-embed="https://www.youtube.com/embed/rE3WjESe7uU" data-title="Why Jitgadhi Festival in Butwal? #butwaltoday #report #news #update #newpost" data-title-np="बुटवलमा जीतगढी उत्सव किन ? #butwaltoday #report #news #update #newpost">
+        <div class="grid-thumb">
+          <img src="https://img.youtube.com/vi/rE3WjESe7uU/hqdefault.jpg" alt="Why Jitgadhi Festival in Butwal? #butwaltoday #report #news #update #newpost" loading="lazy">
+          <span class="grid-play"><i class="fas fa-play"></i></span>
+        </div>
+      </a>
       <div class="grid-body">
-        <h3 class="grid-title lang-en">Why Jitgadhi Festival in Butwal? #butwaltoday #report #news #update #newpost</h3>
-        <h3 class="grid-title lang-np" style="display:none;">बुटवलमा जीतगढी उत्सव किन ? #butwaltoday #report #news #update #newpost</h3>
+        <a href="../pages/video.html?id=21" class="grid-title-link">
+          <h3 class="grid-title lang-en">Why Jitgadhi Festival in Butwal? #butwaltoday #report #news #update #newpost</h3>
+          <h3 class="grid-title lang-np" style="display:none;">बुटवलमा जीतगढी उत्सव किन ? #butwaltoday #report #news #update #newpost</h3>
+        </a>
         <span class="grid-time lang-en" data-date-ad="2026-07-06T12:48:31.657Z" data-rel="en"><i class="fa-regular fa-clock"></i> <span class="grid-time-text"></span></span>
         <span class="grid-time lang-np" data-date-ad="2026-07-06T12:48:31.657Z" data-rel="np" style="display:none;"><i class="fa-regular fa-clock"></i> <span class="grid-time-text"></span></span>
       </div>
-    </a>
+    </div>
   
 
-    <a href="javascript:void(0)" class="video-open-link grid-card" data-embed="https://www.youtube.com/embed/QWb4um_E6To" data-title="Jitgadhi Victory Celebration#butwaltoday #NewsUpdate #Reports #culture #government #army #program #police" data-title-np="जितगढीमा विजय उत्सव#butwaltoday #NewsUpdate #Reports #culture #government #army #program #police">
-      <div class="grid-thumb">
-        <img src="https://img.youtube.com/vi/QWb4um_E6To/hqdefault.jpg" alt="Jitgadhi Victory Celebration#butwaltoday #NewsUpdate #Reports #culture #government #army #program #police" loading="lazy">
-        <span class="grid-play"><i class="fas fa-play"></i></span>
-      </div>
+    <div class="grid-card" data-cat="entertainment">
+      <a href="javascript:void(0)" class="video-open-link grid-thumb-link" data-embed="https://www.youtube.com/embed/QWb4um_E6To" data-title="Jitgadhi Victory Celebration#butwaltoday #NewsUpdate #Reports #culture #government #army #program #police" data-title-np="जितगढीमा विजय उत्सव#butwaltoday #NewsUpdate #Reports #culture #government #army #program #police">
+        <div class="grid-thumb">
+          <img src="https://img.youtube.com/vi/QWb4um_E6To/hqdefault.jpg" alt="Jitgadhi Victory Celebration#butwaltoday #NewsUpdate #Reports #culture #government #army #program #police" loading="lazy">
+          <span class="grid-play"><i class="fas fa-play"></i></span>
+        </div>
+      </a>
       <div class="grid-body">
-        <h3 class="grid-title lang-en">Jitgadhi Victory Celebration#butwaltoday #NewsUpdate #Reports #culture #government #army #program #police</h3>
-        <h3 class="grid-title lang-np" style="display:none;">जितगढीमा विजय उत्सव#butwaltoday #NewsUpdate #Reports #culture #government #army #program #police</h3>
+        <a href="../pages/video.html?id=19" class="grid-title-link">
+          <h3 class="grid-title lang-en">Jitgadhi Victory Celebration#butwaltoday #NewsUpdate #Reports #culture #government #army #program #police</h3>
+          <h3 class="grid-title lang-np" style="display:none;">जितगढीमा विजय उत्सव#butwaltoday #NewsUpdate #Reports #culture #government #army #program #police</h3>
+        </a>
         <span class="grid-time lang-en" data-date-ad="2026-07-06T12:47:04.676Z" data-rel="en"><i class="fa-regular fa-clock"></i> <span class="grid-time-text"></span></span>
         <span class="grid-time lang-np" data-date-ad="2026-07-06T12:47:04.676Z" data-rel="np" style="display:none;"><i class="fa-regular fa-clock"></i> <span class="grid-time-text"></span></span>
       </div>
-    </a>
+    </div>
   
 
-    <a href="javascript:void(0)" class="video-open-link grid-card" data-embed="https://www.youtube.com/embed/CfB4mU8GbWQ" data-title="Mardi Himal | Tourist Destination | #mardihimal #marditrek #mountaineering #nature #placetovisit" data-title-np="मर्दी हिमाल | पर्यटकीय स्थल | #mardihimal #marditrek #mountaineering #nature #placetovisit">
-      <div class="grid-thumb">
-        <img src="https://img.youtube.com/vi/CfB4mU8GbWQ/hqdefault.jpg" alt="Mardi Himal | Tourist Destination | #mardihimal #marditrek #mountaineering #nature #placetovisit" loading="lazy">
-        <span class="grid-play"><i class="fas fa-play"></i></span>
-      </div>
+    <div class="grid-card" data-cat="tourism">
+      <a href="javascript:void(0)" class="video-open-link grid-thumb-link" data-embed="https://www.youtube.com/embed/CfB4mU8GbWQ" data-title="Mardi Himal | Tourist Destination | #mardihimal #marditrek #mountaineering #nature #placetovisit" data-title-np="मर्दी हिमाल | पर्यटकीय स्थल | #mardihimal #marditrek #mountaineering #nature #placetovisit">
+        <div class="grid-thumb">
+          <img src="https://img.youtube.com/vi/CfB4mU8GbWQ/hqdefault.jpg" alt="Mardi Himal | Tourist Destination | #mardihimal #marditrek #mountaineering #nature #placetovisit" loading="lazy">
+          <span class="grid-play"><i class="fas fa-play"></i></span>
+        </div>
+      </a>
       <div class="grid-body">
-        <h3 class="grid-title lang-en">Mardi Himal | Tourist Destination | #mardihimal #marditrek #mountaineering #nature #placetovisit</h3>
-        <h3 class="grid-title lang-np" style="display:none;">मर्दी हिमाल | पर्यटकीय स्थल | #mardihimal #marditrek #mountaineering #nature #placetovisit</h3>
+        <a href="../pages/video.html?id=18" class="grid-title-link">
+          <h3 class="grid-title lang-en">Mardi Himal | Tourist Destination | #mardihimal #marditrek #mountaineering #nature #placetovisit</h3>
+          <h3 class="grid-title lang-np" style="display:none;">मर्दी हिमाल | पर्यटकीय स्थल | #mardihimal #marditrek #mountaineering #nature #placetovisit</h3>
+        </a>
         <span class="grid-time lang-en" data-date-ad="2026-07-06T12:46:23.514Z" data-rel="en"><i class="fa-regular fa-clock"></i> <span class="grid-time-text"></span></span>
         <span class="grid-time lang-np" data-date-ad="2026-07-06T12:46:23.514Z" data-rel="np" style="display:none;"><i class="fa-regular fa-clock"></i> <span class="grid-time-text"></span></span>
       </div>
-    </a>
+    </div>
   
 
-    <a href="javascript:void(0)" class="video-open-link grid-card" data-embed="https://www.youtube.com/embed/0OaAsIW7MRM" data-title="FIFA suspends ANFA while World Cup is ongoing" data-title-np="विश्वकप चलिरहँदा फिफाले गर्यो एन्फालाई निलम्बन">
-      <div class="grid-thumb">
-        <img src="https://img.youtube.com/vi/0OaAsIW7MRM/hqdefault.jpg" alt="FIFA suspends ANFA while World Cup is ongoing" loading="lazy">
-        <span class="grid-play"><i class="fas fa-play"></i></span>
-      </div>
+    <div class="grid-card" data-cat="Sport">
+      <a href="javascript:void(0)" class="video-open-link grid-thumb-link" data-embed="https://www.youtube.com/embed/0OaAsIW7MRM" data-title="FIFA suspends ANFA while World Cup is ongoing" data-title-np="विश्वकप चलिरहँदा फिफाले गर्यो एन्फालाई निलम्बन">
+        <div class="grid-thumb">
+          <img src="https://img.youtube.com/vi/0OaAsIW7MRM/hqdefault.jpg" alt="FIFA suspends ANFA while World Cup is ongoing" loading="lazy">
+          <span class="grid-play"><i class="fas fa-play"></i></span>
+        </div>
+      </a>
       <div class="grid-body">
-        <h3 class="grid-title lang-en">FIFA suspends ANFA while World Cup is ongoing</h3>
-        <h3 class="grid-title lang-np" style="display:none;">विश्वकप चलिरहँदा फिफाले गर्यो एन्फालाई निलम्बन</h3>
+        <a href="../pages/video.html?id=17" class="grid-title-link">
+          <h3 class="grid-title lang-en">FIFA suspends ANFA while World Cup is ongoing</h3>
+          <h3 class="grid-title lang-np" style="display:none;">विश्वकप चलिरहँदा फिफाले गर्यो एन्फालाई निलम्बन</h3>
+        </a>
         <span class="grid-time lang-en" data-date-ad="2026-07-06T12:44:56.213Z" data-rel="en"><i class="fa-regular fa-clock"></i> <span class="grid-time-text"></span></span>
         <span class="grid-time lang-np" data-date-ad="2026-07-06T12:44:56.213Z" data-rel="np" style="display:none;"><i class="fa-regular fa-clock"></i> <span class="grid-time-text"></span></span>
       </div>
-    </a>
+    </div>
   
 
-    <a href="javascript:void(0)" class="video-open-link grid-card" data-embed="https://www.youtube.com/embed/g-wcfgJwj7Q" data-title="Iranian Supreme Leader Mojtaba Khamenei Did Not Participate Even in His Father&#39;s Funeral Ceremony" data-title-np="बुवाको शोक समारोहमा समेत सहभागी भएनन् इरानी सर्वोच्च नेता मोज्तबा खामेनी">
-      <div class="grid-thumb">
-        <img src="https://img.youtube.com/vi/g-wcfgJwj7Q/hqdefault.jpg" alt="Iranian Supreme Leader Mojtaba Khamenei Did Not Participate Even in His Father&#39;s Funeral Ceremony" loading="lazy">
-        <span class="grid-play"><i class="fas fa-play"></i></span>
-      </div>
+    <div class="grid-card" data-cat="international">
+      <a href="javascript:void(0)" class="video-open-link grid-thumb-link" data-embed="https://www.youtube.com/embed/g-wcfgJwj7Q" data-title="Iranian Supreme Leader Mojtaba Khamenei Did Not Participate Even in His Father&#39;s Funeral Ceremony" data-title-np="बुवाको शोक समारोहमा समेत सहभागी भएनन् इरानी सर्वोच्च नेता मोज्तबा खामेनी">
+        <div class="grid-thumb">
+          <img src="https://img.youtube.com/vi/g-wcfgJwj7Q/hqdefault.jpg" alt="Iranian Supreme Leader Mojtaba Khamenei Did Not Participate Even in His Father&#39;s Funeral Ceremony" loading="lazy">
+          <span class="grid-play"><i class="fas fa-play"></i></span>
+        </div>
+      </a>
       <div class="grid-body">
-        <h3 class="grid-title lang-en">Iranian Supreme Leader Mojtaba Khamenei Did Not Participate Even in His Father&#39;s Funeral Ceremony</h3>
-        <h3 class="grid-title lang-np" style="display:none;">बुवाको शोक समारोहमा समेत सहभागी भएनन् इरानी सर्वोच्च नेता मोज्तबा खामेनी</h3>
+        <a href="../pages/video.html?id=16" class="grid-title-link">
+          <h3 class="grid-title lang-en">Iranian Supreme Leader Mojtaba Khamenei Did Not Participate Even in His Father&#39;s Funeral Ceremony</h3>
+          <h3 class="grid-title lang-np" style="display:none;">बुवाको शोक समारोहमा समेत सहभागी भएनन् इरानी सर्वोच्च नेता मोज्तबा खामेनी</h3>
+        </a>
         <span class="grid-time lang-en" data-date-ad="2026-07-06T12:44:12.095Z" data-rel="en"><i class="fa-regular fa-clock"></i> <span class="grid-time-text"></span></span>
         <span class="grid-time lang-np" data-date-ad="2026-07-06T12:44:12.095Z" data-rel="np" style="display:none;"><i class="fa-regular fa-clock"></i> <span class="grid-time-text"></span></span>
       </div>
-    </a>
+    </div>
   
     </div>
     <div id="category-pagination"></div>
@@ -1732,7 +1768,7 @@ body.lang-active .lang-np-inline { display: inline !important; }
     }
   });
 
-  // Video modal click handler
+  // Video modal click handler (thumbnails only — titles navigate directly)
   document.addEventListener('click', function(e) {
     var link = e.target.closest('.video-open-link');
     if (!link) return;

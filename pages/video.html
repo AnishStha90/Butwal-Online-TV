@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <title>About Us | Butwal TV </title>
+  <title>Video | Butwal TV</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   
   <style>
@@ -248,7 +248,7 @@
 }
 
 </style>
-  <style>
+<style>
 
 :root {
   --footer-accent:      #F2B705;
@@ -369,120 +369,16 @@ body.lang-active .lang-np-inline { display: inline !important; }
 
 </style>
   <style>
-    *, *::before, *::after { box-sizing: border-box }
-    html { scroll-behavior: smooth }
-    body {
-      overflow-x: hidden; margin: 0; padding: 0;
-      min-height: 100vh; display: flex; flex-direction: column;
-      background: #1C1C1C;
-      color: #F0EBE0;
-      font-family: serif;
-    }
-    main { flex: 1 }
-    img, video { max-width: 100%; height: auto }
-    header, .site-header, #site-header {
-      max-height: none !important;
-      overflow: visible !important;
-    }
-    header img { max-height: 48px !important; width: auto !important }
-    @media (max-width: 768px) { header, .site-header { max-height: 60px !important } }
-    .lang-np { display: none }
-    .lang-en { display: inline }
-    div.lang-en, p.lang-en, section.lang-en,
-    h1.lang-en, h2.lang-en, h3.lang-en, h4.lang-en { display: block }
-    div.lang-np, p.lang-np, section.lang-np,
-    h1.lang-np, h2.lang-np, h3.lang-np, h4.lang-np { display: none }
+    *,*::before,*::after{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{overflow-x:hidden;margin:0;padding:0;min-height:100vh;display:flex;flex-direction:column;
+         background:#FFFFFF;color:#1D1D1D;font-family:'Hind Siliguri',sans-serif}
+    main{flex:1} img,video,iframe{max-width:100%;height:auto}
   </style>
-  <style id="about-guaranteed">
-  .about-page { background: var(--bg) !important; color: var(--text) !important; overflow-x: hidden }
-  .about-hero {
-    background: var(--primary) !important;
-    color: var(--primary-on) !important;
-    padding: 5rem 2rem 4rem !important;
-    text-align: center;
-    position: relative;
-    overflow: hidden;
-    box-sizing: border-box;
-  }
-  .about-hero h1 {
-    font-family: var(--font-heading);
-    font-size: clamp(2rem, 5vw, 3.5rem);
-    font-weight: 700;
-    margin: 0 0 1rem;
-  }
-  .about-hero p {
-    font-size: clamp(1rem, 2vw, 1.2rem);
-    opacity: 0.85;
-    max-width: 600px;
-    margin: 0 auto;
-  }
-  .story-section { padding: 4rem 2rem !important; box-sizing: border-box; }
-  .story-layout { display: flex !important; gap: 3rem; align-items: center; max-width: 1280px; margin: 0 auto; }
-  .story-image { flex: 1; border-radius: 12px; overflow: hidden; }
-  .story-image img { width: 100% !important; height: auto !important; display: block; }
-  .story-content { flex: 1; }
-  .split-wrapper {
-    display: flex !important;
-    align-items: flex-start;
-    width: 100%;
-    max-width: 1280px;
-    margin: 0 auto;
-    gap: 2rem;
-    padding: 0 2rem;
-    box-sizing: border-box;
-  }
-  .split-main { flex: 0 0 60% !important; min-width: 0; }
-  .split-sidebar {
-    flex: 0 0 40% !important;
-    min-width: 0;
-    position: sticky;
-    top: 2rem;
-    align-self: flex-start;
-    max-height: none !important;
-    overflow: visible !important;
-    overflow-y: visible !important;
-  }
-  /* ── News content was removed upstream — .split-sidebar no longer
-     exists in the DOM in most cases (stripped by cleanMainHtml), but
-     keep this as a safety net for any edge case where an empty
-     sidebar div still slips through. ── */
-  .split-sidebar:empty { display: none !important; }
-  .split-wrapper:has(.split-sidebar:empty) .split-main,
-  .split-wrapper:not(:has(.split-sidebar)) .split-main {
-    flex: 1 1 100% !important;
-  }
-  .news-sidebar { max-height: none !important; overflow: visible !important; }
-  ul.news-feed-list:not([data-filled]) { display: none !important; }
-  a.news-sidebar-more:empty { display: none !important; }
-  nav[class*="mobile"], nav[class*="bottom"], nav[class*="tab-bar"],
-  div[class*="mobile-nav"], div[class*="bottom-nav"], div[class*="mobile-bar"],
-  div[class*="tab-bar"], div[class*="bottom-bar"],
-  div[id*="mobile-nav"], div[id*="bottom-nav"] {
-    display: none !important;
-  }
-  .about-cta,
-  .cta-section { background: var(--accent) !important; color: var(--accent-on) !important; padding: 4rem 2rem; text-align: center; box-sizing: border-box; }
-  .cta-section__inner { max-width: 700px; margin: 0 auto; text-align: center; }
-  .fade-in { opacity: 0; transform: translateY(28px); transition: opacity .55s ease, transform .55s ease }
-  .fade-in.visible { opacity: 1; transform: translateY(0) }
-  .lang-np { display: none }
-  .lang-en { display: inline }
-  @media (max-width: 768px) {
-    .split-wrapper { flex-direction: column !important; padding: 0 1rem; }
-    .split-main,
-    .split-sidebar { flex: 1 1 100% !important; width: 100% !important; }
-    .split-sidebar { position: static !important; max-height: none !important; overflow: visible !important; }
-    .story-layout { flex-direction: column !important; }
-    .about-hero { padding: 3rem 1.25rem 2.5rem !important; }
-    .story-section { padding: 2rem 1rem !important; }
-    .news-sidebar { border-left: none !important; border-top: 2px solid var(--border); margin-top: 1rem; }
-  }
-  @media (max-width: 480px) {
-    .about-hero, .cta-section { padding: 2rem 1rem !important; }
-  }
-
-  /* ── Push main/footer clear of the fixed sidebar ── */
-  body > main.about-page-main,
+  <style id="video-guaranteed">
+  .page-container { max-width: none !important; width: 100% !important; margin: 0 !important; padding: 0 28px !important; box-sizing: border-box !important; }
+  @media (max-width: 480px) { .page-container { padding: 0 16px !important; } }
+  body > main.video-page-main,
   body > footer#site-footer {
     margin-left: var(--bt-sidebar-w, 264px) !important;
     margin-right: 0 !important;
@@ -490,22 +386,19 @@ body.lang-active .lang-np-inline { display: inline !important; }
     transition: margin-left .25s ease !important;
     box-sizing: border-box !important;
   }
-  body.bt-sidebar-collapsed > main.about-page-main,
+  body.bt-sidebar-collapsed > main.video-page-main,
   body.bt-sidebar-collapsed > footer#site-footer {
     margin-left: var(--bt-sidebar-w-collapsed, 76px) !important;
   }
   @media (max-width: 900px) {
-    body > main.about-page-main,
-    body > footer#site-footer {
-      margin-left: 0 !important;
-      margin-right: 0 !important;
-    }
+    body > main.video-page-main, body > footer#site-footer { margin-left: 0 !important; margin-right: 0 !important; }
   }
-
-  /* ── This page has no video hero, so collapse the forced height
-     reserved for it on the homepage ── */
   #bt-header { min-height: auto !important; }
   #bt-header .bt-main { min-height: auto !important; }
+  .lang-en { display: inline !important; }
+  .lang-np { display: none !important; }
+  body.lang-active .lang-en { display: none !important; }
+  body.lang-active .lang-np { display: inline !important; }
 </style>
 </head>
 <body>
@@ -631,180 +524,42 @@ body.lang-active .lang-np-inline { display: inline !important; }
 
 
 </header>
-  <main class="about-page-main">
-    <div  class="about-page">
-  <style>
-    
-  </style>
-  
-  <section class="about-hero">
-    <div class="about-hero__inner" data-slot="hero">
-<div class="fade-in">
-  <h1 style="font-family:var(--font-heading);font-size:clamp(2rem,5vw,3.5rem);
-      font-weight:700;margin:0 0 1rem;">
-    <span class="lang-en">Butwal TV</span>
-    <span class="lang-np">Butwal TV</span>
-  </h1>
-  <p style="font-size:clamp(1rem,2vw,1.2rem);opacity:.85;max-width:600px;margin:0 auto;">
-    <span class="lang-en">Reliable News. Regional Roots. National Perspective.</span>
-    <span class="lang-np">विश्वसनीय समाचार। क्षेत्रीय जरा। राष्ट्रिय परिप्रेक्ष्य।</span>
-  </p>
-</div></div>
-  </section>
-  <section class="story-section">
-    <div class="story-layout">
-      <div class="story-image" data-slot="story-image">
-        <img src="../images/about.jpg" alt="" id="aboutStoryImage">
+  <main class="video-page-main"><div id="video-detail-page" class="page-container">
+  <div id="vd-loading" style="padding:3rem;text-align:center;color:var(--muted,#666)">
+    <span class="lang-en">Loading video…</span><span class="lang-np" style="display:none">भिडियो लोड हुँदैछ…</span>
+  </div>
+
+  <article id="vd-article" style="display:none;max-width:960px;margin:0 auto;padding:1.5rem 0 3rem;">
+
+    <h1 id="vd-title" style="font-size:1.5rem;font-weight:800;line-height:1.35;margin:0 0 .75rem;color:var(--text,#1a1a1a);"></h1>
+
+    <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:.75rem;padding-bottom:1rem;margin-bottom:1rem;border-bottom:1px solid var(--border,#e0e0e0);">
+      <div style="display:flex;align-items:center;gap:.6rem;font-size:.85rem;color:var(--muted,#666);">
+        <img src="../images/logo1.png" alt="" style="width:26px;height:26px;border-radius:50%;object-fit:cover;" onerror="this.style.display='none'">
+        <span id="vd-author" style="font-weight:600;color:var(--text,#1a1a1a);"></span>
+        <span><i class="fa-regular fa-clock"></i> <span id="vd-date"></span></span>
       </div>
-      <div class="story-content" data-slot="story-content">
-<div class="fade-in">
-  <h2 style="font-family:var(--font-heading);font-size:clamp(1.5rem,3vw,2.2rem);
-      font-weight:700;color:var(--primary);margin:0 0 1.5rem;">
-    <span class="lang-en">About Us</span>
-    <span class="lang-np">हाम्रो बारेमा</span>
-  </h2>
-  <div class="lang-en">
-    <p style="line-height:1.75;margin-bottom:1rem;">Butwal Today Online TV is the official digital video and online television platform operated by Butwal Publication Pvt. Ltd., based in Butwal-6, Rupandehi, Nepal. It delivers news bulletins, interviews, reports, highlights, and feature stories focusing on Lumbini Province while also covering national and international affairs. The organization also operates the Butwal Today National Daily newspaper and its digital news portal.</p>
-    <p style="margin-bottom:.6rem;">
-      <strong>📅 Established:</strong>
-      <span class="date-display" data-date-ad="2017-12-10" data-mode="en">2017-12-10</span>
-    </p>
-    <p style="margin-bottom:.6rem;">
-      <strong>📍 Address:</strong> Butwal-6, Tilottam Path, Rupandehi
-    </p>
-    <p style="margin-bottom:.6rem;">
-      <strong>📞 Phone:</strong> 071-554640
-    </p>
-    <p style="margin-bottom:.6rem;">
-      <strong>✉️ Email:</strong> butwaltodaytv@gmail.com
-    </p>
-  </div>
-  <div class="lang-np">
-    <p style="line-height:1.75;margin-bottom:1rem;">बुटवल टुडे अनलाइन टिभी बुटवल पब्लिकेशन प्रा. लि. द्वारा सञ्चालित आधिकारिक डिजिटल भिडियो तथा अनलाइन टेलिभिजन प्लेटफर्म हो, जुन बुटवल-६, रुपन्देही, नेपालमा आधारित छ। यसले लुम्बिनी प्रदेशमा केन्द्रित रही राष्ट्रिय तथा अन्तर्राष्ट्रिय विषयहरूका साथै समाचार बुलेटिन, अन्तर्वार्ता, प्रतिवेदन, मुख्य समाचार तथा विशेष कथाहरू प्रदान गर्दछ। यस संस्थाले बुटवल टुडे राष्ट्रिय दैनिक पत्रिका तथा यसको डिजिटल समाचार पोर्टल पनि सञ्चालन गर्दछ।</p>
-    <p style="margin-bottom:.6rem;">
-      <strong>📅 स्थापना:</strong>
-      <span class="date-display" data-date-ad="2017-12-10" data-mode="np">2017-12-10</span>
-    </p>
-    <p style="margin-bottom:.6rem;">
-      <strong>📍 ठेगाना:</strong> बुटवल–६, तिलोत्तमपथ, रुपन्देही
-    </p>
-    <p style="margin-bottom:.6rem;">
-      <strong>📞 फोन:</strong> ०७१-५५४६४०
-    </p>
-    <p style="margin-bottom:.6rem;">
-      <strong>✉️ इमेल:</strong> butwaltodaytv@gmail.com
-    </p>
-  </div>
-</div></div>
-    </div>
-  </section>
-  <div class="split-wrapper">
-    <div class="split-main">
-      <section class="stats-section about-section" data-slot="stats">
-<div style="display:flex;flex-direction:column;gap:0;">
-  
-<div style="margin-bottom:2rem;padding:1.5rem;background:var(--bg);
-    border-radius:12px;border:1px solid var(--border);">
-  <h3 style="font-family:var(--font-heading);font-size:1.3rem;font-weight:700;
-      color:var(--primary);margin:0 0 1.5rem;text-align:center;">
-    <span class="lang-en">Quick Stats</span>
-    <span class="lang-np">तथ्यांक</span>
-  </h3>
-  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:1rem;">
-    <div style="text-align:center;padding:1rem;background:var(--surface);border-radius:8px;">
-      <div style="font-size:1.8rem;">📅</div>
-      <div style="font-size:1.1rem;font-weight:700;color:var(--primary);margin:.4rem 0;">
-        <span class="lang-en">
-          <span class="date-display" data-date-ad="2017-12-10" data-mode="en">2017-12-10</span>
-        </span>
-        <span class="lang-np">
-          <span class="date-display" data-date-ad="2017-12-10" data-mode="np">2017-12-10</span>
-        </span>
+      <div style="display:flex;gap:.5rem;">
+        <a id="vd-share-fb" href="#" target="_blank" rel="noopener" style="width:34px;height:34px;border-radius:50%;background:#1877F2;color:#fff;display:flex;align-items:center;justify-content:center;text-decoration:none;"><i class="fa-brands fa-facebook-f"></i></a>
+        <a id="vd-share-wa" href="#" target="_blank" rel="noopener" style="width:34px;height:34px;border-radius:50%;background:#25D366;color:#fff;display:flex;align-items:center;justify-content:center;text-decoration:none;"><i class="fa-brands fa-whatsapp"></i></a>
+        <a id="vd-share-x" href="#" target="_blank" rel="noopener" style="width:34px;height:34px;border-radius:50%;background:#000;color:#fff;display:flex;align-items:center;justify-content:center;text-decoration:none;"><i class="fa-brands fa-x-twitter"></i></a>
       </div>
-      <div class="lang-en" style="font-size:.75rem;color:var(--muted);">Established</div>
-      <div class="lang-np" style="font-size:.75rem;color:var(--muted);">स्थापना</div>
-    </div>
-    <div style="text-align:center;padding:1rem;background:var(--surface);border-radius:8px;">
-      <div style="font-size:1.8rem;">📻</div>
-      <div style="font-size:1.2rem;font-weight:700;color:var(--primary);margin:.4rem 0;">24/7</div>
-      <div class="lang-en" style="font-size:.75rem;color:var(--muted);">Live Broadcast</div>
-      <div class="lang-np" style="font-size:.75rem;color:var(--muted);">प्रत्यक्ष प्रसारण</div>
-    </div>
-  </div>
-</div>
-  
-<div style="margin-bottom:2rem;padding:1.5rem;background:var(--bg);
-    border-radius:12px;border:1px solid var(--border);">
-  <h3 style="font-family:var(--font-heading);font-size:1.3rem;font-weight:700;
-      color:var(--primary);margin:0 0 1rem;text-align:center;">
-    <span class="lang-en">Our Mission</span>
-    <span class="lang-np">हाम्रो मिसन</span>
-  </h3>
-  <p style="line-height:1.7;font-size:.95rem;margin:0;" class="lang-en">
-    To deliver accurate, timely, and impartial news and information, educate and inform the public, promote social awareness, and connect communities through responsible journalism and digital media.
-  </p>
-  <p style="line-height:1.7;font-size:.95rem;margin:0;" class="lang-np">
-    टु डेलिभर एक्युरेट, टाइम्ली, एन्ड इम्पार्सियल न्युज एन्ड इन्फर्मेसन, एजुकेट एन्ड इन्फर्म द पब्लिक, प्रमोट सोसल अवेयरनेस, एन्ड कनेक्ट कम्युनिटिज थ्रु रेस्पोन्सिबल जर्नालिज्म एन्ड डिजिटल मिडिया।
-  </p>
-</div>
-  
-<div style="margin-bottom:2rem;padding:1.5rem;background:var(--bg);
-    border-radius:12px;border:1px solid var(--border);">
-  <h3 style="font-family:var(--font-heading);font-size:1.3rem;font-weight:700;
-      color:var(--primary);margin:0 0 1rem;text-align:center;">
-    <span class="lang-en">Our Vision</span>
-    <span class="lang-np">हाम्रो दृष्टिकोण</span>
-  </h3>
-  <p style="line-height:1.7;font-size:.95rem;margin:0;" class="lang-en">
-    To become a trusted and influential digital news platform that empowers citizens with reliable information while contributing to Nepal&#39;s social development, unity, and democratic values through quality journalism.
-  </p>
-  <p style="line-height:1.7;font-size:.95rem;margin:0;" class="lang-np">
-    टु बन्न एउटा भरपर्दो र प्रभावशाली डिजिटल न्युज प्लेटफर्म जसले नागरिकहरूलाई विश्वसनीय सूचनाको साथ सशक्त बनाउँदै नेपालको सामाजिक विकास, एकता र लोकतान्त्रिक मूल्यहरूमा गुणस्तरीय पत्रकारितामार्फत योगदान पुर्‍याउन।
-  </p>
-</div>
-  
-<div style="margin-bottom:3rem;padding:1.5rem;background:var(--bg);
-    border-radius:12px;border:1px solid var(--border);">
-  <h3 style="font-family:var(--font-heading);font-size:1.3rem;font-weight:700;
-      color:var(--primary);margin:0 0 1rem;text-align:center;">
-    <span class="lang-en">Connect With Us</span>
-    <span class="lang-np">हामीसँग जोडिनुहोस्</span>
-  </h3>
-  <div style="display:flex;flex-wrap:wrap;gap:.75rem;
-      align-items:center;justify-content:center;">
-    
-  </div>
-</div>
-</div></section>
     </div>
 
-      </div>
+    <div style="position:relative;width:100%;padding-top:56.25%;background:#000;border-radius:8px;overflow:hidden;">
+      <iframe id="vd-frame" src="" title="" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;border:0;"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+    </div>
+
+  </article>
+
+  <div id="vd-notfound" style="display:none;padding:4rem 2rem;text-align:center;color:var(--muted,#666);">
+    <i class="fa-regular fa-face-frown" style="font-size:2.5rem;display:block;margin-bottom:1rem;"></i>
+    <span class="lang-en">Video not found.</span><span class="lang-np" style="display:none">भिडियो फेला परेन।</span>
   </div>
-  <section class="cta-section">
-    <div class="cta-section__inner" data-slot="cta">
-<div class="fade-in">
-  <h2 style="font-family:var(--font-heading);font-size:clamp(1.5rem,3vw,2.2rem);
-      font-weight:700;margin:0 0 1rem;">
-    <span class="lang-en">Stay Updated</span>
-    <span class="lang-np">सूचित रहनुहोस्</span>
-  </h2>
-  <p class="lang-en" style="opacity:.85;margin-bottom:1.5rem;">
-    Subscribe to our newsletter for the latest updates and programs.
-  </p>
-  <p class="lang-np" style="opacity:.85;margin-bottom:1.5rem;">
-    नवीनतम अपडेट र कार्यक्रमहरूको लागि हाम्रो न्यूजलेटरमा सदस्यता लिनुहोस्।
-  </p>
-  <form id="newsletterForm">
-    <input type="email" name="email" class="newsletter-input"
-      placeholder="your@email.com">
-    <button type="submit" class="newsletter-btn">
-      <span class="lang-en">Subscribe</span>
-      <span class="lang-np">सदस्यता लिनुहोस्</span>
-    </div></div></div>
-  </section>
-  
 </div>
-  </main>
+
+</main>
   <footer id="site-footer">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
@@ -852,9 +607,7 @@ body.lang-active .lang-np-inline { display: inline !important; }
       <p><span class="lang-en-inline">Phone - <strong>071-554640</strong></span><span class="lang-np-inline">फोन - <strong>०७१-५५४६४०</strong></span></p>
       <p>Email - <a href="mailto:butwaltodaytv@gmail.com">butwaltodaytv@gmail.com</a></p>
     </div>
-    <div class="footer-col">
-      
-    </div>
+    
   </div>
 
   <div class="footer-divider"></div>
@@ -867,6 +620,7 @@ body.lang-active .lang-np-inline { display: inline !important; }
     <span class="developer"></span>
   </div>
 </footer>
+
 <div class="wa-widget">
   <div class="wa-tooltip"><span class="lang-en-inline">Chat on WhatsApp</span><span class="lang-np-inline">WhatsApp मा सम्पर्क</span></div>
   <a href="https://wa.me/9779749844080?text=Hello!%20I%20have%20a%20query%20about%20Butwal%20TV" target="_blank" rel="noopener noreferrer" class="wa-fab" aria-label="Chat on WhatsApp"><i class="fab fa-whatsapp"></i></a>
@@ -876,17 +630,12 @@ body.lang-active .lang-np-inline { display: inline !important; }
   function initOffset() {
     var sidebar = document.getElementById('bt-sidebar');
     if (!sidebar) return;
-    function sync() {
-      document.body.classList.toggle('bt-sidebar-collapsed', sidebar.classList.contains('collapsed'));
-    }
+    function sync() { document.body.classList.toggle('bt-sidebar-collapsed', sidebar.classList.contains('collapsed')); }
     sync();
     new MutationObserver(sync).observe(sidebar, { attributes: true, attributeFilter: ['class'] });
   }
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initOffset);
-  } else {
-    initOffset();
-  }
+  if (document.readyState === 'loading') { document.addEventListener('DOMContentLoaded', initOffset); }
+  else { initOffset(); }
 })();
 </script>
   <script>
@@ -992,282 +741,76 @@ body.lang-active .lang-np-inline { display: inline !important; }
 })();
 
 </script>
-  <script>
-(function () {
-  'use strict';
-  var STORAGE_KEY = 'fm_lang';
-  var INLINE_TAGS = new Set(['SPAN','A','I','B','STRONG','SMALL','EM','BUTTON','LABEL','TIME']);
+<script>
+(function(){
+  var VIDEOS = {"0":{"title":"Today's News | Nepali News | Today's Main News | 21 Ashar 2083 | Butwal Today News","titleNp":"आजको समाचार | नेपाली समाचार | आजको मुख्य समाचार | २१ असार २०८३ | बुटवल टुडे समाचार","embed":"https://www.youtube.com/embed/NqfOzqN6KqA","youtubeLink":"https://youtu.be/NqfOzqN6KqA","thumb":"https://img.youtube.com/vi/NqfOzqN6KqA/hqdefault.jpg","category":"News","categoryNp":"समाचार","date":"2026-07-05T16:30:32.825Z","author":"Butwal Today Online TV"},"6":{"title":"WEATHER UPDATE | Weather Forecast | 2083 Asar 21 Aaitabaar | 5 Jul, 2026 |","titleNp":"मौसम अपडेट | आजको मौसम पूर्वानुमान | २०८३ असार २१ आइतबार | 5 Jul, 2026 |","embed":"https://www.youtube.com/embed/rsW3LF4IgdM","youtubeLink":"https://youtu.be/rsW3LF4IgdM","thumb":"https://img.youtube.com/vi/rsW3LF4IgdM/hqdefault.jpg","category":"Nepal Update","categoryNp":"नेपाल अपडेट","date":"2026-07-05T16:27:40.867Z","author":"Butwal Today Online TV"},"7":{"title":"Today's Newspaper News | 21 Asar 2083, Sunday | published from Butwal |","titleNp":"आजका पत्रपत्रिका | २१ असार २०८३, आइतवार | बुटवलबाट प्रकाशित |","embed":"https://www.youtube.com/embed/FdAJHTmq9Zs","youtubeLink":"https://youtu.be/FdAJHTmq9Zs","thumb":"https://img.youtube.com/vi/FdAJHTmq9Zs/hqdefault.jpg","category":"Newspapers","categoryNp":"पत्रपत्रिका","date":"2026-07-05T16:28:43.273Z","author":"Butwal Today Online TV"},"8":{"title":"Extreme Torture in Butwal Correctional Home, Young Woman on Ventilator, 4 Suspects Arrested | BUTWAL KHABAR |","titleNp":"बुटवलको सुधार गृहमा चरम यातना, युवती भेन्टिलेटरमा, ४ आरोपी पक्राउ | बुटवल खबर |","embed":"https://www.youtube.com/embed/d61Hm4CINSE","youtubeLink":"https://youtu.be/d61Hm4CINSE","thumb":"https://img.youtube.com/vi/d61Hm4CINSE/hqdefault.jpg","category":"Butwal News","categoryNp":"बुटवल खबर","date":"2026-07-05T16:33:46.049Z","author":"Butwal Today Online TV"},"9":{"title":"HIGHLIGHTS NEWS | बुटवल हाइलाइट | २० Asar 2083, Saturday","titleNp":"हाइलाइट्स समाचार | बुटवल हाइलाइट | २० असार २०८३, शनिवार","embed":"https://www.youtube.com/embed/zwBQ7fQjKZ0","youtubeLink":"https://youtu.be/zwBQ7fQjKZ0","thumb":"https://img.youtube.com/vi/zwBQ7fQjKZ0/hqdefault.jpg","category":"Highlights","categoryNp":"हाइलाइट्स","date":"2026-07-05T16:35:39.847Z","author":"Butwal Today Online TV"},"12":{"title":"Claim: The Slope of Daunne Road Will Last More Than 30 Years","titleNp":"दाबी: डाउन्ने सडकको ढलान ३० वर्षभन्दा बढी टिक्नेछ","embed":"https://www.youtube.com/embed/OcnhVrVb6yE","youtubeLink":"https://www.youtube.com/shorts/OcnhVrVb6yE?feature=share","thumb":"https://img.youtube.com/vi/OcnhVrVb6yE/hqdefault.jpg","category":"Shorts","categoryNp":"शर्ट्स","date":"2026-07-05T17:18:15.363Z","author":"Butwal Today Online TV"},"14":{"title":"Iranian Supreme Leader Mojtaba Khamenei Did Not Participate Even in His Father's Mourning Ceremony","titleNp":"बुवाको शोक समारोहमा समेत सहभागी भएनन् इरानी सर्वोच्च नेता मोज्तबा खामेनी","embed":"https://www.youtube.com/embed/g-wcfgJwj7Q","youtubeLink":"https://www.youtube.com/shorts/g-wcfgJwj7Q?feature=share","thumb":"https://img.youtube.com/vi/g-wcfgJwj7Q/hqdefault.jpg","category":"Shorts","categoryNp":"शर्ट्स","date":"2026-07-05T18:29:15.677Z","author":"Butwal Today Online TV"},"15":{"title":"HILIGHTS NEWS | Butwal Highlights | 21 Asar 2083, Aaitabaar | #NewsUpdate #hilights #PoliticalNews #economy","titleNp":"हाइलाइट्स न्युज | बुटवल हाइलाइट | २१ असार २०८३, आइतवार | #NewsUpdate #hilights #PoliticalNews #economy","embed":"https://www.youtube.com/embed/g8FW28-dG2s","youtubeLink":"https://youtu.be/g8FW28-dG2s","thumb":"https://img.youtube.com/vi/g8FW28-dG2s/hqdefault.jpg","category":"Highlights","categoryNp":"हाइलाइट्स","date":"2026-07-05T22:26:34.698Z","author":"Butwal Today Online TV"},"16":{"title":"Iranian Supreme Leader Mojtaba Khamenei Did Not Participate Even in His Father's Funeral Ceremony","titleNp":"बुवाको शोक समारोहमा समेत सहभागी भएनन् इरानी सर्वोच्च नेता मोज्तबा खामेनी","embed":"https://www.youtube.com/embed/g-wcfgJwj7Q","youtubeLink":"https://youtu.be/g-wcfgJwj7Q","thumb":"https://img.youtube.com/vi/g-wcfgJwj7Q/hqdefault.jpg","category":"international","categoryNp":"अन्तर्राष्ट्रिय","date":"2026-07-06T12:44:12.095Z","author":"Butwal Today Online TV"},"17":{"title":"FIFA suspends ANFA while World Cup is ongoing","titleNp":"विश्वकप चलिरहँदा फिफाले गर्यो एन्फालाई निलम्बन","embed":"https://www.youtube.com/embed/0OaAsIW7MRM","youtubeLink":"https://youtu.be/0OaAsIW7MRM","thumb":"https://img.youtube.com/vi/0OaAsIW7MRM/hqdefault.jpg","category":"Sport","categoryNp":"खेल","date":"2026-07-06T12:44:56.213Z","author":"Butwal Today Online TV"},"18":{"title":"Mardi Himal | Tourist Destination | #mardihimal #marditrek #mountaineering #nature #placetovisit","titleNp":"मर्दी हिमाल | पर्यटकीय स्थल | #mardihimal #marditrek #mountaineering #nature #placetovisit","embed":"https://www.youtube.com/embed/CfB4mU8GbWQ","youtubeLink":"https://youtu.be/CfB4mU8GbWQ","thumb":"https://img.youtube.com/vi/CfB4mU8GbWQ/hqdefault.jpg","category":"tourism","categoryNp":"पर्यटन","date":"2026-07-06T12:46:23.514Z","author":"Butwal Today Online TV"},"19":{"title":"Jitgadhi Victory Celebration#butwaltoday #NewsUpdate #Reports #culture #government #army #program #police","titleNp":"जितगढीमा विजय उत्सव#butwaltoday #NewsUpdate #Reports #culture #government #army #program #police","embed":"https://www.youtube.com/embed/QWb4um_E6To","youtubeLink":"https://youtu.be/QWb4um_E6To","thumb":"https://img.youtube.com/vi/QWb4um_E6To/hqdefault.jpg","category":"entertainment","categoryNp":"मनोरञ्जन","date":"2026-07-06T12:47:04.676Z","author":"Butwal Today Online TV"},"20":{"title":"Shikshyalaya | Nayagaun School excels in Sajitama","titleNp":"शिक्षालय | नजितामा अब्बल बन्दै नयाँगाउँ मा.वि बुटवल","embed":"https://www.youtube.com/embed/d8toB0cpIvY","youtubeLink":"https://youtu.be/d8toB0cpIvY","thumb":"https://img.youtube.com/vi/d8toB0cpIvY/hqdefault.jpg","category":"education","categoryNp":"शिक्षा","date":"2026-07-06T12:47:44.822Z","author":"Butwal Today Online TV"},"21":{"title":"Why Jitgadhi Festival in Butwal? #butwaltoday #report #news #update #newpost","titleNp":"बुटवलमा जीतगढी उत्सव किन ? #butwaltoday #report #news #update #newpost","embed":"https://www.youtube.com/embed/rE3WjESe7uU","youtubeLink":"https://youtu.be/rE3WjESe7uU","thumb":"https://img.youtube.com/vi/rE3WjESe7uU/hqdefault.jpg","category":"culture","categoryNp":"संस्कृति","date":"2026-07-06T12:48:31.657Z","author":"Butwal Today Online TV"},"22":{"title":"Triage system introduced at Butwal's Lumbini Provincial Hospital #butwaltodaytv #lumbini_nepal #hospital","titleNp":"बुटवलको लुम्बिनी प्रादेशिक अस्पतालमा ‘ट्रयाज प्रणाली’ सुरु #butwaltodaytv #lumbini_nepal #hospital","embed":"https://www.youtube.com/embed/K09NrWJEfLg","youtubeLink":"https://youtu.be/K09NrWJEfLg","thumb":"https://img.youtube.com/vi/K09NrWJEfLg/hqdefault.jpg","category":"health","categoryNp":"स्वास्थ्य","date":"2026-07-06T12:50:27.437Z","author":"Butwal Today Online TV"},"23":{"title":"HILIGHTS NEWS | Butwal Highlight | 20 Asar 2083, Saturday | #NewsUpdate #PoliticalNews #economy","titleNp":"हाइलाइट्स न्युज | बुटवल हाइलाइट | २० असार २०८३, शनिवार | #NewsUpdate #PoliticalNews #economy","embed":"https://www.youtube.com/embed/zwBQ7fQjKZ0","youtubeLink":"https://youtu.be/zwBQ7fQjKZ0","thumb":"https://img.youtube.com/vi/zwBQ7fQjKZ0/hqdefault.jpg","category":"Highlights","categoryNp":"उच्चलाइटहरू","date":"2026-07-06T13:20:27.403Z","author":"Butwal Today Online TV"},"24":{"title":"Today's Horoscope for These Zodiac Signs | July 06, 2026 | Monday | Jul 06, 2026 | #rashifal","titleNp":"आज यी राशिहरुकाे लागि शुभ, हेर्नुहाेस् राशिफल | २०८३ असार २२ गते सोमबार | Jul 06, 2026 | #rashifal","embed":"https://www.youtube.com/embed/eSp65pTgHzk","youtubeLink":"https://youtu.be/eSp65pTgHzk","thumb":"https://img.youtube.com/vi/eSp65pTgHzk/hqdefault.jpg","category":"Horoscope","categoryNp":"राशिफल","date":"2026-07-06T13:22:10.572Z","author":"Butwal Today Online TV"},"25":{"title":"Extreme torture at Butwal reform home, girl in ventilator, 4 accused arrested | BUTWAL KHABAR |","titleNp":"बुटवलको सुधार गृहमा चरम यातना, युवती भेन्टिलेटरमा, ४ आरोपी पक्राउ | बुटवल खबर |","embed":"https://www.youtube.com/embed/d61Hm4CINSE","youtubeLink":"https://youtu.be/d61Hm4CINSE","thumb":"https://img.youtube.com/vi/d61Hm4CINSE/hqdefault.jpg","category":"Butwal Khabar","categoryNp":"बुटवल खबर","date":"2026-07-06T13:31:39.239Z","author":"Butwal Today Online TV"},"26":{"title":"Ticket to Modeling Journey: Grishma Paudel | JIVAN KATHA | #interview","titleNp":"टिकटबाट मोडलिङ यात्रामा ग्रीष्मा पौडेल | जीवन कथा | #interview","embed":"https://www.youtube.com/embed/AS-u4BhF3aw","youtubeLink":"https://youtu.be/AS-u4BhF3aw","thumb":"https://img.youtube.com/vi/AS-u4BhF3aw/hqdefault.jpg","category":"Life Story","categoryNp":"जीवन कथा","date":"2026-07-06T13:36:15.618Z","author":"Butwal Today Online TV"},"27":{"title":"Who lives in the buildings of the Butwal Road Division? | NIGRANI | #rupandehi #butwal #governmentoffice","titleNp":"को बस्छ सडक डिभिजन बुटवलका भवनमा ? | NIGRANI | #rupandehi #butwal #governmentoffice","embed":"https://www.youtube.com/embed/9v_zwcIzbDA","youtubeLink":"https://youtu.be/9v_zwcIzbDA","thumb":"https://img.youtube.com/vi/9v_zwcIzbDA/hqdefault.jpg","category":"Monitoring","categoryNp":"निगरानी","date":"2026-07-06T13:37:16.152Z","author":"Butwal Today Online TV"},"28":{"title":"I am a servant, vote after seeing my work: Basudev Ghimire | Butwal Debate","titleNp":"म सेवक हुँ, काम हेरेर भोट दिनुस् : वासुदेव घिमिरे । बुटवल बहसमा ।","embed":"https://www.youtube.com/embed/JX65hepjy4A","youtubeLink":"https://youtu.be/JX65hepjy4A","thumb":"https://img.youtube.com/vi/JX65hepjy4A/hqdefault.jpg","category":"Butwal Debate","categoryNp":"बुटवल बहस","date":"2026-07-06T13:38:26.091Z","author":"Butwal Today Online TV"},"29":{"title":"Let’s Be Self-Reliant, Not Dependent on Others: Savina Amatya Shrestha ||| #interview","titleNp":"परनिर्भरता होइन आत्मनिर्भर बनौं : सविना अमात्य श्रेष्ठ ||| #interview","embed":"https://www.youtube.com/embed/HCFDyRr0vCA","youtubeLink":"https://youtu.be/HCFDyRr0vCA","thumb":"https://img.youtube.com/vi/HCFDyRr0vCA/hqdefault.jpg","category":"Women Power","categoryNp":"महिला शक्ति","date":"2026-07-06T13:39:22.668Z","author":"Butwal Today Online TV"},"31":{"title":"To sustain in business, long-term planning and patience are needed: Shanta Thapa, Managing Director of De Crown","titleNp":"व्यवसायमा टिक्न दीर्घकालीन योजना र समयलाई कुर्न सक्नुपर्छ : शान्ता थापा, दी क्राउन प्रबन्ध निर्देशक","embed":"https://www.youtube.com/embed/xhsBMyCXPjM","youtubeLink":"https://youtu.be/xhsBMyCXPjM","thumb":"https://img.youtube.com/vi/xhsBMyCXPjM/hqdefault.jpg","category":"Co-development","categoryNp":"सहविकास","date":"2026-07-06T13:42:06.008Z","author":"Butwal Today Online TV"},"32":{"title":"Cooperatives must be able to secure members' savings: Ram Prasad Paudel | #interview #sahakari #business","titleNp":"सहकारीले सदस्यकाे बचत सुरक्षित गर्न सक्नु पर्छ : रामप्रसाद पाैडेल | #interview #sahakari #business","embed":"https://www.youtube.com/embed/V4VS-mWytdU","youtubeLink":"https://youtu.be/V4VS-mWytdU","thumb":"https://img.youtube.com/vi/V4VS-mWytdU/hqdefault.jpg","category":"Cooperative Journey","categoryNp":"सहकारी यात्रा","date":"2026-07-06T13:43:18.960Z","author":"Butwal Today Online TV"},"33":{"title":"Youth's Hard Work Makes the Nation Prosperous | Kamal Jung Kunwar, Owner of Daddy's Kitchen | Samriddhi Samvad","titleNp":"युवाले परिश्रम गरे देश समृद्ध बन्छ । ड्याडीज किचनका संचालक कमल जंग कुँवर | समृद्धि संवाद ।","embed":"https://www.youtube.com/embed/o0o7N7-sCQ0","youtubeLink":"https://youtu.be/o0o7N7-sCQ0","thumb":"https://img.youtube.com/vi/o0o7N7-sCQ0/hqdefault.jpg","category":"Public Dialogue","categoryNp":"सार्वजनिक संवाद","date":"2026-07-06T13:44:15.187Z","author":"Butwal Today Online TV"},"34":{"title":"Meditech's Journey: Commitment to Quality Healthcare - Chairman JP Kandel || SWASTHYA KA KURA","titleNp":"मेडिटेकको यात्रा गुणस्तरीय स्वास्थ्य सेवाको प्रतिबद्धता - अध्यक्ष जेपी कँडेल ।। स्वास्थ्यका कुरा","embed":"https://www.youtube.com/embed/x8UCPKceTBc","youtubeLink":"https://youtu.be/x8UCPKceTBc","thumb":"https://img.youtube.com/vi/x8UCPKceTBc/hqdefault.jpg","category":"Health Matters","categoryNp":"स्वास्थ्य सम्बन्धी","date":"2026-07-06T13:44:59.678Z","author":"Butwal Today Online TV"},"35":{"title":"Benefits of Eating Guava | HEALTH TIPS |#healthtips #healthylifestyle #guava #healthbenefits","titleNp":"अम्बा खानुका फाइदाहरू | स्वास्थ्य सुझावहरू |#स्वास्थ्य सुझावहरू #स्वस्थ जीवनशैली #अम्बा #स्वास्थ्य फाइदाहरू","embed":"https://www.youtube.com/embed/ZhcGzqkpOcA","youtubeLink":"https://youtu.be/ZhcGzqkpOcA","thumb":"https://img.youtube.com/vi/ZhcGzqkpOcA/hqdefault.jpg","category":"Health Tip","categoryNp":"स्वास्थ्य सुझाव","date":"2026-07-06T13:49:00.976Z","author":"Butwal Today Online TV"},"36":{"title":"Madheshi parties unite against repealing Provincial Assembly, warn of protest ! #PoliticalNews","titleNp":"प्रदेशसभा खारेजविरुद्ध मधेशवादी दल एकजुट, प्रतिवादको चेतावनी ! #PoliticalNews","embed":"https://www.youtube.com/embed/fjVIksJogBc","youtubeLink":"https://youtu.be/fjVIksJogBc","thumb":"https://img.youtube.com/vi/fjVIksJogBc/hqdefault.jpg","category":"News","categoryNp":"समाचार","date":"2026-07-06T14:32:59.660Z","author":"Butwal Today Online TV"},"37":{"title":"CPN-UML lawmaker Koiri sentenced to 5 years in prison","titleNp":"एमाले सांसद कोइरीलाई ५ वर्ष कैद सजाय","embed":"https://www.youtube.com/embed/jY5BoX6R3WI","youtubeLink":"https://youtu.be/jY5BoX6R3WI","thumb":"https://img.youtube.com/vi/jY5BoX6R3WI/hqdefault.jpg","category":"News","categoryNp":"समाचार","date":"2026-07-06T15:52:42.944Z","author":"Butwal Today Online TV"},"38":{"title":"Opium and cannabis cultivation destroyed on 56 ropani of land in Rolpa #CrimeNews","titleNp":"रोल्पामा ५६ रोपनी जग्गामा लगाइएको अफिम र गाँजा खेती नष्ट #CrimeNews","embed":"https://www.youtube.com/embed/oNFQ_ms9WS0","youtubeLink":"https://youtu.be/oNFQ_ms9WS0","thumb":"https://img.youtube.com/vi/oNFQ_ms9WS0/hqdefault.jpg","category":"News","categoryNp":"समाचार","date":"2026-07-06T15:53:13.851Z","author":"Butwal Today Online TV"},"39":{"title":"Oli, Prachanda, and Nepal on same stage at Madan Bhandari birth anniversary program","titleNp":"मदन भण्डारीको जन्मजयन्ती कार्यक्रममा ओली, प्रचण्ड र नेपाल एउटै मञ्चमा","embed":"https://www.youtube.com/embed/3GAggDJqZsI","youtubeLink":"https://youtu.be/3GAggDJqZsI","thumb":"https://img.youtube.com/vi/3GAggDJqZsI/hqdefault.jpg","category":"News","categoryNp":"समाचार","date":"2026-07-06T15:53:48.518Z","author":"Butwal Today Online TV"},"40":{"title":"Thakali Sewa Samaj Butwal Engaged in Preserving Tradition | #NewsUpdate #newsfeed #socialwork","titleNp":"परम्परा संरक्षणमा जुट्दै थकाली सेवा समाज बुटवल ।।। #NewsUpdate #newsfeed #socialwork","embed":"https://www.youtube.com/embed/MdAfTBbsPng","youtubeLink":"https://youtu.be/MdAfTBbsPng","thumb":"https://img.youtube.com/vi/MdAfTBbsPng/hqdefault.jpg","category":"News","categoryNp":"समाचार","date":"2026-07-06T17:32:04.293Z","author":"Butwal Today Online TV"},"42":{"title":"Nepalese also injured in Qatar's Ras Laffan explosion!","titleNp":"कतारको रस लाफान विष्फोटमा नेपालीहरु पनि घाइते भए !","embed":"https://www.youtube.com/embed/tVMG89oJuNI","youtubeLink":"https://youtu.be/tVMG89oJuNI","thumb":"https://img.youtube.com/vi/tVMG89oJuNI/hqdefault.jpg","category":"News","categoryNp":"समाचार","date":"2026-07-06T17:33:18.784Z","author":"Butwal Today Online TV"},"43":{"title":"Today news | nepali news | aaja ka mukhya samachar | 24 ashar 2083 | Butwal Today News#news","titleNp":"आजको समाचार | नेपाली समाचार | आजको मुख्य समाचार | २४ असार २०८३ | बुटवल टुडे समाचार#news","embed":"https://www.youtube.com/embed/GQINE1XPn78","youtubeLink":"https://youtu.be/GQINE1XPn78","thumb":"https://img.youtube.com/vi/GQINE1XPn78/hqdefault.jpg","category":"News","categoryNp":"समाचार","date":"2026-07-08T13:30:20.720Z","author":"Butwal Today Online TV"},"44":{"title":"What did Balen Government do in 100 days? #balensarkar #balenshah #balen","titleNp":"बालेन सरकारले १०० दिनमा के गर्‍यो ?#balensarkar #balenshah #balen","embed":"https://www.youtube.com/embed/WBSdckq6-b0","youtubeLink":"https://youtu.be/WBSdckq6-b0","thumb":"https://img.youtube.com/vi/WBSdckq6-b0/hqdefault.jpg","category":"Politics","categoryNp":"राजनीति","date":"2026-07-08T13:34:27.955Z","author":"Butwal Today Online TV"},"45":{"title":"Nepal Requests Saudi Arabia to Halt Skill Testing Program","titleNp":"सीप परीक्षण कार्यक्रम रोक्न नेपालले गर्यो साउदी अरबलाई अनुरोध","embed":"https://www.youtube.com/embed/LuRTewN9QbE","youtubeLink":"https://youtu.be/LuRTewN9QbE","thumb":"https://img.youtube.com/vi/LuRTewN9QbE/hqdefault.jpg","category":"Business","categoryNp":"व्यवसाय","date":"2026-07-08T13:36:50.136Z","author":"Butwal Today Online TV"},"46":{"title":"Today news | nepali news | aaja ka mukhya samachar | 25 ashar 2083 | बुटवल टुडे समाचार#news","titleNp":"आजको समाचार | नेपाली समाचार | आजका मुख्य समाचार | २५ असार २०८३ | बुटवल टुडे समाचार#news","embed":"https://www.youtube.com/embed/cpYsJvT5Tik","youtubeLink":"https://youtu.be/cpYsJvT5Tik","thumb":"https://img.youtube.com/vi/cpYsJvT5Tik/hqdefault.jpg","category":"News","categoryNp":"समाचार","date":"2026-07-09T13:38:27.515Z","author":"Butwal Today Online TV"},"51":{"title":"FIFA World Cup: Semi-finals to feature clash of former champions #fifaworldcup2026","titleNp":"फिफा विश्वकप : सेमिफाइनलमा पूर्व विजेता टोलीकै भिडन्त हुने #fifaworldcup2026","embed":"https://www.youtube.com/embed/Cb4KlL1LJlE","youtubeLink":"https://youtu.be/Cb4KlL1LJlE","thumb":"https://img.youtube.com/vi/Cb4KlL1LJlE/hqdefault.jpg","category":"Sport","categoryNp":"खेल","date":"2026-07-12T19:15:28.698Z","author":"Butwal Today Online TV"},"52":{"title":"HILIGHTS NEWS | Butwal Highlights | 28 Asadh 2083, Aaitabaar | #NewsUpdate #hilights #PoliticalNews #economy","titleNp":"हाइलाइट्स न्युज | बुटवल हाइलाइट्स | २८ असार २०८३, आइतवार | #NewsUpdate #हाइलाइट्स #राजनीतिकसमाचार #अर्थतन्त्र","embed":"https://www.youtube.com/embed/PUpKAtiOY9Q","youtubeLink":"https://youtu.be/PUpKAtiOY9Q","thumb":"https://img.youtube.com/vi/PUpKAtiOY9Q/hqdefault.jpg","category":"Highlights","categoryNp":"हाइलाइट्स","date":"2026-07-12T19:17:58.361Z","author":"Butwal Today Online TV"},"53":{"title":"HILIGHTS NEWS | Butwal Highlights | 28 Asadh 2083, Aaitabaar | #NewsUpdate #hilights #PoliticalNews #economy","titleNp":"हाइलाइट्स न्युज | बुटवल हाइलाइट्स | २८ असार २०८३, आइतवार | #NewsUpdate #हाइलाइट्स #राजनीतिकसमाचार #अर्थतन्त्र","embed":"https://www.youtube.com/embed/PUpKAtiOY9Q","youtubeLink":"https://youtu.be/PUpKAtiOY9Q","thumb":"https://img.youtube.com/vi/PUpKAtiOY9Q/hqdefault.jpg","category":"Highlights","categoryNp":"हाइलाइट्स","date":"2026-07-12T19:17:59.901Z","author":"Butwal Today Online TV"},"54":{"title":"Today news | nepali news | aaja ka mukhya samachar | 28 ashar 2083 | Butwal Today News#news","titleNp":"आजको समाचार | नेपाली समाचार | आजको मुख्य समाचार | २८ असार २०८३ | बुटवल टुडे समाचार#news","embed":"https://www.youtube.com/embed/dJzFzv9-eWo","youtubeLink":"https://youtu.be/dJzFzv9-eWo","thumb":"https://img.youtube.com/vi/dJzFzv9-eWo/hqdefault.jpg","category":"News","categoryNp":"समाचार","date":"2026-07-12T19:18:53.276Z","author":"Butwal Today Online TV"},"56":{"title":"test","titleNp":"परीक्षण","embed":"https://www.youtube.com/embed/5rFI_SKxft8","youtubeLink":"https://www.youtube.com/shorts/5rFI_SKxft8","thumb":"https://img.youtube.com/vi/5rFI_SKxft8/hqdefault.jpg","category":"Monitoring","categoryNp":"निगरानी","date":"2026-07-13T11:39:36.325Z","author":"Butwal Today Online TV"}};
 
-  function getCurrentLang() {
-    try { return localStorage.getItem(STORAGE_KEY) || 'en'; } catch(e) { return 'en'; }
+  function relTime(dateStr, isNp){
+    if(!dateStr) return '';
+    var then = new Date(dateStr).getTime();
+    if (isNaN(then)) return '';
+    var diffSec = Math.max(0, Math.floor((Date.now()-then)/1000));
+    var NP=['०','१','२','३','४','५','६','७','८','९'];
+    function toNp(n){return String(n).split('').map(function(d){var i=+d;return isNaN(i)?d:NP[i];}).join('');}
+    if (diffSec<60) return isNp?'भर्खरै':'Just now';
+    var units=[[60,'second','seconds','सेकेन्ड'],[3600,'minute','minutes','मिनेट'],[86400,'hour','hours','घण्टा'],
+               [604800,'day','days','दिन'],[2629800,'week','weeks','हप्ता'],[31557600,'month','months','महिना']];
+    var idx=units.length-1, prevLimit=1;
+    for (var i=0;i<units.length;i++){ if(diffSec<units[i][0]){idx=i;break;} prevLimit=units[i][0]; }
+    var value=Math.max(1, Math.floor(diffSec/(idx===0?1:units[idx-1][0])));
+    var u=units[idx];
+    return isNp ? (toNp(value)+' '+u[3]+' अगाडि') : (value+' '+(value===1?u[1]:u[2])+' ago');
   }
 
-  function applyLang(lang) {
-    lang = (lang === 'np') ? 'np' : 'en';
-    var isNp = lang === 'np';
-    document.querySelectorAll('.lang-en').forEach(function(el) {
-      el.style.display = isNp ? 'none' : (INLINE_TAGS.has(el.tagName) ? 'inline' : 'block');
+  function getParam(name){
+    return new URLSearchParams(window.location.search).get(name);
+  }
+
+  function render(){
+    var id = getParam('id');
+    var v = id != null ? VIDEOS[id] : null;
+    var loadingEl = document.getElementById('vd-loading');
+    var articleEl = document.getElementById('vd-article');
+    var notFoundEl = document.getElementById('vd-notfound');
+    loadingEl.style.display = 'none';
+
+    if (!v || !v.embed) { notFoundEl.style.display = 'block'; return; }
+
+    var isNp = document.body.classList.contains('lang-active');
+    document.title = v.title + ' | Butwal Today Online TV';
+
+    var titleEl = document.getElementById('vd-title');
+    titleEl.innerHTML =
+      '<span class="lang-en">'+ v.title.replace(/</g,'&lt;') +'</span>' +
+      '<span class="lang-np" style="display:none">'+ (v.titleNp||v.title).replace(/</g,'&lt;') +'</span>';
+
+    document.getElementById('vd-author').textContent = v.author || 'Butwal Today Online TV';
+    document.getElementById('vd-date').textContent = relTime(v.date, isNp);
+
+    var frame = document.getElementById('vd-frame');
+    var sep = v.embed.indexOf('?')>-1 ? '&' : '?';
+    frame.src = v.embed + sep + 'autoplay=1';
+    frame.title = v.title;
+
+    var pageUrl = window.location.href;
+    document.getElementById('vd-share-fb').href = 'https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(pageUrl);
+    document.getElementById('vd-share-wa').href = 'https://wa.me/?text=' + encodeURIComponent(v.title + ' ' + pageUrl);
+    document.getElementById('vd-share-x').href  = 'https://twitter.com/intent/tweet?text=' + encodeURIComponent(v.title) + '&url=' + encodeURIComponent(pageUrl);
+
+    articleEl.style.display = 'block';
+
+    window.addEventListener('langChange', function(e){
+      var np = e.detail && e.detail.lang === 'np';
+      document.getElementById('vd-date').textContent = relTime(v.date, np);
     });
-    document.querySelectorAll('.lang-np').forEach(function(el) {
-      el.style.display = isNp ? (INLINE_TAGS.has(el.tagName) ? 'inline' : 'block') : 'none';
-    });
-    var btn = document.querySelector('.lang-toggle');
-    if (btn) btn.textContent = isNp ? 'EN' : 'NP';
-  }
-
-  function broadcast(lang) {
-    try { localStorage.setItem(STORAGE_KEY, lang); } catch(e) {}
-    applyLang(lang);
-    window.dispatchEvent(new CustomEvent('langChange', { detail: { lang: lang } }));
-  }
-
-  function attachToggle() {
-    var btn = document.querySelector('.lang-toggle');
-    if (!btn || btn._langBound) return;
-    btn._langBound = true;
-    btn.addEventListener('click', function() {
-      broadcast(getCurrentLang() === 'en' ? 'np' : 'en');
-    });
-  }
-
-  function initFadeIn() {
-    var els = document.querySelectorAll('.about-page .fade-in, .about-page-main .fade-in');
-    if (!els.length) return;
-    if ('IntersectionObserver' in window) {
-      var io = new IntersectionObserver(function(entries) {
-        entries.forEach(function(entry) {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
-            io.unobserve(entry.target);
-          }
-        });
-      }, { threshold: 0.08, rootMargin: '0px 0px -20px 0px' });
-      els.forEach(function(el) { io.observe(el); });
-    } else {
-      els.forEach(function(el) { el.classList.add('visible'); });
-    }
-  }
-
-  function initWaTooltip() {
-    var tip = document.getElementById('waTooltip');
-    if (!tip || sessionStorage.getItem('waTip')) return;
-    setTimeout(function() {
-      tip.style.opacity = '1';
-      tip.style.transform = 'translateX(0)';
-      setTimeout(function() {
-        tip.style.opacity = '';
-        tip.style.transform = '';
-        sessionStorage.setItem('waTip', '1');
-      }, 3000);
-    }, 2500);
-  }
-
-  window.addEventListener('langChange', function(e) {
-    if (e && e.detail && e.detail.lang) applyLang(e.detail.lang);
-  });
-
-  function init() {
-    attachToggle();
-    initFadeIn();
-    initWaTooltip();
-    applyLang(getCurrentLang());
   }
 
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', init);
+    document.addEventListener('DOMContentLoaded', render);
   } else {
-    setTimeout(init, 0);
+    render();
   }
 })();
 </script>
-  <script>
-(function(){
-'use strict';
-
-var BS_MONTHS = ['बैशाख','जेठ','असार','साउन','भदौ','असोज','कार्तिक','मंसिर','पुष','माघ','फागुन','चैत'];
-var NP_NUMS   = ['०','१','२','३','४','५','६','७','८','९'];
-var EN_MONTHS = ['January','February','March','April','May','June',
-                 'July','August','September','October','November','December'];
-
-var BS = {
-  2000:[365,30,32,31,32,31,30,30,30,29,30,29,31],
-  2001:[365,31,31,32,31,31,31,30,29,30,29,30,30],
-  2002:[365,31,31,32,32,31,30,30,29,30,29,30,30],
-  2003:[366,31,32,31,32,31,30,30,30,29,29,30,31],
-  2004:[366,30,32,31,32,31,30,30,30,29,30,29,31],
-  2005:[365,31,31,32,31,31,31,30,29,30,29,30,30],
-  2006:[365,31,31,32,32,31,30,30,29,30,29,30,30],
-  2007:[366,31,32,31,32,31,30,30,30,29,29,30,31],
-  2008:[365,31,31,32,31,31,31,30,29,30,29,30,30],
-  2009:[365,31,31,32,31,31,31,30,29,30,29,30,30],
-  2010:[365,31,31,32,32,31,30,30,29,30,29,30,30],
-  2011:[366,31,32,31,32,31,30,30,30,29,29,30,31],
-  2012:[365,31,31,32,31,31,31,30,29,30,29,30,30],
-  2013:[365,31,31,32,31,31,31,30,29,30,29,30,30],
-  2014:[365,31,31,32,32,31,30,30,29,30,29,30,30],
-  2015:[366,31,32,31,32,31,30,30,30,29,29,30,31],
-  2016:[366,31,31,32,31,31,31,30,29,30,29,30,31],
-  2017:[365,31,31,32,31,31,31,30,29,30,29,30,30],
-  2018:[365,31,31,32,32,31,30,30,29,30,29,30,30],
-  2019:[366,31,32,31,32,31,30,30,30,29,29,30,31],
-  2020:[366,31,31,32,31,31,30,30,29,30,29,30,31],
-  2021:[365,31,31,32,31,31,31,30,29,30,29,30,30],
-  2022:[365,31,31,32,32,31,30,30,29,30,29,30,30],
-  2023:[366,31,32,31,32,31,30,30,30,29,29,30,31],
-  2024:[366,31,31,32,31,31,30,30,29,30,29,30,31],
-  2025:[365,31,31,32,31,31,31,30,29,30,29,30,30],
-  2026:[365,31,31,32,32,31,30,30,29,30,29,30,30],
-  2027:[366,31,32,31,32,31,30,30,30,29,29,30,31],
-  2028:[366,31,32,31,32,31,30,30,30,29,30,29,31],
-  2029:[365,31,31,32,31,31,31,30,29,30,29,30,30],
-  2030:[365,31,31,32,31,31,31,30,29,30,29,30,30],
-  2031:[365,31,31,32,32,31,30,30,29,30,29,30,30],
-  2032:[366,31,32,31,32,31,30,30,30,29,29,30,31],
-  2033:[366,31,31,32,31,31,30,30,29,30,29,30,31],
-  2034:[365,31,31,32,31,31,31,30,29,30,29,30,30],
-  2035:[365,31,31,32,32,31,30,30,29,30,29,30,30],
-  2036:[366,31,32,31,32,31,30,30,30,29,29,30,31],
-  2037:[366,31,32,31,32,31,30,30,30,29,30,29,31],
-  2038:[365,31,31,32,31,31,31,30,29,30,29,30,30],
-  2039:[365,31,31,32,31,31,31,30,29,30,29,30,30],
-  2040:[365,31,31,32,32,31,30,30,29,30,29,30,30],
-  2041:[366,31,32,31,32,31,30,30,30,29,29,30,31],
-  2042:[366,31,31,32,31,31,30,30,29,30,29,30,31],
-  2043:[365,31,31,32,31,31,31,30,29,30,29,30,30],
-  2044:[365,31,31,32,31,31,31,30,29,30,29,30,30],
-  2045:[366,31,32,31,32,31,30,30,30,29,29,30,31],
-  2046:[366,31,32,31,32,31,30,30,30,29,30,29,31],
-  2047:[365,31,31,32,31,31,31,30,29,30,29,30,30],
-  2048:[365,31,31,32,32,31,30,30,29,30,29,30,30],
-  2049:[366,31,32,31,32,31,30,30,30,29,29,30,31],
-  2050:[366,31,32,31,32,31,30,30,30,29,30,29,31],
-  2051:[365,31,31,32,31,31,31,30,29,30,29,30,30],
-  2052:[365,31,31,32,32,31,30,30,29,30,29,30,30],
-  2053:[366,31,32,31,32,31,30,30,30,29,29,30,31],
-  2054:[366,31,32,31,32,31,30,30,30,29,30,29,31],
-  2055:[365,31,31,32,31,31,31,30,29,30,29,30,30],
-  2056:[366,31,31,32,31,31,31,30,29,30,29,30,31],
-  2057:[366,31,31,32,32,31,30,30,29,30,29,30,31],
-  2058:[365,30,32,31,32,31,30,30,30,29,29,30,30],
-  2059:[366,31,32,31,32,31,30,30,30,29,30,29,31],
-  2060:[365,31,31,32,31,31,31,30,29,30,29,30,30],
-  2061:[365,31,31,32,31,31,31,30,29,30,29,30,30],
-  2062:[365,31,31,32,32,31,30,30,29,30,29,30,30],
-  2063:[366,31,32,31,32,31,30,30,30,29,29,30,31],
-  2064:[366,31,31,32,31,31,30,30,29,30,29,30,31],
-  2065:[365,31,31,32,31,31,31,30,29,30,29,30,30],
-  2066:[365,31,31,32,31,31,31,30,29,30,29,30,30],
-  2067:[366,31,32,31,32,31,30,30,30,29,29,30,31],
-  2068:[366,31,32,31,32,31,30,30,30,29,30,29,31],
-  2069:[365,31,31,32,31,31,31,30,29,30,29,30,30],
-  2070:[365,31,31,32,32,31,30,30,29,30,29,30,30],
-  2071:[366,31,32,31,32,31,30,30,30,29,29,30,31],
-  2072:[366,31,32,31,32,31,30,30,30,29,30,29,31],
-  2073:[365,31,31,32,31,31,31,30,29,30,29,30,30],
-  2074:[365,31,31,32,32,31,30,30,29,30,29,30,30],
-  2075:[366,31,32,31,32,31,30,30,30,29,29,30,31],
-  2076:[365,31,32,31,32,31,30,30,30,29,30,29,31],
-  2077:[365,31,31,32,31,31,31,30,29,30,29,30,30],
-  2078:[365,31,31,32,31,31,31,30,29,30,29,30,30],
-  2079:[366,31,32,31,32,31,30,30,30,29,29,30,31],
-  2080:[365,31,32,31,32,31,30,30,30,29,30,29,31],
-  2081:[365,31,31,32,31,31,31,30,29,30,29,30,30],
-  2082:[365,31,31,32,32,31,30,30,29,30,29,30,30],
-  2083:[365,31,31,32,31,31,31,30,29,30,29,30,30],
-  2084:[366,31,32,31,32,31,30,30,30,29,30,29,31],
-  2085:[365,31,31,32,31,31,31,30,29,30,29,30,30],
-  2086:[365,31,31,32,32,31,30,30,29,30,29,30,30],
-  2087:[366,31,32,31,32,31,30,30,30,29,29,30,31],
-  2088:[366,31,32,31,32,31,30,30,30,29,30,29,31],
-  2089:[365,31,31,32,31,31,31,30,29,30,29,30,30],
-  2090:[365,31,31,32,32,31,30,30,29,30,29,30,30]
-};
-
-var EPOCH = Date.UTC(1943,2,31);
-
-function toNp(n) {
-  return String(n).split('').map(function(d) {
-    var i = parseInt(d, 10);
-    return isNaN(i) ? d : NP_NUMS[i];
-  }).join('');
-}
-
-function parseDate(s) {
-  if (!s) return null;
-  var d = new Date(s);
-  if (!isNaN(d.getTime())) return d;
-  var m = s.match(/([A-Za-z]+)\s+(\d{1,2}),?\s+(\d{4})/);
-  if (m) return new Date(m[1] + ' ' + m[2] + ' ' + m[3]);
-  return null;
-}
-
-function adToBs(s) {
-  if (!s) return '';
-  var d = parseDate(s);
-  if (!d || isNaN(d.getTime())) return s;
-  var days = Math.floor(
-    (Date.UTC(d.getUTCFullYear(), d.getUTCMonth(), d.getUTCDate()) - EPOCH) / 86400000
-  );
-  if (days < 0) return s;
-  var y = 2000;
-  while (true) {
-    var yr = BS[y];
-    if (!yr || days < yr[0]) break;
-    days -= yr[0];
-    y++;
-  }
-  var yr2 = BS[y];
-  if (!yr2) return s;
-  var mo = 1, dy = 1;
-  for (var m2 = 1; m2 <= 12; m2++) {
-    if (days < yr2[m2]) { mo = m2; dy = days + 1; break; }
-    days -= yr2[m2];
-  }
-  return toNp(y) + ' ' + BS_MONTHS[mo - 1] + ' ' + toNp(dy);
-}
-
-function adToEn(s) {
-  if (!s) return s;
-  var d = parseDate(s);
-  if (!d || isNaN(d.getTime())) return s;
-  return EN_MONTHS[d.getUTCMonth()] + ' ' + d.getUTCDate() + ', ' + d.getUTCFullYear();
-}
-
-function updateDates(isNp) {
-  document.querySelectorAll('.date-display[data-date-ad]').forEach(function(el) {
-    var adStr = el.getAttribute('data-date-ad');
-    var mode  = el.getAttribute('data-mode');
-    if (mode === 'np') {
-      el.textContent = adToBs(adStr);
-    } else if (mode === 'en') {
-      el.textContent = adToEn(adStr);
-    } else {
-      el.textContent = isNp ? adToBs(adStr) : adToEn(adStr);
-    }
-  });
-}
-
-window.addEventListener('langChange', function(e) {
-  if (e.detail && e.detail.lang) updateDates(e.detail.lang === 'np');
-});
-
-function init() {
-  var storedLang = 'en';
-  try {
-    storedLang = localStorage.getItem('fm_lang') ||
-                 localStorage.getItem('siteLang') || 'en';
-  } catch(e) {}
-  updateDates(storedLang === 'np');
-}
-
-if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', init);
-} else {
-  init();
-}
-
-})();
-</script>
-  
 </body>
 </html>

@@ -298,19 +298,19 @@
     gap: 1.25rem;
     align-items: start;
   }
+
+  /* ── grid-card is now a DIV wrapping two separate links (thumbnail + title) ── */
   .grid-card {
     display: flex;
     flex-direction: column;
-    text-decoration: none;
-    color: inherit;
-    background: transparent;
-    transition: transform .2s ease;
     min-width: 0;
+    background: transparent;
   }
-  .grid-card:hover {
-    transform: translateY(-3px);
+  .grid-thumb-link {
+    display: block;
+    text-decoration: none;
   }
-  .grid-card:hover .grid-thumb img {
+  .grid-thumb-link:hover .grid-thumb img {
     transform: scale(1.03);
   }
   .grid-thumb {
@@ -341,6 +341,14 @@
     flex-direction: column;
     min-height: 5.4rem;
     gap: .5rem;
+  }
+  .grid-title-link {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+  }
+  .grid-title-link:hover .grid-title {
+    color: var(--accent);
   }
   .grid-title {
     font-family: var(--font-heading, serif);
@@ -1110,74 +1118,94 @@ body.lang-active .lang-np-inline { display: inline !important; }
   <div class="category-feed">
     <div id="news-list">
       
-    <a href="javascript:void(0)" class="video-open-link grid-card" data-embed="https://www.youtube.com/embed/PUpKAtiOY9Q" data-title="HILIGHTS NEWS | Butwal Highlights | 28 Asadh 2083, Aaitabaar | #NewsUpdate #hilights #PoliticalNews #economy" data-title-np="हाइलाइट्स न्युज | बुटवल हाइलाइट्स | २८ असार २०८३, आइतवार | #NewsUpdate #हाइलाइट्स #राजनीतिकसमाचार #अर्थतन्त्र">
-      <div class="grid-thumb">
-        <img src="https://img.youtube.com/vi/PUpKAtiOY9Q/hqdefault.jpg" alt="HILIGHTS NEWS | Butwal Highlights | 28 Asadh 2083, Aaitabaar | #NewsUpdate #hilights #PoliticalNews #economy" loading="lazy">
-        <span class="grid-play"><i class="fas fa-play"></i></span>
-      </div>
+    <div class="grid-card" data-cat="Highlights">
+      <a href="javascript:void(0)" class="video-open-link grid-thumb-link" data-embed="https://www.youtube.com/embed/PUpKAtiOY9Q" data-title="HILIGHTS NEWS | Butwal Highlights | 28 Asadh 2083, Aaitabaar | #NewsUpdate #hilights #PoliticalNews #economy" data-title-np="हाइलाइट्स न्युज | बुटवल हाइलाइट्स | २८ असार २०८३, आइतवार | #NewsUpdate #हाइलाइट्स #राजनीतिकसमाचार #अर्थतन्त्र">
+        <div class="grid-thumb">
+          <img src="https://img.youtube.com/vi/PUpKAtiOY9Q/hqdefault.jpg" alt="HILIGHTS NEWS | Butwal Highlights | 28 Asadh 2083, Aaitabaar | #NewsUpdate #hilights #PoliticalNews #economy" loading="lazy">
+          <span class="grid-play"><i class="fas fa-play"></i></span>
+        </div>
+      </a>
       <div class="grid-body">
-        <h3 class="grid-title lang-en">HILIGHTS NEWS | Butwal Highlights | 28 Asadh 2083, Aaitabaar | #NewsUpdate #hilights #PoliticalNews #economy</h3>
-        <h3 class="grid-title lang-np" style="display:none;">हाइलाइट्स न्युज | बुटवल हाइलाइट्स | २८ असार २०८३, आइतवार | #NewsUpdate #हाइलाइट्स #राजनीतिकसमाचार #अर्थतन्त्र</h3>
+        <a href="../pages/video.html?id=53" class="grid-title-link">
+          <h3 class="grid-title lang-en">HILIGHTS NEWS | Butwal Highlights | 28 Asadh 2083, Aaitabaar | #NewsUpdate #hilights #PoliticalNews #economy</h3>
+          <h3 class="grid-title lang-np" style="display:none;">हाइलाइट्स न्युज | बुटवल हाइलाइट्स | २८ असार २०८३, आइतवार | #NewsUpdate #हाइलाइट्स #राजनीतिकसमाचार #अर्थतन्त्र</h3>
+        </a>
         <span class="grid-time lang-en" data-date-ad="2026-07-12T19:17:59.901Z" data-rel="en"><i class="fa-regular fa-clock"></i> <span class="grid-time-text"></span></span>
         <span class="grid-time lang-np" data-date-ad="2026-07-12T19:17:59.901Z" data-rel="np" style="display:none;"><i class="fa-regular fa-clock"></i> <span class="grid-time-text"></span></span>
       </div>
-    </a>
+    </div>
   
 
-    <a href="javascript:void(0)" class="video-open-link grid-card" data-embed="https://www.youtube.com/embed/PUpKAtiOY9Q" data-title="HILIGHTS NEWS | Butwal Highlights | 28 Asadh 2083, Aaitabaar | #NewsUpdate #hilights #PoliticalNews #economy" data-title-np="हाइलाइट्स न्युज | बुटवल हाइलाइट्स | २८ असार २०८३, आइतवार | #NewsUpdate #हाइलाइट्स #राजनीतिकसमाचार #अर्थतन्त्र">
-      <div class="grid-thumb">
-        <img src="https://img.youtube.com/vi/PUpKAtiOY9Q/hqdefault.jpg" alt="HILIGHTS NEWS | Butwal Highlights | 28 Asadh 2083, Aaitabaar | #NewsUpdate #hilights #PoliticalNews #economy" loading="lazy">
-        <span class="grid-play"><i class="fas fa-play"></i></span>
-      </div>
+    <div class="grid-card" data-cat="Highlights">
+      <a href="javascript:void(0)" class="video-open-link grid-thumb-link" data-embed="https://www.youtube.com/embed/PUpKAtiOY9Q" data-title="HILIGHTS NEWS | Butwal Highlights | 28 Asadh 2083, Aaitabaar | #NewsUpdate #hilights #PoliticalNews #economy" data-title-np="हाइलाइट्स न्युज | बुटवल हाइलाइट्स | २८ असार २०८३, आइतवार | #NewsUpdate #हाइलाइट्स #राजनीतिकसमाचार #अर्थतन्त्र">
+        <div class="grid-thumb">
+          <img src="https://img.youtube.com/vi/PUpKAtiOY9Q/hqdefault.jpg" alt="HILIGHTS NEWS | Butwal Highlights | 28 Asadh 2083, Aaitabaar | #NewsUpdate #hilights #PoliticalNews #economy" loading="lazy">
+          <span class="grid-play"><i class="fas fa-play"></i></span>
+        </div>
+      </a>
       <div class="grid-body">
-        <h3 class="grid-title lang-en">HILIGHTS NEWS | Butwal Highlights | 28 Asadh 2083, Aaitabaar | #NewsUpdate #hilights #PoliticalNews #economy</h3>
-        <h3 class="grid-title lang-np" style="display:none;">हाइलाइट्स न्युज | बुटवल हाइलाइट्स | २८ असार २०८३, आइतवार | #NewsUpdate #हाइलाइट्स #राजनीतिकसमाचार #अर्थतन्त्र</h3>
+        <a href="../pages/video.html?id=52" class="grid-title-link">
+          <h3 class="grid-title lang-en">HILIGHTS NEWS | Butwal Highlights | 28 Asadh 2083, Aaitabaar | #NewsUpdate #hilights #PoliticalNews #economy</h3>
+          <h3 class="grid-title lang-np" style="display:none;">हाइलाइट्स न्युज | बुटवल हाइलाइट्स | २८ असार २०८३, आइतवार | #NewsUpdate #हाइलाइट्स #राजनीतिकसमाचार #अर्थतन्त्र</h3>
+        </a>
         <span class="grid-time lang-en" data-date-ad="2026-07-12T19:17:58.361Z" data-rel="en"><i class="fa-regular fa-clock"></i> <span class="grid-time-text"></span></span>
         <span class="grid-time lang-np" data-date-ad="2026-07-12T19:17:58.361Z" data-rel="np" style="display:none;"><i class="fa-regular fa-clock"></i> <span class="grid-time-text"></span></span>
       </div>
-    </a>
+    </div>
   
 
-    <a href="javascript:void(0)" class="video-open-link grid-card" data-embed="https://www.youtube.com/embed/zwBQ7fQjKZ0" data-title="HILIGHTS NEWS | Butwal Highlight | 20 Asar 2083, Saturday | #NewsUpdate #PoliticalNews #economy" data-title-np="हाइलाइट्स न्युज | बुटवल हाइलाइट | २० असार २०८३, शनिवार | #NewsUpdate #PoliticalNews #economy">
-      <div class="grid-thumb">
-        <img src="https://img.youtube.com/vi/zwBQ7fQjKZ0/hqdefault.jpg" alt="HILIGHTS NEWS | Butwal Highlight | 20 Asar 2083, Saturday | #NewsUpdate #PoliticalNews #economy" loading="lazy">
-        <span class="grid-play"><i class="fas fa-play"></i></span>
-      </div>
+    <div class="grid-card" data-cat="Highlights">
+      <a href="javascript:void(0)" class="video-open-link grid-thumb-link" data-embed="https://www.youtube.com/embed/zwBQ7fQjKZ0" data-title="HILIGHTS NEWS | Butwal Highlight | 20 Asar 2083, Saturday | #NewsUpdate #PoliticalNews #economy" data-title-np="हाइलाइट्स न्युज | बुटवल हाइलाइट | २० असार २०८३, शनिवार | #NewsUpdate #PoliticalNews #economy">
+        <div class="grid-thumb">
+          <img src="https://img.youtube.com/vi/zwBQ7fQjKZ0/hqdefault.jpg" alt="HILIGHTS NEWS | Butwal Highlight | 20 Asar 2083, Saturday | #NewsUpdate #PoliticalNews #economy" loading="lazy">
+          <span class="grid-play"><i class="fas fa-play"></i></span>
+        </div>
+      </a>
       <div class="grid-body">
-        <h3 class="grid-title lang-en">HILIGHTS NEWS | Butwal Highlight | 20 Asar 2083, Saturday | #NewsUpdate #PoliticalNews #economy</h3>
-        <h3 class="grid-title lang-np" style="display:none;">हाइलाइट्स न्युज | बुटवल हाइलाइट | २० असार २०८३, शनिवार | #NewsUpdate #PoliticalNews #economy</h3>
+        <a href="../pages/video.html?id=23" class="grid-title-link">
+          <h3 class="grid-title lang-en">HILIGHTS NEWS | Butwal Highlight | 20 Asar 2083, Saturday | #NewsUpdate #PoliticalNews #economy</h3>
+          <h3 class="grid-title lang-np" style="display:none;">हाइलाइट्स न्युज | बुटवल हाइलाइट | २० असार २०८३, शनिवार | #NewsUpdate #PoliticalNews #economy</h3>
+        </a>
         <span class="grid-time lang-en" data-date-ad="2026-07-06T13:20:27.403Z" data-rel="en"><i class="fa-regular fa-clock"></i> <span class="grid-time-text"></span></span>
         <span class="grid-time lang-np" data-date-ad="2026-07-06T13:20:27.403Z" data-rel="np" style="display:none;"><i class="fa-regular fa-clock"></i> <span class="grid-time-text"></span></span>
       </div>
-    </a>
+    </div>
   
 
-    <a href="javascript:void(0)" class="video-open-link grid-card" data-embed="https://www.youtube.com/embed/g8FW28-dG2s" data-title="HILIGHTS NEWS | Butwal Highlights | 21 Asar 2083, Aaitabaar | #NewsUpdate #hilights #PoliticalNews #economy" data-title-np="हाइलाइट्स न्युज | बुटवल हाइलाइट | २१ असार २०८३, आइतवार | #NewsUpdate #hilights #PoliticalNews #economy">
-      <div class="grid-thumb">
-        <img src="https://img.youtube.com/vi/g8FW28-dG2s/hqdefault.jpg" alt="HILIGHTS NEWS | Butwal Highlights | 21 Asar 2083, Aaitabaar | #NewsUpdate #hilights #PoliticalNews #economy" loading="lazy">
-        <span class="grid-play"><i class="fas fa-play"></i></span>
-      </div>
+    <div class="grid-card" data-cat="Highlights">
+      <a href="javascript:void(0)" class="video-open-link grid-thumb-link" data-embed="https://www.youtube.com/embed/g8FW28-dG2s" data-title="HILIGHTS NEWS | Butwal Highlights | 21 Asar 2083, Aaitabaar | #NewsUpdate #hilights #PoliticalNews #economy" data-title-np="हाइलाइट्स न्युज | बुटवल हाइलाइट | २१ असार २०८३, आइतवार | #NewsUpdate #hilights #PoliticalNews #economy">
+        <div class="grid-thumb">
+          <img src="https://img.youtube.com/vi/g8FW28-dG2s/hqdefault.jpg" alt="HILIGHTS NEWS | Butwal Highlights | 21 Asar 2083, Aaitabaar | #NewsUpdate #hilights #PoliticalNews #economy" loading="lazy">
+          <span class="grid-play"><i class="fas fa-play"></i></span>
+        </div>
+      </a>
       <div class="grid-body">
-        <h3 class="grid-title lang-en">HILIGHTS NEWS | Butwal Highlights | 21 Asar 2083, Aaitabaar | #NewsUpdate #hilights #PoliticalNews #economy</h3>
-        <h3 class="grid-title lang-np" style="display:none;">हाइलाइट्स न्युज | बुटवल हाइलाइट | २१ असार २०८३, आइतवार | #NewsUpdate #hilights #PoliticalNews #economy</h3>
+        <a href="../pages/video.html?id=15" class="grid-title-link">
+          <h3 class="grid-title lang-en">HILIGHTS NEWS | Butwal Highlights | 21 Asar 2083, Aaitabaar | #NewsUpdate #hilights #PoliticalNews #economy</h3>
+          <h3 class="grid-title lang-np" style="display:none;">हाइलाइट्स न्युज | बुटवल हाइलाइट | २१ असार २०८३, आइतवार | #NewsUpdate #hilights #PoliticalNews #economy</h3>
+        </a>
         <span class="grid-time lang-en" data-date-ad="2026-07-05T22:26:34.698Z" data-rel="en"><i class="fa-regular fa-clock"></i> <span class="grid-time-text"></span></span>
         <span class="grid-time lang-np" data-date-ad="2026-07-05T22:26:34.698Z" data-rel="np" style="display:none;"><i class="fa-regular fa-clock"></i> <span class="grid-time-text"></span></span>
       </div>
-    </a>
+    </div>
   
 
-    <a href="javascript:void(0)" class="video-open-link grid-card" data-embed="https://www.youtube.com/embed/zwBQ7fQjKZ0" data-title="HIGHLIGHTS NEWS | बुटवल हाइलाइट | २० Asar 2083, Saturday" data-title-np="हाइलाइट्स समाचार | बुटवल हाइलाइट | २० असार २०८३, शनिवार">
-      <div class="grid-thumb">
-        <img src="https://img.youtube.com/vi/zwBQ7fQjKZ0/hqdefault.jpg" alt="HIGHLIGHTS NEWS | बुटवल हाइलाइट | २० Asar 2083, Saturday" loading="lazy">
-        <span class="grid-play"><i class="fas fa-play"></i></span>
-      </div>
+    <div class="grid-card" data-cat="Highlights">
+      <a href="javascript:void(0)" class="video-open-link grid-thumb-link" data-embed="https://www.youtube.com/embed/zwBQ7fQjKZ0" data-title="HIGHLIGHTS NEWS | बुटवल हाइलाइट | २० Asar 2083, Saturday" data-title-np="हाइलाइट्स समाचार | बुटवल हाइलाइट | २० असार २०८३, शनिवार">
+        <div class="grid-thumb">
+          <img src="https://img.youtube.com/vi/zwBQ7fQjKZ0/hqdefault.jpg" alt="HIGHLIGHTS NEWS | बुटवल हाइलाइट | २० Asar 2083, Saturday" loading="lazy">
+          <span class="grid-play"><i class="fas fa-play"></i></span>
+        </div>
+      </a>
       <div class="grid-body">
-        <h3 class="grid-title lang-en">HIGHLIGHTS NEWS | बुटवल हाइलाइट | २० Asar 2083, Saturday</h3>
-        <h3 class="grid-title lang-np" style="display:none;">हाइलाइट्स समाचार | बुटवल हाइलाइट | २० असार २०८३, शनिवार</h3>
+        <a href="../pages/video.html?id=9" class="grid-title-link">
+          <h3 class="grid-title lang-en">HIGHLIGHTS NEWS | बुटवल हाइलाइट | २० Asar 2083, Saturday</h3>
+          <h3 class="grid-title lang-np" style="display:none;">हाइलाइट्स समाचार | बुटवल हाइलाइट | २० असार २०८३, शनिवार</h3>
+        </a>
         <span class="grid-time lang-en" data-date-ad="2026-07-05T16:35:39.847Z" data-rel="en"><i class="fa-regular fa-clock"></i> <span class="grid-time-text"></span></span>
         <span class="grid-time lang-np" data-date-ad="2026-07-05T16:35:39.847Z" data-rel="np" style="display:none;"><i class="fa-regular fa-clock"></i> <span class="grid-time-text"></span></span>
       </div>
-    </a>
+    </div>
   
     </div>
     <div id="category-pagination"></div>
@@ -1704,7 +1732,7 @@ body.lang-active .lang-np-inline { display: inline !important; }
     }
   });
 
-  // Video modal click handler
+  // Video modal click handler (thumbnails only — titles navigate directly)
   document.addEventListener('click', function(e) {
     var link = e.target.closest('.video-open-link');
     if (!link) return;
