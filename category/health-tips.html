@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title>Butwal Online Tv - Health Tips Category</title>
+  <link rel="icon" type="image/png" href="../images/headerlogo.png">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -103,6 +104,9 @@
 }
 #bt-header .bt-logo-link { display: flex !important; align-items: center !important; gap: 10px !important; text-decoration: none !important; overflow: hidden !important; min-width: 0 !important; }
 #bt-header .bt-logo { height: 42px !important; width: auto !important; display: block !important; border-radius: 6px !important; }
+/* NEW: when collapsed, cap the logo to a small square so it doesn't get squished in the 76px rail */
+#bt-header .bt-sidebar.collapsed .bt-logo { height: 34px !important; width: 34px !important; object-fit: contain !important; }
+#bt-header .bt-sidebar.collapsed .bt-sidebar-header { padding: 0 !important; justify-content: center !important; }
 #bt-header .bt-logo-text { font-weight: 800 !important; font-size: 1.05rem !important; color: var(--bt-text) !important; white-space: nowrap !important; line-height: 1.15 !important; }
 #bt-header .bt-logo-sub { font-size: .62rem !important; color: var(--bt-muted) !important; font-weight: 600 !important; letter-spacing: .04em !important; display: block !important; margin-top: 2px !important; }
 #bt-header .bt-sidebar.collapsed .bt-logo-text-wrap { display: none !important; }
@@ -875,19 +879,15 @@ body.lang-active .lang-np-inline { display: inline !important; }
     }
     img, video, iframe { max-width: 100%; height: auto; }
 
-    /* Language visibility - Header defaults to NEPALI */
     #bt-header .lang-np { display: inline !important; }
     #bt-header .lang-en { display: none !important; }
     
-    /* When body.lang-active (Nepali mode): Header also shows NEPALI (sync) */
     body.lang-active #bt-header .lang-np { display: inline !important; }
     body.lang-active #bt-header .lang-en { display: none !important; }
 
-    /* When body does NOT have lang-active (English mode): Header shows ENGLISH (sync) */
     body:not(.lang-active) #bt-header .lang-en { display: inline !important; }
     body:not(.lang-active) #bt-header .lang-np { display: none !important; }
 
-    /* Body content defaults to ENGLISH */
     .lang-np { display: none !important; }
     .lang-en { display: inline; }
     div.lang-en, p.lang-en, section.lang-en,
@@ -897,7 +897,6 @@ body.lang-active .lang-np-inline { display: inline !important; }
     h1.lang-np, h2.lang-np, h3.lang-np, h4.lang-np,
     .article-body.lang-np { display: none !important; }
 
-    /* When body.lang-active (Nepali mode): Body shows NEPALI */
     body.lang-active .lang-en { display: none !important; }
     body.lang-active .lang-np { display: inline !important; }
     body.lang-active div.lang-np,
@@ -924,11 +923,6 @@ body.lang-active .lang-np-inline { display: inline !important; }
     .btt-btn.show { opacity: 1; visibility: visible; }
     .btt-btn:hover { opacity: 0.85; transform: scale(1.05); }
 
-    /* ── Guaranteed full-width category feed — .category-feed sometimes ships
-       with a hardcoded max-width:1200px + margin:0 auto from Feed Category's
-       BASE_CSS, which leaves blank space on both sides whenever the effective
-       viewport (e.g. at <100% browser zoom) exceeds 1200px. Pin it to fill
-       .main-content the same way the header/hero already do. ── */
     .category-feed {
       max-width: none !important;
       width: 100% !important;
@@ -958,7 +952,9 @@ body.lang-active .lang-np-inline { display: inline !important; }
   <aside class="bt-sidebar" id="bt-sidebar">
     <div class="bt-sidebar-header">
       <a href="../index.html" class="bt-logo-link" aria-label="Butwal TV Home">
-        <img src="../images/logo.png" alt="Butwal TV" class="bt-logo" id="bt-logo" onerror="this.style.display='none'">
+        <img src="../images/logo.png" alt="Butwal TV" class="bt-logo" id="bt-logo"
+             data-full-logo="../images/logo.png" data-collapsed-logo="../images/headerlogo.png"
+             onerror="this.style.display='none'">
         <span class="bt-logo-text-wrap">
           <span class="bt-logo-text">Butwal TV</span>
           <span class="bt-logo-sub">ONLINE TV</span>
@@ -1258,6 +1254,7 @@ body.lang-active .lang-np-inline { display: inline !important; }
     var pills     = document.querySelectorAll('#bt-category-bar .bt-cat-pill');
     var yearEl    = document.getElementById('bt-copyright-year');
     var langBtn   = document.getElementById('bt-lang-toggle');
+    var logoImg   = document.getElementById('bt-logo');
     var mediaUrl  = '';
 
     if (sidebar && sidebar.classList.contains('collapsed')) {
@@ -1266,6 +1263,15 @@ body.lang-active .lang-np-inline { display: inline !important; }
     if (yearEl) yearEl.textContent = new Date().getFullYear();
 
     function isMobile() { return window.innerWidth <= 900; }
+
+    // NEW: swap the logo image based on collapsed state
+    function syncLogo() {
+      if (!logoImg || !sidebar) return;
+      var collapsed = sidebar.classList.contains('collapsed');
+      var target = collapsed ? logoImg.getAttribute('data-collapsed-logo') : logoImg.getAttribute('data-full-logo');
+      if (target && logoImg.getAttribute('src') !== target) logoImg.setAttribute('src', target);
+    }
+    syncLogo();
 
     // ── Desktop collapse toggle ──
     if (collapse && sidebar) {
@@ -1277,6 +1283,7 @@ body.lang-active .lang-np-inline { display: inline !important; }
           sidebar.classList.toggle('collapsed');
           collapse.classList.toggle('rotated', sidebar.classList.contains('collapsed'));
           document.body.classList.toggle('sidebar-collapsed', sidebar.classList.contains('collapsed'));
+          syncLogo();
         }
       });
     }
@@ -1690,7 +1697,6 @@ body.lang-active .lang-np-inline { display: inline !important; }
 (function() {
   'use strict';
   
-  // Get stored language or default to 'np'
   function getStoredLang() {
     try {
       var lang = localStorage.getItem('fm_lang') || 'np';
@@ -1698,20 +1704,16 @@ body.lang-active .lang-np-inline { display: inline !important; }
     } catch(e) { return 'np'; }
   }
   
-  // Apply language - header and body are in sync
   function applyLanguage(lang) {
     var isNp = (lang === 'np');
     
-    // Update body
     document.body.classList.toggle('lang-active', isNp);
     
-    // Update header
     var header = document.getElementById('bt-header');
     if (header) {
       header.classList.toggle('lang-active', isNp);
     }
     
-    // Update hero title
     var heroTitle = document.getElementById('bt-hero-title');
     if (heroTitle) {
       var enEl = heroTitle.querySelector('.lang-en');
@@ -1720,13 +1722,11 @@ body.lang-active .lang-np-inline { display: inline !important; }
       if (npEl) npEl.style.display = isNp ? 'inline' : 'none';
     }
     
-    // Update language toggle button text
     var langBtn = document.getElementById('bt-lang-toggle');
     if (langBtn) {
       langBtn.textContent = isNp ? 'EN' : 'NP';
     }
     
-    // Update all language elements
     document.querySelectorAll('.lang-en, .lang-np').forEach(function(el) {
       var isNpEl = el.classList.contains('lang-np');
       var show = isNp ? isNpEl : !isNpEl;
@@ -1739,19 +1739,16 @@ body.lang-active .lang-np-inline { display: inline !important; }
       el.style.display = inlineTags.indexOf(tag) !== -1 ? 'inline' : 'block';
     });
     
-    // Dispatch event for other scripts
     window.dispatchEvent(new CustomEvent('langChange', {
       detail: { lang: lang }
     }));
   }
   
-  // Initialize language
   function initLanguage() {
     var storedLang = getStoredLang();
     applyLanguage(storedLang);
   }
   
-  // Run on load
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', function() {
       setTimeout(initLanguage, 50);
@@ -1760,14 +1757,12 @@ body.lang-active .lang-np-inline { display: inline !important; }
     setTimeout(initLanguage, 50);
   }
   
-  // Listen for language changes
   window.addEventListener('langChange', function(e) {
     if (e.detail && e.detail.lang) {
       applyLanguage(e.detail.lang);
     }
   });
   
-  // Watch for header toggle clicks
   document.addEventListener('click', function(e) {
     var toggleBtn = e.target.closest('#bt-lang-toggle');
     if (toggleBtn) {
@@ -1799,7 +1794,6 @@ body.lang-active .lang-np-inline { display: inline !important; }
   function setActiveNav() {
     var currentFile = normalize(window.location.pathname);
 
-    // Primary target: <li class="bt-nav-item"> wrapper (Butwal Today header structure)
     var navItems = document.querySelectorAll('#bt-header .bt-nav-item');
 
     navItems.forEach(function(item) {
@@ -1818,12 +1812,11 @@ body.lang-active .lang-np-inline { display: inline !important; }
       }
     });
 
-    // Fallback: handle any nav links NOT wrapped in .bt-nav-item
     var plainLinks = document.querySelectorAll(
       '#bt-header a[href], .sidebar a[href], nav a[href]'
     );
     plainLinks.forEach(function(a) {
-      if (a.closest('.bt-nav-item')) return; // already handled above
+      if (a.closest('.bt-nav-item')) return;
 
       var href = a.getAttribute('href') || '';
       if (!href || href === '#' || href.indexOf('javascript:') === 0) return;

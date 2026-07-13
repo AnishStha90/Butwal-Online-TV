@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title>Our Team | Butwal Online Tv</title>
+  <link rel="icon" type="image/png" href="../images/headerlogo.png">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   
   <style>
@@ -99,6 +100,9 @@
 }
 #bt-header .bt-logo-link { display: flex !important; align-items: center !important; gap: 10px !important; text-decoration: none !important; overflow: hidden !important; min-width: 0 !important; }
 #bt-header .bt-logo { height: 42px !important; width: auto !important; display: block !important; border-radius: 6px !important; }
+/* NEW: when collapsed, cap the logo to a small square so it doesn't get squished in the 76px rail */
+#bt-header .bt-sidebar.collapsed .bt-logo { height: 34px !important; width: 34px !important; object-fit: contain !important; }
+#bt-header .bt-sidebar.collapsed .bt-sidebar-header { padding: 0 !important; justify-content: center !important; }
 #bt-header .bt-logo-text { font-weight: 800 !important; font-size: 1.05rem !important; color: var(--bt-text) !important; white-space: nowrap !important; line-height: 1.15 !important; }
 #bt-header .bt-logo-sub { font-size: .62rem !important; color: var(--bt-muted) !important; font-weight: 600 !important; letter-spacing: .04em !important; display: block !important; margin-top: 2px !important; }
 #bt-header .bt-sidebar.collapsed .bt-logo-text-wrap { display: none !important; }
@@ -538,7 +542,9 @@ body.lang-active .lang-np-inline { display: inline !important; }
   <aside class="bt-sidebar" id="bt-sidebar">
     <div class="bt-sidebar-header">
       <a href="../index.html" class="bt-logo-link" aria-label="Butwal TV Home">
-        <img src="../images/logo.png" alt="Butwal TV" class="bt-logo" id="bt-logo" onerror="this.style.display='none'">
+        <img src="../images/logo.png" alt="Butwal TV" class="bt-logo" id="bt-logo"
+             data-full-logo="../images/logo.png" data-collapsed-logo="../images/headerlogo.png"
+             onerror="this.style.display='none'">
         <span class="bt-logo-text-wrap">
           <span class="bt-logo-text">Butwal TV</span>
           <span class="bt-logo-sub">ONLINE TV</span>
@@ -813,6 +819,7 @@ body.lang-active .lang-np-inline { display: inline !important; }
     var pills     = document.querySelectorAll('#bt-category-bar .bt-cat-pill');
     var yearEl    = document.getElementById('bt-copyright-year');
     var langBtn   = document.getElementById('bt-lang-toggle');
+    var logoImg   = document.getElementById('bt-logo');
     var mediaUrl  = '';
 
     if (sidebar && sidebar.classList.contains('collapsed')) {
@@ -821,6 +828,15 @@ body.lang-active .lang-np-inline { display: inline !important; }
     if (yearEl) yearEl.textContent = new Date().getFullYear();
 
     function isMobile() { return window.innerWidth <= 900; }
+
+    // NEW: swap the logo image based on collapsed state
+    function syncLogo() {
+      if (!logoImg || !sidebar) return;
+      var collapsed = sidebar.classList.contains('collapsed');
+      var target = collapsed ? logoImg.getAttribute('data-collapsed-logo') : logoImg.getAttribute('data-full-logo');
+      if (target && logoImg.getAttribute('src') !== target) logoImg.setAttribute('src', target);
+    }
+    syncLogo();
 
     // ── Desktop collapse toggle ──
     if (collapse && sidebar) {
@@ -832,6 +848,7 @@ body.lang-active .lang-np-inline { display: inline !important; }
           sidebar.classList.toggle('collapsed');
           collapse.classList.toggle('rotated', sidebar.classList.contains('collapsed'));
           document.body.classList.toggle('sidebar-collapsed', sidebar.classList.contains('collapsed'));
+          syncLogo();
         }
       });
     }
