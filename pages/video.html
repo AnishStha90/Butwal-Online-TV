@@ -540,9 +540,22 @@ body.lang-active .lang-np-inline { display: inline !important; }
         <span><i class="fa-regular fa-clock"></i> <span id="vd-date"></span></span>
       </div>
       <div style="display:flex;gap:.5rem;">
-        <a id="vd-share-fb" href="#" target="_blank" rel="noopener" style="width:34px;height:34px;border-radius:50%;background:#1877F2;color:#fff;display:flex;align-items:center;justify-content:center;text-decoration:none;"><i class="fa-brands fa-facebook-f"></i></a>
-        <a id="vd-share-wa" href="#" target="_blank" rel="noopener" style="width:34px;height:34px;border-radius:50%;background:#25D366;color:#fff;display:flex;align-items:center;justify-content:center;text-decoration:none;"><i class="fa-brands fa-whatsapp"></i></a>
-        <a id="vd-share-x" href="#" target="_blank" rel="noopener" style="width:34px;height:34px;border-radius:50%;background:#000;color:#fff;display:flex;align-items:center;justify-content:center;text-decoration:none;"><i class="fa-brands fa-x-twitter"></i></a>
+        <a href="https://www.youtube.com/@butwaltodayTV" target="_blank" rel="noopener" aria-label="YouTube"
+      style="width:34px;height:34px;border-radius:50%;background:#FF0000;color:#fff;display:flex;align-items:center;justify-content:center;text-decoration:none;">
+      <i class="fa-brands fa-youtube"></i>
+    </a>
+        <a href="https://www.facebook.com/butwaltodaydaily" target="_blank" rel="noopener" aria-label="Facebook"
+      style="width:34px;height:34px;border-radius:50%;background:#1877F2;color:#fff;display:flex;align-items:center;justify-content:center;text-decoration:none;">
+      <i class="fa-brands fa-facebook"></i>
+    </a>
+        <a href="https://www.instagram.com/dailybutwaltoday/" target="_blank" rel="noopener" aria-label="Instagram"
+      style="width:34px;height:34px;border-radius:50%;background:#E4405F;color:#fff;display:flex;align-items:center;justify-content:center;text-decoration:none;">
+      <i class="fa-brands fa-instagram"></i>
+    </a>
+        <a href="https://x.com/NewsButwalToday" target="_blank" rel="noopener" aria-label="Twitter/X"
+      style="width:34px;height:34px;border-radius:50%;background:#000000;color:#fff;display:flex;align-items:center;justify-content:center;text-decoration:none;">
+      <i class="fa-brands fa-x-twitter"></i>
+    </a>
       </div>
     </div>
 
@@ -791,11 +804,6 @@ body.lang-active .lang-np-inline { display: inline !important; }
     var sep = v.embed.indexOf('?')>-1 ? '&' : '?';
     frame.src = v.embed + sep + 'autoplay=1';
     frame.title = v.title;
-
-    var pageUrl = window.location.href;
-    document.getElementById('vd-share-fb').href = 'https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(pageUrl);
-    document.getElementById('vd-share-wa').href = 'https://wa.me/?text=' + encodeURIComponent(v.title + ' ' + pageUrl);
-    document.getElementById('vd-share-x').href  = 'https://twitter.com/intent/tweet?text=' + encodeURIComponent(v.title) + '&url=' + encodeURIComponent(pageUrl);
 
     articleEl.style.display = 'block';
 
