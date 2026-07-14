@@ -272,119 +272,100 @@
 .section-header { display:flex; align-items:center; justify-content:space-between; margin-bottom:16px; padding-bottom:8px; border-bottom:2px solid #C1121F; }
 .section-title { font-size:1.15rem; margin:0; color:#C1121F; font-family:Noto Sans Devanagari, Noto Sans, sans-serif; font-weight:800; display:flex; align-items:center; gap:8px; }
 .section-title::before { content:''; display:inline-block; width:4px; height:1.1em; background:#F2B705; border-radius:2px; flex-shrink:0; }
-.view-all-link { font-size:.78rem; font-weight:700; color:#C1121F; text-decoration:none; padding:4px 12px; border:1px solid #C1121F; border-radius:3px;
-transition:all .2s;
-white-space nowrap;}
-.view-all-link:hover { background:#C1121F;
-color:#FFFFFF;}
+.view-all-link { font-size:.78rem; font-weight:700; color:#C1121F; text-decoration:none;
+padding:4px 12px;
+border-radius:
+3px;
+transition:
+all
+.2s;
+white-space:
+nowrap;
+}
+.view-all-link:hover {
+background:
+#C1121F;
+color:
+#FFFFFF;
+}
 
 .section-grid,
 .section-grid.has-featured,
 .section-grid.latest-grid {
-display :grid;
-grid-template-columns : repeat(auto-fill,minmax(220px,1fr));
-gap :18px;
-align-items:start;
+display:
+grid;
+grid-template-columns:
+repeat(auto-fill,minmax(220px,1fr));
+gap:
+18px;
+align-items:
+start;
 }
 /* The "list" wrapper becomes transparent so its cards join the same grid
 as the "featured" card — instead of being boxed into a separate column. */
 .section-list {
-display :contents;
+display:
+contents;
 }
 
-@media(max-width :480px) {
-  .section-grid , .section-grid.has-featured , .section-grid.latest-grid {
-    grid-template-columns : repeat(2 , 1fr);
-    gap :12px;
-}
+@media(max-width:480px) {
+  .section-grid,
+  .section-grid.has-featured,
+  .section-grid.latest-grid {
+    grid-template-columns:
+      repeat(2, 1fr);
+    gap:
+      12px;
+  }
 }
 
-.news-card.featured ,
+.news-card.featured,
 .news-card.latest {
-background :#FAFAFA ;
-border : 1px solid rgba (193 ,18 ,31 ,0.18);
-border-radius :6px ;
-overflow:hidden ;
-display:block ;
-width :100% ;
-transition :box-shadow .2 s ease ,
-transform .2 s ease ;
+background:
+#FAFAFA;
+border:
+1px solid rgba(193,18,31,0.18);
+border-radius:
+6px;
+overflow:hidden;
+display:block;
+width:
+100%;
+transition:
+box-shadow
+.2s ease,
+transform
+.2s ease;
 }
-.news-card.featured:hover ,
+.news-card.featured:hover,
 .news-card.latest:hover {
-box-shadow :0 4px 16px rgba (0 ,0 ,0 ,.14);
-transform :translateY (-2px);
+box-shadow:
+0
+4px
+16px rgba(0,0,0,.14);
+transform:
+translateY(-2px);
 }
-.news-card.featured > a ,
+.news-card.featured > a,
 .news-card.latest > a {
-text-decoration:none ; color:#1D1D1D ; display:block ;
-}
-.news-card.featured .card-img ,
+text-decoration:none;color:#1D1D1D;display:block;}
+.news-card.featured .card-img,
 .news-card.latest .card-img {
-display:block ; width :100% ; height :170px ; position:relative ; overflow:hidden ; background:#000 ;
-}
-.news-card.featured .card-img img ,
+display:block;width:100%;height:auto;}
+.news-card.featured .card-img img,
 .news-card.latest .card-img img {
-position:absolute ; inset :0 ; width :100% ; height :100% ; object-fit :cover ;
-object-position:center ; display:block ;
-}
-/* Play-icon overlay on hover , like YouTube-thumbnail-driven news grids */
-.news-card.featured .card-img ::after ,
-.news-card.latest .card-img ::after {
-content :' \f04b ';
-font-family :' Font Awesome 6 Free '; font-weight :900 ;
-position:absolute ; inset :0 ; display:flex ;
-align-items:center ; justify-content:center ;
-font-size :.5rem ; color:#fff ;
-background rgba (0 ,0 ,0 ,.18) opacity:.5 transition.opacity
-.s
-opacity:.5
-opacity:.5
-opacity:.5
-opacity:.5
-.opacity:.5
-.opacity:.5
-.opacity:.5
-.opacity:.5
-.opacity:.5
-.opacity:
-.opacity:
-.opacity:
-.opacity:
-.opacity:
-opacity:
-opacity:
-opacity:
-opacity:
-opacity:;
- opacity:;
- opacity:;
- opacity:;
- opacity:;
- opacity:;
- opacity:;
- opacity:;
- opacity:;
- opacity:;
- opacity:;
-opacity:;
-opacity:;
-opacity:;
-opacity:;
-opacity:';
-.content:'\f04b';
-font-family:'Font Awesome 6 Free'; font-weight:bold;
-position:absolute;top:-10%;left:-10%;width:auto;height:auto;display:flex;
-align-items:center;jusitfy-content:center;z-index:-10;color:white;background-color:black;padding-top:-20%;
-padding-left:-20%;
-padding-right:-20%;
-padding-bottom:-20%;
-transition-property:both;
-transition-duration:.3s;}
+position:absolute;top:-50%;left:-50%;width:auto;height:auto;}
+/* Play-icon overlay on hover */
+.news-card.featured .card-img::after,
+.news-card.latest .card-img::after {
+content:'\f04b';
+font-family:'Font Awesome 6 Free';font-weight:bold;display:flex	align-items:center	justify-content:center;font-size:.9rem;color:#fff;background-color:hsla(0,0%,100%,.18);opacity:.5;}
+.news-card.featured:hover .card-img::after,.news-card.latest:hover .card-img::after{opacity:.9;}
 .card-read-more{display:none;}
-.card-date{font-size:.72rem;color:muted(display:flex;
-align-items:center;
-gap-4margin-top-4;}
+
+.card-date{font-size:.72rem;color:hsla(29,29%,29%,60%);display:flex	align-items:center	gap:.5rem;margin-top:.5rem;}
+
+.cat-badge{display:inline-block;background-color:hsl(306°,.95%,25%);color:hsl(306°,.95%,25%);font-size:.62rem;font-weight:bold;padding:.25rem;.75rem;border-radius:.25rem;margin-bottom:.5rem;text-transform uppercase;}
 </style>
 <style>@keyframes popupIn{from{opacity:0;transform:scale(.85)}to{opacity:1;transform:scale(1)}} #ad-popup-overlay.active{display:flex!important}</style>
 <style>\n    #shorts-track::-webkit-scrollbar { display:none; }\n    #shorts-track { scrollbar-width:none; }\n    .shorts-caption-link:hover .shorts-caption .lang-en,\n    .shorts-caption-link:hover .shorts-caption .lang-np { color: #ccc; }\n    .shorts-caption .lang-en, .shorts-caption .lang-np { color: #333; }\n  </style>
@@ -905,9 +886,7 @@ body.lang-active .lang-np-inline { display: inline !important; }
 
 
 </header>
-  <main><div id="sections-container" class="page-container">
-<!-- injected -->
-</div>
+  <main><div id="sections-container" class="page-container"><!-- injected --></div>
 <!-- POPUP AD -->
 <div id="ad-popup-overlay" style="display:none;position:fixed;inset:0;z-index:99999;background:rgba(0,0,0,.75);align-items:center;justify-content:center;padding:16px;box-sizing:border-box;"><div style="position:relative;max-width:740px;width:100%;border-radius:10px;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,.7);animation:popupIn .3s ease both;"><button id="ad-popup-close" style="position:absolute;top:10px;right:10px;width:36px;height:36px;border-radius:50%;background:rgba(0,0,0,.65);color:#fff;border:2px solid rgba(255,255,255,.4);font-size:16px;cursor:pointer;display:flex;align-items:center;justify-content:center;z-index:2;">&#x2715;</button><img src="images/popup.jpg" alt="Advertisement" style="display:block;width:100%;height:auto;max-height:86vh;object-fit:contain;"></div></div>
 
@@ -1250,42 +1229,51 @@ function populateHero(){
   }
 }
 
-// ── Build + insert the 4x2 grid strip (filter-only row) — thumbnail opens
-// modal, title text below navigates to detail page ──
+// ── FIXED: Build the top strip using the SAME markup as regular news cards.
+// Reuses .news-card.latest so it automatically inherits every .news-card
+// override already injected into the page (image sizing, title clamp,
+// hover play-icon, card border/background, etc.) instead of relying on its
+// own separate, previously-broken inline styles. ──
 function buildStripHtml(){
   return HERO_DATA.strip.map(function(n){
     var detailUrl = 'pages/video.html?id=' + encodeURIComponent(n.id);
-    return '<div class="hero-strip-card" data-cat="'+n.cat+'">'+
-      '<a href="javascript:void(0)" class="video-open-link" data-embed="'+n.embed+'">'+
-      '<div class="strip-thumb"><img src="'+n.img+'" alt="'+n.title+'" loading="lazy"></div>'+
-      '</a>'+
-      '<a href="'+detailUrl+'" style="text-decoration:none;color:inherit;">'+
-      '<div class="strip-title lang-en">'+n.title+'</div>'+
-      '<div class="strip-title lang-np" style="display:none">'+n.titleNp+'</div>'+
-      '</a>'+
-      '</div>';
+    return (
+      '<article class="news-card latest hero-strip-card" data-cat="'+n.cat+'">' +
+      '<a href="javascript:void(0)" class="video-open-link" data-embed="'+n.embed+'" data-title="'+n.title+'">' +
+      '<div class="card-img"><img src="'+n.img+'" alt="'+n.title+'" loading="lazy"></div>' +
+      '</a>' +
+      '<div class="card-body">' +
+      '<a href="'+detailUrl+'" class="card-title-link">' +
+      '<h3 class="card-title lang-en">'+n.title+'</h3>' +
+      '<h3 class="card-title lang-np" style="display:none">'+n.titleNp+'</h3>' +
+      '</a>' +
+      '</div></article>'
+    );
   }).join('');
 }
 
+// ── FIXED: Insert the strip wrapped in the SAME section/grid markup as
+// News (.news-section > .section-header + .section-grid) so spacing,
+// borders, title styling, and zoom-out reflow are 100% identical to the
+// News section below it. No custom CSS block needed anymore. ──
 function insertStrip(){
-  var catBar = document.getElementById('bt-category-bar');
-  if(!catBar || document.getElementById('bt-hero-strip')) return;
-  var strip = document.createElement('div');
-  strip.id = 'bt-hero-strip';
-  strip.className = 'bt-hero-strip';
-  strip.innerHTML = buildStripHtml();
-  catBar.insertAdjacentElement('afterend', strip);
+  if(document.getElementById('bt-hero-strip')) return;
 
-  var style = document.createElement('style');
-  style.textContent =
-    '.bt-hero-strip{display:grid;grid-template-columns:repeat(4,1fr);grid-template-rows:repeat(2,auto);gap:12px;padding:4px 28px 18px;}'+
-    '.hero-strip-card{display:block;}'+
-    '.strip-thumb{width:100%;aspect-ratio:16/9;border-radius:6px;overflow:hidden;background:#eee;}'+
-    '.strip-thumb img{width:100%;height:100%;object-fit:cover;display:block;}'+
-    '.strip-title{font-size:.78rem;margin-top:4px;line-height:1.25;max-height:2.5em;overflow:hidden;}'+
-    '@media(max-width:900px){.bt-hero-strip{grid-template-columns:repeat(2,1fr);padding:4px 16px 16px;}}'+
-    '@media(max-width:480px){.bt-hero-strip{grid-template-columns:repeat(1,1fr);gap:14px;padding:4px 12px 14px;}}';
-  document.head.appendChild(style);
+  var mainEl = document.querySelector('main');
+  if(!mainEl) return;
+
+  var section = document.createElement('section');
+  section.id = 'bt-hero-strip';
+  section.className = 'news-section page-container';
+  section.style.marginTop = '28px';
+  section.innerHTML =
+    '<div id="bt-hero-strip-grid" class="section-grid">' + buildStripHtml() + '</div>';
+
+  // Insert as the very FIRST child of <main>, right before #sections-container,
+  // so it shares the exact same box model / width as the News section below it
+  // (the old .bt-main insertion point has a CSS width bug that made it wider
+  // than <main>, causing the left/right gap mismatch).
+  mainEl.insertBefore(section, mainEl.firstChild);
 }
 
 // ── Wire category pills — filter ONLY affects the hero strip grid ──
@@ -1294,7 +1282,15 @@ function wireCategoryFilter(){
     var cat = (e.detail && e.detail.category) || 'all';
     document.querySelectorAll('.hero-strip-card').forEach(function(c){
       var show = (cat==='all') || (c.getAttribute('data-cat')===cat);
-      c.style.display = show ? '' : 'none';
+      // NOTE: .news-card.latest has "display:flex !important" in the page CSS,
+      // so a plain c.style.display='none' can never win against it. Using
+      // setProperty(...,'important') for hide, and removeProperty() for show
+      // (which lets the !important flex rule take back over) is required.
+      if(show){
+        c.style.removeProperty('display');
+      } else {
+        c.style.setProperty('display', 'none', 'important');
+      }
     });
   });
 }
