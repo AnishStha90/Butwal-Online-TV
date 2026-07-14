@@ -429,15 +429,15 @@
   :root {
     --accent:       #F2B705;
     --primary:      #C1121F;
-    --primary-on:   ;
-    --accent-on:    ;
+    --primary-on:   #FFFFFF;
+    --accent-on:    #1D1D1D;
     --bg:           #FFFFFF;
     --surface:      #FAFAFA;
     --text:         #1D1D1D;
     --muted:        rgba(29,29,29,0.60);
     --border:       rgba(193,18,31,0.18);
-    --font-body:    ;
-    --font-heading: ;
+    --font-body:    Arial, sans-serif;
+    --font-heading: Arial, sans-serif;
   }
 
   * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -460,6 +460,7 @@
 
   .news-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 2rem; margin-bottom: 3rem; }
 
+  /* Article Card Styles */
   .article-card { background: var(--surface); border-radius: 12px; overflow: hidden; transition: transform 0.3s ease, box-shadow 0.3s ease; border: 1px solid var(--border); }
   .article-card:hover { transform: translateY(-4px); box-shadow: 0 8px 24px rgba(0,0,0,0.1); }
 
@@ -489,9 +490,11 @@
 
   #back-to-top { position: fixed; bottom: 1.5rem; right: 1.5rem; background: var(--accent); color: var(--accent-on); border: none; border-radius: 50%; width: 42px; height: 42px; cursor: pointer; font-size: 1rem; display: none; align-items: center; justify-content: center; z-index: 999; transition: opacity 0.2s; }
 
+  /* Empty State */
   .empty-state { text-align: center; padding: 4rem 2rem; background: var(--surface); border-radius: 12px; color: var(--muted); }
   .empty-state i { font-size: 3rem; margin-bottom: 1rem; opacity: 0.5; }
 
+  /* Responsive */
   @media (max-width: 768px) {
     .category-container { padding: 1rem; }
     .news-grid { gap: 1rem; grid-template-columns: 1fr; }
@@ -912,6 +915,24 @@ body.lang-active .lang-np-inline { display: inline !important; }
   <div class="category-feed">
     <div id="news-list">
       
+    <div class="grid-card" data-cat="News">
+      <a href="javascript:void(0)" class="video-open-link grid-thumb-link" data-embed="https://www.youtube.com/embed/AvT91Ry_dhg" data-title="Butwal Today News | 30 Asadh 2083, Tuesday" data-title-np="बुटवल टुडे समाचार | ३० असार २०८३, मंगलवार">
+        <div class="grid-thumb">
+          <img src="https://img.youtube.com/vi/AvT91Ry_dhg/hqdefault.jpg" alt="Butwal Today News | 30 Asadh 2083, Tuesday" loading="lazy">
+          <span class="grid-play"><i class="fas fa-play"></i></span>
+        </div>
+      </a>
+      <div class="grid-body">
+        <a href="../pages/video.html?id=62" class="grid-title-link">
+          <h3 class="grid-title lang-en">Butwal Today News | 30 Asadh 2083, Tuesday</h3>
+          <h3 class="grid-title lang-np" style="display:none;">बुटवल टुडे समाचार | ३० असार २०८३, मंगलवार</h3>
+        </a>
+        <span class="grid-time lang-en" data-date-ad="2026-07-14T14:04:46.170Z" data-rel="en"><i class="fa-regular fa-clock"></i> <span class="grid-time-text"></span></span>
+        <span class="grid-time lang-np" data-date-ad="2026-07-14T14:04:46.170Z" data-rel="np" style="display:none;"><i class="fa-regular fa-clock"></i> <span class="grid-time-text"></span></span>
+      </div>
+    </div>
+  
+
     <div class="grid-card" data-cat="News">
       <a href="javascript:void(0)" class="video-open-link grid-thumb-link" data-embed="https://www.youtube.com/embed/WjGopjk8qk4" data-title="I crossed the Mahakali River and entered the wildlife reserve. Are the elephants enjoying themselves in the river or trapped in it?" data-title-np="महाकाली नदी तरेर जंगली हात्ती निकुञ्ज छिरे, हात्ती नदीमा रमाएका हुन् कि फसेका हुन् ?">
         <div class="grid-thumb">
@@ -1411,14 +1432,14 @@ body.lang-active .lang-np-inline { display: inline !important; }
   var CATEGORY_DATA = {
     nameEn:       "News",
     nameNp:       "समाचार",
-    totalCount:   14,
+    totalCount:   15,
     itemsPerPage: 20
   };
 
   var LATEST_VIDEO = {
-    embedUrl: "https://www.youtube.com/embed/WjGopjk8qk4",
-    title:    "I crossed the Mahakali River and entered the wildlife reserve. Are the elephants enjoying themselves in the river or trapped in it?",
-    titleNp:  "महाकाली नदी तरेर जंगली हात्ती निकुञ्ज छिरे, हात्ती नदीमा रमाएका हुन् कि फसेका हुन् ?"
+    embedUrl: "https://www.youtube.com/embed/AvT91Ry_dhg",
+    title:    "Butwal Today News | 30 Asadh 2083, Tuesday",
+    titleNp:  "बुटवल टुडे समाचार | ३० असार २०८३, मंगलवार"
   };
 
   var currentPage = 1;
