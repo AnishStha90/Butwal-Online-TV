@@ -510,6 +510,27 @@ body.lang-active .lang-np-inline { display: inline !important; }
      reserved for it on the homepage ── */
   #bt-header { min-height: auto !important; }
   #bt-header .bt-main { min-height: auto !important; }
+
+  /* ══════════════════════════════════════════════════════════
+     FIX (NEW v16): the header's own <style> block hard-codes
+       #bt-header .lang-en { display: none !important; }
+       #bt-header .lang-np { display: inline !important; }
+     unconditionally — this always wins over the toggle's inline
+     JS style (a CSS !important beats a non-!important inline
+     style regardless of specificity), so clicking the language
+     toggle never actually changed the header's language even
+     though body/footer updated fine.
+     Fix: re-declare lang-en/lang-np visibility for #bt-header,
+     driven by the body.lang-active class that the header's own
+     toggle button (applyLangGlobal) already sets on click. This
+     block is injected into <head> AFTER headerStyles/footerStyles,
+     so at equal specificity + !important, source order makes this
+     win the cascade tie and the header toggles correctly. ──
+  ══════════════════════════════════════════════════════════════ */
+  body:not(.lang-active) #bt-header .lang-en { display: inline !important; }
+  body:not(.lang-active) #bt-header .lang-np { display: none !important; }
+  body.lang-active #bt-header .lang-en { display: none !important; }
+  body.lang-active #bt-header .lang-np { display: inline !important; }
 </style>
 </head>
 <body>
