@@ -416,20 +416,28 @@
   .pg-btn:disabled { opacity: .4; cursor: not-allowed; }
   .pg-ellipsis { color: var(--muted); padding: 0 .25rem; }
 
+  #back-to-top {
+    position: fixed; bottom: 1.5rem; right: 1.5rem;
+    background: var(--accent); color: var(--accent-on);
+    border: none; border-radius: 50%;
+    width: 42px; height: 42px; cursor: pointer;
+    font-size: 1rem; display: none;
+    align-items: center; justify-content: center; z-index: 999;
+  }
 </style>
 <style>
   :root {
     --accent:       #F2B705;
     --primary:      #C1121F;
-    --primary-on:   ;
-    --accent-on:    ;
+    --primary-on:   #FFFFFF;
+    --accent-on:    #1D1D1D;
     --bg:           #FFFFFF;
     --surface:      #FAFAFA;
     --text:         #1D1D1D;
     --muted:        rgba(29,29,29,0.60);
     --border:       rgba(193,18,31,0.18);
-    --font-body:    ;
-    --font-heading: ;
+    --font-body:    Arial, sans-serif;
+    --font-heading: Arial, sans-serif;
   }
 
   * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -701,6 +709,21 @@ body.lang-active .lang-np-inline { display: inline !important; }
     body.lang-active h4.lang-np,
     body.lang-active .article-body.lang-np { display: block !important; }
 
+    .btt-btn {
+      position: fixed; bottom: 30px; right: 30px;
+      width: 45px; height: 45px; border-radius: 50%;
+      border: none; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      opacity: 0; visibility: hidden;
+      transition: opacity .3s, visibility .3s;
+      z-index: 9998;
+      background: var(--accent, #f59e0b);
+      color: var(--accent-on, #ffffff);
+      box-shadow: 0 2px 10px rgba(0,0,0,.3);
+    }
+    .btt-btn.show { opacity: 1; visibility: visible; }
+    .btt-btn:hover { opacity: 0.85; transform: scale(1.05); }
+
     .category-feed {
       max-width: none !important;
       width: 100% !important;
@@ -824,9 +847,9 @@ body.lang-active .lang-np-inline { display: inline !important; }
       </ul>
     </nav>
 
-   <div class="bt-sidebar-footer">
-  <span>© <span id="bt-copyright-year"></span> <span class="lang-en">Butwal TV</span><span class="lang-np">बुटवल टिभी</span></span>
-</div>
+    <div class="bt-sidebar-footer">
+      <span>© <span id="bt-copyright-year"></span> Butwal TV</span>
+    </div>
   </aside>
 
   <button class="bt-collapse-btn" id="bt-collapse-btn" aria-label="Collapse sidebar">
@@ -892,6 +915,24 @@ body.lang-active .lang-np-inline { display: inline !important; }
   <div class="category-feed">
     <div id="news-list">
       
+    <div class="grid-card" data-cat="Highlights">
+      <a href="javascript:void(0)" class="video-open-link grid-thumb-link" data-embed="https://www.youtube.com/embed/PUpKAtiOY9Q" data-title="HILIGHTS NEWS | Butwal Highlights | 28 Asadh 2083, Aaitabaar | #NewsUpdate #hilights #PoliticalNews #economy" data-title-np="हाइलाइट्स न्युज | बुटवल हाइलाइट्स | २८ असार २०८३, आइतवार | #NewsUpdate #हाइलाइट्स #राजनीतिकसमाचार #अर्थतन्त्र">
+        <div class="grid-thumb">
+          <img src="https://img.youtube.com/vi/PUpKAtiOY9Q/hqdefault.jpg" alt="HILIGHTS NEWS | Butwal Highlights | 28 Asadh 2083, Aaitabaar | #NewsUpdate #hilights #PoliticalNews #economy" loading="lazy">
+          <span class="grid-play"><i class="fas fa-play"></i></span>
+        </div>
+      </a>
+      <div class="grid-body">
+        <a href="../pages/video.html?id=53" class="grid-title-link">
+          <h3 class="grid-title lang-en">HILIGHTS NEWS | Butwal Highlights | 28 Asadh 2083, Aaitabaar | #NewsUpdate #hilights #PoliticalNews #economy</h3>
+          <h3 class="grid-title lang-np" style="display:none;">हाइलाइट्स न्युज | बुटवल हाइलाइट्स | २८ असार २०८३, आइतवार | #NewsUpdate #हाइलाइट्स #राजनीतिकसमाचार #अर्थतन्त्र</h3>
+        </a>
+        <span class="grid-time lang-en" data-date-ad="2026-07-12T19:17:59.901Z" data-rel="en"><i class="fa-regular fa-clock"></i> <span class="grid-time-text"></span></span>
+        <span class="grid-time lang-np" data-date-ad="2026-07-12T19:17:59.901Z" data-rel="np" style="display:none;"><i class="fa-regular fa-clock"></i> <span class="grid-time-text"></span></span>
+      </div>
+    </div>
+  
+
     <div class="grid-card" data-cat="Highlights">
       <a href="javascript:void(0)" class="video-open-link grid-thumb-link" data-embed="https://www.youtube.com/embed/PUpKAtiOY9Q" data-title="HILIGHTS NEWS | Butwal Highlights | 28 Asadh 2083, Aaitabaar | #NewsUpdate #hilights #PoliticalNews #economy" data-title-np="हाइलाइट्स न्युज | बुटवल हाइलाइट्स | २८ असार २०८३, आइतवार | #NewsUpdate #हाइलाइट्स #राजनीतिकसमाचार #अर्थतन्त्र">
         <div class="grid-thumb">
@@ -1054,7 +1095,7 @@ body.lang-active .lang-np-inline { display: inline !important; }
   <div class="footer-bottom">
     <span class="copyright">
       <span class="lang-en-inline">© 2026 Butwal TV — All rights reserved.</span>
-      <span class="lang-np-inline">© २०२६ बुटवल टिभी — सबै अधिकार सुरक्षित</span>
+      <span class="lang-np-inline">© २०२६ Butwal TV — सबै अधिकार सुरक्षित</span>
     </span>
     <span class="developer"></span>
   </div>
@@ -1067,6 +1108,11 @@ body.lang-active .lang-np-inline { display: inline !important; }
   <div class="wa-tooltip"><span class="lang-en-inline">Chat on WhatsApp</span><span class="lang-np-inline">WhatsApp मा सम्पर्क</span></div>
   <a href="https://wa.me/9779749844080?text=Hello!%20I%20have%20a%20query%20about%20Butwal%20TV" target="_blank" rel="noopener noreferrer" class="wa-fab" aria-label="Chat on WhatsApp"><i class="fab fa-whatsapp"></i></a>
 </div>
+
+  <!-- Back-to-top -->
+  <button class="btt-btn" aria-label="Back to top">
+    <i class="fa-solid fa-arrow-up"></i>
+  </button>
 
   <!-- All component scripts -->
   <script>
@@ -1206,7 +1252,7 @@ body.lang-active .lang-np-inline { display: inline !important; }
   var CATEGORY_DATA = {
     nameEn:       "Highlights",
     nameNp:       "हाइलाइट्स",
-    totalCount:   4,
+    totalCount:   5,
     itemsPerPage: 20
   };
 
@@ -1228,6 +1274,7 @@ body.lang-active .lang-np-inline { display: inline !important; }
     var loadBtn = document.getElementById('load-more-btn');
     if (loadBtn) loadBtn.style.display = 'none';
 
+    initBackToTop();
     initPagination();
     updateRelativeTimes();
     wireHeaderHeroToLatest();
@@ -1297,6 +1344,17 @@ body.lang-active .lang-np-inline { display: inline !important; }
 
       heroBg.insertAdjacentElement('afterend', heroVideoWrap);
     }
+  }
+
+  function initBackToTop() {
+    var btn = document.getElementById('back-to-top');
+    if (!btn) return;
+    window.addEventListener('scroll', function() {
+      btn.style.display = window.scrollY > 300 ? 'flex' : 'none';
+    });
+    btn.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
   }
 
   function initPagination() {
@@ -1654,6 +1712,25 @@ body.lang-active .lang-np-inline { display: inline !important; }
 })();
 </script>
 
+
+  <!-- Back-to-top controller -->
+  <script>
+  (function() {
+    var btn = document.querySelector('.btt-btn');
+    if (!btn) return;
+
+    function updateButton() {
+      btn.classList.toggle('show', window.pageYOffset > 300);
+    }
+
+    window.addEventListener('scroll', updateButton);
+    updateButton();
+
+    btn.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  })();
+  </script>
 
 </body>
 </html>
