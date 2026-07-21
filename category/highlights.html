@@ -422,7 +422,7 @@
     --accent:       #F2B705;
     --primary:      #C1121F;
     --primary-on:   #FFFFFF;
-    --accent-on:    #1D1D1D;
+    --accent-on:    #FFFFFF;
     --bg:           #FFFFFF;
     --surface:      #FAFAFA;
     --text:         #1D1D1D;
@@ -432,276 +432,80 @@
     --font-heading: Arial, sans-serif;
   }
 
-  * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-  }
+  @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap');
 
-  html {
-    scroll-behavior: smooth;
-  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { background: var(--bg); color: var(--text); font-family: var(--font-body); }
 
-  body {
-    background: var(--bg);
-    color: var(--text);
-    font-family: var(--font-body);
-  }
+  .category-container { max-width: 1280px; margin: 0 auto; padding: 2rem 1.5rem; min-height: 100vh; }
 
-  .category-container {
-    max-width: 1280px;
-    margin: 0 auto;
-    padding: 2rem 1.5rem;
-    min-height: 100vh;
-  }
+  .category-header { text-align: center; margin-bottom: 3rem; padding-bottom: 2rem; border-bottom: 1px solid var(--border); }
 
-  .category-header {
-    text-align: center;
-    margin-bottom: 3rem;
-    padding-bottom: 2rem;
-    border-bottom: 1px solid var(--border);
-  }
+  .breadcrumb { font-size: 0.85rem; color: var(--muted); margin-bottom: 1rem; }
+  .breadcrumb a { color: var(--accent); text-decoration: none; }
+  .breadcrumb a:hover { text-decoration: underline; }
 
-  .breadcrumb {
-    font-size: 0.85rem;
-    color: var(--muted);
-    margin-bottom: 1rem;
-  }
+  h1 { font-family: var(--font-heading); font-size: clamp(1.8rem, 4vw, 2.8rem); color: var(--primary); margin-bottom: 1rem; line-height: 1.2; }
 
-  .breadcrumb a {
-    color: var(--accent);
-    text-decoration: none;
-  }
+  .category-description { font-size: 1rem; color: var(--muted); max-width: 700px; margin: 0 auto 1rem; line-height: 1.6; }
 
-  .breadcrumb a:hover {
-    text-decoration: underline;
-  }
+  .category-meta { display: inline-flex; align-items: center; gap: 0.5rem; background: var(--surface); padding: 0.5rem 1rem; border-radius: 20px; font-size: 0.85rem; color: var(--text); }
 
-  h1 {
-    font-family: var(--font-heading);
-    font-size: clamp(1.8rem, 4vw, 2.8rem);
-    color: var(--primary);
-    margin-bottom: 1rem;
-    line-height: 1.2;
-  }
+  .news-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 2rem; margin-bottom: 3rem; }
 
-  .category-description {
-    font-size: 1rem;
-    color: var(--muted);
-    max-width: 700px;
-    margin: 0 auto 1rem;
-    line-height: 1.6;
-  }
+  /* Article Card Styles */
+  .article-card { background: var(--surface); border-radius: 12px; overflow: hidden; transition: transform 0.3s ease, box-shadow 0.3s ease; border: 1px solid var(--border); }
+  .article-card:hover { transform: translateY(-4px); box-shadow: 0 8px 24px rgba(0,0,0,0.1); }
 
-  .category-meta {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    background: var(--surface);
-    padding: 0.5rem 1rem;
-    border-radius: 20px;
-    font-size: 0.85rem;
-    color: var(--text);
-  }
+  .card-image { width: 100%; height: 200px; object-fit: cover; background: var(--border); }
+  .card-image:empty { background: linear-gradient(135deg, var(--border) 0%, var(--surface) 100%); }
 
-  .news-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-    gap: 2rem;
-    margin-bottom: 3rem;
-  }
+  .card-content { padding: 1.25rem; }
 
-  .article-card {
-    background: var(--surface);
-    border-radius: 12px;
-    overflow: hidden;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    border: 1px solid var(--border);
-  }
+  .card-category { display: inline-block; background: var(--accent); color: var(--accent-on); font-size: 0.7rem; text-transform: uppercase; padding: 0.2rem 0.6rem; border-radius: 4px; margin-bottom: 0.75rem; letter-spacing: 0.05em; font-weight: 600; text-decoration: none; }
 
-  .article-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 8px 24px rgba(0,0,0,0.1);
-  }
+  .card-title { font-family: var(--font-heading); font-size: 1.2rem; line-height: 1.4; margin: 0 0 0.75rem; color: var(--text); text-decoration: none; transition: color 0.2s; }
+  .card-title:hover { color: var(--accent); }
 
-  .card-image {
-    width: 100%;
-    height: 200px;
-    object-fit: cover;
-    background: var(--border);
-  }
+  .card-excerpt { font-size: 0.88rem; color: var(--muted); line-height: 1.5; margin-bottom: 1rem; }
 
-  .card-image:empty {
-    background: linear-gradient(135deg, var(--border) 0%, var(--surface) 100%);
-  }
+  .card-meta { display: flex; justify-content: space-between; align-items: center; font-size: 0.78rem; color: var(--muted); }
+  .card-meta i { margin-right: 0.2rem; }
 
-  .card-content {
-    padding: 1.25rem;
-  }
+  .read-more { color: var(--accent); text-decoration: none; font-size: 0.85rem; font-weight: 600; transition: opacity 0.2s; }
+  .read-more:hover { opacity: 0.8; }
 
-  .card-category {
-    display: inline-block;
-    background: var(--accent);
-    color: var(--accent-on);
-    font-size: 0.7rem;
-    text-transform: uppercase;
-    padding: 0.2rem 0.6rem;
-    border-radius: 4px;
-    margin-bottom: 0.75rem;
-    letter-spacing: 0.05em;
-    font-weight: 600;
-    text-decoration: none;
-  }
+  .load-more-container { text-align: center; margin-top: 2rem; }
 
-  .card-title {
-    font-family: var(--font-heading);
-    font-size: 1.2rem;
-    line-height: 1.4;
-    margin: 0 0 0.75rem;
-    color: var(--text);
-    text-decoration: none;
-    transition: color 0.2s;
-  }
+  .load-more-btn { background: var(--accent); color: var(--accent-on); border: none; padding: 0.9rem 2rem; border-radius: 50px; cursor: pointer; font-size: 1rem; font-weight: 600; transition: transform 0.2s, opacity 0.2s; display: inline-flex; align-items: center; gap: 0.5rem; }
+  .load-more-btn:hover { opacity: 0.9; transform: scale(1.02); }
+  .load-more-btn:disabled { opacity: 0.5; cursor: not-allowed; }
 
-  .card-title:hover {
-    color: var(--accent);
-  }
+  #back-to-top { position: fixed; bottom: 1.5rem; right: 1.5rem; background: var(--accent); color: var(--accent-on); border: none; border-radius: 50%; width: 42px; height: 42px; cursor: pointer; font-size: 1rem; display: none; align-items: center; justify-content: center; z-index: 999; transition: opacity 0.2s; }
 
-  .card-excerpt {
-    font-size: 0.88rem;
-    color: var(--muted);
-    line-height: 1.5;
-    margin-bottom: 1rem;
-  }
+  /* Empty State */
+  .empty-state { text-align: center; padding: 4rem 2rem; background: var(--surface); border-radius: 12px; color: var(--muted); }
+  .empty-state i { font-size: 3rem; margin-bottom: 1rem; opacity: 0.5; }
 
-  .card-meta {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-size: 0.78rem;
-    color: var(--muted);
-  }
-
-  .card-meta i {
-    margin-right: 0.2rem;
-  }
-
-  .read-more {
-    color: var(--accent);
-    text-decoration: none;
-    font-size: 0.85rem;
-    font-weight: 600;
-    transition: opacity 0.2s;
-  }
-
-  .read-more:hover {
-    opacity: 0.8;
-  }
-
-  .load-more-container {
-    text-align: center;
-    margin-top: 2rem;
-  }
-
-  .load-more-btn {
-    background: var(--accent);
-    color: var(--accent-on);
-    border: none;
-    padding: 0.9rem 2rem;
-    border-radius: 50px;
-    cursor: pointer;
-    font-size: 1rem;
-    font-weight: 600;
-    transition: transform 0.2s, opacity 0.2s;
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-  }
-
-  .load-more-btn:hover {
-    opacity: 0.9;
-    transform: scale(1.02);
-  }
-
-  .load-more-btn:disabled {
-    opacity: 0.5;
-    cursor: not-allowed;
-  }
-
-  #back-to-top {
-    position: fixed;
-    bottom: 1.5rem;
-    right: 1.5rem;
-    background: var(--accent);
-    color: var(--accent-on);
-    border: none;
-    border-radius: 50%;
-    width: 42px;
-    height: 42px;
-    cursor: pointer;
-    font-size: 1rem;
-    display: none;
-    align-items: center;
-    justify-content: center;
-    z-index: 999;
-    transition: opacity 0.2s;
-  }
-
-  .empty-state {
-    text-align: center;
-    padding: 4rem 2rem;
-    background: var(--surface);
-    border-radius: 12px;
-    color: var(--muted);
-  }
-
-  .empty-state i {
-    font-size: 3rem;
-    margin-bottom: 1rem;
-    opacity: 0.5;
-  }
-
+  /* Responsive */
   @media (max-width: 768px) {
-    .category-container {
-      padding: 1rem;
-    }
-    .news-grid {
-      gap: 1rem;
-      grid-template-columns: 1fr;
-    }
-    .card-image {
-      height: 180px;
-    }
+    .category-container { padding: 1rem; }
+    .news-grid { gap: 1rem; grid-template-columns: 1fr; }
+    .card-image { height: 180px; }
   }
 
   @media (max-width: 480px) {
-    h1 {
-      font-size: 1.5rem;
-    }
-    .card-title {
-      font-size: 1rem;
-    }
+    h1 { font-size: 1.5rem; }
+    .card-title { font-size: 1rem; }
   }
 
-  .lang-np {
-    display: none;
-  }
-
-  .lang-en {
-    display: inline;
-  }
-
-  body.lang-active .lang-en {
-    display: none !important;
-  }
-
-  body.lang-active .lang-np {
-    display: inline !important;
-  }
-
-  body.lang-active p.lang-np, body.lang-active span.lang-np {
-    display: inline !important;
-  }
+  /* Language Visibility */
+  .lang-np { display: none; }
+  .lang-en { display: inline; }
+  body.lang-active .lang-en { display: none !important; }
+  body.lang-active .lang-np { display: inline !important; }
+  body.lang-active p.lang-np, body.lang-active span.lang-np { display: inline !important; }
 </style>
 <style>
 
@@ -1103,8 +907,7 @@ body.lang-active .lang-np-inline { display: inline !important; }
           <h3 class="grid-title lang-en">HILIGHTS NEWS | Butwal Highlights | 28 Asadh 2083, Aaitabaar | #NewsUpdate #hilights #PoliticalNews #economy</h3>
           <h3 class="grid-title lang-np" style="display:none;">हाइलाइट्स न्युज | बुटवल हाइलाइट्स | २८ असार २०८३, आइतवार | #NewsUpdate #हाइलाइट्स #राजनीतिकसमाचार #अर्थतन्त्र</h3>
         </a>
-        <span class="grid-time lang-en" data-date-ad="2026-07-12T19:17:58.361Z" data-rel="en"><i class="fa-regular fa-clock"></i> <span class="grid-time-text"></span></span>
-        <span class="grid-time lang-np" data-date-ad="2026-07-12T19:17:58.361Z" data-rel="np" style="display:none;"><i class="fa-regular fa-clock"></i> <span class="grid-time-text"></span></span>
+        <span class="grid-time" data-date-ad="2026-07-12" data-time="19:17"><i class="fa-regular fa-clock"></i> <span class="grid-time-text"></span></span>
       </div>
     </div>
   
@@ -1121,8 +924,7 @@ body.lang-active .lang-np-inline { display: inline !important; }
           <h3 class="grid-title lang-en">HILIGHTS NEWS | Butwal Highlight | 20 Asar 2083, Saturday | #NewsUpdate #PoliticalNews #economy</h3>
           <h3 class="grid-title lang-np" style="display:none;">हाइलाइट्स न्युज | बुटवल हाइलाइट | २० असार २०८३, शनिवार | #NewsUpdate #PoliticalNews #economy</h3>
         </a>
-        <span class="grid-time lang-en" data-date-ad="2026-07-06T13:20:27.403Z" data-rel="en"><i class="fa-regular fa-clock"></i> <span class="grid-time-text"></span></span>
-        <span class="grid-time lang-np" data-date-ad="2026-07-06T13:20:27.403Z" data-rel="np" style="display:none;"><i class="fa-regular fa-clock"></i> <span class="grid-time-text"></span></span>
+        <span class="grid-time" data-date-ad="2026-07-06" data-time="13:20"><i class="fa-regular fa-clock"></i> <span class="grid-time-text"></span></span>
       </div>
     </div>
   
@@ -1139,8 +941,7 @@ body.lang-active .lang-np-inline { display: inline !important; }
           <h3 class="grid-title lang-en">HILIGHTS NEWS | Butwal Highlights | 21 Asar 2083, Aaitabaar | #NewsUpdate #hilights #PoliticalNews #economy</h3>
           <h3 class="grid-title lang-np" style="display:none;">हाइलाइट्स न्युज | बुटवल हाइलाइट | २१ असार २०८३, आइतवार | #NewsUpdate #hilights #PoliticalNews #economy</h3>
         </a>
-        <span class="grid-time lang-en" data-date-ad="2026-07-05T22:26:34.698Z" data-rel="en"><i class="fa-regular fa-clock"></i> <span class="grid-time-text"></span></span>
-        <span class="grid-time lang-np" data-date-ad="2026-07-05T22:26:34.698Z" data-rel="np" style="display:none;"><i class="fa-regular fa-clock"></i> <span class="grid-time-text"></span></span>
+        <span class="grid-time" data-date-ad="2026-07-05" data-time="22:26"><i class="fa-regular fa-clock"></i> <span class="grid-time-text"></span></span>
       </div>
     </div>
   
@@ -1157,8 +958,7 @@ body.lang-active .lang-np-inline { display: inline !important; }
           <h3 class="grid-title lang-en">HIGHLIGHTS NEWS | बुटवल हाइलाइट | २० Asar 2083, Saturday</h3>
           <h3 class="grid-title lang-np" style="display:none;">हाइलाइट्स समाचार | बुटवल हाइलाइट | २० असार २०८३, शनिवार</h3>
         </a>
-        <span class="grid-time lang-en" data-date-ad="2026-07-05T16:35:39.847Z" data-rel="en"><i class="fa-regular fa-clock"></i> <span class="grid-time-text"></span></span>
-        <span class="grid-time lang-np" data-date-ad="2026-07-05T16:35:39.847Z" data-rel="np" style="display:none;"><i class="fa-regular fa-clock"></i> <span class="grid-time-text"></span></span>
+        <span class="grid-time" data-date-ad="2026-07-05" data-time="16:35"><i class="fa-regular fa-clock"></i> <span class="grid-time-text"></span></span>
       </div>
     </div>
   
@@ -1428,7 +1228,7 @@ body.lang-active .lang-np-inline { display: inline !important; }
     if (loadBtn) loadBtn.style.display = 'none';
 
     initPagination();
-    updateRelativeTimes();
+    updateDates();
     wireHeaderHeroToLatest();
 
     // Read stored language or default to 'np'
@@ -1553,64 +1353,93 @@ body.lang-active .lang-np-inline { display: inline !important; }
     renderPage(1);
   }
 
-  function relTime(dateStr, isNp) {
-    if (!dateStr) return '';
-    var then = new Date(dateStr).getTime();
-    if (isNaN(then)) return '';
-    var now = Date.now();
-    var diffSec = Math.floor((now - then) / 1000);
-    
-    if (diffSec < 0) diffSec = 0;
+  // ── UPDATED: actual date + time formatting (AD/BS aware, 12hr time)
+  // replaces the old relTime() "X hours ago" logic. Uses the same BS
+  // conversion table and digit-localization approach as the index page,
+  // so category pages and index page show dates/times identically. ──
 
-    var NP_DIGITS = ['०','१','२','३','४','५','६','७','८','९'];
-    function toNp(n) {
-      return String(n).split('').map(function(d) {
-        var i = parseInt(d, 10);
-        return isNaN(i) ? d : NP_DIGITS[i];
-      }).join('');
-    }
+  var EN_MONTHS=['January','February','March','April','May','June','July','August','September','October','November','December'];
+  var BS_MONTHS_NP=['बैशाख','जेठ','असार','साउन','भदौ','असोज','कार्तिक','मंसिर','पुष','माघ','फागुन','चैत'];
 
-    if (diffSec < 60) return isNp ? 'भर्खरै' : 'Just now';
+  var BS_DATA = {
+    2075:[31,31,32,32,31,30,30,30,29,29,30,31],
+    2076:[31,32,31,32,31,30,30,29,30,29,30,31],
+    2077:[31,31,32,32,31,30,30,29,30,29,30,31],
+    2078:[31,32,31,32,31,30,30,29,30,29,30,31],
+    2079:[31,31,32,32,31,30,30,29,30,29,30,31],
+    2080:[31,32,31,32,31,30,30,29,30,29,30,31],
+    2081:[31,31,32,32,31,30,30,29,30,29,30,31],
+    2082:[31,32,31,32,31,30,30,29,30,29,30,31],
+    2083:[31,31,32,32,31,30,30,29,30,29,30,31],
+    2084:[31,32,31,32,31,30,30,29,30,29,30,31],
+    2085:[31,31,32,32,31,30,30,29,30,29,30,31],
+    2086:[31,32,31,32,31,30,30,29,30,29,30,31],
+    2087:[31,31,32,32,31,30,30,29,30,29,30,31]
+  };
+  var BS_REF_AD = Date.UTC(2018,3,14);
+  var BS_REF_Y  = 2075;
 
-    var units = [
-      { limit: 60,       enS: 'second', enP: 'seconds', npS: 'सेकेन्ड' },
-      { limit: 3600,     enS: 'minute', enP: 'minutes', npS: 'मिनेट' },
-      { limit: 86400,    enS: 'hour',   enP: 'hours',   npS: 'घण्टा' },
-      { limit: 604800,   enS: 'day',    enP: 'days',    npS: 'दिन' },
-      { limit: 2629800,  enS: 'week',   enP: 'weeks',   npS: 'हप्ता' },
-      { limit: 31557600, enS: 'month',  enP: 'months',  npS: 'महिना' }
-    ];
-
-    var unitIdx = units.length - 1;
-    for (var i = 0; i < units.length; i++) {
-      if (diffSec < units[i].limit) {
-        unitIdx = i;
-        break;
-      }
-    }
-    
-    var unit = units[unitIdx];
-    var value = Math.floor(diffSec / (unitIdx === 0 ? 1 : units[unitIdx - 1].limit));
-    value = Math.max(1, value);
-    
-    return isNp 
-      ? (toNp(value) + ' ' + unit.npS + ' अगाडि')
-      : (value + ' ' + (value === 1 ? unit.enS : unit.enP) + ' ago');
+  var NP_DIGITS = ['०','१','२','३','४','५','६','७','८','९'];
+  function toNpDigits(input){
+    return String(input).replace(/[0-9]/g, function(d){ return NP_DIGITS[+d]; });
   }
 
-  function updateRelativeTimes() {
-    document.querySelectorAll('[data-rel]').forEach(function(el) {
-      var dateStr = el.getAttribute('data-date-ad');
-      var isNp = el.getAttribute('data-rel') === 'np';
+  function adToBs(adDate){
+    var diffDays = Math.floor((Date.UTC(adDate.getUTCFullYear(),adDate.getUTCMonth(),adDate.getUTCDate()) - BS_REF_AD) / 86400000);
+    if (diffDays < 0) return null;
+    var y = BS_REF_Y, m = 0;
+    while (true){
+      var monthsArr = BS_DATA[y];
+      if (!monthsArr) return null;
+      var daysInMonth = monthsArr[m];
+      if (diffDays < daysInMonth) break;
+      diffDays -= daysInMonth;
+      m++;
+      if (m === 12){ m = 0; y++; }
+    }
+    return { year:y, month:m, day:diffDays+1 };
+  }
+
+  function formatTime12(hh, mm, isNp){
+    var h = parseInt(hh,10);
+    if (isNaN(h)) return '';
+    var period = h >= 12 ? (isNp?'अपराह्न':'PM') : (isNp?'बिहान':'AM');
+    var h12 = h % 12; if (h12 === 0) h12 = 12;
+    var timeStr = h12 + ':' + mm;
+    if (isNp) timeStr = toNpDigits(timeStr);
+    return timeStr + ' ' + period;
+  }
+
+  function formatDateTime(adStr, rawTime, isNp){
+    var timeParts = (rawTime || '').split(':');
+    var timeStr = (timeParts.length===2) ? formatTime12(timeParts[0], timeParts[1], isNp) : (isNp ? toNpDigits(rawTime||'') : (rawTime||''));
+
+    var d = new Date(adStr);
+    var dateStr;
+    if (isNaN(d.getTime())){
+      dateStr = isNp ? toNpDigits(adStr||'') : (adStr||'');
+    } else if (isNp){
+      var bs = adToBs(d);
+      dateStr = bs
+        ? (toNpDigits(bs.day) + ' ' + BS_MONTHS_NP[bs.month] + ' ' + toNpDigits(bs.year))
+        : toNpDigits(EN_MONTHS[d.getUTCMonth()] + ' ' + d.getUTCDate() + ', ' + d.getUTCFullYear());
+    } else {
+      dateStr = EN_MONTHS[d.getUTCMonth()] + ' ' + d.getUTCDate() + ', ' + d.getUTCFullYear();
+    }
+
+    return dateStr + (timeStr ? ', ' + timeStr : '');
+  }
+
+  function updateDates(){
+    var isNp = document.body.classList.contains('lang-active');
+    document.querySelectorAll('.grid-time[data-date-ad]').forEach(function(el){
+      var adStr = el.getAttribute('data-date-ad');
+      var rawTime = el.getAttribute('data-time') || '';
       var textEl = el.querySelector('.grid-time-text');
-      var text = relTime(dateStr, isNp);
-      if (textEl) {
-        textEl.textContent = text;
-      }
+      if (!textEl) return;
+      textEl.textContent = formatDateTime(adStr, rawTime, isNp);
     });
   }
-  
-  setInterval(updateRelativeTimes, 30000);
 
   function applyLang(lang) {
     var isNp = (lang === 'np');
@@ -1653,8 +1482,8 @@ body.lang-active .lang-np-inline { display: inline !important; }
         '<span class="lang-np" style="display:' + (isNp ? 'inline' : 'none') + '">' + titleNp + '</span>';
     }
     
-    // Update relative times
-    updateRelativeTimes();
+    // Update dates/times (AD/BS + 12hr, language-aware)
+    updateDates();
     
     // Store preference
     try {
