@@ -253,6 +253,8 @@
 
 </style>
 <style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600;700;800&family=Noto+Sans+Devanagari:wght@400;500;600;700;800&display=swap');
+
   :root {
     --accent:       #F2B705;
     --primary:      #C1121F;
@@ -263,8 +265,8 @@
     --text:         #1D1D1D;
     --muted:        rgba(29,29,29,0.60);
     --border:       rgba(193,18,31,0.18);
-    --font-body:    'Noto Sans', sans-serif;
-    --font-heading: 'Noto Sans', sans-serif;
+    --font-body:    ;
+    --font-heading: ;
     --radius:       12px;
     --shadow:       0 8px 32px rgba(0,0,0,0.3);
   }
@@ -302,6 +304,10 @@
   .social-links { display: flex; gap: 0.75rem; flex-wrap: wrap; justify-content: center; }
   .social-link { display: inline-flex; align-items: center; justify-content: center; width: 44px; height: 44px; border-radius: 50%; background: var(--surface); border: 1px solid var(--border); color: var(--text); font-size: 1.2rem; text-decoration: none; transition: transform .2s ease, background .2s ease, border-color .2s ease, color .2s ease }
   .social-link:hover { transform: scale(1.12) }
+  .social-link[data-social="youtube"]:hover { background:#FF0000;color:#fff;border-color:#FF0000 }
+  .social-link[data-social="facebook"]:hover { background:#1877F2;color:#fff;border-color:#1877F2 }
+  .social-link[data-social="instagram"]:hover { background:#E4405F;color:#fff;border-color:#E4405F }
+  .social-link[data-social="twitter"]:hover { background:#000;color:#fff;border-color:#000 }
 
   .stream-link { display: inline-flex; align-items: center; gap: .5rem; margin-top: 1.25rem; padding: .7rem 1.5rem; background: var(--primary); color: var(--primary-on); border-radius: 8px; text-decoration: none; font-weight: 600; font-size: .95rem; letter-spacing: .03em; transition: opacity .2s ease, transform .2s ease; align-self: center; }
   .stream-link:hover { opacity: .85; transform: translateX(3px) }
@@ -336,7 +342,11 @@
   .map-placeholder { width: 100%; height: 100%; min-height: 200px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: .5rem; color: var(--muted); font-style: italic }
   .map-placeholder i { font-size: 2.5rem; color: var(--border) }
 
-  .contact-anim { opacity: 1; transform: translateY(0) }
+  .contact-anim { opacity: 0; transform: translateY(24px); transition: opacity .5s ease, transform .5s ease }
+  .contact-anim.visible { opacity: 1; transform: translateY(0) }
+  .contact-anim:nth-child(2) { transition-delay: .08s }
+  .contact-anim:nth-child(3) { transition-delay: .16s }
+  .contact-anim:nth-child(4) { transition-delay: .24s }
 
   .lang-np { display: none }
   .lang-en { display: inline }

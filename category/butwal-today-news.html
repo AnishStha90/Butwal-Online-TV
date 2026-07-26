@@ -418,64 +418,92 @@
 
 </style>
 <style>
-    
-    :root {
-  --accent:       #333;
-  --primary:      #f7f7f7;
-  --primary-on:   #333;
-  --accent-on:    #f7f7f7;
-  --bg:           #f7f7f7;
-  --surface:      #fff;
-  --text:         #333;
-  --muted:        #666;
-  --border:       #ddd;
-  --font-body:    Arial, sans-serif;
-  --font-heading: Arial, sans-serif;
-    }
-    .about-page { background: var(--bg); color: var(--text); font-family: var(--font-body); margin: 0; padding: 0; }
-    .split-wrapper { display: flex; align-items: flex-start; width: 100%; max-width: 1280px; margin: 0 auto; gap: 2rem; padding: 0 2rem; box-sizing: border-box; }
-    .split-main { flex: 0 0 60%; min-width: 0; }
-    .split-sidebar { flex: 0 0 40%; min-width: 0; position: sticky; top: 2rem; align-self: flex-start; max-height: none; overflow: visible; }
-    .about-hero { width: 100%; background: var(--primary); color: var(--primary-on); padding: 5rem 2rem; box-sizing: border-box; }
-    .about-hero__inner { max-width: 900px; margin: 0 auto; text-align: center; }
-    .story-section { width: 100%; padding: 4rem 2rem; box-sizing: border-box; }
-    .story-layout { display: flex; gap: 3rem; align-items: center; max-width: 1280px; margin: 0 auto; }
-    .story-image { flex: 1; border-radius: 12px; overflow: hidden; }
-    .story-image img { width: 100%; height: auto; display: block; }
-    .story-content { flex: 1; }
-    .cta-section { width: 100%; background: var(--accent); color: var(--accent-on); padding: 4rem 2rem; box-sizing: border-box; }
-    .cta-section__inner { max-width: 700px; margin: 0 auto; text-align: center; }
-    .about-section { padding: 3rem 0; }
-    .news-sidebar { background: var(--surface); border-left: 2px solid var(--border); padding: 2rem 1.5rem; border-radius: 12px; overflow: visible; max-height: none; }
-    .news-sidebar-header { margin-bottom: 1.25rem; padding-bottom: 0.75rem; border-bottom: 2px solid var(--border); }
-    .news-feed-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 1rem; overflow: visible; max-height: none; }
-    .news-feed-item { display: flex; gap: 0.75rem; align-items: flex-start; padding-bottom: 1rem; border-bottom: 1px solid var(--border); }
-    .news-feed-item:last-child { border-bottom: none; padding-bottom: 0; }
-    .news-thumb { width: 72px; height: 60px; border-radius: 6px; background: var(--border); flex-shrink: 0; }
-    .news-meta { display: flex; flex-direction: column; gap: 0.3rem; min-width: 0; }
-    .news-category { font-size: 0.7rem; font-weight: 700; text-transform: uppercase; color: var(--accent); }
-    .news-title { font-size: 0.85rem; font-weight: 600; color: var(--text); text-decoration: none; line-height: 1.35; }
-    .news-title:hover { color: var(--primary); }
-    .news-date { font-size: 0.72rem; color: var(--muted); }
-    .news-sidebar-more { display: inline-flex; gap: 0.4rem; margin-top: 1.25rem; font-size: 0.85rem; font-weight: 700; color: var(--primary); text-decoration: none; }
-    #newsletterForm { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin-top: 1.5rem; }
-    .newsletter-input { padding: 0.75rem 1.25rem; border-radius: 8px; border: none; font-size: 1rem; min-width: 240px; outline: none; }
-    .newsletter-btn { padding: 0.75rem 1.5rem; background: var(--primary); color: var(--primary-on); border: none; border-radius: 8px; cursor: pointer; font-weight: 700; }
-    .fade-in { opacity: 0; transform: translateY(20px); transition: opacity 0.5s ease, transform 0.5s ease; }
-    .fade-in.visible { opacity: 1; transform: translateY(0); }
-    @media (max-width: 768px) {
-      .split-wrapper, .story-layout { flex-direction: column; padding: 0 1rem; }
-      .split-main, .split-sidebar { flex: 1 1 100%; width: 100%; }
-      .split-sidebar { position: static; }
-      .news-sidebar { border-left: none; border-top: 2px solid var(--border); margin-top: 1rem; }
-      .about-section { padding: 2rem 0; }
-      .story-section { padding: 2rem 1rem; }
-    }
-    @media (max-width: 480px) {
-      .about-hero, .cta-section { padding: 3rem 1rem; }
-      #newsletterForm { flex-direction: column; align-items: center; }
-    }
-  </style>
+  :root {
+    --accent:       #F2B705;
+    --primary:      #C1121F;
+    --primary-on:   #FFFFFF;
+    --accent-on:    #1D1D1D;
+    --bg:           #FFFFFF;
+    --surface:      #FAFAFA;
+    --text:         #1D1D1D;
+    --muted:        rgba(29,29,29,0.60);
+    --border:       rgba(193,18,31,0.18);
+    --font-body:    Arial, sans-serif;
+    --font-heading: Arial, sans-serif;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { background: var(--bg); color: var(--text); font-family: var(--font-body); }
+
+  .category-container { max-width: 1280px; margin: 0 auto; padding: 2rem 1.5rem; min-height: 100vh; }
+
+  .category-header { text-align: center; margin-bottom: 3rem; padding-bottom: 2rem; border-bottom: 1px solid var(--border); }
+
+  .breadcrumb { font-size: 0.85rem; color: var(--muted); margin-bottom: 1rem; }
+  .breadcrumb a { color: var(--accent); text-decoration: none; }
+  .breadcrumb a:hover { text-decoration: underline; }
+
+  h1 { font-family: var(--font-heading); font-size: clamp(1.8rem, 4vw, 2.8rem); color: var(--primary); margin-bottom: 1rem; line-height: 1.2; }
+
+  .category-description { font-size: 1rem; color: var(--muted); max-width: 700px; margin: 0 auto 1rem; line-height: 1.6; }
+
+  .category-meta { display: inline-flex; align-items: center; gap: 0.5rem; background: var(--surface); padding: 0.5rem 1rem; border-radius: 20px; font-size: 0.85rem; color: var(--text); }
+
+  .news-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 2rem; margin-bottom: 3rem; }
+
+  /* Article Card Styles */
+  .article-card { background: var(--surface); border-radius: 12px; overflow: hidden; transition: transform 0.3s ease, box-shadow 0.3s ease; border: 1px solid var(--border); }
+  .article-card:hover { transform: translateY(-4px); box-shadow: 0 8px 24px rgba(0,0,0,0.1); }
+
+  .card-image { width: 100%; height: 200px; object-fit: cover; background: var(--border); }
+  .card-image:empty { background: linear-gradient(135deg, var(--border) 0%, var(--surface) 100%); }
+
+  .card-content { padding: 1.25rem; }
+
+  .card-category { display: inline-block; background: var(--accent); color: var(--accent-on); font-size: 0.7rem; text-transform: uppercase; padding: 0.2rem 0.6rem; border-radius: 4px; margin-bottom: 0.75rem; letter-spacing: 0.05em; font-weight: 600; text-decoration: none; }
+
+  .card-title { font-family: var(--font-heading); font-size: 1.2rem; line-height: 1.4; margin: 0 0 0.75rem; color: var(--text); text-decoration: none; transition: color 0.2s; }
+  .card-title:hover { color: var(--accent); }
+
+  .card-excerpt { font-size: 0.88rem; color: var(--muted); line-height: 1.5; margin-bottom: 1rem; }
+
+  .card-meta { display: flex; justify-content: space-between; align-items: center; font-size: 0.78rem; color: var(--muted); }
+  .card-meta i { margin-right: 0.2rem; }
+
+  .read-more { color: var(--accent); text-decoration: none; font-size: 0.85rem; font-weight: 600; transition: opacity 0.2s; }
+  .read-more:hover { opacity: 0.8; }
+
+  .load-more-container { text-align: center; margin-top: 2rem; }
+
+  .load-more-btn { background: var(--accent); color: var(--accent-on); border: none; padding: 0.9rem 2rem; border-radius: 50px; cursor: pointer; font-size: 1rem; font-weight: 600; transition: transform 0.2s, opacity 0.2s; display: inline-flex; align-items: center; gap: 0.5rem; }
+  .load-more-btn:hover { opacity: 0.9; transform: scale(1.02); }
+  .load-more-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+  #back-to-top { position: fixed; bottom: 1.5rem; right: 1.5rem; background: var(--accent); color: var(--accent-on); border: none; border-radius: 50%; width: 42px; height: 42px; cursor: pointer; font-size: 1rem; display: none; align-items: center; justify-content: center; z-index: 999; transition: opacity 0.2s; }
+
+  /* Empty State */
+  .empty-state { text-align: center; padding: 4rem 2rem; background: var(--surface); border-radius: 12px; color: var(--muted); }
+  .empty-state i { font-size: 3rem; margin-bottom: 1rem; opacity: 0.5; }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .category-container { padding: 1rem; }
+    .news-grid { gap: 1rem; grid-template-columns: 1fr; }
+    .card-image { height: 180px; }
+  }
+
+  @media (max-width: 480px) {
+    h1 { font-size: 1.5rem; }
+    .card-title { font-size: 1rem; }
+  }
+
+  .lang-np { display: none; }
+  .lang-en { display: inline; }
+  body.lang-active .lang-en { display: none !important; }
+  body.lang-active .lang-np { display: inline !important; }
+  body.lang-active p.lang-np, body.lang-active span.lang-np { display: inline !important; }
+</style>
 <style>
 
 :root {
@@ -841,86 +869,26 @@ body.lang-active .lang-np-inline { display: inline !important; }
 
 
 
-  <section class="about-hero">
-    <div class="about-hero__inner" data-slot="hero"></div>
-  </section>
 
-  <section class="story-section">
-    <div class="story-layout">
-      <div class="story-image" data-slot="story-image">
-        <img src="" alt="" id="aboutStoryImage">
-      </div>
-      <div class="story-content" data-slot="story-content"></div>
-    </div>
-  </section>
 
-  <div class="split-wrapper">
-    <div class="split-main">
-      <section class="stats-section about-section" data-slot="stats"></section>
-    </div>
-    <div class="split-sidebar" data-news-container="true"></div>
+<div class="category-container">
+
+  <!-- Category Header Section -->
+  <div class="category-header">
+    
+    
+    <h1>
+      <span id="category-title-en" class="lang-en"></span>
+      <span id="category-title-np" class="lang-np"></span>
+    </h1>
+    
+    
+    
+    
   </div>
 
-  <section class="cta-section">
-    <div class="cta-section__inner" data-slot="cta">
-      <form id="newsletterForm">
-        <input type="email" name="email" class="newsletter-input">
-        <button type="submit" class="newsletter-btn"></button>
-      </form>
-    </div>
-  </section>
-
-  <template id="newsSidebarTpl">
-    <aside class="news-sidebar">
-      <div class="news-sidebar-header" data-slot="news-sidebar-header"></div>
-      <ul class="news-feed-list">
-        <li class="news-feed-item" data-news-index="0">
-          <div class="news-thumb" data-news-thumb="0"></div>
-          <div class="news-meta">
-            <span class="news-category" data-news-category="0"></span>
-            <a class="news-title" data-news-title="0" href="#"></a>
-            <span class="news-date" data-news-date="0"></span>
-          </div>
-        </li>
-        <li class="news-feed-item" data-news-index="1">
-          <div class="news-thumb" data-news-thumb="1"></div>
-          <div class="news-meta">
-            <span class="news-category" data-news-category="1"></span>
-            <a class="news-title" data-news-title="1" href="#"></a>
-            <span class="news-date" data-news-date="1"></span>
-          </div>
-        </li>
-        <li class="news-feed-item" data-news-index="2">
-          <div class="news-thumb" data-news-thumb="2"></div>
-          <div class="news-meta">
-            <span class="news-category" data-news-category="2"></span>
-            <a class="news-title" data-news-title="2" href="#"></a>
-            <span class="news-date" data-news-date="2"></span>
-          </div>
-        </li>
-        <li class="news-feed-item" data-news-index="3">
-          <div class="news-thumb" data-news-thumb="3"></div>
-          <div class="news-meta">
-            <span class="news-category" data-news-category="3"></span>
-            <a class="news-title" data-news-title="3" href="#"></a>
-            <span class="news-date" data-news-date="3"></span>
-          </div>
-        </li>
-        <li class="news-feed-item" data-news-index="4">
-          <div class="news-thumb" data-news-thumb="4"></div>
-          <div class="news-meta">
-            <span class="news-category" data-news-category="4"></span>
-            <a class="news-title" data-news-title="4" href="#"></a>
-            <span class="news-date" data-news-date="4"></span>
-          </div>
-        </li>
-      </ul>
-      <a class="news-sidebar-more" href="news.html" data-slot="news-sidebar-more"></a>
-    </aside>
-  </template>
-
-  
-</main>
+  <!-- News Grid Section -->
+  <div id="news-grid" class="news-grid">
   <div class="category-feed">
     <div id="news-list">
       
@@ -1130,6 +1098,21 @@ body.lang-active .lang-np-inline { display: inline !important; }
     </div>
     <div id="category-pagination"></div>
   </div>
+</div>
+
+  <!-- Load More Section -->
+  <div class="load-more-container">
+    <button id="load-more-btn" class="load-more-btn">
+      <span class="lang-en"><i class="fas fa-chevron-down"></i> Load More</span>
+      <span class="lang-np"><i class="fas fa-chevron-down"></i> थप लोड गर्नुहोस्</span>
+    </button>
+  </div>
+
+  <!-- Back to Top Button -->
+  
+
+</div>
+
 
 <div id="video-modal-overlay" style="display:none;position:fixed;inset:0;z-index:100000;background:rgba(0,0,0,.9);align-items:center;justify-content:center;padding:20px;box-sizing:border-box;">
   <div style="position:relative;max-width:900px;width:100%;">
